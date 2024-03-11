@@ -1,0 +1,85 @@
+@media(max-width: 1800px){
+    
+}
+@media(max-width: 1700px){
+}
+@media(max-width: 1660px){
+
+}
+@media(max-width: 1500px){
+    .medium_text {
+        font-size: 32px;
+        color: #fff;
+        line-height: 40px;
+        margin-bottom: 4px;
+        font-weight: 600;
+    }
+    .section_heading h2 {
+        font-size: 34px;
+    }
+}
+@media(max-width: 1400px){
+   
+}
+@media(max-width: 1399px){
+   
+}
+@media(max-width: 1280px){
+ 
+}
+@media(max-width: 1199px){
+    .top-container {
+        width: 1160px;
+    } 
+    p.bdr-rgt {
+        font-size: 12px;
+        font-weight: 500;
+        padding-left: 7px;
+        padding-right: 7px;
+        margin-bottom: 0px;
+    }
+    p#btn {
+        font-size: 12px;
+        margin-bottom: 0px;
+        font-weight: 500;
+    }
+    .container-nav.container {
+        max-width: 99% !important;
+    }
+    .top-bar-section {
+        justify-content: center !important;
+    }
+    
+}
+@media(max-width: 1080px){
+    
+}
+@media(max-width: 1024px){
+}
+@media(max-width: 991px){
+    .city_about_text p{
+		display:none;
+	}
+    .city_about_wrap {
+        padding: 45px 0px 30px;
+    }
+    .logo a span {
+        display: block;
+        font-weight: 900;
+        font-size: 86%;
+    }
+    .foot-main {
+        padding-right: 41px;
+    }
+
+}
+@media(max-width: 767px){
+
+}
+@media(max-width: 480px){
+
+
+}
+@media(max-width: 360px){
+
+}
