@@ -48,65 +48,7 @@ export default function Login() {
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   // Validate email
-  //   if (!emailRegex.test(user.r_email)) {
-  //     setIsValidEmail(false);
-  //     return;
-  //   } else {
-  //     setIsValidEmail(true);
-  //   }
-
-  //   // Validate password
-  //   if (!user.r_password) {
-  //     setIsValidPassword(false);
-  //     return;
-  //   } else {
-  //     setIsValidPassword(true);
-  //   }
-  //   if (!user.capcha) {
-  //     issetCapcha(false);
-  //     return;
-  //   } else {
-  //     issetCapcha(true);
-  //   }
-
-  //   const response = await apiClient.post(api.login, jsonData);
-
-  //   if (response && response.data) {
-  //     if (response.status === 200) {
-  //       let dt = response.data;
-  //       console.log(dt)
-  //       let user = dt.user;
-  //       let token = dt.token;
-  //       let newExpirationTime = dt.timeexpire
-  //       localStorage.setItem("user", JSON.stringify(user));
-  //       const storedUserString = localStorage.getItem('user');
-  //       const u = JSON.parse(storedUserString);
-
-  //       if (dt) {
-  //         localStorage.setItem("token", token);
-  //         // localStorage.setItem('expirationTime', newExpirationTime);
-  //         setDialogText("You have successfully logged in ");
-         
-  //         localStorage.setItem('expirationTime', newExpirationTime);
-        
-  //         handleOpenDialog();
-  //         // toast.success(' logged in');
-
-  //         setTimeout(() => {
-  //           handleCloseDialog();
-  //           navigate("/dashboard"); // Navigate to the "/dashboard" page after successful login
-  //         }, 1000); // Adjust the delay as needed
-  //       }
-  //     }
-  //   } else {
-  //     setDialogText("You have entered incorrect email/password");
-  //     handleOpenDialog();
-  //   }
-  // };
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
   
@@ -125,37 +67,50 @@ export default function Login() {
     } else {
       setIsValidPassword(true);
     }
+    if (!capcha) {
+     alert("Please Tick Checkbox in Capture")
+      return;
+    }
   
     // Validate CAPTCHA
-   
-    const response = await apiClient.post(api.login, jsonData);
+    try {
+      const response = await apiClient.post(api.login, jsonData);
   
-    if (response && response.data) {
-      if (response.status === 200) {
-        let dt = response.data;
-        let user = dt.user;
-        let token = dt.token;
-        let newExpirationTime = dt.timeexpire;
-        localStorage.setItem("user", JSON.stringify(user));
-        localStorage.setItem("token", token);
-        localStorage.setItem('expirationTime', newExpirationTime);
+      if (response && response.data) {
+        if (response.status === 200) {
+          let dt = response.data;
+          let user = dt.user;
+          let token = dt.token;
+          let newExpirationTime = dt.timeexpire;
+          localStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem("token", token);
+          localStorage.setItem('expirationTime', newExpirationTime);
   
-        setDialogText("You have successfully logged in ");
+          setDialogText("You have successfully logged in ");
+          handleOpenDialog();
+  
+          setTimeout(() => {
+            handleCloseDialog();
+            // navigate("/dashboard"); // Navigate to the "/dashboard" page after successful login
+            // window.location.href("/dashboard");
+            window.location.replace("/dashboard");
+          }, 1000); // Adjust the delay as needed
+        }
+      } else {
+        setDialogText("You have entered incorrect email/password");
         handleOpenDialog();
-        
-  
-        setTimeout(() => {
-          handleCloseDialog();
-          // navigate("/dashboard"); // Navigate to the "/dashboard" page after successful login
-          // window.location.href("/dashboard");
-          window.location.replace("/dashboard");
-        }, 1000); // Adjust the delay as needed
       }
-    } else {
-      setDialogText("You have entered incorrect email/password");
-      handleOpenDialog();
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        setDialogText("You have entered incorrect email/password");
+        handleOpenDialog();
+      } else {
+        // Handle other errors
+      }
     }
   };
+  
+    
   
   function onChange(value) {
     // console.log("Captcha value:", value);

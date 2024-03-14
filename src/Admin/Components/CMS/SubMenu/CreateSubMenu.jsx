@@ -291,7 +291,8 @@ export const CreateSubMenu = () => {
                 </div>
 
             <div className="mb-12">
-              <Form.Label className="text-center" style={{ color: "black" }}>Menu Names</Form.Label>
+            <label className="form-label text-dark">Menu Names</label>
+              {/* <Form.Label className="text-center" style={{ color: "black" }}>Menu Names</Form.Label> */}
               <select
                 className='form-control'
                 name='submenu_id'

@@ -176,7 +176,7 @@ export const CreateReports = () => {
         formDataToSend.append('contenttype', formData.contenttype);
 
         if (formData.contenttype === '4') {
-          formDataToSend.append('external_file', formData.external_link);
+          formDataToSend.append('external_file', formData.external_file);
         } else if (formData.contenttype === '3') {
           formDataToSend.append('internale_file', formData.internale_file);
         } else if (formData.contenttype === '2') {

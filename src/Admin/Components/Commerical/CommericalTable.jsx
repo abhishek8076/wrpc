@@ -96,9 +96,13 @@ export default function CommericalTable() {
               // console.log("xyz",apiClient)
                 const response = await apiClient.get(apis.commerical,{
                   headers:{
-                    Authorization:""
+                   // Authorization:""
+                    Authorization: 'Bearer ' + localStorage.getItem("token")
+                    
                   }
                 });
+                console.log("Response: authorization", response);
+
                 const dataWithIds = response.data.map((row, index) => ({ id: index, ...row }));
                 setApiData(dataWithIds);
               

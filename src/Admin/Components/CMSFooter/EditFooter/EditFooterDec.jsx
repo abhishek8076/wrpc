@@ -170,7 +170,7 @@ export const EditFooterDec = () => {
                     value={formData.languagetype}
                     onChange={handleInputChange}
                   >
-                    <option value="0">Select a Language</option>
+                    <option value="">Select a Language</option>
                     <option value="1">English</option>
                     <option value="2">Hindi</option>
                   </select>

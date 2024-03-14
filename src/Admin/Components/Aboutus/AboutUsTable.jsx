@@ -30,7 +30,7 @@ export default function AboutusTable() {
     const [modalMessage, setModalMessage] = useState('');
 
     const columns = [
-        { field: 1, headerName: "S.No", width: 50 },
+        { field: "id", headerName: "S.No", width: 50 },
         { field: "imgpath", headerName: "Image", 
           // Render the image using an <img> element
           width: 100,
@@ -46,7 +46,8 @@ export default function AboutusTable() {
             headerName: "Edit",
             sortable: false,
             renderCell: (params) => (
-                <Link to={'/cms/editaboutus/'+params.row.u_id}>
+                // <Link to={'/cms/editaboutus/'+params.row.u_id}>
+                <Link to={'/cms/Aboutusedit'}>
                     <EditIcon style={{ cursor: 'pointer' }} />
                 </Link>
             ),
@@ -101,7 +102,7 @@ export default function AboutusTable() {
         async function fetchData() {
             try {
                 const response = await apiClient.get(apis.getAboutus);
-                const dataWithIds = response.data.map((row, index) => ({ id: index, ...row }));
+                const dataWithIds = response.data.map((row, index) => ({ id: index + 1, ...row }));
                 setApiData(dataWithIds);
               
 

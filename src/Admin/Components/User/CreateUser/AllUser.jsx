@@ -32,7 +32,7 @@ export default function AllUser() {
     const user = JSON.parse(storedUserString);
 
     const columns = [
-        { field: "rowIndex", headerName: "S.No", width: 50 }
+        { field: "id", headerName: "S.No", width: 50 }
        ,
         { field: "user_name", headerName: "name" ,width: 200},
         { field: "user_email", headerName: "Email",width: 200 },
@@ -102,7 +102,7 @@ export default function AllUser() {
         async function fetchData() {
             try {
                 const response = await apiClient.get(api.newuser);
-                const dataWithIds = response.data.map((row, index) => ({ id: index, ...row }));
+                const dataWithIds = response.data.map((row, index) => ({ id: index+1, ...row }));
                 setApiData(dataWithIds);
             } catch (error) {
                 console.error('Error fetching data:', error);

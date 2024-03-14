@@ -29,7 +29,7 @@ export default function ReportTable() {
     const [modalMessage, setModalMessage] = useState('');
 
     const columns = [
-        { field: "rowIndex", headerName: "S.No", width: 50 }
+        { field: "id", headerName: "S.No", width: 50 }
        ,
         { field: "u_report_tittle", headerName: "Title" ,width: 200},
         { field: "u_startdate", headerName: "Start Date",width: 120 },
@@ -85,7 +85,7 @@ export default function ReportTable() {
         async function fetchData() {
             try {
                 const response = await apiClient.get(api.Report);
-                const dataWithIds = response.data.map((row, index) => ({ id: index, ...row }));
+                const dataWithIds = response.data.map((row, index) => ({ id: index+1, ...row }));
                 setApiData(dataWithIds);
             } catch (error) {
                 console.error('Error fetching data:', error);

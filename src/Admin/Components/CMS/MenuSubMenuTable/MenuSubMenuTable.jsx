@@ -35,7 +35,7 @@ export default function MenuSubMenuTable() {
 
 
     const columns = [
-        { field: "rowIndex", headerName: "S.No", width: 50 }
+        { field: "id", headerName: "S.No", width: 50 }
         ,
         { field: "u_menu_name", headerName: "Title", width: 200 },
         { field: "u_internal_link", headerName: "Internal Link", width: 120 },
@@ -104,7 +104,7 @@ export default function MenuSubMenuTable() {
         async function fetchData() {
             try {
                 const response = await apiClient.get(api.navmenu);
-                const dataWithIds = response.data.map((row, index) => ({ id: index, ...row }));
+                const dataWithIds = response.data.map((row, index) => ({ id: index + 1, ...row }));
                 setApiData(dataWithIds);
             } catch (error) {
                 console.error('Error fetching data:', error);

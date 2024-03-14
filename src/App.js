@@ -63,6 +63,7 @@ import SiteMap from "./Admin/Components/SiteMap/SiteMap";
 // import { CreateCommerical } from './Components/Commerical/Commerical';
 import { Aboutus } from "./Admin/Components/Aboutus/AboutUs";
 import AboutusTable from "./Admin/Components/Aboutus/AboutUsTable";
+//import {Aboutusedit} from "./Admin/Components/Aboutus/AboutUsEdit";
 import CommericalTable from "./Admin/Components/Commerical/CommericalTable";
 import { EditCommerical } from "./Admin/Components/Commerical/EditCommerical";
 import { CreateCandidate } from "./Admin/Components/candidate/Create/CreateCandidate";
@@ -196,6 +197,7 @@ function App() {
                   {/* about us */}
                   <Route path="aboutus" element={<Aboutus />} />
                   <Route path="aboutustable" element={<AboutusTable />} />
+                  {/* <Route path="Aboutusedit" element={<Aboutusedit />} /> */}
                 </Route>
                 {/* Services */}
                 <Route path="/services">
