@@ -10,29 +10,27 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-import { Link, useNavigate,Redirect } from "react-router-dom";
+import { Link, useNavigate, Redirect } from "react-router-dom";
 // import api from '../../utils/apiUrl.json';
 // import apiClient from '../../services/AxiosApi';
 
-import api from '../../../../Api/api.json';
-import apiClient from '../../../../Api/ApiClient'
+import api from "../../../../Api/api.json";
+import apiClient from "../../../../Api/ApiClient";
 import ReCAPTCHA from "react-google-recaptcha";
 import Captcha from "../../Captcha/Captcha";
-import avtar from '../../../../assets/images/avtar.png'
-
+import avtar from "../../../../assets/images/avtar.png";
 
 export default function Login() {
   const navigate = useNavigate();
   const [user, setUser] = useState({
     r_email: "",
     r_password: "",
-   
   });
 
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
   const [iscapcha, issetCapcha] = useState(true);
-  const [capcha, setCapcha] = useState('');
+  const [capcha, setCapcha] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
   const [dialogText, setDialogText] = useState("");
   const [stateLoginButton, setStateLoginButton] = useState({
@@ -42,16 +40,16 @@ export default function Login() {
   const jsonData = {
     r_email: user.r_email,
     r_password: user.r_password,
-    capcha:capcha
+    capcha: capcha,
   };
 
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const passwordRegex =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-  
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     // Validate email
     if (!emailRegex.test(user.r_email)) {
       setIsValidEmail(false);
@@ -59,7 +57,7 @@ export default function Login() {
     } else {
       setIsValidEmail(true);
     }
-  
+
     // Validate password
     if (!user.r_password) {
       setIsValidPassword(false);
@@ -68,14 +66,14 @@ export default function Login() {
       setIsValidPassword(true);
     }
     if (!capcha) {
-     alert("Please Tick Checkbox in Capture")
+      alert("Please Tick Checkbox in Capture");
       return;
     }
-  
+
     // Validate CAPTCHA
     try {
       const response = await apiClient.post(api.login, jsonData);
-  
+
       if (response && response.data) {
         if (response.status === 200) {
           let dt = response.data;
@@ -84,11 +82,11 @@ export default function Login() {
           let newExpirationTime = dt.timeexpire;
           localStorage.setItem("user", JSON.stringify(user));
           localStorage.setItem("token", token);
-          localStorage.setItem('expirationTime', newExpirationTime);
-  
+          localStorage.setItem("expirationTime", newExpirationTime);
+
           setDialogText("You have successfully logged in ");
           handleOpenDialog();
-  
+
           setTimeout(() => {
             handleCloseDialog();
             // navigate("/dashboard"); // Navigate to the "/dashboard" page after successful login
@@ -101,27 +99,25 @@ export default function Login() {
         handleOpenDialog();
       }
     } catch (error) {
-      if (error.response && error.response.status === 400) {
-        setDialogText("You have entered incorrect email/password");
+      // console.log(`Error: ${error}`);
+      if (error.response.data==="already_login") {
+        setDialogText("User Already Login");
         handleOpenDialog();
-      } else {
-        // Handle other errors
+      } else if(error.response.status===400)  {
+        setDialogText("You have entered incorrect email/password");
       }
     }
   };
-  
-    
-  
+
   function onChange(value) {
     // console.log("Captcha value:", value);
-    setCapcha(value)
-
+    setCapcha(value);
   }
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUser((prevUser) => ({
       ...prevUser,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -169,11 +165,10 @@ export default function Login() {
             alignItems: "center",
           }}
         >
-       <p className='loginHeading'>Western Regional Power Committee</p>
-       <img className="panelavatar" src={avtar}/>
-          <p className='logintitle'> Admin</p>
-          <Typography component="h1" variant="h5">
-          </Typography>
+          <p className="loginHeading">Western Regional Power Committee</p>
+          <img className="panelavatar" src={avtar} />
+          <p className="logintitle"> Admin</p>
+          <Typography component="h1" variant="h5"></Typography>
           <form onSubmit={handleSubmit}>
             <TextField
               margin="normal"
@@ -194,28 +189,23 @@ export default function Login() {
               label="Password"
               type="password"
               onChange={handleChange}
-              
               error={!isValidPassword}
               helperText={!isValidPassword ? "Please enter your password" : ""}
             />
-   {/* <div className="form-group ">
+            {/* <div className="form-group ">
             <Captcha sendStateCaptcha={setStateLoginButton} />
           </div> */}
             <ReCAPTCHA
-    sitekey="6LdGJv0UAAAAAIvZIBzc9LZ0kY1FovqsgO2Ewjb8"
-    onChange={onChange}
-  />
+              sitekey="6LdGJv0UAAAAAIvZIBzc9LZ0kY1FovqsgO2Ewjb8"
+              onChange={onChange}
+            />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              className={
-                stateLoginButton.isVerified === true
-               
-              }
+              className={stateLoginButton.isVerified === true}
               // disabled={stateLoginButton.isVerified === true ? true : false}
-             
             >
               Sign In
             </Button>
@@ -230,9 +220,14 @@ export default function Login() {
         aria-describedby="alert-dialog-description"
         PaperProps={{ style: dialogStyles }}
       >
-        <DialogTitle id="alert-dialog-title" style={titleStyles}>{"Message"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title" style={titleStyles}>
+          {"Message"}
+        </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description" style={contentTextStyles}>
+          <DialogContentText
+            id="alert-dialog-description"
+            style={contentTextStyles}
+          >
             {dialogText}
           </DialogContentText>
         </DialogContent>

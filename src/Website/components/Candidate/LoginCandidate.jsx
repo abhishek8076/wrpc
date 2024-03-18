@@ -154,20 +154,12 @@ export const LoginCandidate = () => {
       }
     } catch (error) {
       if (error && error.response.status === 400) {
-        // setDialogText("You have entered incorrect email/password");
-        // handleOpenDialog();
         alert("You have entered incorrect email/password")
-        // alert("You have entered incorrect email/password")/
       } else {
-       
-        // setDialogText("An error occurred while attempting to login");
-        // handleOpenDialog();
+        setDialogText("An error occurred while attempting to login");
       }
       console.error("An error occurred while attempting to login:", error);
-      // setDialogText("An error occurred while attempting to login");
-      // handleOpenDialog();
     }
-    
   };
   
   function onChange(value) {
@@ -257,9 +249,7 @@ export const LoginCandidate = () => {
               error={!isValidPassword}
               helperText={!isValidPassword ? "Please enter your password" : ""}
             />
-   {/* <div className="form-group ">
-            <Captcha sendStateCaptcha={setStateLoginButton} />
-          </div> */}
+
             <ReCAPTCHA
     sitekey="6LdGJv0UAAAAAIvZIBzc9LZ0kY1FovqsgO2Ewjb8"
     onChange={onChange}
@@ -273,7 +263,7 @@ export const LoginCandidate = () => {
                 stateLoginButton.isVerified === true
                
               }
-              // disabled={stateLoginButton.isVerified === true ? true : false}
+         
              
             >
               Sign In

@@ -56,7 +56,7 @@ export default function BannerTable() {
 
     const handleConfirmSubmit = async () => {
         try {
-            await apiClient.delete(apis.deleteImg + selectedItem.u_id);
+            await apiClient.post('/api/Slider/delete/' + selectedItem.u_id);
             setApiData((prevData) => prevData.filter((item) => item.u_id !== selectedItem.u_id));
             setIsDeleting(false);
             setModalMessage('Data deleted successfully');

@@ -191,7 +191,7 @@ export const EditSubmenu = () => {
         formDataToSend.append('html', content);
       }
 
-      const response = await apiClient.put(apis.getmenudatabyid + id, formDataToSend, {
+      const response = await apiClient.post("/api/TopMenu/put"+ id, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

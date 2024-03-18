@@ -73,7 +73,7 @@ export default function AboutusTable() {
 
     const handleConfirmSubmit = async () => {
         try {
-            await apiClient.delete(apis.AboutusId + selectedItem.u_id);
+            await apiClient.post('/api/About/delete/' + selectedItem.u_id);
             setApiData((prevData) => prevData.filter((item) => item.u_id !== selectedItem.u_id));
             setIsDeleting(false);
             setModalMessage('Data deleted successfully');

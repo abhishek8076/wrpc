@@ -84,10 +84,13 @@ export const CreateFooterData = () => {
 
   const validateForm = () => {
     const errors = {};
-
-    if (!formData.tittle_name) {
-      errors.tittle_name = 'Name is required';
-    }
+    const namePattern = /^[a-zA-Z\s]+$/;
+  
+      if (!formData.tittle_name) {
+        errors.tittle_name = 'Name is required';
+      } else if (!formData.tittle_name.match(namePattern)) {
+        errors.tittle_name = 'Name should only contain alphabets and spaces';
+      }
 
     if (!formData.contenttype) {
       errors.contenttype = 'Select a content type';
@@ -106,6 +109,8 @@ export const CreateFooterData = () => {
 
     if (formData.contenttype === '2' && !file) {
       errors.file = 'File is required';
+    } else if (formData.contenttype === '2' && file && file.type !== 'application/pdf') {
+      errors.file = 'Please upload a PDF file';
     }
 
     // if (formData.contenttype === '1' && !html) {
@@ -139,7 +144,9 @@ export const CreateFooterData = () => {
   };
 
   const handleOpenConfirmation = () => {
-    setConfirmDialogOpen(true);
+    if (validateForm()) {
+      setConfirmDialogOpen(true);
+    }
   };
 
   const handleCloseConfirmation = () => {

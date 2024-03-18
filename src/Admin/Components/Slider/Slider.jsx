@@ -65,9 +65,23 @@ export const Slider = ({ id, onDelete }) => {
   };
 
 
+  // const handleImageChange = (event) => {
+  //   const imageFile = event.target.files[0];
+  //   setSelectedImage(imageFile);
+  // };
   const handleImageChange = (event) => {
     const imageFile = event.target.files[0];
-    setSelectedImage(imageFile);
+    const allowedExtensions = /(\.png|\.jpg|\.gif)$/i;
+    if (imageFile && allowedExtensions.test(imageFile.name)) {
+      setSelectedImage(imageFile);
+    } else {
+      // Display an error toast notification if the file type is not allowed
+      toast.error('Please select a PNG, JPEG, or GIF image', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      // Reset the input file element
+      event.target.value = '';
+    }
   };
 
   const handleContentChange = (event) => {

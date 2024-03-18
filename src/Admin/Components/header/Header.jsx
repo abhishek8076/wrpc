@@ -3,17 +3,26 @@ import { Link, useNavigate } from 'react-router-dom';
 import Img from '../../../assets/AdminAssets/img/profile-img.jpg'
 // import Img1 from '../../assets/img/logo.png'
 import Img1 from '../../../assets/AdminAssets/img/logo.png'
+import apiClient from '../../../Api/ApiClient'
 const Header = () => {
 
   const storedUserString = localStorage.getItem("user");
   const user = JSON.parse(storedUserString);
+const email = user.r_email
   const navigate = useNavigate();
-  const handleLogout = () => {
-    // Clear localStorage
-    localStorage.clear();
-
-    // Navigate to the login page
-    navigate('/login');
+  const handleLogout = async () => {
+    try {
+      const response = await apiClient.post('/api/Login/logout?email='+email);
+      console.log("logout",response)
+      if (response.status === 200){
+        localStorage.clear();
+        navigate('/login');
+      }
+    
+    } catch (error) {
+      console.log('Error:', error);
+    }
+    
   };
 
   return (

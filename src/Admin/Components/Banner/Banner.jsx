@@ -20,6 +20,7 @@ export const Banner = ({ id, onDelete }) => {
   const [imageName, setImageName] = useState('');
 
   const handleVideoUpload = async () => {
+    
     if (!selectedImage) return;
 
     const formData = new FormData();
@@ -62,10 +63,20 @@ export const Banner = ({ id, onDelete }) => {
   };
 
   const handleVideoChange = (event) => {
-    const videoFile = event.target.files[0];
-    setSelectedImage(videoFile);
+    const imageFile = event.target.files[0];
+    const allowedExtensions = /(\.png|\.jpg|\.gif)$/i;
+    if (imageFile && allowedExtensions.test(imageFile.name)) {
+      setSelectedImage(imageFile);
+    } else {
+      // Display an error toast notification if the file type is not allowed
+      toast.error('Please select a PNG, JPEG, or GIF image', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      // Reset the input file element
+      event.target.value = '';
+    }
   };
-
+  
   const handleContentChange = (event) => {
     setImageName(event.target.value);
   };

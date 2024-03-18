@@ -44,30 +44,35 @@ export const CreateFooterAddress = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.tittle_name.trim()) {
-      newErrors.tittle_name = 'Name is required';
+    if (!formData.tittle_name) {
+      newErrors.tittle_name = 'Title is required';
+    } else if (!/^[A-Za-z\s]+$/.test(formData.title_name.trim())) {
+      newErrors.tittle_name = 'Name should contain alphabets only';
     }
+
     if (!formData.mobile_no) {
       newErrors.mobile_no = "Please enter your mobile number";
     } else if (!/^(\+91|\+91\-|0)?[789]\d{9}$/.test(formData.mobile_no)) {
       newErrors.mobile_no = "Please enter a valid 10-digit phone number ";
     }
   
-    if (!formData.address.trim()) {
+    if (!formData.address) {
       newErrors.address = 'Address is required';
     }
     if (!formData.languagetype ) {
-      errors.languagetype = 'Select a Language';
+      newErrors.languagetype = 'Select a Language';
     }
   
 
     setErrors(newErrors);
 
     return Object.keys(newErrors).length === 0;
-  };
+};
+
   const handleOpenConfirmation = () => {
-    
+    if (validateForm()) {
       setConfirmDialogOpen(true);
+    }
     
   };
 
@@ -79,7 +84,7 @@ export const CreateFooterAddress = () => {
   const handleConfirmSubmit = async () => {
     handleCloseConfirmation();
     try {
-      if (validateForm()) {
+     
         const formDataToSend = new FormData();
         formDataToSend.append('tittle_name', formData.tittle_name);
         formDataToSend.append('address', formData.address);
@@ -104,7 +109,7 @@ export const CreateFooterAddress = () => {
           mobile_no: '',
           languagetype: '',
         });
-      }
+      
     } catch (error) {
       if (error.response && error.response.status === 401) {
         toast.error('Unauthorized access. Please log in.');
@@ -192,10 +197,8 @@ export const CreateFooterAddress = () => {
                           value={formData.tittle_name}
                           onChange={handleInputChange}
                         />
-                        {errors.tittle_name && (
-                          <div className="text-danger">
-                            {errors.tittle_name}
-                          </div>
+                         {errors.tittle_name && (
+                          <div className="text-danger">{errors.tittle_name}</div>
                         )}
                       </div>
 

@@ -104,7 +104,7 @@ export const EditCanidate=()=> {
     try {
    
       
-      const response = await apiClient.put(api.allcandidate+id, formData);
+      const response = await apiClient.post("/api/Candidate/put/"+id, formData);
       
       if (response.status === 200) {
         

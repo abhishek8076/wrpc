@@ -157,7 +157,7 @@ export const Services = () => {
                                       <p class="news-p">
                                         {parseInt(item.u_contenttype) === 2 && (
                                           <Link
-                                            to={BASE_URL+ item.u_file}
+                                            to={BASE_URL+ `/${item.u_file}`}
                                             target="_blank"
                                           >
                                             {item.u_report_tittle}

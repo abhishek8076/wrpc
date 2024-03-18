@@ -75,6 +75,7 @@ import { ViewFormOne } from "./Admin/Components/Form/ViewFormOne.jsx";
 import { ViewFormtwo } from "./Admin/Components/Form/ViewFormtwo.jsx";
 import { ViewFormthree } from "./Admin/Components/Form/ViewFormthree.jsx";
 import { ViewFormfour } from "./Admin/Components/Form/ViewFormfour.jsx";
+import { AboutUsEdit } from "./Admin/Components/Aboutus/AboutUsEdit.jsx";
 
 function App() {
   const [sessionExpired, setSessionExpired] = useState(false);
@@ -197,7 +198,7 @@ function App() {
                   {/* about us */}
                   <Route path="aboutus" element={<Aboutus />} />
                   <Route path="aboutustable" element={<AboutusTable />} />
-                  {/* <Route path="Aboutusedit" element={<Aboutusedit />} /> */}
+                  <Route path="Aboutusedit/:id" element={<AboutUsEdit/>} />
                 </Route>
                 {/* Services */}
                 <Route path="/services">

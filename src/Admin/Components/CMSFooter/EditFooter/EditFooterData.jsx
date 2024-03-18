@@ -170,7 +170,7 @@ export const EditFooterData = () => {
         formDataToSend.append('html', cotent);
       }
 
-      const response = await apiClient.put(apis.getfooterbyid + id, formDataToSend, {
+      const response = await apiClient.put("/api/lowerfooter/put/"+id, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

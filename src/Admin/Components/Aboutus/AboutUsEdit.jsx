@@ -1,239 +1,182 @@
-import React, { useState, useEffect } from 'react';
-import apiClient from '../../../Api/ApiClient';
-import apis from "../../../Api/api.json";
+import React, { useState } from "react";
+import axios from "axios";
+import { Button, Box, IconButton, Paper, Grid, TextField } from "@mui/material";
+import { Delete as DeleteIcon } from "@mui/icons-material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import api from "../../../Api/api.json";
+import apiClient from "../../../Api/ApiClient";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
+import HomeIcon from "@mui/icons-material/Home";
+import { Link,useParams } from "react-router-dom";
+import Sidebar from "../sidebar/Sidebar";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
+// import BannerTable from "./BannerTable";
+import TextareaAutosize from "@mui/material/TextareaAutosize";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import ViewListIcon from '@mui/icons-material/ViewList';
-import { Link, useParams } from 'react-router-dom';
-import HomeIcon from '@mui/icons-material/Home';
+export const AboutUsEdit = () => {
+  const {id} = useParams();
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imageName, setImageName] = useState("");
+  const [description, setDescription] = useState("");
 
-import DialogActions from '@mui/material/DialogActions';
-import Alert from '@mui/material/Alert';
-import {
+  const handleVideoUpload = async () => {
+    if (!selectedImage) return;
 
-  Button,
-  Snackbar,
-  DialogTitle,
-  DialogContent,
-  Dialog,
-} from '@mui/material';
-
-function EAlert(props) {
-  return <Alert elevation={6} variant="filled" {...props} />;
-}
-
-export default function AboutusEdit() {
-  const {id}= useParams()
-  const [html, sethtml] = useState('');
-  const [file, setselectedfile] = useState(null);
-  const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-
-  const [formData, setFormData] = useState({
-    tittle_name: '',
-    description: '',
-    footertype:1,
-    contenttype:0,
-    languagetype: '',
-  });
-  const [errors, setErrors] = useState({});
-
-  // useEffect(() => {
-  //   setFormData({
-  //     tittle_name: '',
-  //     description: '',
-  //   });
-  // }, []);
-
-  const handleEditorChange = (content) => {
-    sethtml(content);
-  };
-  useEffect(() => {
-    async function fetchData() {
-      try {
-       
-        const response = await apiClient.get(apis.getfooterbyid+id);
-        setFormData(response.data);
-     
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-       
-      }
-    }
-    fetchData();
-  }, [id]);
- 
-    const validateForm = () => {
-      const errors = {};
-  
-      // Regular expression to match names with alphabets and spaces
-      const namePattern = /^[a-zA-Z\s]+$/;
-  
-      if (!formData.tittle_name) {
-        errors.tittle_name = 'Name is required';
-      } else if (!formData.tittle_name.match(namePattern)) {
-        errors.tittle_name = 'Name should only contain alphabets and spaces';
-      }
-      if (!formData.languagetype ) {
-        errors.languagetype = 'Select a Language';
-      }
-  
-      if (!formData.description) {
-        errors.description = 'Description is required';
-      }
-
-    setErrors(errors);
-
-    return Object.keys(errors).length === 0;
-  };
-
-  const handleImageChange = (event) => {
-    const imageFile = event.target.files[0];
-    setselectedfile(imageFile);
-  };
-
-  const handleInputChange = (event) => {
-    const { name, value, type } = event.target;
-
-    if (type === '2') {
-      setFormData({
-        ...formData,
-        [name]: event.target.files[0],
-      });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
-  };
-
-  const handleOpenConfirmation = () => {
-    if (validateForm()) {
-      setConfirmDialogOpen(true);
-    }
-  };
-
-  const handleCloseConfirmation = () => {
-    setConfirmDialogOpen(false);
-  };
-
-  const handleConfirmSubmit = async () => {
-    handleCloseConfirmation();
+    const formData = new FormData();
+    formData.append("imgsrc", selectedImage);
+    formData.append("content", imageName);
+    formData.append("description", description);
 
     try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('tittle_name', formData.tittle_name);
-      formDataToSend.append('description', formData.description);
-      formDataToSend.append('footertype', formData.footertype);
-      formDataToSend.append('contenttype', formData.contenttype);
-      formDataToSend.append('languagetype', formData.languagetype);
-
-      const response = await apiClient.put(apis.getfooterbyid+id , formDataToSend, {
+      const response = await apiClient.post('/api/About/put/'+id, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       });
 
-      // console.log('Data saved:', response.data);
-      toast.success('Data saved successfully!');
-      setModalMessage('Data saved successfully!');
-      setSnackbarOpen(true);
 
-      // Clear the form fields
-     
+
+      
+
+      // Show a success toast notification
+      toast.success("Image uploaded successfully!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+
+      // Clear the form fields and reset state after successful upload
+      setSelectedImage(null);
+      setImageName("");
+      setDescription("");
+
+      // Reset the input file element to allow selecting a new video
+      const inputFile = document.getElementById(`upload-input-${id}`);
+      if (inputFile) {
+        inputFile.value = ""; // Clear the selected file
+      }
     } catch (error) {
-      console.error('Error saving data:', error);
+      console.error("Error uploading video:", error);
+
+      // Show an error toast notification
+      toast.error("Error uploading video", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   };
 
-// console.log(formData)
+  const handleVideoChange = (event) => {
+    const videoFile = event.target.files[0];
+    setSelectedImage(videoFile);
+  };
+
+  const handleContentChange = (event) => {
+    setImageName(event.target.value);
+    // setDescription(event.target.value);
+  };
+  
+  const handleContentChange1 = (event) => {
+
+    setDescription(event.target.value);
+  };
+
+
 
   return (
-    <div class="card"><div class="card-body"><div class="mb-3 mt-md-4"><div class="box-sec">   
-    <div className="container">
-      <div className="row">
-        <div className="col">
-         
-          <h1 className="text-center">Footer Description</h1>
-        </div>
-      </div>
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-        <div className="mb-3">
-                  <label className="form-label text-dark">Language Type</label>
-                  <select
-                    className="form-select"
-                    name="languagetype"
-                    value={formData.languagetype}
-                    onChange={handleInputChange}
-                  >
-                    <option value="">Select a Language</option>
-                    <option value="1">English</option>
-                    <option value="2">Hindi</option>
-                  </select>
-                  {errors.languagetype && <div className="text-danger">{errors.languagetype}</div>}
-                </div>
-          <div className="mb-3">
-            <label className="form-label text-dark">Enter Title</label>
+    <div>
+      <Header />
+      <Sidebar />
+      <main id="main" class="main">
+      <div class="pagetitle-rgt">
+              <Link to="/cms/aboutustable">
+                <button type="button" class="btn btn-info">
+                  Back
+                </button>
+              </Link>
+            </div>
+        {/* ... (existing code) ... */}
+        <form>
+          <Paper elevation={3} sx={{ padding: 2, position: "relative" }}>
+            <h1>About us</h1>
+            {selectedImage && (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginBottom: 2,
+                }}
+              >
+                {/* Display a video preview, if needed */}
+                <img
+                  width="100"
+                  height="100"
+                  controls
+                  style={{
+                    maxWidth: "100px",
+                    maxHeight: "100px",
+                    objectFit: "cover",
+                  }}
+                  src={URL.createObjectURL(selectedImage)}
+                />
+              </Box>
+            )}
+
+            {/* Input for uploading video */}
             <input
-              className="form-control"
-              type="text"
-              placeholder="Name"
-              name="tittle_name"
-              value={formData.tittle_name}
-              onChange={handleInputChange}
+              type="file"
+              onChange={handleVideoChange}
+              style={{ display: "none" }}
+              id={`upload-input-${id}`}
             />
-            {errors.tittle_name && <div className="text-danger">{errors.tittle_name}</div>}
-          </div>
-          <div className="mb-3">
-            <label className="form-label text-dark">Description</label>
-            <textarea
-              className="form-control"
-              type="text"
-              placeholder="Description"
+            <label htmlFor={`upload-input-${id}`}>
+              <Button variant="outlined" component="span">
+                <AddPhotoAlternateIcon />
+                Choose Image
+              </Button>
+            </label>
+
+           
+            {/* Text field for video name */}
+            <TextField
+              label="Video Name"
+              value={imageName}
+              onChange={handleContentChange}
+              fullWidth
+              sx={{ marginTop: 2 }}
+              required
+            />
+            <TextareaAutosize
+              aria-label="Description"
+              minRows={3}
               name="description"
-              value={formData.description}
-              onChange={handleInputChange}
+              placeholder="Description"
+              value={description}
+              fullWidth
+              onChange={handleContentChange1}
+              sx={{ marginTop: 2, width: "100%" }}
+              required
             />
-            {errors.description && <div className="text-danger">{errors.description}</div>}
-          </div>
-          <div className="btnsubmit">
-            <button className="btn btn-primary" onClick={handleOpenConfirmation}>
-              Submit
-            </button>
-          
-            
-            <Dialog open={confirmDialogOpen} onClose={handleCloseConfirmation}>
-              <DialogTitle>Confirm Submit</DialogTitle>
-              <DialogContent>Are you sure you want to submit this data?</DialogContent>
-              <DialogActions>
-                <Button onClick={handleCloseConfirmation} color="primary">
-                  Cancel
-                </Button>
-                <Button onClick={handleConfirmSubmit} color="primary">
-                  Confirm
-                </Button>
-              </DialogActions>
-            </Dialog>
-            <Snackbar
-              open={snackbarOpen}
-              autoHideDuration={3000}
-              onClose={() => setSnackbarOpen(false)}
+
+            {/* Upload button */}
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleVideoUpload}
+              disabled={!selectedImage}
+              sx={{ marginTop: 2 }}
             >
-              <Alert severity="success" onClose={() => setSnackbarOpen(false)}>
-                {modalMessage}
-              </Alert>
-            </Snackbar>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-        </div>
-      </div>
+              <UploadFileIcon />
+              Upload Video
+            </Button>
+
+            <ToastContainer />
+          </Paper>
+        </form>
+    
+        
+      </main>
+      <Footer />
     </div>
   );
 };

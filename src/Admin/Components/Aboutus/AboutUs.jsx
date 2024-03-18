@@ -28,13 +28,10 @@ export const Aboutus = ({ id, onDelete }) => {
     formData.append("imgsrc", selectedImage);
     formData.append("content", imageName);
     formData.append("description", description);
+    formData.append("languagetypes",1)
 
     try {
-      const response = await apiClient.post(api.Aboutus, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await apiClient.post(api.Aboutus,formData);
 
       const videoPath = response.data.videopath;
 

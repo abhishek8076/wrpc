@@ -56,7 +56,7 @@ export const HomePage = () => {
       const sendformData = new FormData();
       sendformData.append('h_html', content);
 
-      const response = await apiClient.put(apis.homepagebyid + 24, sendformData, {
+      const response = await apiClient.post(apis.homepagebyid + 24, sendformData, {
         headers: {
           'Content-Type': 'application/json', // Set the content type to match the server's expectations
         },

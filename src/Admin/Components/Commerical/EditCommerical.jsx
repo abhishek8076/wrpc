@@ -164,7 +164,7 @@ export const EditCommerical = () => {
       formDataToSend.append("commercialtype", formData.uploadzip);
     //  formDataToSend.append("year", parseInt(selectedYear.getFullYear()));
 
-      const response = await apiClient.put(apis.commericalByid + id, formDataToSend, {
+      const response = await apiClient.put("/api/Commercial/put/" + id, formDataToSend, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

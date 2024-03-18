@@ -83,8 +83,8 @@ export default function AllCandidate() {
 
     const handleConfirmSubmit = async () => {
         try {
-            await apiClient.delete(api.allcandidate  + selectedItem.cands_id);
-            setApiData((prevData) => prevData.filter((item) => item.cands_id !== selectedItem.cands_id));
+            await apiClient.post('/api/Candidate/delete/' + selectedItem.cand_id);
+            setApiData((prevData) => prevData.filter((item) => item.cand_id !== selectedItem.cands_id));
             setIsDeleting(false);
             setModalMessage('Data deleted successfully');
             setSnackbarOpen(true);
