@@ -65,7 +65,7 @@ export default function CommericalTable() {
 
     const handleConfirmSubmit = async () => {
         try {
-            await apiClient.delete("/api/Commercial/delete/"+ selectedItem.id);
+            await apiClient.post("/api/Commercial/delete/"+ selectedItem.id);
             setApiData((prevData) => prevData.filter((item) => item.id !== selectedItem.id));
             setIsDeleting(false);
             setModalMessage('Data deleted successfully');

@@ -77,9 +77,16 @@ import { ViewFormthree } from "./Admin/Components/Form/ViewFormthree.jsx";
 import { ViewFormfour } from "./Admin/Components/Form/ViewFormfour.jsx";
 import { AboutUsEdit } from "./Admin/Components/Aboutus/AboutUsEdit.jsx";
 
+
+
+
+//=====================================import apiclient===============================>
+import apiClient from './Api/ApiClient';
+
 function App() {
   const [sessionExpired, setSessionExpired] = useState(false);
   const storedUserString = localStorage.getItem("user");
+ 
 
   const resetSessionTimeout = () => {
     const expirationTime = new Date().getTime() + 600000; // Extend session by 1 minute
@@ -100,14 +107,29 @@ function App() {
     }
 
     if (expirationTime && currentTime > parseInt(expirationTime, 10)) {
-      // Session has expired
-      setSessionExpired(true);
-      // Clean up localStorage
-      localStorage.clear();
-      // Redirect to the login page
-      window.location.replace("/");
-      // alert
-      alert("Your session has expired. Please log in again.");
+      if (storedUserString) {
+        const email = storedUserString.r_email
+        try {
+        
+          const response = apiClient.post('/api/Login/logout?email='+email);
+          console.log("logout",response)
+          if (response.status === 200){
+            // Session has expired
+        setSessionExpired(true);
+        // Clean up localStorage
+        localStorage.clear();
+        // Redirect to the login page
+        window.location.replace("/");
+        // alert
+        alert("Your session has expired. Please log in again.");
+          }
+        
+        } catch (error) {
+          console.log('Error:', error);
+        }  
+      }
+     
+    
     }
   };
 

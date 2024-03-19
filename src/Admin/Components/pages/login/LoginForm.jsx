@@ -99,12 +99,13 @@ export default function Login() {
         handleOpenDialog();
       }
     } catch (error) {
-      // console.log(`Error: ${error}`);
+      // console.log("loginerrrrerer",error);
       if (error.response.data==="already_login") {
         setDialogText("User Already Login");
         handleOpenDialog();
-      } else if(error.response.status===400)  {
+      } else if(error.response.data==="not_found")  {
         setDialogText("You have entered incorrect email/password");
+        handleOpenDialog();
       }
     }
   };

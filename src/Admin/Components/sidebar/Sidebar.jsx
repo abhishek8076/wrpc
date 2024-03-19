@@ -4,17 +4,38 @@ import { Link,useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './Sidebar.scss';
+import apiClient from "../../../Api/ApiClient";
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const [sidebarVisible, setSidebarVisible] = useState(true);
-  const handleLogout = () => {
-    // Clear localStorage
-    localStorage.clear();
-
-    // Navigate to the login page
-    navigate('/');
+  
+  const storedUserString = localStorage.getItem("user");
+  const user = JSON.parse(storedUserString);
+const email = user.r_email
+  // const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      const response = await apiClient.post('/api/Login/logout?email='+email);
+      console.log("logout",response)
+      if (response.status === 200){
+        localStorage.clear();
+        navigate('/login');
+      }
+    
+    } catch (error) {
+      console.log('Error:', error);
+    }
+    
   };
+
+  // const handleLogout = () => {
+  //   // Clear localStorage
+  //   localStorage.clear();
+
+  //   // Navigate to the login page
+  //   navigate('/');
+  // };
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
     // Toggle the 'toggle-sidebar' class on the body

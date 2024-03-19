@@ -88,9 +88,7 @@ export const CreateSubMenu = () => {
     if (!formData.MenuName) {
       newErrors.MenuName = 'Name is required';
     }
-    // if (!formData.menu_id) {
-    //   newErrors.MenuName = 'Name is required';
-    // }
+  
 
 
     if (!formData.ContentType) {
@@ -108,8 +106,12 @@ export const CreateSubMenu = () => {
       newErrors.internal_link = 'Internal Link is required';
     }
 
-    if (formData.ContentType === '2' && !file) {
-      newErrors.file = 'File is required';
+    if (formData.ContentType === '2') {
+      if (!file) {
+        newErrors.file = 'File is required';
+      } else if (file.type !== 'application/pdf') {
+        newErrors.file = 'Only PDF files are allowed';
+      }
     }
 
     if (!formData.languagetype ) {

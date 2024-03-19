@@ -121,10 +121,13 @@ export const EditSubmenu = () => {
       newErrors.internal_link = 'Internal Link is required';
     }
 
-    if (formData.contenttype === '2' && !file) {
-      newErrors.file = 'File is required';
+    if (formData.contenttype === '2') {
+      if (!file) {
+        newErrors.file = 'File is required';
+      } else if (file.type !== 'application/pdf') {
+        newErrors.file = 'Only PDF files are allowed';
+      }
     }
-
     // if (formData.contenttype === '1' && !html) {
     //   newErrors.html = 'HTML content is required';
     // }

@@ -55,7 +55,6 @@ export const CreateMenu = () => {
     ContentType: '',
     external_link: '',
     internal_link: '',
-
     submenu_id: 0,
     file: '',
     html: '',
@@ -70,7 +69,6 @@ export const CreateMenu = () => {
       ContentType: '',
       external_link: '',
       internal_link: '',
-
       submenu_id: 0,
       file: '',
       html: '',
@@ -107,17 +105,17 @@ export const CreateMenu = () => {
       newErrors.external_link = 'External Link is required';
     }
 
-    // if (formData.ContentType === '3' && !formData.internal_link) {
-    //   newErrors.internal_link = 'Internal Link is required';
-    // }
+  
 
-    if (formData.ContentType === '2' && !file) {
-      newErrors.file = 'File is required';
+    if (formData.ContentType === '2') {
+      if (!file) {
+        newErrors.file = 'File is required';
+      } else if (file.type !== 'application/pdf') {
+        newErrors.file = 'Only PDF files are allowed';
+      }
     }
+    
 
-    // if (formData.ContentType === '1' && !html) {
-    //   newErrors.html = 'HTML content is required';
-    // }
 
     setErrors(newErrors);
 
