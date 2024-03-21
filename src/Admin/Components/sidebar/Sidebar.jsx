@@ -29,13 +29,6 @@ const email = user.r_email
     
   };
 
-  // const handleLogout = () => {
-  //   // Clear localStorage
-  //   localStorage.clear();
-
-  //   // Navigate to the login page
-  //   navigate('/');
-  // };
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
     // Toggle the 'toggle-sidebar' class on the body
@@ -113,7 +106,7 @@ const email = user.r_email
          
         </ul>
       </li>
-      <li class="nav-item">
+      {/* <li class="nav-item">
         <a class="nav-link collapsed one" data-bs-target="#tables-form-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse one"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -139,7 +132,7 @@ const email = user.r_email
             </Link>
           </li>
         </ul>
-      </li>
+      </li> */}
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Footer</span><i class="bi bi-chevron-down ms-auto"></i>

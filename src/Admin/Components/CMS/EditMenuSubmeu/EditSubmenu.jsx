@@ -194,7 +194,7 @@ export const EditSubmenu = () => {
         formDataToSend.append('html', content);
       }
 
-      const response = await apiClient.post("/api/TopMenu/put"+ id, formDataToSend, {
+      const response = await apiClient.post("/api/TopMenu/put/"+ id, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -315,7 +315,7 @@ export const EditSubmenu = () => {
               name="menuname"
               value={formData.menuname}
               onChange={handleInputChange}
-              maxLength={18}
+          
             />
             {errors.menuname && <div className="text-danger">{errors.menuname}</div>}
           </div>

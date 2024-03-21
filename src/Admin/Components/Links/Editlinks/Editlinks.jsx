@@ -240,7 +240,7 @@ const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
         formDataToSend.append('langaugetpe', formData.languagetype);  
         // console.log(formDataToSend)
 
-        const response = await apiClient.put(apis.Linksbyid + id, formDataToSend, {
+        const response = await apiClient.post("/api/Link/put/"+ id, formDataToSend, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

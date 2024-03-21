@@ -15,18 +15,18 @@ const CmsDisplay = () => {
   const dateOptions = [
     { id: 1, name: "DSMUI Account" },
     { id: 2, name: "REGIONAL ENERGY ACCOUNTS" },
+    { id: 5, name: "REACTIVE ENERGY ACCOUNTS" },
     { id: 3, name: "Compensation Statement" },
     { id: 4, name: "Ramping Certificate" },
-    { id: 5, name: "REACTIVE ENERGY ACCOUNTS" },
+    { id: 9, name: "Ancillary Services Operations Data Received" },
+    { id: 10, name: "Ancillary Services Charges" },
     { id: 6, name: "REGIONAL TRANSMISSION ACCOUNTS" },
     { id: 7, name: "REGIONAL TRANSMISSION DEVIATION ACCOUNTS" },
     { id: 8, name: "REGIONAL CONGESTION ACCOUNTS" },
-    { id: 9, name: "Ancillary Services Operations Data Received" },
-    { id: 10, name: "Ancillary Services Charges" },
     { id: 11, name: "RRAS AGC SCED" },
     { id: 12, name: "REA through New Software" },
     { id: 13, name: "New Software Sharing of Transmission Charges" },
-    { id: 13, name: "P O C M " },
+   
   ];
 
   // console.log("neha",user);

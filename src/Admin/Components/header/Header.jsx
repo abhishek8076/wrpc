@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Img from '../../../assets/AdminAssets/img/profile-img.jpg'
 // import Img1 from '../../assets/img/logo.png'
-import Img1 from '../../../assets/AdminAssets/img/logo.png'
+import Img1 from '../../../assets/images/avtar.png'
 import apiClient from '../../../Api/ApiClient'
 const Header = () => {
 
@@ -34,12 +34,13 @@ const email = user.r_email
         <div class="d-flex align-items-center justify-content-between">
           <Link to='/dashboard' class="logo d-flex align-items-center">
             {/* <img src={Img1} alt="" /> */}
-            {/* <span class="d-none d-lg-block">CMS Admin</span> */}
+            <span class="d-none d-lg-block">Western Regional Power Committee</span>
           </Link>
         </div>
-
+      
 
         <nav class="header-nav ms-auto">
+          
           <ul class="d-flex align-items-center">
 
             <li class="nav-item d-block d-lg-none">
@@ -140,7 +141,7 @@ const email = user.r_email
             <li class="nav-item dropdown pe-3">
 
               <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                {/* <img src={Img} alt="Profile" class="rounded-circle" /> */}
+                <img src={Img1} alt="Profile" class="rounded-circle" />
                 <span class="d-none d-md-block dropdown-toggle ps-2">{user.r_name}</span>
               </a>
 

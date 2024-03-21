@@ -22,7 +22,7 @@ import axios from 'axios'
 const CommericalData = () => {
   const [commerical, SetCommerical] = useState([]);
   const { id } = useParams();
-  const dataId = parseInt(id)
+const [titleName ,setTitlename]= useState("");
   const navigate = useNavigate();
   const [selectedLanguage, setSelectedLanguage] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
@@ -31,29 +31,7 @@ const CommericalData = () => {
   const [getyears , SetYears]= useState([])
 
 
-  // const yeardata=[
-  //   {
-  //     id:1,
-  //     year:"2022"
-  //   },
-  //   {
-  //     id:2,
-  //     year:"2023"
-  //   },
-  //   {
-  //     id:3,
-  //     year:"2024"
-  //   },
-  //   {
-  //     id:4,
-  //     year:"2025"
-  //   },
-  //   {
-  //     id:5,
-  //     year:"2026"
-  //   }
 
-  // ]
   const yeardata=[
     {
       id:1,
@@ -85,6 +63,8 @@ const CommericalData = () => {
   useEffect(() => {
     
     const numberMatch = id.match(/\d+/);
+    const nonNumericPart = id.replace(/\d+/g, '');
+    setTitlename(nonNumericPart)
 
     if (numberMatch) {
       const number = parseInt(numberMatch[0], 10);
@@ -130,22 +110,6 @@ const CommericalData = () => {
       setSelectedYear("");
     }
 
-    // fetchMenuData1();
-    // async function fetchYearData() {
-    //   try {
-    //     const yearResponse = await ApiClient.get(api.yearData); // Adjust this according to your API endpoint
-    //     SetYears(yearResponse.data);
-    //     const currentYearIndex = yearResponse.data.findIndex((item) => item.year === new Date().getFullYear().toString());
-    //     if (currentYearIndex !== -1) {
-    //       setActiveTab(currentYearIndex);
-    //       setSelectedYear(new Date().getFullYear());
-    //     }
-    //   } catch (error) {
-    //     console.error("Error fetching year data:", error);
-    //   }
-    // }
-
-    // fetchYearData();
   }, [number]);
 
   // console.log("sadfdsafdsafdsafdsfdsfdsfs",commerical,getyears)
@@ -191,6 +155,7 @@ const CommericalData = () => {
       <CmsDisplay />
       <div>
         <div className="container inner-sec">
+        <h2>{titleName}</h2>
         <Tabs
         activeTab={activeTab}
         onTabClick={onTabClick}

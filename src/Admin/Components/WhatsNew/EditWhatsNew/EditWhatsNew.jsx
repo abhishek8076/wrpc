@@ -223,7 +223,7 @@ export const EditWhatsNew = () => {
         formDataToSend.append('startdate', formData.startdate);
         formDataToSend.append('end_date', formData.end_date);
 
-        const response = await apiClient.put(apis.getwhatsnewbyid + id, formDataToSend, {
+        const response = await apiClient.put("/api/Whatsnew/put/"+ id, formDataToSend, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

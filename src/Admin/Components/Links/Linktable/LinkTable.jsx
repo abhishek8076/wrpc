@@ -65,7 +65,7 @@ export default function LinkTable() {
 
     const handleConfirmSubmit = async () => {
         try {
-            await apiClient.delete(api.Linksbyid  + selectedItem.u_id);
+            await apiClient.delete("/api/Link/delete/" + selectedItem.u_id);
             setApiData((prevData) => prevData.filter((item) => item.u_id !== selectedItem.u_id));
             setIsDeleting(false);
             setModalMessage('Data deleted successfully');

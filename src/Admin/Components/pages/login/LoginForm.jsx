@@ -19,6 +19,7 @@ import apiClient from "../../../../Api/ApiClient";
 import ReCAPTCHA from "react-google-recaptcha";
 import Captcha from "../../Captcha/Captcha";
 import avtar from "../../../../assets/images/avtar.png";
+import axios from 'axios'
 
 export default function Login() {
   const navigate = useNavigate();
@@ -73,6 +74,7 @@ export default function Login() {
     // Validate CAPTCHA
     try {
       const response = await apiClient.post(api.login, jsonData);
+      // const response = await axios.post('http://alldatabase.c2k.in/api/Login', jsonData);
 
       if (response && response.data) {
         if (response.status === 200) {

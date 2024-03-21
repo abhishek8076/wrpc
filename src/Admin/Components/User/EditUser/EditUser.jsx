@@ -106,7 +106,7 @@ export const EditUser=()=> {
         usertype: parseInt(formData.usertype),
       };
       // console.log(formDataToSend)
-      const response = await apiClient.put(api.deleteuser+id, formDataToSend);
+      const response = await apiClient.post("/api/user/put/"+id, formDataToSend);
       
       if (response.status === 200) {
         

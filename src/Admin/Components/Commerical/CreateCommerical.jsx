@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 
 
-export const Commerical = () => {
+export const CreateCommerical = () => {
   const [selectedYear, setSelectedYear] = useState(new Date());
   const [inputYear, setInputYear] = useState("");
   const [errors, setErrors] = useState({});

@@ -82,7 +82,7 @@ export default function AllUser() {
 
     const handleConfirmSubmit = async () => {
         try {
-            await apiClient.delete(api.deleteuser  + selectedItem.users_id);
+            await apiClient.post("/api/user/delete/"+ selectedItem.users_id);
             setApiData((prevData) => prevData.filter((item) => item.users_id !== selectedItem.users_id));
             setIsDeleting(false);
             setModalMessage('Data deleted successfully');

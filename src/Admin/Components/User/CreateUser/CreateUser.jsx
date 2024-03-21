@@ -108,8 +108,7 @@ export const CreateUser=()=> {
 
       const response = await apiClient.post(api.newuser, formDataToSend);
       if (response.status === 200) {
-        // console.log("user"+ response.data)
-        // Simulate a 3-second delay
+       
         setTimeout(() => {
           // Set loading state back to false after the delay
           setLoading(false);
@@ -313,10 +312,11 @@ export const CreateUser=()=> {
                                       >
                                         Select a role
                                       </option>
+                                      {console.log(dropdownOptions)}
                                       {dropdownOptions.map((data) => (
                                         <option
                                           key={data.users_id}
-                                          value={data.users_id}
+                                          value={data.users_type}
                                         >
                                           {data.user_name}
                                         </option>

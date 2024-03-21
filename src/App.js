@@ -14,16 +14,7 @@ import ArchiveComponent from "./Website/components/Services/ArchiveComponent";
 import { LoginCandidate } from "./Website/components/Candidate/LoginCandidate";
 import { Commerical } from "./Website/components/Commerical/Commerical";
 import CommericalData from "./Website/components/Commerical/CommericalData";
-
 //===================================================== admin==============================================================================
-
-// import LoginForm from './pages/login/LoginForm';
-// import Homenew from "./pages/home/Homenew";
-// import SessionTimer  from './Service/SessionTimer'
-
-// your components
-//  import Footer from './Admin/Components/footer/Footer';
-//  import Header from './Admin/Components/header/Header';
 import { CreateUser } from "./Admin/Components/User/CreateUser/CreateUser";
 import { Banner } from "./Admin/Components/Banner/Banner";
 import AllUser from "./Admin/Components/User/CreateUser/AllUser";
@@ -40,10 +31,7 @@ import LoginForm from "./Admin/Components/pages/login/LoginForm.jsx";
 import HomeNew from "./Admin/Components/pages/home/Homenew.jsx";
 import { Slider } from "./Admin/Components/Slider/Slider";
 import { CreateReports } from "./Admin/Components/Reports/CreateReports/CreateReports";
-import {
-  CreateTender,
-  Createtender,
-} from "./Admin/Components/Tender/CreateTender/Createtender";
+import { CreateTender} from "./Admin/Components/Tender/CreateTender/Createtender";
 import { Createlink } from "./Admin/Components/Links/Createlinks/CreateLinks";
 import FooterTable from "./Admin/Components/CMSFooter/FooterTable/FooterTable";
 import { IndexEditFooter } from "./Admin/Components/CMSFooter/EditFooter/IndexEditFooter";
@@ -59,13 +47,11 @@ import { EditReport } from "./Admin/Components/Reports/EditReport/EditReport";
 import TenderTable from "./Admin/Components/Tender/TenderTable/TenderTable";
 import { EditTender } from "./Admin/Components/Tender/EditTender/EditTender";
 import SiteMap from "./Admin/Components/SiteMap/SiteMap";
-
-// import { CreateCommerical } from './Components/Commerical/Commerical';
 import { Aboutus } from "./Admin/Components/Aboutus/AboutUs";
 import AboutusTable from "./Admin/Components/Aboutus/AboutUsTable";
-//import {Aboutusedit} from "./Admin/Components/Aboutus/AboutUsEdit";
 import CommericalTable from "./Admin/Components/Commerical/CommericalTable";
 import { EditCommerical } from "./Admin/Components/Commerical/EditCommerical";
+import {CreateCommerical} from"./Admin/Components/Commerical/CreateCommerical.jsx"
 import { CreateCandidate } from "./Admin/Components/candidate/Create/CreateCandidate";
 import AllCandidate from "./Admin/Components/candidate/Create/AllCandidate";
 import { EditCanidate } from "./Admin/Components/candidate/Create/EditCanidate";
@@ -86,7 +72,6 @@ import apiClient from './Api/ApiClient';
 function App() {
   const [sessionExpired, setSessionExpired] = useState(false);
   const storedUserString = localStorage.getItem("user");
- 
 
   const resetSessionTimeout = () => {
     const expirationTime = new Date().getTime() + 600000; // Extend session by 1 minute
@@ -100,11 +85,10 @@ function App() {
 
     // Define the login page path
     const loginPagePath = "/";
-
-    // Skip session timeout check if the current route is the login page
-    if (currentPath === loginPagePath) {
+    if (currentPath === loginPagePath && currentPath==='/login') {
       return;
     }
+   
 
     if (expirationTime && currentTime > parseInt(expirationTime, 10)) {
       if (storedUserString) {
@@ -131,9 +115,13 @@ function App() {
      
     
     }
+    
   };
 
+
+
   useEffect(() => {
+ 
     // Check session timeout on component mount
     checkSessionTimeout();
 
@@ -150,6 +138,14 @@ function App() {
       window.removeEventListener("mousemove", resetSessionTimeout);
       window.removeEventListener("keydown", resetSessionTimeout);
     };
+  }, []);
+
+  useEffect(() => {
+    // Redirect to dashboard if user is already logged in and tries to access the home page
+    if (window.location.pathname === "/" && storedUserString) {
+      window.location.replace("/dashboard");
+      alert("please Logout")
+    }
   }, []);
   return (
     <>
@@ -245,7 +241,7 @@ function App() {
                   <Route path="edittender/:id" element={<EditTender />} />
 
                   {/* Tender */}
-                  <Route path="commerical" element={<Commerical />} />
+                  <Route path="commerical" element={<CreateCommerical />} />
                   <Route path="commericaltable" element={<CommericalTable />} />
                   <Route
                     path="editcommercial/:id"

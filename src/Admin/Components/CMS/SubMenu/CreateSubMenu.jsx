@@ -324,7 +324,7 @@ export const CreateSubMenu = () => {
               name="MenuName"
               value={formData.MenuName}
               onChange={handleInputChange}
-              maxLength={18}
+             
             />
             {errors.MenuName && <div className="text-danger">{errors.MenuName}</div>}
           </div>

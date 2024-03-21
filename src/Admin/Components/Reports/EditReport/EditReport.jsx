@@ -83,26 +83,6 @@ export const EditReport = () => {
     }
   }, [id]);
 
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-
-  //       const response = await apiClient.get(apis.getwhatsnewbyid + id);
-  //       setFormData(response.data);
-
-  //     } catch (error) {
-  //       console.error('Error fetching user data:', error);
-
-  //     }
-  //   }
-  //   fetchData();
-  // }, [id]);
-
-  const handleEditorChange = (content) => {
-    sethtml(content);
-  };
-
   const validateForm = () => {
     const errors = {};
 
@@ -221,7 +201,7 @@ export const EditReport = () => {
         formDataToSend.append('end_date', formData.end_date);
         formDataToSend.append('languagetype', formData.languagetype);
 
-        const response = await apiClient.put(apis.Reportbyid + id, formDataToSend, {
+        const response = await apiClient.post("/api/Reports/put/" + id, formDataToSend, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

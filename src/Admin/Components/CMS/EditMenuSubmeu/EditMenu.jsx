@@ -269,7 +269,7 @@ export const EditMenu = () => {
                 name="menuname"
                 value={formData.menuname}
                 onChange={handleInputChange}
-                maxLength={20}
+         
               />
               {errors.MenuName && <div className="text-danger">{errors.MenuName}</div>}
             </div>
