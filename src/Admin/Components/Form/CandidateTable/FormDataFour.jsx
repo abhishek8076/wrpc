@@ -22,7 +22,7 @@ export default function FormDataFour() {
             headerName: "Edit",
             sortable: false,
             renderCell: (params) => (
-                <Link to={'/feedback/formfour/'+params.row.cand_id}>
+                <Link to={'/feedback/formfour/'+params.row.s_no}>
                 <InsertDriveFileIcon style={{ cursor: 'pointer' }} />
             </Link>
             ),
@@ -36,7 +36,7 @@ export default function FormDataFour() {
         async function fetchData() {
             try {
                 const response = await apiClient.get('/api/FormReports/Get_relay_settings');
-                const dataWithIds = response.data.map((row, index) => ({ id: index, ...row }));
+                const dataWithIds = response.data.map((row, index) => ({ id: index+1, ...row }));
                 setApiData(dataWithIds);
               
 

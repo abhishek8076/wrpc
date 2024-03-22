@@ -39,7 +39,7 @@ export default function FormDataTwo() {
             headerName: "Edit",
             sortable: false,
             renderCell: (params) => (
-             <Link to={'/feedback/formtwo/'+params.row.cand_id}>
+             <Link to={'/feedback/formtwo/'+params.row.sr_no}>
                     <InsertDriveFileIcon style={{ cursor: 'pointer' }} />
                 </Link>
             ),
@@ -51,8 +51,8 @@ export default function FormDataTwo() {
 
     useEffect(() => {
         async function fetchData() {
-            try {
-                const response = await apiClient.get('/api/FormReports/Get_tppa_monitorin');
+            try {   
+                const response = await apiClient.get('/api/FormReports/Get_tppa_monitoring');
                 const dataWithIds = response.data.map((row, index) => ({ id: index, ...row }));
                 setApiData(dataWithIds);
               

@@ -6,6 +6,7 @@ import apiClient from "../../../Api/ApiClient";
 import api from "../../../Api/api.json";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BASE_URL } from '../../../Api/ApiFunctions';
 
 import {
   Dialog,
@@ -13,13 +14,15 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material"; // Import Material-UI components
-import { Link } from "react-router-dom";
+import { Link ,useParams} from "react-router-dom";
 import { Row } from "react-bootstrap/esm";
 import Sidebar from "../sidebar/Sidebar";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 export const ViewFormfour = () => {
+  const {id}= useParams()
   const [dropdownOptions, setDropdownOptions] = useState([]);
   const [selectedRole, setSelectedRole] = useState("");
   const [selectedFile, setSelectedFile] = useState({});
@@ -28,17 +31,16 @@ export const ViewFormfour = () => {
   const [getuser, setuser] = useState("");
   const [formData, setFormData] = useState({
     SNo: "",
-    StationName: "",
+    Substation: "",
     kVLevel: "",
     Owner: "",
-    Location: "",
-    PlannedDateAudit: "",
-    DateAudit: "",
-    AuditEntity: "",
-    Report: "",
-    Compliances: "",
-    Issuesobserved: "",
-    Remarks: "",
+    Nameofelement: "",
+    Protectiontypetext: "",
+    Makeofrelay: "",
+    Srnoofrelay: "",
+    upload_file: "",
+    languagetype: "",
+    Remarks: ""
   });
 
   // New state variables for confirmation dialog and loading
@@ -143,17 +145,16 @@ export const ViewFormfour = () => {
 
           setFormData({
             SNo: "",
-            StationName: "",
-            kVLevel: "",
-            Owner: "",
-            Location: "",
-            PlannedDateAudit: "",
-            DateAudit: "",
-            AuditEntity: "",
-            Report: "",
-            Compliances: "",
-            Issuesobserved: "",
-            Remarks: "",
+    Substation: "",
+    kVLevel: "",
+    Owner: "",
+    Nameofelement: "",
+    Protectiontypetext: "",
+    Makeofrelay: "",
+    Srnoofrelay: "",
+    upload_file: "",
+    languagetype: "",
+    Remarks: ""
           });
           setSelectedRole("");
         }, 1000);
@@ -173,7 +174,8 @@ export const ViewFormfour = () => {
   useEffect(() => {
     async function fetchData2() {
       try {
-        const response = await apiClient.get();
+
+        const response = await apiClient.get(`/api/Relay/${id}`);
         setFormData(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -230,6 +232,7 @@ export const ViewFormfour = () => {
                                         className="form-control"
                                         type="text"
                                         placeholder="Serial no"
+                                        value={formData.s_no} disabled
                                       />
                                     </td>
                                   </tr>
@@ -240,6 +243,7 @@ export const ViewFormfour = () => {
                                         className="form-control"
                                         type="text"
                                         placeholder="Substation"
+                                        value={formData.substation} disabled
                                       />
                                     </td>
                                   </tr>
@@ -250,6 +254,7 @@ export const ViewFormfour = () => {
                                         className="form-control"
                                         type="text"
                                         placeholder="KV Level"
+                                        value={formData.kv_level} disabled
                                       />
                                     </td>
                                   </tr>
@@ -260,6 +265,7 @@ export const ViewFormfour = () => {
                                         className="form-control"
                                         type="text"
                                         placeholder="Owner"
+                                        value={formData.owner} disabled
                                       />
                                     </td>
                                   </tr>
@@ -272,6 +278,7 @@ export const ViewFormfour = () => {
                                         className="form-control"
                                         type="text"
                                         placeholder="Name of the element"
+                                        value={formData.name_of_element} disabled
                                       />
                                     </td>
                                   </tr>
@@ -284,6 +291,7 @@ export const ViewFormfour = () => {
                                         className="form-control"
                                         type="text"
                                         placeholder="Protection(M!/M2/Backup)"
+                                        value={formData.protection_typetext} disabled
                                       />
                                     </td>
                                   </tr>
@@ -294,6 +302,7 @@ export const ViewFormfour = () => {
                                         className="form-control"
                                         type="text"
                                         placeholder="Make of Relay"
+                                        value={formData.make_of_relay} disabled
                                       />
                                     </td>
                                   </tr>
@@ -306,18 +315,14 @@ export const ViewFormfour = () => {
                                         className="form-control"
                                         type="text"
                                         placeholder="Sr No of relay"
+                                        value={formData.sr_no_of_relay} disabled
                                       />
                                     </td>
                                   </tr>
                                   <tr>
                                     <td className="ui header">Uploaded File</td>
                                     <td>
-                                      <input
-                                        className="form-control"
-                                        type="file"
-                                        onChange={handleFileChange}
-                                        placeholder="Uploaded File"
-                                      />
+                                        <Link className="form-control" to={`${BASE_URL+formData.upload_filepath}`} ><PictureAsPdfIcon/></Link>
                                     </td>
                                   </tr>
                                   <tr>
@@ -327,6 +332,7 @@ export const ViewFormfour = () => {
                                         className="form-control"
                                         type="text"
                                         placeholder="Remarks"
+                                        value={formData.remarks} disabled
                                       />
                                     </td>
                                   </tr>

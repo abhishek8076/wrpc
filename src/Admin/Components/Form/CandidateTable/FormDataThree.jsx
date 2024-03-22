@@ -21,7 +21,7 @@ export default function FormDataThree() {
   
 
     const columns = [
-        { field: "id", headerName: "S.No", width: 50 },
+        { field: "idd", headerName: "S.No", width: 50 },
         { field: "candidate_name", headerName: " Candidate Name" },
         { field: "candidate_email", headerName: "Candidate Email" },
         { field: "candidate_address", headerName: "Candidate Address" },
@@ -31,7 +31,7 @@ export default function FormDataThree() {
             headerName: "Edit",
             sortable: false,
             renderCell: (params) => (
-                <Link to={'/feedback/formthree/'+params.row.candidate_id}>
+                <Link to={'/feedback/formthree/'+params.row.id}>
                 <InsertDriveFileIcon style={{ cursor: 'pointer' }} />
             </Link>
             ),
@@ -45,7 +45,7 @@ export default function FormDataThree() {
         async function fetchData() {
             try {
                 const response = await apiClient.get('/api/FormReports/GetTtppaobservation');
-                const dataWithIds = response.data.map((row, index) => ({ id: index, ...row }));
+                const dataWithIds = response.data.map((row, index) => ({ idd: index+1, ...row }));
                 setApiData(dataWithIds);
               
 

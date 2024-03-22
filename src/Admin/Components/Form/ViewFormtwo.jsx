@@ -8,13 +8,16 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material'; // Import Material-UI components
-import { Link } from 'react-router-dom';
+import { Link,useParams } from 'react-router-dom';
 import { Row } from 'react-bootstrap/esm';
 import Sidebar from '../sidebar/Sidebar';
 import Header from '../header/Header'
 import Footer from '../footer/Footer';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import { BASE_URL } from '../../../Api/ApiFunctions';
 
 export const ViewFormtwo = () => {
+    const {id}= useParams()
 const recommondationRef = useRef();
     const [dropdownOptions, setDropdownOptions] = useState([]);
     const [selectedRole, setSelectedRole] = useState('');
@@ -28,8 +31,8 @@ const recommondationRef = useRef();
         kVLevel: '',
         Owner: '',
         Location: '',
-        PlannedDateAudit: '',
-        DateAudit: '',
+        PlannedofDateAudit: '',
+        DateofAudit: '',
         AuditTeamState: '',
         AuditTeamMembers: '',
         Report: '',
@@ -142,6 +145,19 @@ const validateForm = () => {
         setConfirmDialogOpen(true);
     };
 
+    useEffect(() => {
+        async function fetchData2() {
+          try {
+    
+            const response = await apiClient.get(`/api/TPPA_Plan_Monitoring/${id}`);
+            setFormData(response.data);
+          } catch (error) {
+            console.error("Error fetching user data:", error);
+          }
+        }
+        fetchData2();
+      }, []);
+
     const handleDeleteCancel = () => {
         // Handle cancel action in the confirmation dialog
         setConfirmDialogOpen(false);
@@ -248,7 +264,7 @@ const validateForm = () => {
                                                                     <tr>
                                                                         <td className="ui header">S.No</td>
                                                                         <td>
-                                                                            <input className="form-control" type="text" placeholder="Serial no" />
+                                                                            <input className="form-control" type="text" placeholder="Serial no"  value={formData.sr_no} disabled />
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
@@ -260,7 +276,7 @@ const validateForm = () => {
                                                                             type="text"
                                                                             placeholder="Station Name"
                                                                             name='StationName'
-                                                                            value={formData.StationName}
+                                                                            value={formData.station_name} disabled 
                                                                             onChange={handleChange}
                                                                             isInvalid={!!formErrors.StationName}
                                                                              
@@ -276,7 +292,7 @@ const validateForm = () => {
                                                                             type="text"
                                                                             placeholder="KV Level"
                                                                             name='kVLevel'
-                                                                            value={formData.kVLevel}
+                                                                            value={formData.kv_level} disabled 
                                                                             onChange={handleChange}
                                                                             isInvalid={!!formErrors.kVLevel}
                                                                              
@@ -292,7 +308,7 @@ const validateForm = () => {
                                                                             type="text"
                                                                             placeholder="Owner"
                                                                             name='Owner'
-                                                                            value={formData.Owner}
+                                                                            value={formData.owner} disabled 
                                                                             onChange={handleChange}
                                                                             isInvalid={!!formErrors.Owner}
                                                                              
@@ -308,7 +324,7 @@ const validateForm = () => {
                                                                             type="text"
                                                                             placeholder="Location"
                                                                             name='Location'
-                                                                            value={formData.Location}
+                                                                            value={formData.location} disabled 
                                                                             onChange={handleChange}
                                                                             isInvalid={!!formErrors.Location}
                                                                              
@@ -324,7 +340,7 @@ const validateForm = () => {
                                                                             type="text"
                                                                             placeholder="Planned Date of Audit"
                                                                             name='PlannedDateAudit'
-                                                                            value={formData.PlannedDateAudit}
+                                                                            value={formData.planned_date_of_audit} disabled 
                                                                             onChange={handleChange}
                                                                             isInvalid={!!formErrors.PlannedDateAudit}
                                                                              
@@ -340,7 +356,7 @@ const validateForm = () => {
                                                                             type="text"
                                                                             placeholder=" Date of Audit"
                                                                             name='DateAudit'
-                                                                            value={formData.DateAudit}
+                                                                            value={formData.date_of_audit} disabled 
                                                                             onChange={handleChange}
                                                                             isInvalid={!!formErrors.DateAudit}
                                                                              
@@ -356,7 +372,7 @@ const validateForm = () => {
                                                                             type="text"
                                                                             placeholder="Audit team state"
                                                                             name='AuditTeamState'
-                                                                            value={formData.AuditTeamState}
+                                                                            value={formData.audit_team_state} disabled 
                                                                             onChange={handleChange}
                                                                             isInvalid={!!formErrors.AuditTeamState}
                                                                              
@@ -366,49 +382,49 @@ const validateForm = () => {
                                                                     <tr>
                                                                         <td className="ui header">Reports</td>
                                                                         <td>
-                                                                        <Form.Control
+                                                                        <Link
                                                                          ref={recommondationRef}
                                                                          className={`form-control ${formErrors.Report ? 'is-invalid' : ''}`}
                                                                             type="text"
                                                                             placeholder="Reports"
                                                                             name='Report'
-                                                                            value={formData.Report}
+                                                                            to={`${BASE_URL+formData.reportpdfpath}`}
                                                                             onChange={handleChange}
                                                                             isInvalid={!!formErrors.StationName}
-                                                                             
-                                                                        />
+                                                                        >{<PictureAsPdfIcon className="me-2" />} </Link>
+
+
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td className="ui header">Compliances</td>
                                                                         <td>
-                                                                        <Form.Control
+                                                                        <Link
                                                                          ref={recommondationRef}
                                                                          className={`form-control ${formErrors.Compliances ? 'is-invalid' : ''}`}
                                                                             type="text"
                                                                             placeholder="Compliances"
                                                                             name='Compliances'
-                                                                            value={formData.Compliances}
+                                                                            to={`${BASE_URL+formData.compliancesppath}`}
                                                                             onChange={handleChange}
-                                                                            isInvalid={!!formErrors.Compliances}
+                                                                            isInvalid={!!formErrors.StationName}
                                                                              
-                                                                        />
+                                                                            >{<PictureAsPdfIcon className="me-2" />} </Link>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td className="ui header">Issues Observed</td>
                                                                         <td>
-                                                                        <Form.Control
+                                                                        <Link
                                                                          ref={recommondationRef}
                                                                          className={`form-control ${formErrors.Issuesobserved ? 'is-invalid' : ''}`}
                                                                             type="text"
                                                                             placeholder="Issues Observed"
                                                                             name='Issuesobserved'
-                                                                            value={formData.Issuesobserved}
+                                                                            to={`${BASE_URL+formData.issues_observedpath}`}
                                                                             onChange={handleChange}
                                                                             isInvalid={!!formErrors.Issuesobserved}
-                                                                             
-                                                                        />
+                                                                            >{<PictureAsPdfIcon className="me-2" />} </Link>  
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
@@ -420,7 +436,7 @@ const validateForm = () => {
                                                                             type="text"
                                                                             placeholder="Remarks"
                                                                             name='Remark'
-                                                                            value={formData.Remarks}
+                                                                            value={formData.remarks} disabled
                                                                             onChange={handleChange}
                                                                             isInvalid={!!formErrors.Remark}
                                                                              

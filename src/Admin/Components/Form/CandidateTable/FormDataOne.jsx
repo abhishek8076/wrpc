@@ -16,6 +16,7 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 
 
 export default function FormDataOne() {
+
     const [apiData, setApiData] = useState([]);
 
 
@@ -31,7 +32,7 @@ export default function FormDataOne() {
             headerName: "Edit",
             sortable: false,
             renderCell: (params) => (
-              <Link to={'/services/editcommercial/'+params.row.candidate_id}>
+              <Link to={'/feedback/formone/'+params.row.id}>
                     <InsertDriveFileIcon style={{ cursor: 'pointer' }} />
                 </Link>
             ),

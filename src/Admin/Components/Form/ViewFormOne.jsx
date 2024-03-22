@@ -8,15 +8,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material'; // Import Material-UI components
-import { Link } from 'react-router-dom';
+import { Link,useParams } from 'react-router-dom';
 import { Row } from 'react-bootstrap/esm';
 import Sidebar from '../sidebar/Sidebar';
 import Header from '../header/Header'
 import Footer from '../footer/Footer';
 import './custom-form.scss';
+import { BASE_URL } from '../../../Api/ApiFunctions';
 
 
 export const ViewFormOne= () => {
+    const {id}= useParams()
     const recommondationRef = useRef();
     const [dropdownOptions, setDropdownOptions] = useState([]);
     const [selectedRole, setSelectedRole] = useState('');

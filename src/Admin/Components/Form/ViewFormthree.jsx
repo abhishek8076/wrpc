@@ -14,6 +14,8 @@ import { Row } from 'react-bootstrap/esm';
 import Sidebar from '../sidebar/Sidebar';
 import Header from '../header/Header'
 import Footer from '../footer/Footer';
+import { BASE_URL } from '../../../Api/ApiFunctions';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 export const ViewFormthree = () => {
     const {id}= useParams()
@@ -35,7 +37,15 @@ export const ViewFormthree = () => {
         Report: '',
         Compliances: '',
         Issuesobserved: '',
-        Remarks: ''
+        Remarks: '',
+        cat_a_deficiencies:'',
+        attended_cat_a:'',
+        date_attended_cat_a:'',
+        cat_b_deficiencies:'',
+        attended_cat_b:'',
+        date_attended_cat_b:'',
+
+
 
 
     });
@@ -152,7 +162,13 @@ export const ViewFormthree = () => {
                         Report: '',
                         Compliances: '',
                         Issuesobserved: '',
-                        Remarks: ''
+                        Remarks: '',
+                        cat_a_deficiencies:'',
+                        attended_cat_a:'',
+                        date_attended_cat_a:'',
+                        cat_b_deficiencies:'',
+                        attended_cat_b:'',
+                        date_attended_cat_b:'',
                     });
                     setSelectedRole('');
                 }, 1000);
@@ -176,8 +192,9 @@ export const ViewFormthree = () => {
     useEffect(() => {
         async function fetchData2() {
           try {
-    
-            const response = await apiClient.get(`/api/FormReports/Ttppaobservation/${id}`);
+            
+                       //const response = await apiClient.get(`/api/FormReports/Ttppaobservation/${id}`);
+            const response = await apiClient.get(`/api/TPPA_Obs/${id}`);
             setFormData(response.data);
     
           } catch (error) {
@@ -282,61 +299,62 @@ export const ViewFormthree = () => {
                                                                     <tr>
                                                                         <td className="ui header">Reports</td>
                                                                         <td>
-                                                                            <input className="form-control" type="file" accept=".pdf" onChange={handleFileChange} placeholder="Reports" />
+                                                                            {/* <input className="form-control" type="file" accept=".pdf" onChange={handleFileChange} placeholder="Reports" value={formData.reportpdfpath} disabled   /> */}
+                                                                            <Link className="form-control" to={`${BASE_URL+formData.reportpdfpath}`} ><PictureAsPdfIcon/></Link>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td className="ui header">Compliances</td>
                                                                         <td>
-                                                                            <input className="form-control" type="file" accept=".pdf" onChange={handleFileChange} placeholder="Compliances" />
+                                                                        <Link className="form-control" to={`${BASE_URL+formData.compliancesppath}`} ><PictureAsPdfIcon/></Link>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td className="ui header">Issues Observed</td>
                                                                         <td>
-                                                                            <input className="form-control" type="file" accept=".pdf" onChange={handleFileChange} placeholder="Issues observed" />
+                                                                        <Link className="form-control" to={`${BASE_URL+formData.issues_observedpath}`} ><PictureAsPdfIcon/></Link>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td className="ui header">Remarks</td>
                                                                         <td>
-                                                                            <input className="form-control" type="text" placeholder="Remarks" />
+                                                                            <input className="form-control" type="text" placeholder="Remarks" value={formData.remarks} disabled />
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td className="ui header">CAT A Deficiencies</td>
                                                                         <td>
-                                                                            <input className="form-control" type="text" placeholder="CAT A Deficiencies" />
+                                                                            <input className="form-control" type="text" placeholder="CAT A Deficiencies" value={formData.cat_a_deficiencies} disabled />
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td className="ui header">Attended Y/N</td>
+                                                                        <td className="ui header">Cat A Attended Y/N</td>
                                                                         <td>
-                                                                            <input className="form-control" type="text" placeholder="" />
+                                                                            <input className="form-control" type="text" placeholder="" value={formData.attended_cat_a} disabled />
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td className="ui header">Date attended</td>
+                                                                        <td className="ui header">Cat A Date attended</td>
                                                                         <td>
-                                                                            <input className="form-control" type="text" placeholder="Date attended" />
+                                                                            <input className="form-control" type="text" placeholder="Date attended" value={formData.date_attended_cat_a} disabled />
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td className="ui header">CAT B Deficiencies</td>
                                                                         <td>
-                                                                            <input className="form-control" type="text" placeholder="CAT B Deficiencies" />
+                                                                            <input className="form-control" type="text" placeholder="CAT B Deficiencies" value={formData.cat_b_deficiencies} disabled />
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td className="ui header">Attended Y/N</td>
+                                                                        <td className="ui header">Cat B Attended Y/N</td>
                                                                         <td>
-                                                                            <input className="form-control" type="text" placeholder="" />
+                                                                            <input className="form-control" type="text" placeholder="CAT B ATTENDED"  value={formData.attended_cat_b} disabled />
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td className="ui header">Date attended</td>
+                                                                        <td className="ui header">Cat B Date attended</td>
                                                                         <td>
-                                                                            <input className="form-control" type="text" placeholder="Date attended" />
+                                                                            <input className="form-control" type="text" placeholder="CAT B DATE ATTENDED" value={formData.date_attended_cat_b} disabled  />
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
