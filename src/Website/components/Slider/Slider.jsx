@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import Swiper from 'swiper'; // Import Swiper library
 import '../../../assets/css/swiper.min.css'; // Import Swiper styles
-import { getSliderImg } from '../../../Api/ApiFunctions';
+import { BASE_URL, getSliderImg } from '../../../Api/ApiFunctions';
 
 const Slider = () => {
   const [menuData, setMenuData] = useState([]);
@@ -90,7 +90,7 @@ const Slider = () => {
               >
                 <a href={item.u_content} title="Right to Information"> {/* Accessible link with title */}
                   <img
-                    src={item.imgpath}
+                    src={BASE_URL + item.imgpath}
                     className="img-fluid logo-img"
                     alt="Right to Information" 
                     loading="lazy"

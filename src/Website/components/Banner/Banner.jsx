@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import { getBannerImg } from "../../../Api/ApiFunctions";
+import { BASE_URL, getBannerImg } from "../../../Api/ApiFunctions";
 
 export const Banner = () => {
   const [menudata, setMenuData] = useState([]);
@@ -46,7 +46,7 @@ export const Banner = () => {
               <div key={index}>
                 <figure className="overlay">
                   <div className="video-container" >
-                    <img src={item.imgpath} alt={`Banner ${index + 1}`} />
+                    <img src={BASE_URL + item.imgpath} alt={`Banner ${index + 1}`} />
                   </div>
                   <div className="banner_text">
                     <div className="small_text animated">Welcome to</div>

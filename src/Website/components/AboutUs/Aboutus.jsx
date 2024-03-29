@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import apiclient from "../../../Api/ApiClient";
 import apis from "../../../Api/api.json";
+import { BASE_URL } from "../../../Api/ApiFunctions";
 
 const Slide = ({ id, imgPath, content, description }) => (
   <>
@@ -20,7 +21,7 @@ const Slide = ({ id, imgPath, content, description }) => (
                   <div class="box-layer layer-1"></div>
                   <div class="box-layer layer-2"></div>
                   <div class="box-layer layer-3"></div>
-                  <img src={imgPath} alt={imgPath} width={100} height={300} />
+                  <img src={BASE_URL +imgPath} alt={imgPath} width={100} height={300} />
                 </figure>
               </div>
             </div>
