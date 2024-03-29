@@ -174,7 +174,7 @@ const email = user.r_email
                   {/* <hr class="dropdown-divider"/> */}
                 </li>
 
-                <li>
+                <li >
                   <Link to='/' class="dropdown-item d-flex align-items-center" onClick={handleLogout} >
                     <i class="bi bi-box-arrow-right"></i>
                     <span>Sign Out</span>

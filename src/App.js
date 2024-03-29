@@ -140,13 +140,7 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {
-    // Redirect to dashboard if user is already logged in and tries to access the home page
-    if (window.location.pathname === "/" && storedUserString) {
-      window.location.replace("/dashboard");
-      alert("please Logout")
-    }
-  }, []);
+
   return (
     <>
       {/* Website */}
