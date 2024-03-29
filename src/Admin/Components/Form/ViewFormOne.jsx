@@ -381,7 +381,7 @@ export const ViewFormOne= () => {
     useEffect(() => {
         async function fetchData2() {
           try {
-            const response = await apiClient.get();
+            const response = await apiClient.get('/api/FormReports/Get_tppa_monitoring');
             setFormData(response.data);
           } catch (error) {
             console.error("Error fetching user data:", error);

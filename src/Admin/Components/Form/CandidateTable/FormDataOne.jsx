@@ -21,7 +21,7 @@ export default function FormDataOne() {
 
 
     const columns = [
-        { field: "id", headerName: "S.No", width: 50 },
+        { field: "idd", headerName: "S.No", width: 50 },
         { field: "candidate_name", headerName: " Candidate Name" },
         { field: "candidate_email", headerName: "Candidate Email" },
         { field: "candidate_address", headerName: "Candidate Address" },
@@ -43,7 +43,7 @@ export default function FormDataOne() {
         async function fetchData() {
             try {
                 const response = await apiClient.get('/api/FormReports/GetPCMdiscussion');
-                const dataWithIds = response.data.map((row, index) => ({ id: index, ...row }));
+                const dataWithIds = response.data.map((row, index) => ({ idd: index + 1, ...row }));
                 setApiData(dataWithIds);
               
 
