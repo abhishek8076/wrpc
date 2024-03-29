@@ -1290,3 +1290,165 @@ img.panelavatar {
   border-radius: 50%;
   padding: 7px;
 }
+.toggle, [id^=drop] {
+  display: none;
+ }
+ nav {
+   margin: 0;
+   padding: 0;
+   background-color: #2d79bd;
+ }
+  
+  
+ nav:after {
+   content: "";
+   display: table;
+   clear: both;
+ }
+  
+ nav ul {
+   float: left;
+   padding: 0;
+   margin: 0;
+   list-style: none;
+   position: relative;
+ }
+  
+ nav ul li {
+   margin: 0px;
+   display: inline-block;
+   float: left;
+   background-color: #2d79bd;
+ }
+  
+ nav a {
+   display: block;
+   padding: 0 20px;
+   color: #FFF;
+   font-size: 18px;
+   line-height: 60px;
+   text-decoration: none;
+ }
+  
+ nav ul li ul li:hover { background: #000000; }
+  
+ nav a:hover {
+   background-color: #ff9933;
+   color: #ffffff;
+ }
+  
+ nav ul ul {
+   display: none;
+   position: absolute;
+   top: 60px;
+   z-index: 999;
+ }
+  
+ nav ul li:hover > ul { display: inherit; }
+  
+ nav ul ul li {
+   width: 270px;
+   float: none;
+   display: list-item;
+   position: relative;
+ }
+  
+ nav ul ul ul li {
+   position: relative;
+   top: -60px;
+   left: 270px;
+ }
+  
+ li > a:after { content: ' +'; }
+  
+ li > a:only-child:after { content: ''; }
+  
+  
+ /* Media Queries
+ --------------------------------------------- */
+  
+ @media all and (max-width : 768px) {
+  
+  
+  
+ nav { margin: 0; }
+  
+ .toggle + a,
+  .menu { display: none; }
+  
+ .toggle {
+   display: flex;
+   background-color: #2d79bd;
+   padding: 0 20px;
+   color: #FFF;
+   font-size: 22px;
+   font-weight:bold;
+   line-height: 60px;
+   text-decoration: none;
+   border: none;
+ }
+  
+ .toggle:hover { background-color: #000000; }
+  
+ [id^=drop]:checked + ul { display: block; }
+  
+ nav ul li {
+   display: block;
+   width: 100%;
+ }
+  
+ nav ul ul .toggle,
+  nav ul ul a { padding: 0 40px; }
+  
+ nav ul ul ul a { padding: 0 80px; }
+  
+ nav a:hover,
+  nav ul ul ul a { background-color: #000000; }
+  
+ nav ul li ul li .toggle,
+  nav ul ul a { background-color: #212121; }
+  
+ nav ul ul {
+   float: none;
+   position: static;
+   color: #ffffff;
+ }
+  
+ nav ul ul li:hover > ul,
+ nav ul li:hover > ul { display: none; }
+  
+ nav ul ul li {
+   display: block;
+   width: 100%;
+ }
+  
+ nav ul ul ul li { position: static;
+  
+ }
+ }
+  
+ @media all and (max-width : 330px) {
+  
+ nav ul li {
+   display: block;
+   width: 94%;
+ }
+  
+ }
+  
+ .main-nav nav#navbar {
+   padding: 0px;
+ }
+ nav ul ul li a {
+   line-height: 26px;
+   padding: 10px 10px;
+ }
+ nav p {
+  display: block;
+  padding: 0 20px;
+  color: #FFF;
+  font-size: 18px;
+  line-height: 60px;
+  text-decoration: none;
+  cursor: pointer;
+}
