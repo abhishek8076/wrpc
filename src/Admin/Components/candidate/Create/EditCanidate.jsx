@@ -14,9 +14,10 @@ import Sidebar from '../../sidebar/Sidebar';
 import Header from '../../header/Header'
 import Footer from '../../footer/Footer';
 
-export const EditCanidate=()=> {
-    const {id}= useParams();
+export const EditCanidate = () => {
+  const { id } = useParams();
   const [formErrors, setFormErrors] = useState({});
+  const [showAdditionalCheckboxes, setShowAdditionalCheckboxes] = useState(false);
   const [successDialogOpen, setSuccessDialogOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -24,6 +25,14 @@ export const EditCanidate=()=> {
     mobile_no: '',
     address: '',
     usertype: '',
+    formtype1: 0,
+    formtype2: 0,
+    formtype3: 0,
+    formtype4: 0,
+    formtype1_1: 0,
+    formtype1_2: 0,
+    formtype1_3: 0,
+    formtype1_4: 0
   });
 
   // New state variables for confirmation dialog and loading
@@ -40,13 +49,38 @@ export const EditCanidate=()=> {
       [name]: value,
     }));
   };
+  console.log("checkbox", formData)
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
-    setFormData({
-      ...formData,
-      [name]: checked ? 1 : 0, // Convert boolean to "0" or "1"
-    });
+
+    if (name === 'formtype1') {
+      setShowAdditionalCheckboxes(checked);
+      setFormData(prevFormData => ({
+        ...prevFormData,
+        [name]: checked ? 1 : 0,
+        formtype1_1: checked ? prevFormData.formtype1_1 : 0,
+        formtype1_2: checked ? prevFormData.formtype1_2 : 0,
+        formtype1_3: checked ? prevFormData.formtype1_3 : 0,
+        formtype1_4: checked ? prevFormData.formtype1_4 : 0
+      }));
+    } else {
+      // For other checkboxes, update their values directly
+      setFormData
+
+        ({
+          ...formData,
+          [name]: checked ? 1 : 0,
+        });
+    }
   };
+
+  // const handleCheckboxChange = (event) => {
+  //   const { name, checked } = event.target;
+  //   setFormData({
+  //     ...formData,
+  //     [name]: checked ? 1 : 0, // Convert boolean to "0" or "1"
+  //   });
+  // };
 
 
   const validateForm = () => {
@@ -100,14 +134,25 @@ export const EditCanidate=()=> {
     setConfirmDialogOpen(false);
     // Set loading state to true
     setLoading(true);
-
+    if (validateForm()){
     try {
-   
-      
-      const response = await apiClient.post("/api/Candidate/put/"+id, formData);
-      
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('mobile_no', formData.mobile_no);
+      formDataToSend.append('address', formData.address);
+      formDataToSend.append('formtype1', formData.formtype1);
+      formDataToSend.append('formtype2', formData.formtype2);
+      formDataToSend.append('formtype3', formData.formtype3);
+      formDataToSend.append('formtype4', formData.formtype4);
+      formDataToSend.append('formtype1_1', formData.formtype1_1);
+      formDataToSend.append('formtype1_2', formData.formtype1_2);
+      formDataToSend.append('formtype1_3', formData.formtype1_3);
+      formDataToSend.append('formtype1_4', formData.formtype1_4);
+      const response = await apiClient.post("/api/Candidate/put/" + id, formData);
+
       if (response.status === 200) {
-        
+
         // Simulate a 3-second delay
         setTimeout(() => {
           // Set loading state back to false after the delay
@@ -123,14 +168,15 @@ export const EditCanidate=()=> {
       toast.error('Something went wrong');
       setLoading(false);
     }
+  }
   };
 
 
   useEffect(() => {
     const fetchRoles = async () => {
       try {
-        const response = await apiClient.get(api.allcandidate+id);
-       
+        const response = await apiClient.get(api.allcandidate + id);
+
         setFormData(response.data);
       } catch (error) {
         console.error('Error fetching roles:', error);
@@ -143,42 +189,42 @@ export const EditCanidate=()=> {
   return (
     <>
       <div>
-<main id="main" class="main">
-<div class="pagetitle">
-  <h1>Edit Candidate</h1>
-  
-  <div className="pagetitle-rgt">
-              <Link to ="/candidate/candidatetable">
-              <button type="button" class="btn btn-info">
-                Back
-              </button>
+        <main id="main" class="main">
+          <div class="pagetitle">
+            <h1>Edit Candidate</h1>
+
+            <div className="pagetitle-rgt">
+              <Link to="/candidate/candidatetable">
+                <button type="button" class="btn btn-info">
+                  Back
+                </button>
               </Link>
             </div>
-</div>
+          </div>
 
 
-        <div className="home">
-          <Header/>
-          <Sidebar/>
-          <div className="homeContainer">
-            
-          
-           
-            <div className='bgimg'>
-              <Container>
-                <Row className="vh-100 d-flex justify-content-center align-items-left">
-                  <Col md={10} lg={12} xs={12}>
-                    <Card>
-                      <Card.Body>
-                      <div className="mb-3 mt-md-4">
+          <div className="home">
+            <Header />
+            <Sidebar />
+            <div className="homeContainer">
+
+
+
+              <div className='bgimg'>
+                <Container>
+                  <Row className="vh-100 d-flex justify-content-center align-items-left">
+                    <Col md={10} lg={12} xs={12}>
+                      <Card>
+                        <Card.Body>
+                          <div className="mb-3 mt-md-4">
                             <h2 className="fw-bold mb-4 text-center text-uppercase">
-                            Edit  Candidate
+                              Edit  Candidate
                             </h2>
                             <div className="mb-3">
                               <Form onSubmit={handleSubmit}>
                                 <Form.Group className="mb-3" controlId="Name">
                                   <Form.Label
-                                     
+
                                     style={{ color: "black" }}
                                   >
                                     Name
@@ -198,7 +244,7 @@ export const EditCanidate=()=> {
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="Email">
                                   <Form.Label
-                                     
+
                                     style={{ color: "black" }}
                                   >
                                     E-mail
@@ -220,7 +266,7 @@ export const EditCanidate=()=> {
                                   controlId="MobileNo"
                                 >
                                   <Form.Label
-                                     
+
                                     style={{ color: "black" }}
                                   >
                                     Mobile No.
@@ -243,7 +289,7 @@ export const EditCanidate=()=> {
                                   controlId="Address"
                                 >
                                   <Form.Label
-                                     
+
                                     style={{ color: "black" }}
                                   >
                                     Address
@@ -262,46 +308,84 @@ export const EditCanidate=()=> {
                                   </Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group>
-                                <Form.Label
-                                     
+                                  <Form.Label
+
                                     style={{ color: "black" }}
                                   >
                                     Feedback Form
                                   </Form.Label>
                                   <div>
-                                  <input class="form-check-input"
-                                   type="checkbox"
-                                   
-                                   name="formtype1"
-                                   checked={formData.formtype1}
-                                   onChange={handleCheckboxChange}
-                                    id="flexCheckChecked"
-                                      />
-                                      
-                                  <input type='checkbox' 
-                                    name="formtype2"
-                                    checked={formData.formtype2}
-                                    onChange={handleCheckboxChange}
-                                     id="flexCheckChecked"
+                                    <label>TRIPPING COMPLIANCE OF PCM DISCUSSIONS</label>
+                                    
+                                    <input type='checkbox'
+                                      name="formtype1"
+                                      checked={formData.formtype1}
+                                      onChange={handleCheckboxChange}
+                                      id="flexCheckChecked" />
+                               
+                                    {formData.formtype1 && (
+                                      <>
+                                        <label>Form 1</label>
+                                        <input
+                                          type='checkbox'
+                                          name="formtype1_1"
+                                          checked={formData.formtype1_1}
+                                          onChange={handleCheckboxChange}
+                                          id="flexCheckChecked"
+                                        />
+                                        <label>Form 2</label>
+                                        <input
+                                          type='checkbox'
+                                          name="formtype1_2"
+                                          checked={formData.formtype1_2}
+                                          onChange={handleCheckboxChange}
+                                          id="flexCheckChecked"
+                                        />
+                                        <label>Form 3</label>
+                                        <input
+                                          type='checkbox'
+                                          name="formtype1_3"
+                                          checked={formData.formtype1_3}
+                                          onChange={handleCheckboxChange}
+                                          id="flexCheckChecked"
+                                        />
+                                        <label>Form 4</label>
+                                        <input
+                                          type='checkbox'
+                                          name="formtype1_4"
+                                          checked={formData.formtype1_4}
+                                          onChange={handleCheckboxChange}
+                                          id="flexCheckChecked"
+                                        />
+                                      </>
+                                    )}
+                                    <label>TPPA PLAN & MONITORING</label>
+                                    <input type='checkbox'
+                                      name="formtype2"
+                                      checked={formData.formtype2}
+                                      onChange={handleCheckboxChange}
+                                      id="flexCheckChecked"
                                     />
-                                  <input type='checkbox'
-                                   name="formtype3"
-                                  checked={formData.formtype3}
-                                  onChange={handleCheckboxChange}
-                                   id="flexCheckChecked"/>
-                                  <input type='checkbox'
-                                   name="formtype4"
-                                   checked={formData.formtype4}
-                                   onChange={handleCheckboxChange}
-                                    id="flexCheckChecked"/></div>
-                            
+                                    <label>TPPA OBSERVATION</label>
+                                    <input type='checkbox'
+                                      name="formtype3"
+                                      checked={formData.formtype3}
+                                      onChange={handleCheckboxChange}
+                                      id="flexCheckChecked" />
+                                    <label>RELAY SETTINGS DATA</label>
+                                    <input type='checkbox'
+                                      name="formtype4"
+                                      checked={formData.formtype4}
+                                      onChange={handleCheckboxChange}
+                                      id="flexCheckChecked" /></div>
+
                                   <Form.Control.Feedback type="invalid">
                                     {formErrors.address}
                                   </Form.Control.Feedback>
                                 </Form.Group>
-                                
 
-                           
+
+
 
                                 <div
                                   id="button"
@@ -317,22 +401,22 @@ export const EditCanidate=()=> {
                                   </Button>
                                 </div>
 
-                              <Dialog className="backdrop" open={confirmDialogOpen} onClick={handleDeleteCancel}>
-                                <Spinner animation="border" role="status">
-                                  <span className="visually-hidden">Loading...</span>
-                                </Spinner>
-                              </Dialog>
-                            </Form>
+                                <Dialog className="backdrop" open={confirmDialogOpen} onClick={handleDeleteCancel}>
+                                  <Spinner animation="border" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                  </Spinner>
+                                </Dialog>
+                              </Form>
+                            </div>
                           </div>
-                        </div>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                </Row>
-              </Container>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  </Row>
+                </Container>
+              </div>
             </div>
           </div>
-        </div>
         </main>
       </div>
 
@@ -367,7 +451,7 @@ export const EditCanidate=()=> {
           </Button>
         </DialogActions>
       </Dialog>
-      <Footer/>
+      <Footer />
     </>
   );
 }

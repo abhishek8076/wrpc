@@ -29,7 +29,7 @@ export const Formthree = () => {
     const [selectedFilee, setSelectedFilee] = useState('');
     const [selectedFilee1, setSelectedFilee1] = useState('');
     const [formData, setFormData] = useState({
-        user_id: 0,
+
         StationName: '',
         kVLevel: '',
         Owner: '',
@@ -81,7 +81,7 @@ export const Formthree = () => {
     const handleFileChange1 = (event) => {
         const file = event.target.files[0];
 
-        if (file ) {
+        if (file) {
             // File is a PDF
             setSelectedFilee(file);
 
@@ -160,7 +160,7 @@ export const Formthree = () => {
         if (!formData.BDate_Attended) {
             errors.BDate_Attended = "Required";
         }
-     
+
         setFormErrors(errors);
         return Object.keys(errors).length === 0;
     };
@@ -194,7 +194,7 @@ export const Formthree = () => {
             //         usertype: parseInt(selectedRole, 10),
             //     };
             const formDataToSend = new FormData();
-            formDataToSend.append('user_id', formData.user_id);
+            formDataToSend.append('user_id', 1);
             formDataToSend.append('Station_Name', formData.StationName);
             formDataToSend.append('kV_Level', formData.kVLevel);
             formDataToSend.append('Owner', formData.Owner);
@@ -210,13 +210,13 @@ export const Formthree = () => {
             formDataToSend.append('Attended_CAT_A', formData.AAttendedY_N);
             formDataToSend.append('Date_Attended_CAT_A', formData.ADate_Attended);
             formDataToSend.append('CAT_B_Deficiencies', formData.CAT_B_deficiencies);
-            formDataToSend.append('Attended_CAT_B',"DFSFGDSAF");
+            formDataToSend.append('Attended_CAT_B', "DFSFGDSAF");
             formDataToSend.append('Date_Attended_CAT_B', formData.BDate_Attended);
 
 
 
             const response = await apiclient.post(apis.Tppapost, formDataToSend)
-           
+
             if (response.status === 200) {
                 console.log("user" + response.data)
                 // Simulate a 3-second delay
@@ -297,7 +297,7 @@ export const Formthree = () => {
 
                 <CmsDisplay />
 
-                <main id="main" class="main">
+                <main>
                     <div class="pagetitle">
 
                         {/* <div className="pagetitle-rgt">
@@ -322,21 +322,21 @@ export const Formthree = () => {
                                                         <div class="form-group row"><label class="col-sm-2 col-form-label">Station Name<span
                                                         ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
-                                                            <span style={{color:"red"}}>{formErrors.StationName}</span>
+                                                                <span style={{ color: "red" }}>{formErrors.StationName}</span>
                                                                 <input class="form-control"
-                                                                name="StationName"
-                                                                placeholder="Enter Station Name"
-                                                                maxlength="50"
-                                                                value={formData.StationName}
-                                                                onChange={handleChange}
-                                                                isInvalid={!!formErrors.StationName}
-                                                            /><small class="invalid-feedback">
+                                                                    name="StationName"
+                                                                    placeholder="Enter Station Name"
+                                                                    maxlength="50"
+                                                                    value={formData.StationName}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.StationName}
+                                                                /><small class="invalid-feedback">
                                                                 </small></div>
                                                             <label
                                                                 class="col-sm-2 col-form-label">kV Level<span
                                                                 ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
-                                                            <span style={{color:"red"}}>{formErrors.kVLevel}</span>
+                                                                <span style={{ color: "red" }}>{formErrors.kVLevel}</span>
                                                                 <input class="form-control"
                                                                     name="kVLevel"
                                                                     placeholder="Enter kV Level"
@@ -346,102 +346,102 @@ export const Formthree = () => {
                                                                         class="col-sm-2 col-form-label">Owner<span
                                                                         ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
-                                                            <span style={{color:"red"}}>{formErrors.Owner}</span>
+                                                                <span style={{ color: "red" }}>{formErrors.Owner}</span>
                                                                 <input class="form-control" name="Owner" placeholder="Owner"
-                                                                onChange={handleChange}
-                                                                isInvalid={!!formErrors.Owner}
-                                                                maxlength="50" value={formData.Owner} /><small class="invalid-feedback"></small></div>
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.Owner}
+                                                                    maxlength="50" value={formData.Owner} /><small class="invalid-feedback"></small></div>
                                                         </div>
                                                         <div class="form-group row"><label class="col-sm-2 col-form-label">Location<span
                                                         ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
-                                                            <span style={{color:"red"}}>{formErrors.Location}</span>
+                                                                <span style={{ color: "red" }}>{formErrors.Location}</span>
                                                                 <input class="form-control" name="Location" placeholder="Enter Location"
-                                                                maxlength="50" value={formData.Location}
-                                                                onChange={handleChange}
-                                                                isInvalid={!!formErrors.Location} /><small class="invalid-feedback"></small></div><label
-                                                                    class="col-sm-2 col-form-label">Planned date of Audit<span
-                                                                    ><b>*</b></span>:</label>
+                                                                    maxlength="50" value={formData.Location}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.Location} /><small class="invalid-feedback"></small></div><label
+                                                                        class="col-sm-2 col-form-label">Planned date of Audit<span
+                                                                        ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
-                                                            <span style={{color:"red"}}>{formErrors.PlannedDateAudit}</span>
+                                                                <span style={{ color: "red" }}>{formErrors.PlannedDateAudit}</span>
                                                                 <input class="form-control"
-                                                                className="form-control" name="PlannedDateAudit" type="date"
-                                                                value={formData.PlannedDateAudit}
-                                                                onChange={handleChange}
-                                                                isInvalid={!!formErrors.PlannedDateAudit} /><small class="invalid-feedback"></small></div><label
-                                                                    class="col-sm-2 col-form-label">Date of Audit<span
-                                                                    ><b>*</b></span>:</label>
+                                                                    className="form-control" name="PlannedDateAudit" type="date"
+                                                                    value={formData.PlannedDateAudit}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.PlannedDateAudit} /><small class="invalid-feedback"></small></div><label
+                                                                        class="col-sm-2 col-form-label">Date of Audit<span
+                                                                        ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
-                                                            <span style={{color:"red"}}>{formErrors.DateAudit}</span>
+                                                                <span style={{ color: "red" }}>{formErrors.DateAudit}</span>
                                                                 <input class="form-control"
-                                                                className="form-control" name="DateAudit" type="date"
-                                                                value={formData.DateAudit}
-                                                                onChange={handleChange}
-                                                                isInvalid={!!formErrors.DateAudit} /><small class="invalid-feedback"></small></div>
+                                                                    className="form-control" name="DateAudit" type="date"
+                                                                    value={formData.DateAudit}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.DateAudit} /><small class="invalid-feedback"></small></div>
                                                         </div>
                                                         <div class="form-group row"><label class="col-sm-2 col-form-label">Audit Entity<span
                                                         ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
-                                                            <span style={{color:"red"}}>{formErrors.AuditEntity}</span>
+                                                                <span style={{ color: "red" }}>{formErrors.AuditEntity}</span>
                                                                 <input class="form-control" name="AuditEntity" placeholder="Enter Audit Entity"
-                                                                maxlength="50" value={formData.AuditEntity}
-                                                                onChange={handleChange}
-                                                                isInvalid={!!formErrors.AuditEntity} /><small class="invalid-feedback"></small></div><label
-                                                                    class="col-sm-2 col-form-label">Report<span
-                                                                    ><b>*</b></span>:</label>
+                                                                    maxlength="50" value={formData.AuditEntity}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.AuditEntity} /><small class="invalid-feedback"></small></div><label
+                                                                        class="col-sm-2 col-form-label">Report<span
+                                                                        ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
-                                                            <span style={{color:"red"}}>{formErrors.selectedFile}</span>
+                                                                <span style={{ color: "red" }}>{formErrors.selectedFile}</span>
                                                                 <input class="form-control" name="Report" type='file'
-                                                                // value={formData.Report}
-                                                                onChange={handleFileChange}
-                                                                isInvalid={!!formErrors.selectedFile} /><small class="invalid-feedback"></small></div><label
-                                                                    class="col-sm-2 col-form-label">Compliances<span
-                                                                    ><b>*</b></span>:</label>
+                                                                    // value={formData.Report}
+                                                                    onChange={handleFileChange}
+                                                                    isInvalid={!!formErrors.selectedFile} /><small class="invalid-feedback"></small></div><label
+                                                                        class="col-sm-2 col-form-label">Compliances<span
+                                                                        ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
-                                                            <span style={{color:"red"}}>{formErrors.selectedFilee}</span>
+                                                                <span style={{ color: "red" }}>{formErrors.selectedFilee}</span>
                                                                 <input class="form-control" name="Compliances" type="file"
-                                                                // value={formData.Compliances}
-                                                                onChange={handleFileChange1}
-                                                                isInvalid={!!formErrors.selectedFilee} /><small class="invalid-feedback"></small></div>
+                                                                    // value={formData.Compliances}
+                                                                    onChange={handleFileChange1}
+                                                                    isInvalid={!!formErrors.selectedFilee} /><small class="invalid-feedback"></small></div>
                                                         </div>
                                                         <div class="form-group row"><label class="col-sm-2 col-form-label">Issues Observed<span
                                                         ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
-                                                            <span style={{color:"red"}}>{formErrors.selectedFilee1}</span>
+                                                                <span style={{ color: "red" }}>{formErrors.selectedFilee1}</span>
                                                                 <input class="form-control" name="Issuesobserved" placeholder="Enter Issues Observed"
-                                                                maxlength="50" value={formData.Issuesobserved}
-                                                                type='file'
-                                                                onChange={handleFileChange2}
-                                                                isInvalid={!!formErrors.selectedFilee1} /><small class="invalid-feedback"></small></div><label
-                                                                    class="col-sm-2 col-form-label">Remarks<span
-                                                                    ><b>*</b></span>:</label>
+
+                                                                    type='file'
+                                                                    onChange={handleFileChange2}
+                                                                    isInvalid={!!formErrors.selectedFilee1} /><small class="invalid-feedback"></small></div><label
+                                                                        class="col-sm-2 col-form-label">Remarks<span
+                                                                        ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
-                                                            <span style={{color:"red"}}>{formErrors.Remarks}</span>
+                                                                <span style={{ color: "red" }}>{formErrors.Remarks}</span>
                                                                 <input class="form-control" name="Remarks" placeholder='Remarks'
-                                                                value={formData.Remarks}
-                                                                onChange={handleChange}
-                                                                isInvalid={!!formErrors.Remarks} /><small class="invalid-feedback"></small></div>
+                                                                    value={formData.Remarks}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.Remarks} /><small class="invalid-feedback"></small></div>
                                                         </div>
                                                         <div class="form-group row"><label class="col-sm-2 col-form-label">CAT A deficiences<span
                                                         ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
-                                                            <span style={{color:"red"}}>{formErrors.CAT_A_deficiencies}</span>
+                                                                <span style={{ color: "red" }}>{formErrors.CAT_A_deficiencies}</span>
                                                                 <input class="form-control" name="CAT_A_deficiencies" placeholder="Enter CAT A deficiences"
-                                                                maxlength="50" value={formData.CAT_A_deficiencies}
-                                                                onChange={handleChange}
-                                                                isInvalid={!!formErrors.CAT_A_deficiencies} /><small class="invalid-feedback"></small></div><label
-                                                                    class="col-sm-2 col-form-label">AttendedY_N<span
-                                                                    ><b>*</b></span>:</label>
-                                                            <div class="col-sm-2"><span style={{color:"red"}}>{formErrors.CAT_A_deficiencies}</span>
+                                                                    maxlength="50" value={formData.CAT_A_deficiencies}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.CAT_A_deficiencies} /><small class="invalid-feedback"></small></div><label
+                                                                        class="col-sm-2 col-form-label">AttendedY_N<span
+                                                                        ><b>*</b></span>:</label>
+                                                            <div class="col-sm-2"><span style={{ color: "red" }}>{formErrors.CAT_A_deficiencies}</span>
                                                                 <select class="form-control" name="AAttendedY_N"
-                                                                value={formData.AAttendedY_N}
-                                                                onChange={handleChange}
-                                                                isInvalid={!!formErrors.AAttendedY_N}
-                                                            >
-                                                                <option value=""> --Select-- </option>
-                                                                <option value="1">Yes</option>
-                                                                <option value="2">No</option>
-                                                            </select><small class="invalid-feedback"></small></div>
+                                                                    value={formData.AAttendedY_N}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.AAttendedY_N}
+                                                                >
+                                                                    <option value=""> --Select-- </option>
+                                                                    <option value="1">Yes</option>
+                                                                    <option value="2">No</option>
+                                                                </select><small class="invalid-feedback"></small></div>
                                                             {/* <div class="col-sm-2"><input class="form-control" name="AttendedY_N" 
                                                     value={formData.AAttendedY_N}
                                                     onChange={handleFileChange}
@@ -450,33 +450,33 @@ export const Formthree = () => {
                                                                 class="col-sm-2 col-form-label">Cat A Date Attended<span
                                                                 ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
-                                                            <span style={{color:"red"}}>{formErrors.ADate_Attended}</span>
+                                                                <span style={{ color: "red" }}>{formErrors.ADate_Attended}</span>
                                                                 <input type="date" class="form-control" name="ADate_Attended"
-                                                                value={formData.ADate_Attended}
-                                                                onChange={handleChange}
-                                                                isInvalid={!!formErrors.ADate_Attended} /><small class="invalid-feedback"></small></div>
+                                                                    value={formData.ADate_Attended}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.ADate_Attended} /><small class="invalid-feedback"></small></div>
                                                         </div>
                                                         <div class="form-group row"><label class="col-sm-2 col-form-label">CAT B deficiences<span
                                                         ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
-                                                            <span style={{color:"red"}}>{formErrors.CAT_B_deficiencies}</span>
+                                                                <span style={{ color: "red" }}>{formErrors.CAT_B_deficiencies}</span>
                                                                 <input class="form-control" name="CAT_B_deficiencies" placeholder="Enter CAT B deficiences"
-                                                                maxlength="50"
-                                                                value={formData.CAT_B_deficiencies}
-                                                                onChange={handleChange}
-                                                                isInvalid={!!formErrors.CAT_B_deficiencies} /><small class="invalid-feedback"></small></div><label
-                                                                    class="col-sm-2 col-form-label">AttendedY_N<span
-                                                                    ><b>*</b></span>:</label>
-                                                            <div class="col-sm-2"><span style={{color:"red"}}>{formErrors.CAT_A_deficiencies}</span>
+                                                                    maxlength="50"
+                                                                    value={formData.CAT_B_deficiencies}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.CAT_B_deficiencies} /><small class="invalid-feedback"></small></div><label
+                                                                        class="col-sm-2 col-form-label">AttendedY_N<span
+                                                                        ><b>*</b></span>:</label>
+                                                            <div class="col-sm-2"><span style={{ color: "red" }}>{formErrors.CAT_A_deficiencies}</span>
                                                                 <select class="form-control" name="urbanRural"
-                                                                value={formData.urbanRural}
-                                                                onChange={handleChange}
-                                                                isInvalid={!!formErrors.urbanRural}
-                                                            >
-                                                                <option value=""> --Select-- </option>
-                                                                <option value="1">Yes</option>
-                                                                <option value="2">No</option>
-                                                            </select><small class="invalid-feedback"></small></div>
+                                                                    value={formData.urbanRural}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.urbanRural}
+                                                                >
+                                                                    <option value=""> --Select-- </option>
+                                                                    <option value="1">Yes</option>
+                                                                    <option value="2">No</option>
+                                                                </select><small class="invalid-feedback"></small></div>
                                                             {/* <div class="col-sm-2"><input class="form-control" name="AttendedY_N" 
                                                     value={formData.AAttendedY_N}
                                                     onChange={handleFileChange}
@@ -485,11 +485,11 @@ export const Formthree = () => {
                                                                 class="col-sm-2 col-form-label">Cat B Date Attended<span
                                                                 ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
-                                                            <span style={{color:"red"}}>{formErrors.BDate_Attended}</span>
+                                                                <span style={{ color: "red" }}>{formErrors.BDate_Attended}</span>
                                                                 <input class="form-control" type="date" name="BDate_Attended"
-                                                                value={formData.BDate_Attended}
-                                                                onChange={handleChange}
-                                                                isInvalid={!!formErrors.BDate_Attended} /><small class="invalid-feedback"></small></div>
+                                                                    value={formData.BDate_Attended}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.BDate_Attended} /><small class="invalid-feedback"></small></div>
                                                         </div>
 
                                                     </div>

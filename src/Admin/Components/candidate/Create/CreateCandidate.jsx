@@ -70,6 +70,7 @@ export const CreateCandidate = () => {
     } else {
       // For other checkboxes, update their values directly
       setFormData
+      
       ({
         ...formData,
         [name]: checked ? 1 : 0,
