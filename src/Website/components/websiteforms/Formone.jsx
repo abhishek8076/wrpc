@@ -394,28 +394,18 @@ export const Formone = () => {
 
         <CmsDisplay />
 
-        
-          <div class="pagetitle">
-            {/* <div className="pagetitle-rgt">
-                            <Link to="/dashboard">
-                                <button type="button" class="btn btn-info">
-                                    Back
-                                </button>
-                            </Link>
-                        </div> */}
-          </div>
-          <div class="main-form">
-            <div class="container-fluid" >
-              <div class="InnerSection">
-                <div class="InnerSectionBox">
-                  <form class="forms-sample" onSubmit={handleSubmit}>
-                    <h4>Tripping compliance of PCM Discussions </h4>
-                    <div class="row">
-                      <div class="col-md-12 grid-margin stretch-card">
-                        <div class="card">
-                          <div class="card-body registrationCard">
-                            <div class="form-group row">
-                              <label class="col-sm-2 col-form-label">
+        <div class="main-form">
+          <div class="container-fluid">
+            <div class="InnerSection">
+              <div class="InnerSectionBox">
+                <form class="forms-sample" onSubmit={handleSubmit}>
+                  <h4>Tripping compliance of PCM Discussions </h4>
+                  <div class="row">
+                    <div class="col-md-12 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body registrationCard">
+                          {/* <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">
                                 Recommondation of PCM
                                 <span>
                                   <b>*</b>
@@ -436,595 +426,609 @@ export const Formone = () => {
                                   isInvalid={!!formErrors.RecommondationofPCM}
                                 />
                               </div>
-                              <label class="col-sm-2 col-form-label">
-                                kV Level
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.kVLevel}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="kVLevel"
-                                  placeholder="Enter kV Level"
-                                  onChange={handleChange}
-                                  isInvalid={!!formErrors.kVLevel}
-                                  maxlength="50"
-                                  value={formData.kVLevel}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                              <label class="col-sm-2 col-form-label">
-                                PCM Number
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.PCMNumber}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="PCMNumber"
-                                  placeholder="PCM Number"
-                                  onChange={handleChange}
-                                  isInvalid={!!formErrors.PCMNumber}
-                                  maxlength="50"
-                                  value={formData.PCMNumber}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label class="col-sm-2 col-form-label">
-                                PCM Date
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.PCMDate}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  className="form-control"
-                                  name="PCMDate"
-                                  type="date"
-                                  value={formData.PCMDate}
-                                  onChange={handleChange}
-                                  isInvalid={!!formErrors.PCMDate}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                              <label class="col-sm-2 col-form-label">
-                                Item No
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.ItemNo}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="ItemNo"
-                                  placeholder="Enter Item No"
-                                  maxlength="50"
-                                  value={formData.ItemNo}
-                                  onChange={handleChange}
-                                  isInvalid={!!formErrors.ItemNo}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                              <label class="col-sm-2 col-form-label">
-                                Tripping Date
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.TrippingDate}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  className="form-control"
-                                  name="TrippingDate"
-                                  type="date"
-                                  value={formData.TrippingDate}
-                                  onChange={handleChange}
-                                  isInvalid={!!formErrors.TrippingDate}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label class="col-sm-2 col-form-label">
-                                Tripping Time
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.TrippingTime}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  className="form-control"
-                                  name="TrippingTime"
-                                  type="time"
-                                  value={formData.TrippingTime}
-                                  onChange={handleChange}
-                                  isInvalid={!!formErrors.TrippingTime}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                              <label class="col-sm-2 col-form-label">
-                                Owner(S)
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.OwnerS}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="OwnerS"
-                                  maxlength="50"
-                                  value={formData.OwnerS}
-                                  placeholder="Enter Owner(S)"
-                                  onChange={handleChange}
-                                  isInvalid={!!formErrors.OwnerS}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                              <label class="col-sm-2 col-form-label">
-                                FIR(S)
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.FIRS}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="FIRS"
-                                  type="file"
-                                  // value={selectedFile}
-                                  onChange={handleFileChange}
-                                  isInvalid={!!formErrors.FIRS}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label class="col-sm-2 col-form-label">
-                                DR(S)
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.DRS}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="DRS"
-                                  type="file"
-                                  maxlength="50"
-                                  onChange={handleFileChange1}
-                                  isInvalid={!!formErrors.DRS}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                              <label class="col-sm-2 col-form-label">
-                                EL(S)
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.ELS}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="ELS"
-                                  type="file"
-                                  maxlength="50"
-                                  onChange={handleFileChange2}
-                                  isInvalid={!!formErrors.ELS}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                              <label class="col-sm-2 col-form-label">
-                                Remarks
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.Remarks}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="Remarks"
-                                  placeholder="Enter Remarks"
-                                  maxlength="50"
-                                  value={formData.Remarks}
-                                  onChange={handleChange}
-                                  isInvalid={!!formErrors.Remarks}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label class="col-sm-2 col-form-label">
-                                TR(S)
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.TRS}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="TRS"
-                                  type="file"
-                                  maxlength="50"
-                                  onChange={handleFileChange3}
-                                  isInvalid={!!formErrors.TRS}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                              <label class="col-sm-2 col-form-label">
-                                Category(S)
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.CategoryS}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="CategoryS"
-                                  placeholder="Enter category(S)"
-                                  maxlength="50"
-                                  value={formData.CategoryS}
-                                  onChange={handleChange}
-                                  isInvalid={!!formErrors.CategoryS}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                              <label class="col-sm-2 col-form-label">
-                                Owner(R)
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.OwnerR}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="OwnerR"
-                                  placeholder="Enter Owner(R)"
-                                  maxlength="50"
-                                  value={formData.OwnerR}
-                                  onChange={handleChange}
-                                  isInvalid={!!formErrors.OwnerR}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label class="col-sm-2 col-form-label">
-                                FIR(R)
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.FIRR}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="FIR(R)"
-                                  type="file"
-                                  maxlength="50"
-                                  onChange={handleFileChange4}
-                                  isInvalid={!!formErrors.FIRR}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                              <label class="col-sm-2 col-form-label">
-                                DR(R)
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.DRR}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="DRR"
-                                  type="file"
-                                  maxlength="50"
-                                  onChange={handleFileChange5}
-                                  isInvalid={!!formErrors.DRR}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                              <label class="col-sm-2 col-form-label">
-                                EL(R)
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.ELR}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="ELR"
-                                  type="file"
-                                  maxlength="50"
-                                  onChange={handleFileChange6}
-                                  isInvalid={!!formErrors.ELR}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label class="col-sm-2 col-form-label">
-                                TR(R)
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.TRR}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="TRR"
-                                  type="file"
-                                  maxlength="50"
-                                  onChange={handleFileChange7}
-                                  isInvalid={!!formErrors.TRR}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                              <label class="col-sm-2 col-form-label">
-                                Category(R)
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.CategoryR}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="CategoryR"
-                                  placeholder="Enter category(R)"
-                                  maxlength="50"
-                                  value={formData.CategoryR}
-                                  onChange={handleChange}
-                                  isInvalid={!!formErrors.CategoryR}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                              <label class="col-sm-2 col-form-label">
-                                Analysis
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.Analysis}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="Analysis"
-                                  type="file"
-                                  maxlength="50"
-                                  onChange={handleFileChange8}
-                                  isInvalid={!!formErrors.Analysis}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label class="col-sm-2 col-form-label">
-                                Final Report
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.FinalReport}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="FinalReport"
-                                  type="file"
-                                  maxlength="50"
-                                  onChange={handleFileChange9}
-                                  isInvalid={!!formErrors.FinalReport}
-                                />
-                              </div>
-                              <small class="invalid-feedback"></small>
-                              <label class="col-sm-2 col-form-label">
-                                Notified Status
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
 
-                              <select
-                                class="form-control col-sm-2 col-form-label"
-                                name="NotifiedStatus"
-                                value={formData.NotifiedStatus}
+                            <label class="col-sm-2 col-form-label">
+                              PCM Number
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.PCMNumber}
+                              </span>
+                              <input
+                                class="form-control"
+                                name="PCMNumber"
+                                placeholder="PCM Number"
                                 onChange={handleChange}
-                                isInvalid={!!formErrors.NotifiedStatus}
-                              >
-                                <option value="">--Select--</option>
-                                <option value="1">Yes</option>
-                                <option value="2">No</option>
-                              </select>
+                                isInvalid={!!formErrors.PCMNumber}
+                                maxlength="50"
+                                value={formData.PCMNumber}
+                              />
+                              <small class="invalid-feedback"></small>
+                            </div>
+                            <label class="col-sm-2 col-form-label">
+                              PCM Date
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.PCMDate}
+                              </span>
+                              <input
+                                class="form-control"
+                                className="form-control"
+                                name="PCMDate"
+                                type="date"
+                                value={formData.PCMDate}
+                                onChange={handleChange}
+                                isInvalid={!!formErrors.PCMDate}
+                              />
+                              <small class="invalid-feedback"></small>
+                            </div>
+                            <label class="col-sm-2 col-form-label">
+                              Item No
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.ItemNo}
+                              </span>
+                              <input
+                                class="form-control"
+                                name="ItemNo"
+                                placeholder="Enter Item No"
+                                maxlength="50"
+                                value={formData.ItemNo}
+                                onChange={handleChange}
+                                isInvalid={!!formErrors.ItemNo}
+                              />
+                              <small class="invalid-feedback"></small>
+                            </div>
+                          </div> */}
+                          {/* form 1 */}
+                          {true &&(
+                            <>
+                              <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">
+                              Tripping Date
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.TrippingDate}
+                              </span>
+                              <input
+                                class="form-control"
+                                className="form-control"
+                                name="TrippingDate"
+                                type="date"
+                                value={formData.TrippingDate}
+                                onChange={handleChange}
+                                isInvalid={!!formErrors.TrippingDate}
+                              />
+                              <small class="invalid-feedback"></small>
+                            </div>
+                            <label class="col-sm-2 col-form-label">
+                              Tripping Time
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.TrippingTime}
+                              </span>
+                              <input
+                                class="form-control"
+                                className="form-control"
+                                name="TrippingTime"
+                                type="time"
+                                value={formData.TrippingTime}
+                                onChange={handleChange}
+                                isInvalid={!!formErrors.TrippingTime}
+                              />
+                              <small class="invalid-feedback"></small>
+                            </div>
+                            <label class="col-sm-2 col-form-label">
+                              Owner(S)
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.OwnerS}
+                              </span>
+                              <input
+                                class="form-control"
+                                name="OwnerS"
+                                maxlength="50"
+                                value={formData.OwnerS}
+                                placeholder="Enter Owner(S)"
+                                onChange={handleChange}
+                                isInvalid={!!formErrors.OwnerS}
+                              />
+                              <small class="invalid-feedback"></small>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                           
+                           
+                            <label class="col-sm-2 col-form-label">
+                              FIR(S)
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.FIRS}
+                              </span>
+                              <input
+                                class="form-control"
+                                name="FIRS"
+                                type="file"
+                                // value={selectedFile}
+                                onChange={handleFileChange}
+                                isInvalid={!!formErrors.FIRS}
+                              />
+                              <small class="invalid-feedback"></small>
+                            </div>
+                            <label class="col-sm-2 col-form-label">
+                              DR(S)
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.DRS}
+                              </span>
+                              <input
+                                class="form-control"
+                                name="DRS"
+                                type="file"
+                                maxlength="50"
+                                onChange={handleFileChange1}
+                                isInvalid={!!formErrors.DRS}
+                              />
+                              <small class="invalid-feedback"></small>
+                            </div>
+                            <label class="col-sm-2 col-form-label">
+                              EL(S)
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.ELS}
+                              </span>
+                              <input
+                                class="form-control"
+                                name="ELS"
+                                type="file"
+                                maxlength="50"
+                                onChange={handleFileChange2}
+                                isInvalid={!!formErrors.ELS}
+                              />
+                              <small class="invalid-feedback"></small>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">
+                              TR(S)
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.TRS}
+                              </span>
+                              <input
+                                class="form-control"
+                                name="TRS"
+                                type="file"
+                                maxlength="50"
+                                onChange={handleFileChange3}
+                                isInvalid={!!formErrors.TRS}
+                              />
+                              <small class="invalid-feedback"></small>
+                            </div>
+                            <label class="col-sm-2 col-form-label">
+                              Category(S)
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.CategoryS}
+                              </span>
+                              <input
+                                class="form-control"
+                                name="CategoryS"
+                                placeholder="Enter category(S)"
+                                maxlength="50"
+                                value={formData.CategoryS}
+                                onChange={handleChange}
+                                isInvalid={!!formErrors.CategoryS}
+                              />
+                              <small class="invalid-feedback"></small>
+                            </div>
+                            {/* form 1 */}
+                           
+                          </div>
+                            </>
+                          )}
+                        {/* form 2 */}
+                        {true &&(
+                          <>
+                           <div class="form-group row">
+                           
+                           <label class="col-sm-2 col-form-label">
+                               Owner(R)
+                               <span>
+                                 <b>*</b>
+                               </span>
+                               :
+                             </label>
+                             <div class="col-sm-2">
+                               <span style={{ color: "red" }}>
+                                 {formErrors.OwnerR}
+                               </span>
+                               <input
+                                 class="form-control"
+                                 name="OwnerR"
+                                 placeholder="Enter Owner(R)"
+                                 maxlength="50"
+                                 value={formData.OwnerR}
+                                 onChange={handleChange}
+                                 isInvalid={!!formErrors.OwnerR}
+                               />
+                               <small class="invalid-feedback"></small>
+                             </div>
+                             <label class="col-sm-2 col-form-label">
+                               FIR(R)
+                               <span>
+                                 <b>*</b>
+                               </span>
+                               :
+                             </label>
+                             <div class="col-sm-2">
+                               <span style={{ color: "red" }}>
+                                 {formErrors.FIRR}
+                               </span>
+                               <input
+                                 class="form-control"
+                                 name="FIR(R)"
+                                 type="file"
+                                 maxlength="50"
+                                 onChange={handleFileChange4}
+                                 isInvalid={!!formErrors.FIRR}
+                               />
+                               <small class="invalid-feedback"></small>
+                             </div>
+                             <label class="col-sm-2 col-form-label">
+                               DR(R)
+                               <span>
+                                 <b>*</b>
+                               </span>
+                               :
+                             </label>
+                             <div class="col-sm-2">
+                               <span style={{ color: "red" }}>
+                                 {formErrors.DRR}
+                               </span>
+                               <input
+                                 class="form-control"
+                                 name="DRR"
+                                 type="file"
+                                 maxlength="50"
+                                 onChange={handleFileChange5}
+                                 isInvalid={!!formErrors.DRR}
+                               />
+                               <small class="invalid-feedback"></small>
+                             </div>
+                            
+                           </div>
+                           <div class="form-group row">
+                    
+                    <label class="col-sm-2 col-form-label">
+                      EL(R)
+                      <span>
+                        <b>*</b>
+                      </span>
+                      :
+                    </label>
+                    <div class="col-sm-2">
+                      <span style={{ color: "red" }}>
+                        {formErrors.ELR}
+                      </span>
+                      <input
+                        class="form-control"
+                        name="ELR"
+                        type="file"
+                        maxlength="50"
+                        onChange={handleFileChange6}
+                        isInvalid={!!formErrors.ELR}
+                      />
+                      <small class="invalid-feedback"></small>
+                    </div>
+                    <label class="col-sm-2 col-form-label">
+                      TR(R)
+                      <span>
+                        <b>*</b>
+                      </span>
+                      :
+                    </label>
+                    <div class="col-sm-2">
+                      <span style={{ color: "red" }}>
+                        {formErrors.TRR}
+                      </span>
+                      <input
+                        class="form-control"
+                        name="TRR"
+                        type="file"
+                        maxlength="50"
+                        onChange={handleFileChange7}
+                        isInvalid={!!formErrors.TRR}
+                      />
+                      <small class="invalid-feedback"></small>
+                    </div>
+                    <label class="col-sm-2 col-form-label">
+                      Category(R)
+                      <span>
+                        <b>*</b>
+                      </span>
+                      :
+                    </label>
+                    <div class="col-sm-2">
+                      <span style={{ color: "red" }}>
+                        {formErrors.CategoryR}
+                      </span>
+                      <input
+                        class="form-control"
+                        name="CategoryR"
+                        placeholder="Enter category(R)"
+                        maxlength="50"
+                        value={formData.CategoryR}
+                        onChange={handleChange}
+                        isInvalid={!!formErrors.CategoryR}
+                      />
+                      <small class="invalid-feedback"></small>
+                    </div>
+                  </div>
+                          </>
+                        )}
+                          
+                         
+                        
+                         
+                          {/* form 2 */}
+                          {/* form 3 */}
 
-                              {/* <div class="col-sm-2"><input class="form-control" name="NotifiedStatus" 
+
+                          {true &&(
+                            <>
+                                
+                                <div class="form-group row">
+                           
+                           
+                           <label class="col-sm-2 col-form-label">
+                             Analysis
+                             <span>
+                               <b>*</b>
+                             </span>
+                             :
+                           </label>
+                           <div class="col-sm-2">
+                             <span style={{ color: "red" }}>
+                               {formErrors.Analysis}
+                             </span>
+                             <input
+                               class="form-control"
+                               name="Analysis"
+                               type="file"
+                               maxlength="50"
+                               onChange={handleFileChange8}
+                               isInvalid={!!formErrors.Analysis}
+                             />
+                             <small class="invalid-feedback"></small>
+                           </div>
+                           <label class="col-sm-2 col-form-label">
+                             Final Report
+                             <span>
+                               <b>*</b>
+                             </span>
+                             :
+                           </label>
+                           <div class="col-sm-2">
+                             <span style={{ color: "red" }}>
+                               {formErrors.FinalReport}
+                             </span>
+                             <input
+                               class="form-control"
+                               name="FinalReport"
+                               type="file"
+                               maxlength="50"
+                               onChange={handleFileChange9}
+                               isInvalid={!!formErrors.FinalReport}
+                             />
+                           </div>
+                           <small class="invalid-feedback"></small>
+                         </div>
+                            </>
+                          )}
+                      
+                          {/* form 3 */}
+                          <div class="form-group row">
+                           
+                            <label class="col-sm-2 col-form-label">
+                              Notified Status
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+
+                            <select
+                              class="form-control col-sm-2 col-form-label"
+                              name="NotifiedStatus"
+                              value={formData.NotifiedStatus}
+                              onChange={handleChange}
+                              isInvalid={!!formErrors.NotifiedStatus}
+                            >
+                              <option value="">--Select--</option>
+                              <option value="1">Yes</option>
+                              <option value="2">No</option>
+                            </select>
+
+                            {/* <div class="col-sm-2"><input class="form-control" name="NotifiedStatus" 
                                                     maxlength="50" value={formData.NotifiedStatus}
                                                     onChange={handleFileChange}
                                                     isInvalid={!!formErrors.NotifiedStatus} />
                                                     <small class="invalid-feedback"></small></div> */}
-                              <label class="col-sm-2 col-form-label">
-                                Utility Attending
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.UtilityAttending}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="UtilityAttending"
-                                  placeholder="Enter Utility Attending"
-                                  maxlength="50"
-                                  value={formData.UtilityAttending}
-                                  onChange={handleChange}
-                                  isInvalid={!!formErrors.UtilityAttending}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
+                            <label class="col-sm-2 col-form-label">
+                              Utility Attending
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.UtilityAttending}
+                              </span>
+                              <input
+                                class="form-control"
+                                name="UtilityAttending"
+                                placeholder="Enter Utility Attending"
+                                maxlength="50"
+                                value={formData.UtilityAttending}
+                                onChange={handleChange}
+                                isInvalid={!!formErrors.UtilityAttending}
+                              />
+                              <small class="invalid-feedback"></small>
                             </div>
-                            <div class="form-group row">
-                              <label class="col-sm-2 col-form-label">
-                                Utility Action taken
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.UtilityActiontaken}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="UtilityActiontaken"
-                                  placeholder="Enter Utility Action taken"
-                                  maxlength="50"
-                                  value={formData.UtilityActiontaken}
-                                  onChange={handleChange}
-                                  isInvalid={!!formErrors.UtilityActiontaken}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
-                              <label class="col-sm-2 col-form-label">
-                                Date attended
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.Dateattended}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="Dateattended"
-                                  type="date"
-                                  min="1962-01-01"
-                                  max="2024-26-001"
-                                  maxlength="50"
-                                  value={formData.Dateattended}
-                                  onChange={handleChange}
-                                  isInvalid={!!formErrors.Dateattended}
-                                />
-                                <small class="invalid-feedback"></small>
-                              </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">
+                              Utility Action taken
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.UtilityActiontaken}
+                              </span>
+                              <input
+                                class="form-control"
+                                name="UtilityActiontaken"
+                                placeholder="Enter Utility Action taken"
+                                maxlength="50"
+                                value={formData.UtilityActiontaken}
+                                onChange={handleChange}
+                                isInvalid={!!formErrors.UtilityActiontaken}
+                              />
+                              <small class="invalid-feedback"></small>
                             </div>
+                            <label class="col-sm-2 col-form-label">
+                              Date attended
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.Dateattended}
+                              </span>
+                              <input
+                                class="form-control"
+                                name="Dateattended"
+                                type="date"
+                                min="1962-01-01"
+                                max="2024-26-001"
+                                maxlength="50"
+                                value={formData.Dateattended}
+                                onChange={handleChange}
+                                isInvalid={!!formErrors.Dateattended}
+                              />
+                              <small class="invalid-feedback"></small>
+                            </div>
+                            <label class="col-sm-2 col-form-label">
+                              Remarks
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.Remarks}
+                              </span>
+                              <input
+                                class="form-control"
+                                name="Remarks"
+                                placeholder="Enter Remarks"
+                                maxlength="50"
+                                value={formData.Remarks}
+                                onChange={handleChange}
+                                isInvalid={!!formErrors.Remarks}
+                              />
+                              <small class="invalid-feedback"></small>
+                            </div>
+                           
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="submitButton">
-                      <button
-                        type="submit"
-                        class="btn btn-outline-success btn-icon-text btn-sm"
-                      >
-                        <i class="mdi mdi-file-check btn-icon-prepend"></i>
-                        Submit
-                      </button>
-                      <button
-                        type="reset"
-                        class="btn btn-outline-danger btn-sm"
-                        style={{ marginLeft: "10px" }}
-                      >
-                        <i class="mdi mdi-refresh"></i>Reset
-                      </button>
-                    </div>
-                  </form>
-                </div>
+                  </div>
+                  <div class="submitButton">
+                    <button
+                      type="submit"
+                      class="btn btn-outline-success btn-icon-text btn-sm"
+                    >
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                      Submit
+                    </button>
+                    <button
+                      type="reset"
+                      class="btn btn-outline-danger btn-sm"
+                      style={{ marginLeft: "10px" }}
+                    >
+                      <i class="mdi mdi-refresh"></i>Reset
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-          <CmsFooter />
-       
+        </div>
+        <CmsFooter />
       </div>
       <ToastContainer />
       {/* Confirmation Dialog */}
