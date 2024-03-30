@@ -495,7 +495,7 @@ export const Formone = () => {
                             </div>
                           </div> */}
                           {/* form 1 */}
-                          {true &&(
+                          {false &&(
                             <>
                               <div class="form-group row">
                             <label class="col-sm-2 col-form-label">
@@ -682,7 +682,7 @@ export const Formone = () => {
                             </>
                           )}
                         {/* form 2 */}
-                        {true &&(
+                        {false &&(
                           <>
                            <div class="form-group row">
                            
@@ -829,7 +829,7 @@ export const Formone = () => {
                           {/* form 3 */}
 
 
-                          {true &&(
+                          {false &&(
                             <>
                                 
                                 <div class="form-group row">
