@@ -19,13 +19,15 @@
     }
 }
 @media(max-width: 1400px){
-   
+    .nav-con {
+        max-width: 95% !important;
+    }
 }
 @media(max-width: 1399px){
    
 }
 @media(max-width: 1280px){
- 
+  
 }
 @media(max-width: 1199px){
     .top-container {
