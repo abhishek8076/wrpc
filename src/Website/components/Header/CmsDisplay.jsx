@@ -56,7 +56,7 @@ const CmsDisplay = () => {
         {submenuList.map((subMenuItem) => (
           <li key={subMenuItem.menu_id}>
              {subMenuItem.submenuList && subMenuItem.submenuList.length > 0 ? (
-            <p className="menu_list">{subMenuItem.menuname}</p>
+            <a className="menu_list">{subMenuItem.menuname}</a>
           ) : (
             <Link to={"/menu/" + subMenuItem.menuurl}>
             {subMenuItem.menuname}
@@ -83,7 +83,7 @@ const CmsDisplay = () => {
           
           <li  key={menuItem.menu_id}>
             {menuItem.submenuList && menuItem.submenuList.length > 0 ? (
-            <p className="menu_list">{menuItem.menuname}</p>
+            <a className="menu_list">{menuItem.menuname}</a>
           ) : (
             <Link to={"/menu/" + menuItem.menuurl}>
               {menuItem.menuname}
@@ -111,16 +111,17 @@ const CmsDisplay = () => {
   <div className="main-nav">
 
     <nav id="navbar" className="navbar">
-      <div className="container">
+      <div className="container-fluid nav-con">
       <li>
             <Link to={"/"}>
               <i style={{ color: "white" }} className="fa fa-home"></i>
             </Link>
           </li>
           {renderMenuItems(menudata)}
-          
+          <i class="fa-solid fa-bars mobile-nav-toggle"></i>
           </div>
-          <i class="bi bi-list mobile-nav-toggle"></i>
+          {/* <i class="bi bi-list mobile-nav-toggle"></i> */}
+        
         </nav>
        
  
