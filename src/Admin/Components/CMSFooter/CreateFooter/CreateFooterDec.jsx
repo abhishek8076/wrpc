@@ -51,31 +51,36 @@ export const CreateFooterDec = () => {
   }, []);
 
  
-    const validateForm = () => {
-      const errors = {};
+  const validateForm = () => {
+    const errors = {};
   
-      // Regular expression to match names with alphabets and spaces
-      const namePattern = /^[a-zA-Z\s]+$/;
+    // Regular expression to match names with alphabets and spaces
+    const namePattern = /^[a-zA-Z\s]+$/;
+    const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|<>\/?]+/;
   
-      if (!formData.tittle_name) {
-        errors.tittle_name = 'Name is required';
-      } else if (!/^[A-Za-z ]+$/.test(formData.tittle_name) && parseInt(formData.languagetype) == 1) {
-        errors.tittle_name = 'Name should only contain alphabets and spaces';
-      }else if (!/^[\u0900-\u097F\s]+$/.test(formData.tittle_name) && parseInt(formData.languagetype) == 2) {
-        errors.tittle_name = 'कृपया केवल हिंदी शब्द ही इनपुट करें';
-      }
-      if (!formData.languagetype ) {
-        errors.languagetype = 'Select a Language';
-      }
-      if (!formData.description) {
-        errors.description = 'Description is required';
-      }
-
+    if (!formData.tittle_name) {
+      errors.tittle_name = 'Name is required';
+    } else if (!/^[A-Za-z ]+$/.test(formData.tittle_name) && parseInt(formData.languagetype) === 1) {
+      errors.tittle_name = 'Name should only contain alphabets and spaces';
+    } else if (!/^[\u0900-\u097F\s]+$/.test(formData.tittle_name) && parseInt(formData.languagetype) === 2) {
+      errors.tittle_name = 'कृपया केवल हिंदी शब्द ही इनपुट करें';
+    }
+  
+    if (!formData.languagetype) {
+      errors.languagetype = 'Select a Language';
+    }
+  
+    if (!formData.description) {
+      errors.description = 'Description is required';
+    } else if (specialCharRegex.test(formData.description)) {
+      errors.description = 'Description should not contain special characters';
+    }
+  
     setErrors(errors);
-
+  
     return Object.keys(errors).length === 0;
   };
-
+  
 
   const handleInputChange = (event) => {
     const { name, value} = event.target;

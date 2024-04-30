@@ -37,7 +37,7 @@
     "getimage":"/api/Slider", 
     "deleteImg" :"/api/Slider/",
     "getApiToken":"/auth/getApiToken",
-    "login": "/api/Login",
+    "login": "/api/Login/getitems",
     "navmenu":"/api/TopMenu/",
     "getmenuname":"/api/TopMenu",
     "getmenudatabyid":"/api/TopMenu/",

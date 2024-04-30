@@ -19,34 +19,87 @@ export const Banner = ({ id, onDelete }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageName, setImageName] = useState('');
 
-  const handleVideoUpload = async () => {
+  // const handleVideoUpload = async () => {
     
-    if (!selectedImage) return;
+  //   if (!selectedImage) return;
 
+  //   const formData = new FormData();
+  //   formData.append('imgsrc', selectedImage);
+  //   formData.append('content', imageName);
+
+  //   try {
+  //     const response = await apiClient.post(api.imageAdd, formData, {
+  //       headers: {
+  //         'Content-Type': 'multipart/form-data',
+  //       },
+  //     });
+
+  //     const videoPath = response.data.videopath;
+
+      
+  
+  //     // Show a success toast notification
+  //     toast.success('Video uploaded successfully!', {
+  //       position: toast.POSITION.TOP_CENTER,
+  //     });
+
+  //     // Clear the form fields and reset state after successful upload
+  //     setSelectedImage(null);
+  //     setImageName('');
+
+  //     // Reset the input file element to allow selecting a new video
+  //     const inputFile = document.getElementById(`upload-input-${id}`);
+  //     if (inputFile) {
+  //       inputFile.value = ''; // Clear the selected file
+  //     }
+  //   } catch (error) {
+  //     console.error('Error uploading video:', error);
+
+  //     // Show an error toast notification
+  //     toast.error('Error uploading video', {
+  //       position: toast.POSITION.TOP_CENTER,
+  //     });
+  //   }
+  // };
+  const handleVideoUpload = async () => {
+    if (!selectedImage) return;
+    if (!imageName.trim()) {
+      // Display an error toast notification if image name is blank
+      toast.error('Image name cannot be blank', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      return;
+    }
+    if (!/^[a-zA-Z0-9\s]+$/.test(imageName)) {
+      // Display an error toast notification if image name contains special characters
+      toast.error('Name should not contain special characters', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      return;
+    }
+  
     const formData = new FormData();
     formData.append('imgsrc', selectedImage);
     formData.append('content', imageName);
-
+  
     try {
       const response = await apiClient.post(api.imageAdd, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-
+  
       const videoPath = response.data.videopath;
-
-      
   
       // Show a success toast notification
       toast.success('Video uploaded successfully!', {
         position: toast.POSITION.TOP_CENTER,
       });
-
+  
       // Clear the form fields and reset state after successful upload
       setSelectedImage(null);
       setImageName('');
-
+  
       // Reset the input file element to allow selecting a new video
       const inputFile = document.getElementById(`upload-input-${id}`);
       if (inputFile) {
@@ -54,17 +107,18 @@ export const Banner = ({ id, onDelete }) => {
       }
     } catch (error) {
       console.error('Error uploading video:', error);
-
+  
       // Show an error toast notification
       toast.error('Error uploading video', {
         position: toast.POSITION.TOP_CENTER,
       });
     }
   };
+  
 
   const handleVideoChange = (event) => {
     const imageFile = event.target.files[0];
-    const allowedExtensions = /(\.png|\.jpg|\.gif)$/i;
+    const allowedExtensions = /(\.png|\.jpg|\.gif|\.jpeg)$/i;
     if (imageFile && allowedExtensions.test(imageFile.name)) {
       setSelectedImage(imageFile);
     } else {

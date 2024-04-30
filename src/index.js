@@ -17,6 +17,7 @@ import './assets/css/jquery.bxslider.css';
 //import './assets/css/prettyPhoto.css';
 import './assets/css/typography.css';
 import './assets/css/shotcode.css';
+import './assets/css/fontawasome.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import 'bootstrap/dist/js/bootstrap.js';

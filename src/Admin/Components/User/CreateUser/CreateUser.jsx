@@ -316,7 +316,7 @@ export const CreateUser=()=> {
                                       {dropdownOptions.map((data) => (
                                         <option
                                           key={data.users_id}
-                                          value={data.users_type}
+                                          value={data.users_id}
                                         >
                                           {data.user_name}
                                         </option>

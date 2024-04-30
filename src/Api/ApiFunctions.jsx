@@ -4,8 +4,9 @@ import axios from 'axios';
 import apis from './api.json'
 
 
-// export const BASE_URL = 'http://alldatabase.c2k.in';
- export const BASE_URL = 'https://localhost:7006'; 
+  export const BASE_URL = 'https://alldatabase.c4k.in';
+    // export const BASE_URL = 'https://localhost:7006'; 
+  //  export const BASE_URL = 'https://localhost'; 
 
 
 

@@ -20,6 +20,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import Captcha from "../../Captcha/Captcha";
 import avtar from "../../../../assets/images/avtar.png";
 import axios from 'axios'
+import CryptoJS from 'crypto-js';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -38,15 +39,20 @@ export default function Login() {
     isVerified: true,
   });
 
-  const jsonData = {
-    r_email: user.r_email,
-    r_password: user.r_password,
-    capcha: capcha,
-  };
 
+  
+ const enc =()=>{
+  
+ }
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
   const passwordRegex =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    function encryptData(data, key) {
+      //const encrypted = CryptoJS.AES.encrypt(data, key).toString();
+      //const encrypted = CryptoJS.AES.encrypt(data, key, { Padding: CryptoJS.pad.Pkcs7 }).toString();
+      const encrypted = CryptoJS.AES.encrypt(data, key, { mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 }).toString();
+      return encrypted;
+    }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -71,10 +77,31 @@ export default function Login() {
       return;
     }
 
-    // Validate CAPTCHA
+//const originalData = user.r_password
+var key =CryptoJS.enc.Utf8.parse('8080808080808080')
+var iv =CryptoJS.enc.Utf8.parse('8080808080808080')
+var encrypassword=CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(user.r_password),key,{keySize:128/8,iv:iv,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.Pkcs7})
+var encryemail=CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(user.r_email),key,{keySize:128/8,iv:iv,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.Pkcs7})
+var encrycapcha=CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(capcha),key,{keySize:128/8,iv:iv,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.Pkcs7})
+    const jsonData = {
+      r_email: encryemail.toString(),
+      r_password: encrypassword.toString(),
+      capcha:capcha ,
+    };
     try {
-      const response = await apiClient.post(api.login, jsonData);
-      // const response = await axios.post('http://alldatabase.c2k.in/api/Login', jsonData);
+      const response = await apiClient.post(api.login, jsonData
+        , {
+            headers: {
+              "Content-Type": "application/json"
+        }});
+
+
+      // const response = await axios.post('http://alldatabase.c4k.in/api/Login', jsonData, {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     //"Content-Type": "multipart/form-data",
+      //   }});
+
 
       if (response && response.data) {
         if (response.status === 200) {

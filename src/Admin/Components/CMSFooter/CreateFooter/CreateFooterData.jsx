@@ -85,11 +85,15 @@ export const CreateFooterData = () => {
   const validateForm = () => {
     const errors = {};
     const namePattern = /^[a-zA-Z\s]+$/;
+    const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
   
       if (!formData.tittle_name) {
         errors.tittle_name = 'Name is required';
       } else if (!formData.tittle_name.match(namePattern)) {
         errors.tittle_name = 'Name should only contain alphabets and spaces';
+      }
+      else if (specialCharRegex.test(formData.tittle_name)) {
+        errors.description = ' Name should not contain special characters';
       }
 
     if (!formData.contenttype) {
