@@ -1,5 +1,7 @@
 @media(max-width: 1800px){
-    
+    .container-fluid.con-nav {
+        width: 85%;
+    }   
 }
 @media(max-width: 1700px){
 }
@@ -19,13 +21,17 @@
     }
 }
 @media(max-width: 1400px){
-   
+    .nav-con {
+        max-width: 95% !important;
+    }
 }
 @media(max-width: 1399px){
    
 }
 @media(max-width: 1280px){
- 
+    .container-fluid.con-nav {
+        width: 85%;
+    }
 }
 @media(max-width: 1199px){
     .top-container {
@@ -49,16 +55,22 @@
     .top-bar-section {
         justify-content: center !important;
     }
-    nav a {
-        padding: 0 12px !important;
-        font-size: 17px !important;
+    .container-fluid.con-nav {
+        width: 90%;
     }
+   
     
 }
 @media(max-width: 1080px){
     
 }
-@media(max-width: 1024px){
+@media(max-width: 1024px) {
+    .navbar-nav a.nav-link {
+        margin-right: 15px !important;
+        margin-left: 15px !important;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }    
 }
 @media(max-width: 991px){
     .city_about_text p{
