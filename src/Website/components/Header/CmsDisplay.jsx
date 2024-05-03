@@ -50,67 +50,114 @@ const CmsDisplay = () => {
   }, []);
  
  
+  // const renderSubMenu = (submenuList) => {
+  //   return (
+  //     <ul>
+  //       {submenuList.map((subMenuItem) => (
+  //         <li key={subMenuItem.menu_id}>
+  //            {subMenuItem.submenuList && subMenuItem.submenuList.length > 0 ? (
+  //           <a className="menu_list">{subMenuItem.menuname}</a>
+  //         ) : (
+  //           <Link to={"/menu/" + subMenuItem.menuurl}>
+  //           {subMenuItem.menuname}
+  //         </Link>
+  //         )}
+            
+  //           {subMenuItem.submenuList && subMenuItem.submenuList.length > 0 &&
+  //             renderSubMenu(subMenuItem.submenuList)
+  //           }
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   );
+  // };
+ 
+
   const renderSubMenu = (submenuList) => {
     return (
-      <ul>
+      <ul className="dropdown-menu">
         {submenuList.map((subMenuItem) => (
-          <li key={subMenuItem.menu_id}>
-             {subMenuItem.submenuList && subMenuItem.submenuList.length > 0 ? (
-            <a className="menu_list">{subMenuItem.menuname}</a>
-          ) : (
-            <Link to={"/menu/" + subMenuItem.menuurl}>
-            {subMenuItem.menuname}
-          </Link>
-          )}
-            {/*
-            <Link to={"/menu/" + subMenuItem.menuurl}>
-              {subMenuItem.menuname}
-            </Link>
-            {/* Check if submenu has further submenus */}
-            {subMenuItem.submenuList && subMenuItem.submenuList.length > 0 &&
+          <li key={subMenuItem.menu_id} className="dropdown-submenu">
+            {subMenuItem.submenuList && subMenuItem.submenuList.length > 0 ? (
+              <a href="#" className="dropdown-item dropdown-toggle">{subMenuItem.menuname}</a>
+            ) : (
+              <Link to={"/menu/" + subMenuItem.menuurl} className="dropdown-item">{subMenuItem.menuname}</Link>
+            )}
+            {subMenuItem.submenuList && subMenuItem.submenuList.length > 0 && (
               renderSubMenu(subMenuItem.submenuList)
-            }
+            )}
           </li>
         ))}
       </ul>
     );
   };
- 
+  // <li class="nav-item dropdown">
+  //     <a href="#" id="menu" data-bs-toggle="dropdown" class="nav-link dropdown-toggle" data-bs-display="static">Dropdown</a>
+  //     <ul class="dropdown-menu">
+  //         <li class="dropdown-submenu">
+  //             <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Submenu 1</a>
+  //             <ul class="dropdown-menu">
+  //                 <li>
+  //                     <a href="#" class="dropdown-item">Item 1</a>
+  //                 </li>
+  //                 <li>
+  //                     <a href="#" class="dropdown-item">Item 2</a>
+  //                 </li>
+  //                 <li>
+  //                     <a href="#" class="dropdown-item">Item 3</a>
+  //                 </li>
+  //             </ul>
+  //         </li>
+  //         <li class="dropdown-submenu">
+  //             <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Submenu 2</a>
+  //             <ul class="dropdown-menu">
+  //                 <li>
+  //                     <a href="#" class="dropdown-item">Item a</a>
+  //                 </li>
+  //                 <li>
+  //                     <a href="#" class="dropdown-item">Item b</a>
+  //                 </li>
+  //                 <li>
+  //                     <a href="#" class="dropdown-item">Item c</a>
+  //                 </li>
+  //             </ul>
+  //         </li>
+  //     </ul>
+  // </li>
+
+
+
+
+
   const renderMenuItems = (menuData) => {
     return (
-      <ul class="menu">
-        {menuData.map((menuItem) => (
-          
-          <li  key={menuItem.menu_id}>
-            {menuItem.submenuList && menuItem.submenuList.length > 0 ? (
-            <a className="menu_list">{menuItem.menuname}</a>
-          ) : (
-            <Link to={"/menu/" + menuItem.menuurl}>
-              {menuItem.menuname}
-            </Link>
-          )}
-            {/* <Link
-             
-              to={menuItem.menuurl}
-            >
-              {menuItem.menuname}
-            </Link> */}
-            {/* Check if menu item has submenus */}
-            {menuItem.submenuList && menuItem.submenuList.length > 0 &&
-              renderSubMenu(menuItem.submenuList)
-            }
-          </li>
-        ))}
+      <ul class="navbar-nav">
+      {menuData.map((menuItem) => (
+        <li class="nav-item active" key={menuItem.menu_id}>
+             {menuItem.submenuList && menuItem.submenuList.length > 0 ? (
+                 <a className="nav-link" href="#">{menuItem.menuname}</a>
+                ) : (
+                  <Link to={"/menu/" + menuItem.menuurl}>
+                    {menuItem.menuname}
+                  </Link>
+                )}
+                {menuItem.submenuList && menuItem.submenuList.length > 0 &&
+                    renderSubMenu(menuItem.submenuList)
+                }
+        </li>
+           ))}
+       
       </ul>
     );
   };
  
+
  
   return (
     <>
   <div className="main-nav">
 
-    <nav id="navbar" className="navbar">
+    {/* <nav id="navbar" className="navbar">
       <div className="container-fluid nav-con">
       <li>
             <Link to={"/"}>
@@ -120,15 +167,26 @@ const CmsDisplay = () => {
           {renderMenuItems(menudata)}
           <i class="fa-solid fa-bars mobile-nav-toggle"></i>
           </div>
-          {/* <i class="bi bi-list mobile-nav-toggle"></i> */}
+          <i class="bi bi-list mobile-nav-toggle"></i>
         
-        </nav>
+        </nav> */}
        
  
-</div>
- 
-     
-     
+
+<nav class="navbar navbar-expand-lg cus-nav navbar-light bg-blue">
+    <div class="container-fluid con-nav">
+    <Link to={"/"}>
+              <i style={{ color: "white" }} className="fa fa-home"></i>
+            </Link>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbar1">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar1">   
+        {renderMenuItems(menudata)}
+        </div>
+    </div>
+</nav>
+</div> 
      
     </>
   );
