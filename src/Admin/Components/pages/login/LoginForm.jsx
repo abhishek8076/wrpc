@@ -24,6 +24,7 @@ import CryptoJS from 'crypto-js';
 
 export default function Login() {
   const navigate = useNavigate();
+  
   const [user, setUser] = useState({
     r_email: "",
     r_password: "",
@@ -139,6 +140,11 @@ var encrycapcha=CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(capcha),key,{keySiz
     }
   };
 
+
+
+
+ 
+
   function onChange(value) {
     // console.log("Captcha value:", value);
     setCapcha(value);
@@ -156,6 +162,12 @@ var encrycapcha=CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(capcha),key,{keySiz
   };
 
   const handleCloseDialog = () => {
+    setOpenDialog(false);
+    navigate("/dashboard");
+  };
+
+  
+  const handleCancelDialog = () => {
     setOpenDialog(false);
   };
 
@@ -264,6 +276,9 @@ var encrycapcha=CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(capcha),key,{keySiz
         <DialogActions style={dialogActionsStyles}>
           <Button onClick={handleCloseDialog} color="primary">
             OK
+          </Button>
+          <Button onClick={handleCancelDialog} color="secondary"> {/* Cancel Button */}
+           Cancel
           </Button>
         </DialogActions>
       </Dialog>

@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const instance = axios.create({
-    //  baseURL: "https://localhost:7006",
+      baseURL: "https://localhost:7006",
    //baseURL: "http://localhost",
-    baseURL : 'https://alldatabase.c4k.in',
+   // baseURL : 'https://alldatabase.c4k.in',
 });
 
 
