@@ -49,6 +49,10 @@
     .top-bar-section {
         justify-content: center !important;
     }
+    nav a {
+        padding: 0 12px !important;
+        font-size: 17px !important;
+    }
     
 }
 @media(max-width: 1080px){
@@ -71,10 +75,20 @@
     .foot-main {
         padding-right: 41px;
     }
+    .nav-con {
+        max-width: 98% !important;
+    }
 
 }
-@media(max-width: 767px){
-
+@media(max-width: 768px){
+    .nav-con {
+        justify-content: space-between !important;
+    }
+    .mobile-nav-toggle{
+        display: block !important;
+        font-size: 21px;
+	color: #fff;
+    }
 }
 @media(max-width: 480px){
 

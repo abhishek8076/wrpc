@@ -1832,11 +1832,11 @@ a {
 	margin-bottom:10px;
 }
 /*widget copyright start*/
-.copyright_text,
+/* .copyright_text,
 .widget_copyright{
 	float:left;
 	width:100%;
-}
+} */
 .widget_copyright {
     padding: 30px 0px;
     border-top: 1px solid rgba(255,255,255,0.4);

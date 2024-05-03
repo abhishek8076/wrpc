@@ -1452,3 +1452,25 @@ img.panelavatar {
   text-decoration: none;
   cursor: pointer;
 }
+
+span.menu_list {
+  padding: 0 20px;
+  color: #FFF;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.nav-con {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start ;
+}
+.nav-con {
+  display: none;
+}
+.mobile-nav-toggle {
+  display: none;
+}
+.nav-con {
+  max-width: 80%;
+}
