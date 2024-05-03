@@ -1521,7 +1521,7 @@ span.menu_list {
 .main-nav .dropdown-menu .dropdown-item:hover {
   background-color: #2d79bd;
   color: #fff;
-  border-bottom: 3px solid #ff9933;
+  /* border-bottom: 3px solid #ff9933; */
 }
 .banner_text{
 background-color: #2d79bd;
