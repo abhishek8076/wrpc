@@ -24,7 +24,7 @@ import CryptoJS from 'crypto-js';
 
 export default function Login() {
   const navigate = useNavigate();
-  
+
   const [user, setUser] = useState({
     r_email: "",
     r_password: "",
@@ -41,19 +41,19 @@ export default function Login() {
   });
 
 
-  
- const enc =()=>{
-  
- }
+
+  const enc = () => {
+
+  }
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
   const passwordRegex =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    function encryptData(data, key) {
-      //const encrypted = CryptoJS.AES.encrypt(data, key).toString();
-      //const encrypted = CryptoJS.AES.encrypt(data, key, { Padding: CryptoJS.pad.Pkcs7 }).toString();
-      const encrypted = CryptoJS.AES.encrypt(data, key, { mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 }).toString();
-      return encrypted;
-    }
+  function encryptData(data, key) {
+    //const encrypted = CryptoJS.AES.encrypt(data, key).toString();
+    //const encrypted = CryptoJS.AES.encrypt(data, key, { Padding: CryptoJS.pad.Pkcs7 }).toString();
+    const encrypted = CryptoJS.AES.encrypt(data, key, { mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 }).toString();
+    return encrypted;
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -78,23 +78,25 @@ export default function Login() {
       return;
     }
 
-//const originalData = user.r_password
-var key =CryptoJS.enc.Utf8.parse('8080808080808080')
-var iv =CryptoJS.enc.Utf8.parse('8080808080808080')
-var encrypassword=CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(user.r_password),key,{keySize:128/8,iv:iv,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.Pkcs7})
-var encryemail=CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(user.r_email),key,{keySize:128/8,iv:iv,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.Pkcs7})
-var encrycapcha=CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(capcha),key,{keySize:128/8,iv:iv,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.Pkcs7})
+    //const originalData = user.r_password
+    var key = CryptoJS.enc.Utf8.parse('8080808080808080')
+    var iv = CryptoJS.enc.Utf8.parse('8080808080808080')
+    var encrypassword = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(user.r_password), key, { keySize: 128 / 8, iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
+    var encryemail = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(user.r_email), key, { keySize: 128 / 8, iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
+    var encrycapcha = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(capcha), key, { keySize: 128 / 8, iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
     const jsonData = {
       r_email: encryemail.toString(),
       r_password: encrypassword.toString(),
-      capcha:capcha ,
+      capcha: capcha,
+
     };
     try {
       const response = await apiClient.post(api.login, jsonData
         , {
-            headers: {
-              "Content-Type": "application/json"
-        }});
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
 
 
       // const response = await axios.post('http://alldatabase.c4k.in/api/Login', jsonData, {
@@ -130,10 +132,10 @@ var encrycapcha=CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(capcha),key,{keySiz
       }
     } catch (error) {
       // console.log("loginerrrrerer",error);
-      if (error.response.data==="already_login") {
+      if (error.response.data === "already_login") {
         setDialogText("User Already Login");
         handleOpenDialog();
-      } else if(error.response.data==="not_found")  {
+      } else if (error.response.data === "not_found") {
         setDialogText("You have entered incorrect email/password");
         handleOpenDialog();
       }
@@ -143,7 +145,7 @@ var encrycapcha=CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(capcha),key,{keySiz
 
 
 
- 
+
 
   function onChange(value) {
     // console.log("Captcha value:", value);
@@ -161,12 +163,38 @@ var encrycapcha=CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(capcha),key,{keySiz
     setOpenDialog(true);
   };
 
-  const handleCloseDialog = () => {
+  const handleCloseDialog = async () => {
     setOpenDialog(false);
-    navigate("/dashboard");
-  };
-
+    const jsonData2 = {
+      r_email: user.r_email,
+      r_password: user.r_password,
+      capcha: capcha,
+    };
+    try {
+      const response = await apiClient.post(api.AdminLoginagain,jsonData2
+        , {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
   
+      if (response && response.data) {
+        localStorage.clear();
+      window.location.href = "/dashboard";
+      } else {
+        setDialogText("You have entered incorrect email/password");
+        handleOpenDialog();
+      }
+    } catch (error) {
+      console.log("Request failed:", error);
+      if (error.response) {
+        console.log("Response data:", error.response.data);
+      }
+    }
+  }
+  
+  
+
   const handleCancelDialog = () => {
     setOpenDialog(false);
   };
@@ -247,7 +275,7 @@ var encrycapcha=CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(capcha),key,{keySiz
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               className={stateLoginButton.isVerified === true}
-              // disabled={stateLoginButton.isVerified === true ? true : false}
+            // disabled={stateLoginButton.isVerified === true ? true : false}
             >
               Sign In
             </Button>
@@ -278,7 +306,7 @@ var encrycapcha=CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(capcha),key,{keySiz
             OK
           </Button>
           <Button onClick={handleCancelDialog} color="secondary"> {/* Cancel Button */}
-           Cancel
+            Cancel
           </Button>
         </DialogActions>
       </Dialog>

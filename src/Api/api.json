@@ -38,6 +38,7 @@
     "deleteImg" :"/api/Slider/",
     "getApiToken":"/auth/getApiToken",
     "login": "/api/Login/getitems",
+    "AdminLoginagain": "/api/Login/AdminLoginagainTry",
     "navmenu":"/api/TopMenu/",
     "getmenuname":"/api/TopMenu",
     "getmenudatabyid":"/api/TopMenu/",
