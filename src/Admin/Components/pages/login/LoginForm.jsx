@@ -36,6 +36,7 @@ export default function Login() {
   const [capcha, setCapcha] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
   const [dialogText, setDialogText] = useState("");
+  const [openIncorrectCredentialsDialog, setOpenIncorrectCredentialsDialog] = useState(false);
   const [stateLoginButton, setStateLoginButton] = useState({
     isVerified: true,
   });
@@ -54,7 +55,14 @@ export default function Login() {
     const encrypted = CryptoJS.AES.encrypt(data, key, { mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 }).toString();
     return encrypted;
   }
-
+  const handleOpenIncorrectCredentialsDialog = () => {
+    setOpenIncorrectCredentialsDialog(true);
+  };
+  
+  // Function to close the dialog for incorrect credentials
+  const handleCloseIncorrectCredentialsDialog = () => {
+    setOpenIncorrectCredentialsDialog(false);
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -124,7 +132,7 @@ export default function Login() {
             // navigate("/dashboard"); // Navigate to the "/dashboard" page after successful login
             // window.location.href("/dashboard");
             window.location.replace("/dashboard");
-          }, 1000); // Adjust the delay as needed
+          }, 3000); // Adjust the delay as needed
         }
       } else {
         setDialogText("You have entered incorrect email/password");
@@ -137,7 +145,8 @@ export default function Login() {
         handleOpenDialog();
       } else if (error.response.data === "not_found") {
         setDialogText("You have entered incorrect email/password");
-        handleOpenDialog();
+        //handleOpenDialog();
+        handleOpenIncorrectCredentialsDialog();
       }
     }
   };
@@ -178,17 +187,35 @@ export default function Login() {
           }
         });
   
-      if (response && response.data) {
-        localStorage.clear();
-      window.location.href = "/dashboard";
-      } else {
-        setDialogText("You have entered incorrect email/password");
-        handleOpenDialog();
-      }
+        if (response && response.data) {
+          if (response.status === 200) {
+            let dt = response.data;
+            let user = dt.user;
+            let token = dt.token;
+            let newExpirationTime = dt.timeexpire;
+            localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("token", token);
+            localStorage.setItem("expirationTime", newExpirationTime);
+  
+            setDialogText("You have successfully logged in ");
+            handleOpenDialog();
+  
+            setTimeout(() => {
+              handleCloseDialog();
+              // navigate("/dashboard"); // Navigate to the "/dashboard" page after successful login
+              // window.location.href("/dashboard");
+              window.location.replace("/dashboard");
+            }, 3000); // Adjust the delay as needed
+          }
+        } else {
+          setDialogText("You have entered incorrect email/password");
+          handleOpenDialog();
+        }
     } catch (error) {
       console.log("Request failed:", error);
       if (error.response) {
         console.log("Response data:", error.response.data);
+        alert("You have entered incorrect email/password");
       }
     }
   }
@@ -310,6 +337,32 @@ export default function Login() {
           </Button>
         </DialogActions>
       </Dialog>
+
+      <Dialog
+  open={openIncorrectCredentialsDialog}
+  onClose={handleCloseIncorrectCredentialsDialog}
+  aria-labelledby="alert-dialog-title"
+  aria-describedby="alert-dialog-description"
+  PaperProps={{ style: dialogStyles }}
+>
+  <DialogTitle id="alert-dialog-title" style={titleStyles}>
+    {"Incorrect Credentials"}
+  </DialogTitle>
+  <DialogContent>
+    <DialogContentText
+      id="alert-dialog-description"
+      style={contentTextStyles}
+    >
+      {dialogText}
+    </DialogContentText>
+  </DialogContent>
+  <DialogActions style={dialogActionsStyles}>
+    <Button onClick={handleCloseIncorrectCredentialsDialog} color="primary">
+      OK
+    </Button>
+  </DialogActions>
+</Dialog>
+
     </>
   );
 }
