@@ -58,7 +58,7 @@ export default function Login() {
   const handleOpenIncorrectCredentialsDialog = () => {
     setOpenIncorrectCredentialsDialog(true);
   };
-  
+
   // Function to close the dialog for incorrect credentials
   const handleCloseIncorrectCredentialsDialog = () => {
     setOpenIncorrectCredentialsDialog(false);
@@ -125,10 +125,11 @@ export default function Login() {
           localStorage.setItem("expirationTime", newExpirationTime);
 
           setDialogText("You have successfully logged in ");
-          handleOpenDialog();
+          handleOpenIncorrectCredentialsDialog();
 
           setTimeout(() => {
-            handleCloseDialog();
+            //handleCloseDialog();
+            handleCloseIncorrectCredentialsDialog();
             // navigate("/dashboard"); // Navigate to the "/dashboard" page after successful login
             // window.location.href("/dashboard");
             window.location.replace("/dashboard");
@@ -136,12 +137,12 @@ export default function Login() {
         }
       } else {
         setDialogText("You have entered incorrect email/password");
-        handleOpenDialog();
+        handleOpenIncorrectCredentialsDialog();
       }
     } catch (error) {
       // console.log("loginerrrrerer",error);
       if (error.response.data === "already_login") {
-        setDialogText("User Already Login");
+        setDialogText("User already login if you want to continue please click ok ");
         handleOpenDialog();
       } else if (error.response.data === "not_found") {
         setDialogText("You have entered incorrect email/password");
@@ -150,10 +151,6 @@ export default function Login() {
       }
     }
   };
-
-
-
-
 
 
   function onChange(value) {
@@ -172,45 +169,75 @@ export default function Login() {
     setOpenDialog(true);
   };
 
-  const handleCloseDialog = async () => {
+  const handleCloseDialog = async (event) => {
     setOpenDialog(false);
+    event.preventDefault();
+
+    // Validate email
+    if (!emailRegex.test(user.r_email)) {
+      setIsValidEmail(false);
+      return;
+    } else {
+      setIsValidEmail(true);
+    }
+
+    // Validate password
+    if (!user.r_password) {
+      setIsValidPassword(false);
+      return;
+    } else {
+      setIsValidPassword(true);
+    }
+    if (!capcha) {
+      alert("Please Tick Checkbox in Capture");
+      return;
+    }
+
+    //const originalData = user.r_password
+    var key = CryptoJS.enc.Utf8.parse('8080808080808080')
+    var iv = CryptoJS.enc.Utf8.parse('8080808080808080')
+    var encrypassword = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(user.r_password), key, { keySize: 128 / 8, iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
+    var encryemail = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(user.r_email), key, { keySize: 128 / 8, iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
+    var encrycapcha = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(capcha), key, { keySize: 128 / 8, iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
     const jsonData2 = {
-      r_email: user.r_email,
-      r_password: user.r_password,
+      r_email: encryemail.toString(),
+      r_password: encrypassword.toString(),
       capcha: capcha,
+
     };
     try {
-      const response = await apiClient.post(api.AdminLoginagain,jsonData2
+      const response = await apiClient.post(api.AdminLoginagain, jsonData2
         , {
           headers: {
             "Content-Type": "application/json"
           }
         });
-  
-        if (response && response.data) {
-          if (response.status === 200) {
-            let dt = response.data;
-            let user = dt.user;
-            let token = dt.token;
-            let newExpirationTime = dt.timeexpire;
-            localStorage.setItem("user", JSON.stringify(user));
-            localStorage.setItem("token", token);
-            localStorage.setItem("expirationTime", newExpirationTime);
-  
-            setDialogText("You have successfully logged in ");
-            handleOpenDialog();
-  
-            setTimeout(() => {
-              handleCloseDialog();
-              // navigate("/dashboard"); // Navigate to the "/dashboard" page after successful login
-              // window.location.href("/dashboard");
-              window.location.replace("/dashboard");
-            }, 3000); // Adjust the delay as needed
-          }
-        } else {
-          setDialogText("You have entered incorrect email/password");
-          handleOpenDialog();
+
+      if (response && response.data) {
+        if (response.status === 200) {
+          let dt = response.data;
+          let user = dt.user;
+          let token = dt.token;
+          let newExpirationTime = dt.timeexpire;
+          localStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem("token", token);
+          localStorage.setItem("expirationTime", newExpirationTime);
+
+          setDialogText("You have successfully logged in ");
+          handleOpenIncorrectCredentialsDialog();
+
+          setTimeout(() => {
+            //handleCloseDialog();
+            handleCloseIncorrectCredentialsDialog();
+            // navigate("/dashboard"); // Navigate to the "/dashboard" page after successful login
+            // window.location.href("/dashboard");
+            window.location.replace("/dashboard");
+          }, 3000); // Adjust the delay as needed
         }
+      } else {
+        setDialogText("You have entered incorrect email/password");
+        handleOpenIncorrectCredentialsDialog();
+      }
     } catch (error) {
       console.log("Request failed:", error);
       if (error.response) {
@@ -219,8 +246,8 @@ export default function Login() {
       }
     }
   }
-  
-  
+
+
 
   const handleCancelDialog = () => {
     setOpenDialog(false);
@@ -339,29 +366,29 @@ export default function Login() {
       </Dialog>
 
       <Dialog
-  open={openIncorrectCredentialsDialog}
-  onClose={handleCloseIncorrectCredentialsDialog}
-  aria-labelledby="alert-dialog-title"
-  aria-describedby="alert-dialog-description"
-  PaperProps={{ style: dialogStyles }}
->
-  <DialogTitle id="alert-dialog-title" style={titleStyles}>
-    {"Incorrect Credentials"}
-  </DialogTitle>
-  <DialogContent>
-    <DialogContentText
-      id="alert-dialog-description"
-      style={contentTextStyles}
-    >
-      {dialogText}
-    </DialogContentText>
-  </DialogContent>
-  <DialogActions style={dialogActionsStyles}>
-    <Button onClick={handleCloseIncorrectCredentialsDialog} color="primary">
-      OK
-    </Button>
-  </DialogActions>
-</Dialog>
+        open={openIncorrectCredentialsDialog}
+        onClose={handleCloseIncorrectCredentialsDialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        PaperProps={{ style: dialogStyles }}
+      >
+        <DialogTitle id="alert-dialog-title" style={titleStyles}>
+          {""}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText
+            id="alert-dialog-description"
+            style={contentTextStyles}
+          >
+            {dialogText}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions style={dialogActionsStyles}>
+          <Button onClick={handleCloseIncorrectCredentialsDialog} color="primary">
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
 
     </>
   );

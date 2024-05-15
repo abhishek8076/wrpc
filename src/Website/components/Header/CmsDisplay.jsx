@@ -91,44 +91,7 @@ const CmsDisplay = () => {
       </ul>
     );
   };
-  // <li class="nav-item dropdown">
-  //     <a href="#" id="menu" data-bs-toggle="dropdown" class="nav-link dropdown-toggle" data-bs-display="static">Dropdown</a>
-  //     <ul class="dropdown-menu">
-  //         <li class="dropdown-submenu">
-  //             <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Submenu 1</a>
-  //             <ul class="dropdown-menu">
-  //                 <li>
-  //                     <a href="#" class="dropdown-item">Item 1</a>
-  //                 </li>
-  //                 <li>
-  //                     <a href="#" class="dropdown-item">Item 2</a>
-  //                 </li>
-  //                 <li>
-  //                     <a href="#" class="dropdown-item">Item 3</a>
-  //                 </li>
-  //             </ul>
-  //         </li>
-  //         <li class="dropdown-submenu">
-  //             <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Submenu 2</a>
-  //             <ul class="dropdown-menu">
-  //                 <li>
-  //                     <a href="#" class="dropdown-item">Item a</a>
-  //                 </li>
-  //                 <li>
-  //                     <a href="#" class="dropdown-item">Item b</a>
-  //                 </li>
-  //                 <li>
-  //                     <a href="#" class="dropdown-item">Item c</a>
-  //                 </li>
-  //             </ul>
-  //         </li>
-  //     </ul>
-  // </li>
-
-
-
-
-
+ 
   const renderMenuItems = (menuData) => {
     return (
       <ul class="navbar-nav">

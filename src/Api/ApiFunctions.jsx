@@ -4,9 +4,9 @@ import axios from 'axios';
 import apis from './api.json'
 
 
-  //export const BASE_URL = 'https://alldatabase.c4k.in';
-     export const BASE_URL = 'https://localhost:7006'; 
-  //  export const BASE_URL = 'https://localhost'; 
+  export const BASE_URL = 'https://alldatabase.c4k.in';
+  //   export const BASE_URL = 'http://localhost:5141'; 
+  //   export const BASE_URL = 'https://localhost:7006';
 
 
 
@@ -42,19 +42,49 @@ export const getBannerImg = async () => {
 //<==============================Get Banner imges===========================================>
 //<==============================Get Whats New===========================================>
 export const getwhatsnew = async () => {
-  const response = await axios.get(BASE_URL+ apis.getwhatsnew);
+  const username = 'admin';
+  const password = 'admin123';
+  const encodedCredentials = btoa(`${username}:${password}`);
+  
+  const requestOptions = {
+    headers: {
+      'Authorization': `Basic ${encodedCredentials}`,
+      // Add other headers as needed
+    },
+  };
+  const response = await axios.get(BASE_URL+ apis.getwhatsnew,requestOptions);
   return response.data;
 };
 //<==============================Get Whats New===========================================>
 //<==============================Get Links===========================================>
 export const getLinks = async () => {
-  const response = await axios.get(BASE_URL+ apis.getlink);
+  const username = 'admin';
+  const password = 'admin123';
+  const encodedCredentials = btoa(`${username}:${password}`);
+  
+  const requestOptions = {
+    headers: {
+      'Authorization': `Basic ${encodedCredentials}`,
+      // Add other headers as needed
+    },
+  };
+  const response = await axios.get(BASE_URL+ apis.getlink,requestOptions);
   return response.data;
 };
 //<==============================Get Links===========================================>
 //<==============================Get report===========================================>
 export const getReport = async () => {
-  const response = await axios.get(BASE_URL+ apis.getreport);
+  const username = 'admin';
+  const password = 'admin123';
+  const encodedCredentials = btoa(`${username}:${password}`);
+  
+  const requestOptions = {
+    headers: {
+      'Authorization': `Basic ${encodedCredentials}`,
+      // Add other headers as needed
+    },
+  };
+  const response = await axios.get(BASE_URL+ apis.getreport,requestOptions);
   return response.data;
 };
 //<==============================Get report===========================================>
@@ -71,7 +101,17 @@ export const Tppapost = async (formData) => {
 };
 //<==============================Get report===========================================>
 export const getTender = async () => {
-  const response = await axios.get(BASE_URL+ apis.gettender);
+  const username = 'admin';
+  const password = 'admin123';
+  const encodedCredentials = btoa(`${username}:${password}`);
+  
+  const requestOptions = {
+    headers: {
+      'Authorization': `Basic ${encodedCredentials}`,
+      // Add other headers as needed
+    },
+  };
+  const response = await axios.get(BASE_URL+ apis.gettender,requestOptions);
   return response.data;
 };
 //<==============================Get report===========================================>

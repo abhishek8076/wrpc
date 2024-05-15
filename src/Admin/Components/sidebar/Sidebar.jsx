@@ -9,11 +9,11 @@ import apiClient from "../../../Api/ApiClient";
 const Sidebar = () => {
   const navigate = useNavigate();
   const [sidebarVisible, setSidebarVisible] = useState(true);
-  
+  const userData = localStorage.getItem('user');
   const storedUserString = localStorage.getItem("user");
   const user = JSON.parse(storedUserString);
-const email = user.r_email
-  // const navigate = useNavigate();
+const email = user.r_email;
+
   const handleLogout = async () => {
     try {
       const response = await apiClient.post('/api/Login/logout?email='+email);

@@ -13,6 +13,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import ArchiveComponent from "./ArchiveComponent";
+import axios from "axios";
 
 export const Services = () => {
   const [linkData, setLinkData] = useState([]);
@@ -38,8 +39,15 @@ export const Services = () => {
   };
   useEffect(() => {
     async function fetchData() {
+      const username = 'admin';
+      const password = 'admin123';
+      const encodedCredentials = btoa(`${username}:${password}`);
+     
       try {
         const linkData = await getLinks();
+        //const linkData = await fetch('http://localhost:5141/api/whatsnew_post', requestOptions);
+       
+   
         const reportData = await getReport();
         const tenderData = await getTender();
         const whatsnewData = await getwhatsnew();
