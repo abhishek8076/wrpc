@@ -5,6 +5,13 @@ import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
+import {
+  getLinks,
+  getTender,
+  getReport,
+  getwhatsnew,
+  getMenuoptins, BASE_URL
+} from "../../../../Api/ApiFunctions.jsx";
 import Header from '../../header/Header';
 import Sidebar from '../../sidebar/Sidebar';
 import Dialog from '@mui/material/Dialog';
@@ -85,7 +92,8 @@ export default function TenderTable() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await apiClient.get(api.Tender);
+                //const response = await apiClient.get(api.Tender);
+                const response = await getTender();
                 const dataWithIds = response.data.map((row, index) => ({ id: index, ...row }));
                 setApiData(dataWithIds);
             } catch (error) {

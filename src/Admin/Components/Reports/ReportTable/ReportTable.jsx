@@ -3,6 +3,14 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
+import {
+    getLinks,
+    getTender,
+    getReport,
+    getwhatsnew,
+    getMenuoptins, BASE_URL
+  } from "../../../../Api/ApiFunctions.jsx";
+//import {getReport} from "../../../Api/ApiFunctions";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
 import Header from '../../header/Header';
@@ -83,8 +91,10 @@ export default function ReportTable() {
 
     useEffect(() => {
         async function fetchData() {
+            
             try {
-                const response = await apiClient.get(api.Report);
+                //const response = await apiClient.get(api.Report);
+                const response = await getReport();
                 const dataWithIds = response.data.map((row, index) => ({ id: index+1, ...row }));
                 setApiData(dataWithIds);
             } catch (error) {
@@ -95,6 +105,8 @@ export default function ReportTable() {
         fetchData();
     }, []);
 
+
+    
     return (
         <div>
             <Header />

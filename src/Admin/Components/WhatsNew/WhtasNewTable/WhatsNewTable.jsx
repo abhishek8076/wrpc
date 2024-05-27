@@ -5,6 +5,13 @@ import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
+import {
+    getLinks,
+    getTender,
+    getReport,
+    getwhatsnew,
+    getMenuoptins, BASE_URL
+  } from "../../../../Api/ApiFunctions.jsx";
 import Header from '../../header/Header';
 import Sidebar from '../../sidebar/Sidebar';
 import Dialog from '@mui/material/Dialog';
@@ -84,7 +91,8 @@ export default function WhatsNewTable() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await apiClient.get(api.whatsnew);
+                //const response = await apiClient.get(api.whatsnew);
+                const response = await getwhatsnew();
                 const dataWithIds = response.data.map((row, index) => ({ id: index, ...row }));
                 setApiData(dataWithIds);
             } catch (error) {

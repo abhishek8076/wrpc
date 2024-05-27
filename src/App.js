@@ -72,6 +72,9 @@ import apiClient from './Api/ApiClient';
 function App() {
   const [sessionExpired, setSessionExpired] = useState(false);
   const storedUserString = localStorage.getItem("user");
+  const token = localStorage.getItem("token")
+  console.log(token);
+  console.log(storedUserString)
 
   const resetSessionTimeout = () => {
     const expirationTime = new Date().getTime() + 600000; // Extend session by 1 minute
@@ -90,13 +93,14 @@ function App() {
     }
    
 
-    if (expirationTime && currentTime > parseInt(expirationTime, 10)) {
+    if (expirationTime && currentTime > parseInt(expirationTime, 15)) {
       if (storedUserString) {
         const email = storedUserString.r_email
+        
         try {
         
-          const response = apiClient.post('/api/Login/logout?email='+email);
-          console.log("logout",response)
+          const response = apiClient.get('/api/user/token?email='+email);
+          //console.log("logout",response)
           if (response.status === 200){
             // Session has expired
         setSessionExpired(true);
@@ -182,6 +186,7 @@ function App() {
                 <Route path="/slider" element={<Slider />} />
                 <Route path="/sitemap" element={<SiteMap />} />
                 <Route path="/dashboard" element={<HomeNew />} />
+                <Route path="alltender" element={<TenderTable />} />
                 {/* user */}
                 <Route path="/user">
                   <Route index element={<AllUser />} />
