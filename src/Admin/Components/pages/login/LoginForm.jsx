@@ -136,7 +136,7 @@ export default function Login() {
           }, 3000); // Adjust the delay as needed
         }
       } else {
-        setDialogText("You have entered incorrect email/password");
+        setDialogText("You have entered invalid details");
         handleOpenIncorrectCredentialsDialog();
       }
     } catch (error) {
@@ -145,7 +145,7 @@ export default function Login() {
         setDialogText("User already login if you want to continue please click ok ");
         handleOpenDialog();
       } else if (error.response.data === "not_found") {
-        setDialogText("You have entered incorrect email/password");
+        setDialogText("You have entered invalid details");
         //handleOpenDialog();
         handleOpenIncorrectCredentialsDialog();
       }
@@ -235,14 +235,14 @@ export default function Login() {
           }, 3000); // Adjust the delay as needed
         }
       } else {
-        setDialogText("You have entered incorrect email/password");
+        setDialogText("You have entered invalid details");
         handleOpenIncorrectCredentialsDialog();
       }
     } catch (error) {
       console.log("Request failed:", error);
       if (error.response) {
         console.log("Response data:", error.response.data);
-        alert("You have entered incorrect email/password");
+        alert("You have entered invalid details");
       }
     }
   }
