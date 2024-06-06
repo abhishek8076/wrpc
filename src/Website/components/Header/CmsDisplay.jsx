@@ -11,6 +11,7 @@ const CmsDisplay = () => {
   const [menudata, setMenuData] = useState([]);
   const storedUserData = localStorage.getItem("user");
   var user = JSON.parse(storedUserData);
+  
  
   const dateOptions = [
     { id: 1, name: "DSMUI Account" },
@@ -109,7 +110,19 @@ const CmsDisplay = () => {
                 }
         </li>
            ))}
-       
+        {user  && (
+          <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Additional Form
+            </a>
+            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><Link to="/candidate/form1" className="dropdown-item">PCM Discussions</Link></li>
+              <li><Link to="/candidate/form2" className="dropdown-item">TPPA Plan</Link></li>
+              <li><Link to="/candidate/form3" className="dropdown-item">TPPA Observation</Link></li>
+              <li><Link to="/candidate/form4" className="dropdown-item">Relay Settings </Link></li>
+            </ul>
+          </li>
+        )} 
       </ul>
     );
   };

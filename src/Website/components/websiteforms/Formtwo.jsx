@@ -166,13 +166,23 @@ export const Formtwo = () => {
         setConfirmDialogOpen(false);
     };
     const handleDeleteConfirm = async () => {
+        debugger;
         setConfirmDialogOpen(false);
 
         setLoading(true);
 
         try {
+debugger;
+            let candidateId=0;
+            if (localStorage.getItem("candidateId")) {
+                 candidateId = localStorage.getItem("candidateId");
+            }
+            else{
+                 candidateId = 0;
+            }
+
             const formDataToSend = new FormData();
-            formDataToSend.append('user_id', 1);
+            formDataToSend.append('user_id', candidateId);
             formDataToSend.append('Station_Name', formData.StationName);
             formDataToSend.append('kV_Level', formData.kVLevel);
             formDataToSend.append('Owner', formData.Owner);
@@ -186,7 +196,7 @@ export const Formtwo = () => {
             formDataToSend.append('Issues_Observed', selectedFile2);
             formDataToSend.append('Remarks', formData.Remarks);
             formDataToSend.append('languagetype', 1);
-
+debugger;
             const response = await apiclient.post(apis.Tppaplan, formDataToSend);
             // const response = await axios.post("https://localhost:7006/api/TPPA_Plan_Monitoring/Getppa_list", formDataToSend)
             if (response.status === 200) {

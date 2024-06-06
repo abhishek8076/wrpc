@@ -193,8 +193,19 @@ export const Formthree = () => {
             //         ...formData,
             //         usertype: parseInt(selectedRole, 10),
             //     };
+            debugger;
+
+            let candidateId=0;
+            if (localStorage.getItem("candidateId")) {
+                 candidateId = localStorage.getItem("candidateId");
+            }
+            else{
+                 candidateId = 0;
+            }
+           
+
             const formDataToSend = new FormData();
-            formDataToSend.append('user_id', 1);
+            formDataToSend.append('user_id', candidateId);
             formDataToSend.append('Station_Name', formData.StationName);
             formDataToSend.append('kV_Level', formData.kVLevel);
             formDataToSend.append('Owner', formData.Owner);
@@ -214,7 +225,7 @@ export const Formthree = () => {
             formDataToSend.append('Date_Attended_CAT_B', formData.BDate_Attended);
 
 
-
+            debugger;
             const response = await apiclient.post(apis.Tppapost, formDataToSend)
 
             if (response.status === 200) {

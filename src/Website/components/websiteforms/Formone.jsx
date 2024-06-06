@@ -281,19 +281,29 @@ export const Formone = () => {
   };
 
   const handleDeleteConfirm = async () => {
+    debugger;
     // Close the confirmation dialog
     setConfirmDialogOpen(false);
     // Set loading state to true
     setLoading(true);
 
     try {
+
+      let candidateId=0;
+      if (localStorage.getItem("candidateId")) {
+           candidateId = localStorage.getItem("candidateId");
+      }
+      else{
+           candidateId = 0;
+      }
+
       const formDataToSend = new FormData();
 
       formDataToSend.append(
         "Recommendation_of_PCM",
         formData.RecommondationofPCM
       );
-      formDataToSend.append("user_id", 0);
+      formDataToSend.append("user_id", candidateId);
       formDataToSend.append("kV_Level", formData.kVLevel);
       formDataToSend.append("PCM_Number", formData.PCMNumber);
       formDataToSend.append("PCM_Date", formData.PCMDate);
@@ -319,11 +329,12 @@ export const Formone = () => {
       formDataToSend.append("Action_Taken_by_Utility_to_Allow_Completion",formData.UtilityActiontaken);
       formDataToSend.append("Date_on_Which_Attended", formData.Dateattended);
       formDataToSend.append("Remarks", formData.Remarks);
-
+      debugger;
       const response = await apiclient.post(
         apis.Trippingcompliance,
         formDataToSend
       );
+      debugger;
       if (response.status === 200) {
         console.log("user" + response.data);
         // Simulate a 3-second delay
@@ -398,7 +409,7 @@ export const Formone = () => {
                     <div class="col-md-12 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body registrationCard">
-                          {/* <div class="form-group row">
+                          <div class="form-group row">
                             <label class="col-sm-2 col-form-label">
                                 Recommondation of PCM
                                 <span>
@@ -487,8 +498,8 @@ export const Formone = () => {
                               />
                               <small class="invalid-feedback"></small>
                             </div>
-                          </div> */}
-                          {/* form 1 */}
+                          </div> 
+                         {/* form 1 */}
                           {true && (
                             <>
                               <div class="form-group row">
@@ -673,7 +684,7 @@ export const Formone = () => {
                             </>
                           )}
                           {/* form 2 */}
-                          {false && (
+                          {true && (
                             <>
                               <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
@@ -813,7 +824,7 @@ export const Formone = () => {
                           {/* form 2 */}
                           {/* form 3 */}
 
-                          {false && (
+                          {true && (
                             <>
                               <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
@@ -864,7 +875,7 @@ export const Formone = () => {
 
                           {/* form 3 */}
                           <div class="form-group row">
-                            {/*                            
+                                                       
                             <label class="col-sm-2 col-form-label">
                               Notified Status
                               <span>
@@ -883,9 +894,9 @@ export const Formone = () => {
                               <option value="">--Select--</option>
                               <option value="1">Yes</option>
                               <option value="2">No</option>
-                            </select> */}
+                            </select>
 
-                            {/* <label class="col-sm-2 col-form-label">
+                            <label class="col-sm-2 col-form-label">
                               Utility Attending
                               <span>
                                 <b>*</b>
@@ -906,10 +917,10 @@ export const Formone = () => {
                                 isInvalid={!!formErrors.UtilityAttending}
                               />
                               <small class="invalid-feedback"></small>
-                            </div> */}
+                            </div>
                           </div>
                           {/* form 4 */}
-                          {false && (
+                          {true && (
                             <div class="form-group row">
                               <label class="col-sm-2 col-form-label">
                                 Utility Action taken

@@ -133,13 +133,22 @@ export const Formfour = () => {
         setLoading(true);
 
         try {
+
+
+            let candidateId=0;
+            if (localStorage.getItem("candidateId")) {
+                 candidateId = localStorage.getItem("candidateId");
+            }
+            else{
+                 candidateId = 0;
+            }
             // const formDataToSend = {
             //     ...formData,
             //     Uploadfile:selectedFile
 
             // };
             const formDataToSend = new FormData();
-            formDataToSend.append('user_id', 0);
+            formDataToSend.append('user_id', candidateId);
             formDataToSend.append('Substation', formData.Substation);
             formDataToSend.append('kV_Level', formData.kV_Level);
             formDataToSend.append('Owner', formData.Owner);
@@ -150,8 +159,8 @@ export const Formfour = () => {
             formDataToSend.append('Upload_File_input', selectedFile);
             formDataToSend.append('Remarks', formData.Remarks);
             formDataToSend.append('languagetype', 1);
-
-            const response = await apiclient.post(apis.Relaysave,formDataToSend)
+            debugger;
+            const response = await apiclient.post(apis.Relaysave, formDataToSend)
             if (response.status === 200) {
                 console.log("user" + response.data)
                 // Simulate a 3-second delay
@@ -213,7 +222,7 @@ export const Formfour = () => {
     //     fetchRoles();
     //   }, []);
     console.log(formData)
-    
+
 
     return (
         <>
@@ -225,7 +234,7 @@ export const Formfour = () => {
 
                 <CmsDisplay />
 
-                <main id="main" class="main">
+                <main >
                     <div class="pagetitle">
 
                         {/* <div className="pagetitle-rgt">
@@ -237,124 +246,124 @@ export const Formfour = () => {
                         </div> */}
                     </div>
                     <div class="main-form">
-                    <div class="container-fluid">
-            <div class="InnerSection">
-              <div class="InnerSectionBox">
-                        <form class="forms-sample" onSubmit={handleSubmit}>
-                            <h4>Relay Settings Data </h4>
-                            <div class="row">
-                                <div class="col-md-12 grid-margin stretch-card">
-                                    <div class="card">
-                                        <div class="card-body registrationCard">
+                        <div class="container-fluid">
+                            <div class="InnerSection">
+                                <div class="InnerSectionBox">
+                                    <form class="forms-sample" onSubmit={handleSubmit}>
+                                        <h4>Relay Settings Data </h4>
+                                        <div class="row">
+                                            <div class="col-md-12 grid-margin stretch-card">
+                                                <div class="card">
+                                                    <div class="card-body registrationCard">
 
-                                            <div class="form-group row"><label class="col-sm-2 col-form-label">Substation<span
-                                            ><b>*</b></span>:</label>
-                                                <div class="col-sm-2">
-                                                <span style={{color:"red"}}>{formErrors.Substation}</span>
-                                                    <input class="form-control"
-                                                    name="Substation"
-                                                    placeholder="Enter Substation"
-                                                    maxlength="50"
-                                                    value={formData.Substation}
-                                                    onChange={handleChange}
-                                                    isInvalid={!!formErrors.Substation}
-                                                /><small class="invalid-feedback">
-                                                    </small></div>
-                                                <label
-                                                    class="col-sm-2 col-form-label">kV Level<span
-                                                    ><b>*</b></span>:</label>
-                                                <div class="col-sm-2">
-                                                <span style={{color:"red"}}>{formErrors.kV_Level}</span>
-                                                    <input class="form-control"
-                                                        name="kV_Level"
-                                                        placeholder="Enter kV Level"
-                                                        onChange={handleChange}
-                                                        isInvalid={!!formErrors.kV_Level}
-                                                        maxlength="50" value={formData.kV_Level} /><small class="invalid-feedback"></small></div><label
-                                                            class="col-sm-2 col-form-label">Owner<span
-                                                            ><b>*</b></span>:</label>
-                                                <div class="col-sm-2">
-                                                <span style={{color:"red"}}>{formErrors.Owner}</span>
-                                                    <input class="form-control" name="Owner" placeholder="Owner"
-                                                    onChange={handleChange}
-                                                    isInvalid={!!formErrors.Owner}
-                                                    maxlength="50" value={formData.Owner} /><small class="invalid-feedback"></small></div>
-                                            </div>
-                                            <div class="form-group row"><label class="col-sm-2 col-form-label">Name of Element<span
-                                            ><b>*</b></span>:</label>
-                                                <div class="col-sm-2">
-                                                <span style={{color:"red"}}>{formErrors.NameElement}</span>
-                                                    <input class="form-control" name="NameElement" placeholder="Enter Name of Element"
-                                                    maxlength="50" value={formData.NameElement}
-                                                    onChange={handleChange}
-                                                    isInvalid={!!formErrors.NameElement} /><small class="invalid-feedback"></small></div><label
-                                                        class="col-sm-2 col-form-label">Protection (M1/M2/Backup)<span
+                                                        <div class="form-group row"><label class="col-sm-2 col-form-label">Substation<span
                                                         ><b>*</b></span>:</label>
-                                                <div class="col-sm-2">
-                                                <span style={{color:"red"}}>{formErrors.Protection}</span>
-                                                    <input class="form-control" name="Protection" placeholder="Enter Protection (M1/M2/Backup)"
-                                                    maxlength="50" value={formData.Protection}
-                                                    onChange={handleChange}
-                                                    isInvalid={!!formErrors.Protection} /><small class="invalid-feedback"></small></div><label
-                                                        class="col-sm-2 col-form-label">Make of Relay<span
+                                                            <div class="col-sm-2">
+                                                                <span style={{ color: "red" }}>{formErrors.Substation}</span>
+                                                                <input class="form-control"
+                                                                    name="Substation"
+                                                                    placeholder="Enter Substation"
+                                                                    maxlength="50"
+                                                                    value={formData.Substation}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.Substation}
+                                                                /><small class="invalid-feedback">
+                                                                </small></div>
+                                                            <label
+                                                                class="col-sm-2 col-form-label">kV Level<span
+                                                                ><b>*</b></span>:</label>
+                                                            <div class="col-sm-2">
+                                                                <span style={{ color: "red" }}>{formErrors.kV_Level}</span>
+                                                                <input class="form-control"
+                                                                    name="kV_Level"
+                                                                    placeholder="Enter kV Level"
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.kV_Level}
+                                                                    maxlength="50" value={formData.kV_Level} /><small class="invalid-feedback"></small></div><label
+                                                                        class="col-sm-2 col-form-label">Owner<span
+                                                                        ><b>*</b></span>:</label>
+                                                            <div class="col-sm-2">
+                                                                <span style={{ color: "red" }}>{formErrors.Owner}</span>
+                                                                <input class="form-control" name="Owner" placeholder="Owner"
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.Owner}
+                                                                    maxlength="50" value={formData.Owner} /><small class="invalid-feedback"></small></div>
+                                                        </div>
+                                                        <div class="form-group row"><label class="col-sm-2 col-form-label">Name of Element<span
                                                         ><b>*</b></span>:</label>
-                                                <div class="col-sm-2">
-                                                <span style={{color:"red"}}>{formErrors.MakeOfRelay}</span>
-                                                    <input class="form-control" name="MakeOfRelay" placeholder="Enter"
-                                                    maxlength="50" value={formData.MakeOfRelay}
-                                                    onChange={handleChange}
-                                                    isInvalid={!!formErrors.MakeOfRelay} /><small class="invalid-feedback"></small></div>
-                                            </div>
-                                            <div class="form-group row"><label class="col-sm-2 col-form-label">Sr No of Relay<span
-                                            ><b>*</b></span>:</label>
-                                                <div class="col-sm-2">
-                                                <span style={{color:"red"}}>{formErrors.SrNoOfRelay}</span>
-                                                    <input class="form-control" name="SrNoOfRelay" placeholder="Enter Sr No of Relay"
-                                                    maxlength="50" value={formData.SrNoOfRelay}
-                                                    onChange={handleChange}
-                                                    isInvalid={!!formErrors.SrNoOfRelay} /><small class="invalid-feedback"></small></div><label
-                                                        class="col-sm-2 col-form-label">Upload file<span
+                                                            <div class="col-sm-2">
+                                                                <span style={{ color: "red" }}>{formErrors.NameElement}</span>
+                                                                <input class="form-control" name="NameElement" placeholder="Enter Name of Element"
+                                                                    maxlength="50" value={formData.NameElement}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.NameElement} /><small class="invalid-feedback"></small></div><label
+                                                                        class="col-sm-2 col-form-label">Protection (M1/M2/Backup)<span
+                                                                        ><b>*</b></span>:</label>
+                                                            <div class="col-sm-2">
+                                                                <span style={{ color: "red" }}>{formErrors.Protection}</span>
+                                                                <input class="form-control" name="Protection" placeholder="Enter Protection (M1/M2/Backup)"
+                                                                    maxlength="50" value={formData.Protection}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.Protection} /><small class="invalid-feedback"></small></div><label
+                                                                        class="col-sm-2 col-form-label">Make of Relay<span
+                                                                        ><b>*</b></span>:</label>
+                                                            <div class="col-sm-2">
+                                                                <span style={{ color: "red" }}>{formErrors.MakeOfRelay}</span>
+                                                                <input class="form-control" name="MakeOfRelay" placeholder="Enter"
+                                                                    maxlength="50" value={formData.MakeOfRelay}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.MakeOfRelay} /><small class="invalid-feedback"></small></div>
+                                                        </div>
+                                                        <div class="form-group row"><label class="col-sm-2 col-form-label">Sr No of Relay<span
                                                         ><b>*</b></span>:</label>
-                                                <div class="col-sm-2">
-                                                    {/* <input class="form-control" name="Protection" type='file'
+                                                            <div class="col-sm-2">
+                                                                <span style={{ color: "red" }}>{formErrors.SrNoOfRelay}</span>
+                                                                <input class="form-control" name="SrNoOfRelay" placeholder="Enter Sr No of Relay"
+                                                                    maxlength="50" value={formData.SrNoOfRelay}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.SrNoOfRelay} /><small class="invalid-feedback"></small></div><label
+                                                                        class="col-sm-2 col-form-label">Upload file<span
+                                                                        ><b>*</b></span>:</label>
+                                                            <div class="col-sm-2">
+                                                                {/* <input class="form-control" name="Protection" type='file'
                                                     maxlength="50" value={formData.Uploadfile}
                                                     onChange={handleFileChange}
                                                     isInvalid={!!formErrors.Uploadfile} /> */}
-                                                    <span style={{color:"red"}}>{formErrors.Uploadfile}</span>
-                                                    
-                                                    <input
-                          className="form-control"
-                          type="file"
-                          
-                          name="Uploadfile"
-                    
-                          onChange={handleFileChange}
-                        />
-                        
-                                                    
-                                                    <small class="invalid-feedback"></small></div><label
-                                                        class="col-sm-2 col-form-label">Remarks<span
-                                                        ><b>*</b></span>:</label>
-                                                <div class="col-sm-2">
-                                                <span style={{color:"red"}}>{formErrors.Remarks}</span>
-                                                    <input class="form-control" name="Remarks" placeholder="Enter"
-                                                    maxlength="50" value={formData.Remarks}
-                                                    onChange={handleChange}
-                                                    isInvalid={!!formErrors.Remarks} /><small class="invalid-feedback"></small></div>
-                                            </div>
+                                                                <span style={{ color: "red" }}>{formErrors.Uploadfile}</span>
 
+                                                                <input
+                                                                    className="form-control"
+                                                                    type="file"
+
+                                                                    name="Uploadfile"
+
+                                                                    onChange={handleFileChange}
+                                                                />
+
+
+                                                                <small class="invalid-feedback"></small></div><label
+                                                                    class="col-sm-2 col-form-label">Remarks<span
+                                                                    ><b>*</b></span>:</label>
+                                                            <div class="col-sm-2">
+                                                                <span style={{ color: "red" }}>{formErrors.Remarks}</span>
+                                                                <input class="form-control" name="Remarks" placeholder="Enter"
+                                                                    maxlength="50" value={formData.Remarks}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.Remarks} /><small class="invalid-feedback"></small></div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div class="submitButton"><button type="submit" class="btn btn-outline-success btn-icon-text btn-sm"><i
+                                            class="mdi mdi-file-check btn-icon-prepend"></i>Submit</button><button type="button"
+                                                class="btn btn-outline-danger btn-sm" style={{ marginLeft: "10px" }}><i
+                                                    class="mdi mdi-refresh"></i>Reset</button></div>
+                                    </form>
                                 </div>
                             </div>
-                            <div class="submitButton"><button type="submit" class="btn btn-outline-success btn-icon-text btn-sm"><i
-                                class="mdi mdi-file-check btn-icon-prepend"></i>Submit</button><button type="button"
-                                    class="btn btn-outline-danger btn-sm" style={{ marginLeft: "10px" }}><i
-                                        class="mdi mdi-refresh"></i>Reset</button></div>
-                        </form>
-                    </div>
-                    </div>
-                    </div>
+                        </div>
                     </div>
                     <CmsFooter />
                 </main>

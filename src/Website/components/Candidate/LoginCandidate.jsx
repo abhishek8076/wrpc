@@ -14,6 +14,7 @@ import api from '../../../Api/api.json'
 import apiClient from '../../../Api/ApiClient'
 import ReCAPTCHA from "react-google-recaptcha";
 import avtar from '../../../assets/images/avtar.png';
+import axios from 'axios';
 
 // import ReCAPTCHA from "react-google-recaptcha";
 export const LoginCandidate = () => {
@@ -21,7 +22,7 @@ export const LoginCandidate = () => {
   const [user, setUser] = useState({
     r_email: "",
     r_password: "",
-    capcha:""
+   
   });
 
   const [isValidEmail, setIsValidEmail] = useState(true);
@@ -37,6 +38,7 @@ export const LoginCandidate = () => {
   const jsonData = {
     r_email: user.r_email,
     r_password: user.r_password,
+    capcha: capcha,
     
   };
 
@@ -121,16 +123,24 @@ export const LoginCandidate = () => {
       setIsValidPassword(true);
     }
   
+    if (!capcha) {
+      alert("Please Tick Checkbox in Capture");
+      return;
+    }
     // Validate CAPTCHA
    
     // const response = await apiClient.post('/api/Candidate/LoginCandidate', jsonData);
   
     try {
-      const response = await apiClient.post('/api/Candidate/LoginCandidate', jsonData);
+     // const response = await axios.post('http://localhost:5141/api/Candidate/LoginCandidate', jsonData);
+      const response = await apiClient.post('api/Candidate/LoginCandidate', jsonData);
+    debugger;
     
       if (response && response.data) {
         if (response.status === 200) {
           let dt = response.data;
+          var candidateId =  response.data.user.cands_id;
+          localStorage.setItem("candidateId", candidateId);
     
           if (dt) {
             localStorage.setItem("user", JSON.stringify(dt));

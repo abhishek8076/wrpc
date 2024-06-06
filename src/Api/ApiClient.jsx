@@ -3,7 +3,7 @@ import axios from "axios";
 const instance = axios.create({
      baseURL: "http://localhost:5141/",
    // baseURL: "https://localhost:7006",
-   //baseURL : 'https://alldatabase.c4k.in',
+   // baseURL : 'https://alldatabase.c4k.in',
 });
 
 
