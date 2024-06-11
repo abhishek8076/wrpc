@@ -475,7 +475,7 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                         <div class="bar6 bar-c">
                           <div>
                             {storedUserString ? (
-                              <button>
+                              <button >
                                 <Link to="/">Logout</Link>
                               </button>
                             ) : (
