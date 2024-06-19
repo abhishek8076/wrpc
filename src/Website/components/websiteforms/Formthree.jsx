@@ -262,7 +262,7 @@ export const Formthree = () => {
             } else if (response.status === 500) {
                 alert("User already exists");
 
-            }
+            } 
 
             else {
                 alert('Something went wrong');
