@@ -46,10 +46,12 @@ export default function AboutusTable() {
             headerName: "Edit",
             sortable: false,
             renderCell: (params) => (
-                // <Link to={'/cms/editaboutus/'+params.row.u_id}>
-                <Link to={'/cms/Aboutusedit'}>
+                //  <Link to={'/cms/editaboutus/'+params.row.u_id}>
+                <Link to={'/cms/Aboutusedit/'+ params.row.u_id}>
                     <EditIcon style={{ cursor: 'pointer' }} />
                 </Link>
+
+
             ),
         },
         {

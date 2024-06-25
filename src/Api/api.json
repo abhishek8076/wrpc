@@ -51,7 +51,7 @@
     "Tenderbyid":"/api/Tenders/",
     "Report":"/api/Reports",
     "Reportbyid":"/api/Reports/",
-    "Aboutus":"/api/About/postslider_data",
+    "Aboutus":"/api/About/postabout_data",
     "getAboutus":"/api/About",
     "AboutusId":"/api/About/",
     "commerical":"/api/Commercial",

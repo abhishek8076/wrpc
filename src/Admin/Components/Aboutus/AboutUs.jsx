@@ -22,6 +22,7 @@ export const Aboutus = ({ id, onDelete }) => {
   const [description, setDescription] = useState("");
 
   const handleVideoUpload = async () => {
+    debugger;
     if (!selectedImage) return;
 
     const formData = new FormData();
@@ -31,6 +32,8 @@ export const Aboutus = ({ id, onDelete }) => {
     formData.append("languagetypes",1)
 
     try {
+      debugger;
+      console.log("FormData content before sending:", formData);
       const response = await apiClient.post(api.Aboutus,formData);
 
       const videoPath = response.data.videopath;

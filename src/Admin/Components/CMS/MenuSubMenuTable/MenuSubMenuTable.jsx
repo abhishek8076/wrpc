@@ -46,7 +46,7 @@ export default function MenuSubMenuTable() {
             headerName: "Edit",
             sortable: false,
             renderCell: (params) => (
-                user.r_usertype === 1 || null ? ( // Check the user role here
+                user.usertype === 1 || null ? ( // Check the user role here
                     <Link to={'/cms/editdata/' + params.row.u_id}>
                         <EditIcon style={{ cursor: 'pointer' }} />
                     </Link>

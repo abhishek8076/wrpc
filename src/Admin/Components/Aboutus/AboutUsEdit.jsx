@@ -31,6 +31,7 @@ export const AboutUsEdit = () => {
     formData.append("description", description);
 
     try {
+      debugger;
       const response = await apiClient.post('/api/About/put/'+id, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
