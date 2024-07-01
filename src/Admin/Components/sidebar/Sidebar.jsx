@@ -225,6 +225,12 @@ const email = user.r_email;
           <span>Candidate</span>
         </Link>
       </li>
+      <li class="nav-item">
+        <Link to='/newpassword' class="nav-link collapsed" >
+          <i class="bi bi-person"></i>
+          <span>Create New Password</span>
+        </Link>
+      </li>
 
       <li class="nav-heading">Users</li>
 

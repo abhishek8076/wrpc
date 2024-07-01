@@ -1526,3 +1526,8 @@ span.menu_list {
 .banner_text{
 background-color: #2d79bd;
 }
+.align-box.row {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}

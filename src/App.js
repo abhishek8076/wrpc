@@ -28,6 +28,7 @@ import { CreateFooterService } from "./Admin/Components/CMSFooter/CreateFooter/C
 import { CreateFooterData } from "./Admin/Components/CMSFooter/CreateFooter/CreateFooterData";
 import { Profile } from "./Admin/Components/pages/Profile/Profile";
 import LoginForm from "./Admin/Components/pages/login/LoginForm.jsx";
+
 import HomeNew from "./Admin/Components/pages/home/Homenew.jsx";
 import { Slider } from "./Admin/Components/Slider/Slider";
 import { CreateReports } from "./Admin/Components/Reports/CreateReports/CreateReports";
@@ -62,6 +63,8 @@ import { ViewFormtwo } from "./Admin/Components/Form/ViewFormtwo.jsx";
 import { ViewFormthree } from "./Admin/Components/Form/ViewFormthree.jsx";
 import { ViewFormfour } from "./Admin/Components/Form/ViewFormfour.jsx";
 import { AboutUsEdit } from "./Admin/Components/Aboutus/AboutUsEdit.jsx";
+import ForgetPassword from "./Admin/Components/pages/changepassword/ForgetPassword.jsx";
+import Newpassword from "./Admin/Components/pages/changepassword/Newpassword.jsx";
 
 
 
@@ -294,6 +297,8 @@ function App() {
               </>
             )}
             <Route path="/login" element={<LoginForm />} />
+            <Route path="/ForgetPassword" element={<ForgetPassword/>} />
+            <Route path="/newpassword" element={<Newpassword/>} />
           </Routes>
         </Router>
       </div>

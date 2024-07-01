@@ -9,6 +9,9 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import { Link, useNavigate, Redirect } from "react-router-dom";
 // import api from '../../utils/apiUrl.json';
@@ -99,6 +102,7 @@ export default function Login() {
 
     };
     try {
+      debugger;
       const response = await apiClient.post(api.login, jsonData
         , {
           headers: {
@@ -115,12 +119,14 @@ export default function Login() {
 
 
       if (response && response.data) {
+        debugger;
         if (response.status === 200) {
           let dt = response.data;
           let user = dt.user;
           let token = dt.token;
           let newExpirationTime = dt.timeexpire;
           localStorage.setItem("user", JSON.stringify(user));
+         
           localStorage.setItem("token", token);
           localStorage.setItem("expirationTime", newExpirationTime);
 
@@ -293,7 +299,7 @@ export default function Login() {
           <img className="panelavatar" src={avtar} />
           <p className="logintitle"> Admin</p>
           <Typography component="h1" variant="h5"></Typography>
-          <form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <TextField
               margin="normal"
               fullWidth
@@ -323,6 +329,8 @@ export default function Login() {
               sitekey="6LdGJv0UAAAAAIvZIBzc9LZ0kY1FovqsgO2Ewjb8"
               onChange={onChange}
             />
+              <Row className="align-box"> 
+              <Col>
             <Button
               type="submit"
               fullWidth
@@ -333,7 +341,16 @@ export default function Login() {
             >
               Sign In
             </Button>
-          </form>
+            </Col>
+            <Col>
+            <Button> <Link to="/ForgetPassword" className="button-link">
+            Forget Password
+        </Link>
+             
+            </Button>
+            </Col>
+            </Row>
+          </Form>
         </Box>
       </Container>
 
