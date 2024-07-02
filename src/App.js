@@ -193,6 +193,7 @@ function App() {
                 <Route path="/sitemap" element={<SiteMap />} />
                 <Route path="/dashboard" element={<HomeNew />} />
                 <Route path="alltender" element={<TenderTable />} />
+                <Route path="/newpassword" element={<Newpassword/>} />
                 {/* user */}
                 <Route path="/user">
                   <Route index element={<AllUser />} />
@@ -306,7 +307,7 @@ function App() {
             )}
             <Route path="/login" element={<LoginForm />} />
             <Route path="/ForgetPassword" element={<ForgetPassword/>} />
-            <Route path="/newpassword" element={<Newpassword/>} />
+           
           </Routes>
         </Router>
       </div>
