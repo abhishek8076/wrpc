@@ -4,7 +4,6 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { getsubMenu } from ".././../../../Api/ApiFunctions";
 import { Link } from 'react-router-dom';
 import Header from '../../header/Header';
 import Sidebar from '../../sidebar/Sidebar';
@@ -32,9 +31,7 @@ export default function MenuSubMenuTable() {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [modalMessage, setModalMessage] = useState('');
     const storedUserString = localStorage.getItem("user");
-    const [selectedLanguage, setSelectedLanguage] = useState(1);
     const user = JSON.parse(storedUserString);
-    const [menudata, setMenuData] = useState([]);
 
 
     const columns = [
@@ -104,20 +101,18 @@ export default function MenuSubMenuTable() {
     };
 
     useEffect(() => {
-        async function fetchMenuData() {
-          try {
-            const data = await getsubMenu();
-            setMenuData(data);
-          } catch (error) {
-            console.error("Error fetching menu data:", error);
-          }
+        async function fetchData() {
+            try {
+                const response = await apiClient.get(api.navmenu);
+                const dataWithIds = response.data.map((row, index) => ({ id: index + 1, ...row }));
+                setApiData(dataWithIds);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
         }
-     
-        fetchMenuData();
-     
-        const newSelectedLanguage = localStorage.getItem("selectedLanguage");
-        setSelectedLanguage(newSelectedLanguage || 1);
-      }, []);
+
+        fetchData();
+    }, []);
 
     return (
         <div>

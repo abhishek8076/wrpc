@@ -139,11 +139,13 @@ export const LoginCandidate = () => {
       if (response && response.data) {
         if (response.status === 200) {
           let dt = response.data;
+          let user = dt.user;
           var candidateId =  response.data.user.cands_id;
           localStorage.setItem("candidateId", candidateId);
-    
+          localStorage.setItem("user1", JSON.stringify(user));
           if (dt) {
-            localStorage.setItem("user", JSON.stringify(dt));
+           // localStorage.setItem("user", JSON.stringify(dt));
+            
             setDialogText("You have successfully logged in ");
             handleOpenDialog();
     

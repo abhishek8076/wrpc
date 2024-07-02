@@ -9,8 +9,8 @@ const CmsDisplay = () => {
   const [selectedLanguage, setSelectedLanguage] = useState(1);
   // const { fontSize } = useFontSize();
   const [menudata, setMenuData] = useState([]);
-  const storedUserData = localStorage.getItem("user");
-  var user = JSON.parse(storedUserData);
+  const storedUserData = localStorage.getItem("user1");
+  var user1 = JSON.parse(storedUserData);
   
  
   const dateOptions = [
@@ -30,9 +30,6 @@ const CmsDisplay = () => {
    
   ];
  
- 
- 
-  // console.log("neha",user);
  
   useEffect(() => {
     async function fetchMenuData() {
@@ -125,7 +122,7 @@ const CmsDisplay = () => {
                 <Link to="/form/static4" className="nav-link">Static Form 4</Link>
             </li> */}
 
-             {user && (
+             {user1 && (
                 <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Additional Form
@@ -142,9 +139,6 @@ const CmsDisplay = () => {
     );
 };
 
- 
-
- 
   return (
     <>
   <div className="main-nav">
