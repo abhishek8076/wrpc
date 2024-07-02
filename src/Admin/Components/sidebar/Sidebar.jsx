@@ -12,7 +12,7 @@ const Sidebar = () => {
   const userData = localStorage.getItem('user');
   const storedUserString = localStorage.getItem("user");
   const user = JSON.parse(storedUserString);
-const email = user.r_email;
+  const email = user.r_email;
 
   const handleLogout = async () => {
     try {
@@ -35,9 +35,7 @@ const email = user.r_email;
     document.body.classList.toggle('toggle-sidebar', !sidebarVisible);
   };
 
-// Empty dependency array means this effect runs once after the initial render
 
- 
   return (
     <div>
 
@@ -106,6 +104,22 @@ const email = user.r_email;
          
         </ul>
       </li>
+      
+      <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse">
+                <i class="bi bi-journal-text"></i><span>CUSTOM</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                
+                <li>
+                  < Link to='/custom/custom'>
+                    <i class="bi bi-circle"></i><span>Add Custom</span>
+                  </Link>
+                </li>
+                
+
+              </ul>
+            </li>
       {/* <li class="nav-item">
         <a class="nav-link collapsed one" data-bs-target="#tables-form-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse one"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>

@@ -93,39 +93,55 @@ const CmsDisplay = () => {
     );
   };
  
-  const renderMenuItems = (menuData) => {
+  const renderMenuItems = (menuData, user) => {
     return (
-      <ul class="navbar-nav">
-      {menuData.map((menuItem) => (
-        <li class="nav-item active" key={menuItem.menu_id}>
-             {menuItem.submenuList && menuItem.submenuList.length > 0 ? (
-                 <a className="nav-link" href="#">{menuItem.menuname}</a>
-                ) : (
-                  <Link to={"/menu/" + menuItem.menuurl}>
-                    {menuItem.menuname}
-                  </Link>
-                )}
-                {menuItem.submenuList && menuItem.submenuList.length > 0 &&
-                    renderSubMenu(menuItem.submenuList)
-                }
-        </li>
-           ))}
-        {user  && (
-          <li className="nav-item dropdown">
-            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Additional Form
-            </a>
-            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><Link to="/candidate/form1" className="dropdown-item">PCM Discussions</Link></li>
-              <li><Link to="/candidate/form2" className="dropdown-item">TPPA Plan</Link></li>
-              <li><Link to="/candidate/form3" className="dropdown-item">TPPA Observation</Link></li>
-              <li><Link to="/candidate/form4" className="dropdown-item">Relay Settings </Link></li>
-            </ul>
-          </li>
-        )} 
-      </ul>
+        <ul className="navbar-nav">
+            {menuData.map((menuItem) => (
+                <li className="nav-item active" key={menuItem.menu_id}>
+                    {menuItem.submenuList && menuItem.submenuList.length > 0 ? (
+                        <a className="nav-link" href="#">{menuItem.menuname}</a>
+                    ) : (
+                        <Link to={"/menu/" + menuItem.menuurl}>
+                            {menuItem.menuname}
+                        </Link>
+                    )}
+                    {menuItem.submenuList && menuItem.submenuList.length > 0 &&
+                        renderSubMenu(menuItem.submenuList)
+                    }
+                </li>
+            ))}
+            
+            {/* Static menu items */}
+            {/* <li className="nav-item">
+                <Link to="/form/static1" className="nav-link">Static Form 1</Link>
+            </li>
+            <li className="nav-item">
+                <Link to="/form/static2" className="nav-link">Static Form 2</Link>
+            </li>
+            <li className="nav-item">
+                <Link to="/form/static3" className="nav-link">Static Form 3</Link>
+            </li>
+            <li className="nav-item">
+                <Link to="/form/static4" className="nav-link">Static Form 4</Link>
+            </li> */}
+
+            {user && (
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Additional Form
+                    </a>
+                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><Link to="/candidate/form1" className="dropdown-item">PCM Discussions</Link></li>
+                        <li><Link to="/candidate/form2" className="dropdown-item">TPPA Plan</Link></li>
+                        <li><Link to="/candidate/form3" className="dropdown-item">TPPA Observation</Link></li>
+                        <li><Link to="/candidate/form4" className="dropdown-item">Relay Settings</Link></li>
+                    </ul>
+                </li>
+            )}
+        </ul>
     );
-  };
+};
+
  
 
  

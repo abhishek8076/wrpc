@@ -14,6 +14,8 @@ import ArchiveComponent from "./Website/components/Services/ArchiveComponent";
 import { LoginCandidate } from "./Website/components/Candidate/LoginCandidate";
 import { Commerical } from "./Website/components/Commerical/Commerical";
 import CommericalData from "./Website/components/Commerical/CommericalData";
+import {Customepage} from "./Admin/Components/custom/custom.jsx";
+import CustomDetail from "./Website/components/Header/CustomDetail.jsx";
 //===================================================== admin==============================================================================
 import { CreateUser } from "./Admin/Components/User/CreateUser/CreateUser";
 import { Banner } from "./Admin/Components/Banner/Banner";
@@ -157,6 +159,7 @@ function App() {
             {/* <Route exact path="/" element={<CmsDisplay/>} /> */}
             <Route exact path="/" element={<Home />} />
             <Route path="/menu/:id" element={<MenuDetail />} />
+            <Route path="/custom/:id" element={<CustomDetail/>} />
             <Route path="/footer/:id" element={<FooterDetails />} />
             <Route path="*" element={<Errorfound />} />
 
@@ -197,6 +200,11 @@ function App() {
                   <Route path="usertable" element={<AllUser />} />
                   <Route path="edituser/:id" element={<EditUser />} />
                 </Route>
+                <Route path="/custom">
+            
+            <Route path='custom' element={<Customepage/>}/>
+
+          </Route>
                 {/* Candidate */}
                 <Route path="/candidate">
                   <Route path="createcandidate" element={<CreateCandidate />} />

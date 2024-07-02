@@ -18,6 +18,7 @@
     "aboutus":"/api/About",
     "commerical":"/api/Commercial/",
     "commericaldata":"api/Commercial/Getcommtype/",
+    "customdata":"/Api/TopMenu/customdata",
     "newuser":"/api/user",  
     "edituser":"/api/user/",
     "deleteuser":"/api/user/",
