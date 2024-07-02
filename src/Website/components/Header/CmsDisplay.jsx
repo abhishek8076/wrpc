@@ -125,7 +125,7 @@ const CmsDisplay = () => {
                 <Link to="/form/static4" className="nav-link">Static Form 4</Link>
             </li> */}
 
-            {user && (
+             {user && (
                 <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Additional Form
@@ -137,7 +137,7 @@ const CmsDisplay = () => {
                         <li><Link to="/candidate/form4" className="dropdown-item">Relay Settings</Link></li>
                     </ul>
                 </li>
-            )}
+             )}
         </ul>
     );
 };
