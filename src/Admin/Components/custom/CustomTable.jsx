@@ -39,7 +39,7 @@ export default function CustomTable() {
         { field: "u_menu_name", headerName: "Title" ,width: 200},
         // { field: "u_internal_link", headerName: "Internal Link",width: 120 },
         // { field: "u_external_link", headerName: "External Link",width: 120 },
-        { field: "u_menu_url", headerName: "Menu Url",width: 200 },
+        { field: "menu_url", headerName: "Menu Url",width: 200 },
         // {
         //     field: "edit",
         //     headerName: "Edit",
@@ -107,7 +107,7 @@ export default function CustomTable() {
         async function fetchData() {
             try {
                 const response = await apiClient.get(api.customlist);
-                const dataWithIds = response.data.map((row, index) => ({ id: index+1, ...row }));
+                const dataWithIds = response.data.map((row, index) => ({ id: index+1, ...row, menu_url: `/menu/${row.u_menu_url}`,  }));
                 setApiData(dataWithIds);
             } catch (error) {
                 console.error('Error fetching data:', error);
