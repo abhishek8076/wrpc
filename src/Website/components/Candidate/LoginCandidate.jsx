@@ -134,7 +134,6 @@ export const LoginCandidate = () => {
     try {
      // const response = await axios.post('http://localhost:5141/api/Candidate/LoginCandidate', jsonData);
       const response = await apiClient.post('api/Candidate/LoginCandidate', jsonData);
-    debugger;
     
       if (response && response.data) {
         if (response.status === 200) {

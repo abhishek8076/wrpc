@@ -116,6 +116,11 @@ const Sidebar = () => {
                     <i class="bi bi-circle"></i><span>Add Custom</span>
                   </Link>
                 </li>
+                <li>
+                < Link to='/custom/allcustomdata'>
+                    <i class="bi bi-circle"></i><span>Custom Data</span>
+                  </Link>
+                </li>
                 
 
               </ul>

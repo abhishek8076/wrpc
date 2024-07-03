@@ -16,6 +16,7 @@ import { Commerical } from "./Website/components/Commerical/Commerical";
 import CommericalData from "./Website/components/Commerical/CommericalData";
 import {Customepage} from "./Admin/Components/custom/custom.jsx";
 import CustomDetail from "./Website/components/Header/CustomDetail.jsx";
+import CustomTable from "./Admin/Components/custom/CustomTable.jsx"
 //===================================================== admin==============================================================================
 import { CreateUser } from "./Admin/Components/User/CreateUser/CreateUser";
 import { Banner } from "./Admin/Components/Banner/Banner";
@@ -203,7 +204,7 @@ function App() {
                 <Route path="/custom">
             
             <Route path='custom' element={<Customepage/>}/>
-
+            <Route path='allcustomdata' element={<CustomTable/>}/>
           </Route>
                 {/* Candidate */}
                 <Route path="/candidate">
