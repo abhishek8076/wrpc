@@ -5,6 +5,7 @@ import { getsubMenu } from "../../../Api/ApiFunctions";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
  
 const CmsDisplay = () => {
+  debugger;
   const { id } = useParams();
   const [selectedLanguage, setSelectedLanguage] = useState(1);
   // const { fontSize } = useFontSize();
@@ -122,20 +123,28 @@ const CmsDisplay = () => {
                 <Link to="/form/static4" className="nav-link">Static Form 4</Link>
             </li> */}
 
-             {user1 && (
-                <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Additional Form
-                    </a>
-                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><Link to="/candidate/form1" className="dropdown-item">PCM Discussions</Link></li>
-                        <li><Link to="/candidate/form2" className="dropdown-item">TPPA Plan</Link></li>
-                        <li><Link to="/candidate/form3" className="dropdown-item">TPPA Observation</Link></li>
-                        <li><Link to="/candidate/form4" className="dropdown-item">Relay Settings</Link></li>
-                        <li><Link to="/candidate/performance" className="dropdown-item">Performance Indices</Link></li>
-                    </ul>
-                </li>
-             )}
+{user1 && (
+  <li className="nav-item dropdown">
+    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Additional Form
+    </a>
+    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+      {user1.can_ft1 === 1 && (
+        <li><Link to="/candidate/form1" className="dropdown-item">PCM Discussions</Link></li>
+      )}
+      {user1.can_ft2 === 1  && (
+        <li><Link to="/candidate/form2" className="dropdown-item">TPPA Plan</Link></li>
+      )}
+      {user1.can_ft3 === 1  && (
+        <li><Link to="/candidate/form3" className="dropdown-item">TPPA Observation</Link></li>
+      )}
+      {user1.can_ft4 === 1  && (
+        <li><Link to="/candidate/form4" className="dropdown-item">Relay Settings</Link></li>
+      )}
+    </ul>
+  </li>
+)}
+
         </ul>
     );
 };
