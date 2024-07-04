@@ -134,6 +134,7 @@ export const CreateCandidate = () => {
     setLoading(true);
 
     try {
+      debugger;
       console.log(formData);
       const response = await apiClient.post(api.candidate, formData);
       if (response.status === 200) {
@@ -172,7 +173,8 @@ export const CreateCandidate = () => {
       }
     } catch (error) {
       console.error('Error submitting data:', error);
-      toast.error('Something went wrong');
+      //toast.error('Something went wrong');
+      toast.error(error.response.data);
       setLoading(false);
     }
   };
@@ -321,7 +323,7 @@ export const CreateCandidate = () => {
                                     onChange={handleCheckboxChange}
                                     id="flexCheckChecked"
                                   />
-                                  {showAdditionalCheckboxes && (
+                                  {/* {showAdditionalCheckboxes && (
                                     <>
                                       <label>Form 1</label>
                                       <input
@@ -356,7 +358,7 @@ export const CreateCandidate = () => {
                                         id="flexCheckChecked"
                                       />
                                     </>
-                                  )}
+                                  )} */}
 
 
 

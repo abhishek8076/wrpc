@@ -10,6 +10,7 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const storedUserString = localStorage.getItem("user");
+  const storedUserString1 = localStorage.getItem("user1");
 
   const [isReading, setIsReading] = useState(false);
 
@@ -251,17 +252,27 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                         </div>
                       </div>
                       <div class="bar6 bar-c">
+                       
+
+
                         <div>
-                          {storedUserString ? (
-                            <button onClick={handleLogout}>
-                              <Link to="/">logout</Link>
-                            </button>
-                          ) : (
-                            <button>
-                              <Link to="/login">Login</Link>
-                            </button>
-                          )}
-                        </div>
+  {storedUserString ? (
+    <button onClick={handleLogout}>
+      <Link to="/">Logout</Link>
+    </button>
+  ) : storedUserString1 ? (
+    <button onClick={handleLogout}>
+      <Link to="/">Logout</Link>
+    </button>
+  ) : (
+    <button>
+      <Link to="/login">Login</Link>
+    </button>
+  )}
+</div>
+
+
+                        
                         {/* <button><Link to='/candidate/login'>Login</Link></button> */}
                        
                       </div>
