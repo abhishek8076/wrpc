@@ -141,6 +141,7 @@ const CmsDisplay = () => {
       {user1.can_ft4 === 1  && (
         <li><Link to="/candidate/form4" className="dropdown-item">Relay Settings</Link></li>
       )}
+      <li><Link to="/candidate/performance" className="dropdown-item">Performance Indices</Link></li>
     </ul>
   </li>
 )}
