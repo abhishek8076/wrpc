@@ -132,6 +132,7 @@ const CmsDisplay = () => {
                         <li><Link to="/candidate/form2" className="dropdown-item">TPPA Plan</Link></li>
                         <li><Link to="/candidate/form3" className="dropdown-item">TPPA Observation</Link></li>
                         <li><Link to="/candidate/form4" className="dropdown-item">Relay Settings</Link></li>
+                        <li><Link to="/candidate/performance" className="dropdown-item">Performance Indices</Link></li>
                     </ul>
                 </li>
              )}

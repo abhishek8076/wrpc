@@ -65,6 +65,7 @@ import { ViewFormOne } from "./Admin/Components/Form/ViewFormOne.jsx";
 import { ViewFormtwo } from "./Admin/Components/Form/ViewFormtwo.jsx";
 import { ViewFormthree } from "./Admin/Components/Form/ViewFormthree.jsx";
 import { ViewFormfour } from "./Admin/Components/Form/ViewFormfour.jsx";
+import{Performanceindices} from "./Website/components/websiteforms/PerformanceIndices.jsx"
 import { AboutUsEdit } from "./Admin/Components/Aboutus/AboutUsEdit.jsx";
 import ForgetPassword from "./Admin/Components/pages/changepassword/ForgetPassword.jsx";
 import Newpassword from "./Admin/Components/pages/changepassword/Newpassword.jsx";
@@ -178,6 +179,7 @@ function App() {
                 <Route path="form2" element={<Formtwo />} />
                 <Route path="form3" element={<Formthree />} />
                 <Route path="form4" element={<Formfour />} />
+                <Route path="performance" element={<Performanceindices />} />
               </>
               <Route path="login" element={<LoginCandidate />} />
             </Route>
