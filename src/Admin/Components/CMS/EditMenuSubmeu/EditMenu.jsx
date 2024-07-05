@@ -242,7 +242,7 @@ export const EditMenu = () => {
         <div class="container-fluid bg-white" >
 
           <div class="box-sec">
-            <h1 className="text-center heading-main">Edit Menu</h1>
+            <h1 className="text-center heading-main">Edit Data</h1>
 
             <div className="mb-3">
                   <label className="form-label text-dark">Select a Language</label>
