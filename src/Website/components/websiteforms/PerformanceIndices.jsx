@@ -59,9 +59,9 @@ export const Performanceindices = () => {
         if (!formData.failures_operate) {
             errors.failures_operate = "Please enter failures_operate";
         }
-        if (!selectedFile) {
-            errors.incorrect_operation = "Please upload an Excel file";
-        }
+        // if (!selectedFile) {
+        //     errors.incorrect_operation = "Please upload an Excel file";
+        // }
         setFormErrors(errors);
         return Object.keys(errors).length === 0;
     };
