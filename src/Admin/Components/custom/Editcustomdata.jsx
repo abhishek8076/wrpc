@@ -13,15 +13,15 @@ import {
   Dialog,
 } from '@mui/material';
 import { Col, Row } from 'react-bootstrap';
-import apiClient from '../../../../Api/ApiClient';
-import apis from '../../../../Api/api.json';
-import Header from '../../header/Header';
-import Sidebar from '../../sidebar/Sidebar';
-import Footer from '../../footer/Footer';
+import apiClient from '../../../Api/ApiClient';
+import apis from '../../../Api/api.json';
+import Header from '../header/Header';
+import Sidebar from '../sidebar/Sidebar';
+import Footer from '../footer/Footer';
 
 
 
-export const EditMenu = () => {
+export const Editcustomdata = () => {
   const { id } = useParams()
   const [html, setHtml] = useState('');
   const [file, setFile] = useState(null);
@@ -216,7 +216,7 @@ export const EditMenu = () => {
     async function fetchData2() {
       try {
 
-        const response = await apiClient.get(apis.getmenudatabyid + id);
+        const response = await apiClient.get(apis.getcustomdatabyid + id);
         setFormData(response.data);
 
       } catch (error) {
@@ -242,7 +242,7 @@ export const EditMenu = () => {
         <div class="container-fluid bg-white" >
 
           <div class="box-sec">
-            <h1 className="text-center heading-main">Edit Data</h1>
+            <h1 className="text-center heading-main">Edit Menu</h1>
 
             <div className="mb-3">
                   <label className="form-label text-dark">Select a Language</label>

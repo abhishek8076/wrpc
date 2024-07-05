@@ -40,23 +40,23 @@ export default function CustomTable() {
         // { field: "u_internal_link", headerName: "Internal Link",width: 120 },
         // { field: "u_external_link", headerName: "External Link",width: 120 },
         { field: "menu_url", headerName: "Menu Url",width: 200 },
-        // {
-        //     field: "edit",
-        //     headerName: "Edit",
-        //     sortable: false,
-        //     renderCell: (params) => (
-        //         user.r_usertype !== 2  || null ? ( 
-        //         <Link to={'/cms/editdata/'+params.row.u_id}>
-        //             <EditIcon style={{ cursor: 'pointer' }} />
-        //         </Link>
-        //     ):(
-        //         <DesignServicesIcon
-        //         style={{ cursor: 'no-drop',color:'#808080'  }}
-        //         disabled
-        //     />
-        //     )
-        //     ),
-        // },
+        {
+            field: "edit",
+            headerName: "Edit",
+            sortable: false,
+            renderCell: (params) => (
+                user.r_usertype !== 2  || null ? ( 
+                <Link to={'/cms/editdata/'+params.row.u_id}>
+                    <EditIcon style={{ cursor: 'pointer' }} />
+                </Link>
+            ):(
+                <Link to={'/cms/editdata/'+params.row.u_id}>
+                <EditIcon style={{ cursor: 'pointer' }} />
+            </Link>
+            
+            )
+            ),
+        },
         {
             field: "delete",
             headerName: "Delete",
