@@ -16,6 +16,7 @@
     "Tppapost": "/api/TPPA_Obs/PostTTPOBS_data",
     "Tppaplan":"/api/TPPA_Plan_Monitoring/Getppa_list",
     "Trippingcompliance":"/api/Tripping_compliance_pcm_discussions/Posttripping_data",
+    "editPerformance":"/api/PerformanceIndices/put/",
     "aboutus":"/api/About",
     "commerical":"/api/Commercial/",
     "commericaldata":"api/Commercial/Getcommtype/",

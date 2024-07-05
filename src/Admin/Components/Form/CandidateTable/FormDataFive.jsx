@@ -22,7 +22,7 @@ export default function FormDataFive() {
             headerName: "Edit",
             sortable: false,
             renderCell: (params) => (
-                <Link to={'/feedback/formfive/'+params.row.s_no}>
+                <Link to={'/feedback/formfive/'+params.row.id}>
                 <InsertDriveFileIcon style={{ cursor: 'pointer' }} />
             </Link>
             ),
