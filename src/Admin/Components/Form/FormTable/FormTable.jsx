@@ -15,6 +15,7 @@ import FormDataOne from '../CandidateTable/FormDataOne';
 import FormDataTwo from '../CandidateTable/FormDataTwo';
 import FormDataThree from '../CandidateTable/FormDataThree';
 import FormDataFour from '../CandidateTable/FormDataFour';
+import FormDataFive from '../CandidateTable/FormDataFive';
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
   
@@ -98,6 +99,7 @@ export const FormTable = () => {
           <Tab label="TPPA PLAN & MONITORING" {...a11yProps(1)} />
           <Tab label="TPPA OBSERVATION" {...a11yProps(2)} />
           <Tab label="RELAY SETTINGS DATA" {...a11yProps(3)} />
+          <Tab label="PERFORMANCE DATA" {...a11yProps(4)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -116,7 +118,11 @@ export const FormTable = () => {
         </TabPanel>
         <TabPanel value={value} index={3} dir={theme.direction}>
        <FormDataFour/>
-        </TabPanel>
+        </TabPanel>  
+
+        <TabPanel value={value} index={4} dir={theme.direction}>
+       <FormDataFive/>
+        </TabPanel> 
       </SwipeableViews>
     </Box>
     </main>

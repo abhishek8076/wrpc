@@ -116,7 +116,7 @@ export const Performanceindices = () => {
         setLoading(true);
 
         try {
-
+             debugger;
 
             let candidateId=0;
             if (localStorage.getItem("candidateId")) {
