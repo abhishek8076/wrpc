@@ -44,6 +44,7 @@
     "AdminLoginagain": "/api/Login/AdminLoginagainTry",
     "navmenu":"/api/TopMenu/",
     "getmenuname":"/api/TopMenu",
+    "getcustomdatabyid":"/api/TopMenu/custom/",
     "getmenudatabyid":"/api/TopMenu/",
     "submenunav":"/api/TopMenu/SubMenu",
     "homepage":"/api/Homemaster",

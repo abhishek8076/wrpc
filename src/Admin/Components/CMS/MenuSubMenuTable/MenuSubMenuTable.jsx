@@ -51,10 +51,13 @@ export default function MenuSubMenuTable() {
                         <EditIcon style={{ cursor: 'pointer' }} />
                     </Link>
                 ) : (
-                    <DesignServicesIcon
-                        style={{ cursor: 'no-drop', color: 'red' }}
-                        disabled
-                    />
+                    // <DesignServicesIcon
+                    //     style={{ cursor: 'no-drop', color: 'red' }}
+                    //     disabled
+                    // />
+                    <Link to={'/cms/editdata/' + params.row.u_id}>
+                        <EditIcon style={{ cursor: 'pointer' }} />
+                    </Link>
                 )
             ),
         },

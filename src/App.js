@@ -45,6 +45,7 @@ import { EditWhatsNew } from "./Admin/Components/WhatsNew/EditWhatsNew/EditWhats
 import MenuSubMenuTable from "./Admin/Components/CMS/MenuSubMenuTable/MenuSubMenuTable";
 import { Index } from "./Admin/Components/CMS/EditMenuSubmeu/IndexEdit";
 import LinkTable from "./Admin/Components/Links/Linktable/LinkTable";
+import {Editcustomdata} from "./Admin/Components/custom/Editcustomdata.jsx";
 import { Editlink } from "./Admin/Components/Links/Editlinks/Editlinks";
 import ReportTable from "./Admin/Components/Reports/ReportTable/ReportTable";
 import { EditReport } from "./Admin/Components/Reports/EditReport/EditReport";
@@ -208,6 +209,7 @@ function App() {
             
             <Route path='custom' element={<Customepage/>}/>
             <Route path='allcustomdata' element={<CustomTable/>}/>
+            <Route path="editcustomdata/:id" element={<Editcustomdata />} />
           </Route>
                 {/* Candidate */}
                 <Route path="/candidate">
