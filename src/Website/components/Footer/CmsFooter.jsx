@@ -52,9 +52,9 @@ export const CmsFooter = () => {
                           {/* {console.log(i, "hiiii")} */}
                             
                           <p>{i.u_address}</p>
-                          <p>
+                          {/* <p>
                             Open Monday to Saturday From 7h to 18h or talk to an expert {i.u_mobile_no} – available 24/7
-                          </p>
+                          </p> */}
                         </div>
                       );
                     }
@@ -142,10 +142,12 @@ export const CmsFooter = () => {
                   <div class="copyright_text">
                     <p ><span
                     >Copyright © 2006 Western Regional Power Committee</span>
-                      All Rights Reserved. | This site is best viewed at: 800x600 resolution.(Website
-                      Last Updated on: 14-Jan-2019)</p>
+                      All Rights Reserved. | This site is best viewed at: 800x600 resolution.</p>
                   </div>
                 </div>
+                {/* (Website
+                  Last Updated on: 14-Jan-2019) */}
+
                 <div class="col-md-3">
                   <div class="city_top_social">
                     <ul>
@@ -277,9 +279,10 @@ export const CmsFooter = () => {
                   <div class="copyright_text">
                     <p ><span
                     >कॉपीराइट © 2006 पश्चिमी क्षेत्रीय विद्युत समिति</span>
-                      सर्वाधिकार सुरक्षित। | इस साइट को सबसे अच्छी तरह से देखा जा सकता है: 800x600 रिज़ॉल्यूशन। (वेबसाइट
-                      अंतिम अद्यतन तिथि: 14-जनवरी-2019)</p>
+                      सर्वाधिकार सुरक्षित। | इस साइट को सबसे अच्छी तरह से देखा जा सकता है: 800x600 रिज़ॉल्यूशन। </p>
                   </div>
+                  (वेबसाइट
+                    अंतिम अद्यतन तिथि: 14-जनवरी-2019)
                 </div>
                 <div class="col-md-3">
                   <div class="city_top_social">

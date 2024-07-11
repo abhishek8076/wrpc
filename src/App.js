@@ -171,7 +171,14 @@ function App() {
             <Route path="/menu/commerical/:id" element={<CommericalData />} />
             <Route path="/archive" element={<ArchiveComponent />} />
             {/* <Route path="/sitemap" element ={<SiteMap/>} /> */}
-
+            <Route path="/menu">
+              
+              <>
+               
+                <Route path="performance" element={<Performanceindices />} />
+              </>
+             
+            </Route>
             {/* Candidate  */}
 
             <Route path="/candidate">

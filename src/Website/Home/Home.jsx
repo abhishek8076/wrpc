@@ -68,7 +68,7 @@ export const Home = (prop) => {
                     </div>
                  <Banner/>   
                  <Aboutus/>
-                  <Counter/>
+                  {/* <Counter/> */}
                   <Services/>
                   <Slider/>
                   <CmsFooter/>

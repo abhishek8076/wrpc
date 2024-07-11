@@ -187,6 +187,17 @@ export const EditMenu = () => {
      
       toast.success('Data saved successfully!');
       setModalMessage('Data saved successfully!');
+      setFormData({
+        MenuName: '',
+        ContentType: '',
+        external_link: '',
+        internal_link: '',
+  
+        submenu_id: 0,
+        file: '',
+        html: '',
+        languagetype:'',
+      });
       setSnackbarOpen(true);
     } catch (error) {
       if (error.response && error.response.status === 401) {
