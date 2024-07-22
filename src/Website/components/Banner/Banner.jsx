@@ -51,7 +51,7 @@ export const Banner = () => {
                   <div className="banner_text">
                     <div className="small_text animated">Welcome to</div>
                     <div className="medium_text animated">
-                      Western Regional Power
+                      Western Regional Power Committee
                     </div>
                     <div className="large_text animated">{item.u_content}</div>
                     <div className="banner_btn">
@@ -119,10 +119,8 @@ export const Banner = () => {
                     <img src={item.imgpath} alt={`Banner ${index + 1}`} />
                   </div>
                   <div className="banner_text">
-                    <div className="small_text animated">आपका स्वागत है</div>
-                    <div className="medium_text animated">
-                      
-पश्चिमी क्षेत्रीय शक्ति
+                    <div className="small_text animated">पश्चिम क्षेत्रीय विद्युत् समिति में </div>
+                    <div className="medium_text animated"> आपका स्वागत है 
                     </div>
                     <div className="large_text animated">{item.u_content}</div>
                     <div className="banner_btn">

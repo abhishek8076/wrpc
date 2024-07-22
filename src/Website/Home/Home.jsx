@@ -67,7 +67,7 @@ export const Home = (prop) => {
                     <CmsDisplay selectedLanguage={selectedLanguage} />
                     </div>
                  <Banner/>   
-                 <Aboutus/>
+                 {/* <Aboutus/> */}
                   {/* <Counter/> */}
                   <Services/>
                   {/* <Slider/> */}

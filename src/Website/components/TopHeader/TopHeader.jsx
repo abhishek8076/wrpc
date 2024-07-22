@@ -320,9 +320,11 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                         <img src={swatchBarath} alt="" />
                       </div> */}
                       <div class="rgt-two">
-                        <img src={G20} alt="" />
+                        {/* <img src={G20} alt="" /> */}
                       </div>
-                      <div class="rgt-three"></div>
+                      <div class="rgt-three">
+                      <img src={G20} alt="" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -490,7 +492,9 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                             ))}
                           </select>
                         </div>
-                        <div class="bar6 bar-c">
+                      </div>
+
+                      <div class="bar6 bar-c">
                           <div>
                             {storedUserString ? (
                               <button >
@@ -503,8 +507,9 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                             )}
                           </div>
                           {/* <button><Link to='/candidate/login'>Login</Link></button> */}
-                        </div>
                       </div>
+                      
+                      
                     </div>
                   </div>
                 </div>
@@ -529,7 +534,6 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                             // src={Logo}
                             src={footerLogo}
                             alt="national emblem"
-                            
                           />
                           </div>
                           <div className="col-md-9">
