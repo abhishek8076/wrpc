@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Logo from "../../../assets/images/emblem-dark.png";
 import G20 from "../../../assets/images/swach-bharat.png";
 import swatchBarath from "../../../assets/images/G20-logo.png";
+import footerLogo from "../../../assets/images/top-logo.png"
+
 export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
   const { increaseFontSize, decreaseFontSize, resetFontSize } = useFontSize();
   const [selectedLanguageA, setSelectedLanguageA] = useState(1);
@@ -291,19 +293,23 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                           href="/"
                           title="Home"
                           rel="home"
-                          class="header__logo"
+                          class="header__logo row"
                           id="logo"
                         >
+                          <div className="col-md-3">
                           <img
                             class="national_emblem"
-                            src={Logo}
+                            // src={Logo}
+                            src={footerLogo}
                             alt="national emblem"
                           />
+                          </div>
+                          <div className="col-md-9">
                           <em>
-                            <span>
-                            पश्चिम क्षेत्रीय विद्युत् समिति </span>
-                            <span> Western Regional Power Committee </span>
+                            <span>पश्चिम क्षेत्रीय विद्युत् समिति </span>
+                            <span> Western Regional Power Committee</span>
                           </em>
+                          </div>
                         </a>
                       </h2>
                     </div>
@@ -514,31 +520,40 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                           href="/"
                           title="Home"
                           rel="home"
-                          class="header__logo"
+                          class="header__logo row"
                           id="logo"
                         >
+                          <div className="col-md-3">
                           <img
                             class="national_emblem"
-                            src={Logo}
+                            // src={Logo}
+                            src={footerLogo}
                             alt="national emblem"
+                            
                           />
+                          </div>
+                          <div className="col-md-9">
                           <em>
-                            <span>मंत्रालय / विभाग नाम</span>
-                            <span> Western Regional Power Committee 11</span>
+                            <span>पश्चिम क्षेत्रीय विद्युत् समिति </span>
+                            <span> Western Regional Power Committee</span>
                           </em>
+                          </div>
+                          
                         </a>
                       </h2>
                     </div>
                   </div>
                   <div class="col-md-6 col-sm-6">
-                    <div class="head-right">
-                      <div class="rgt-one">
+                    <div class="head-right d-flex flex-end">
+                      {/* <div class="rgt-one">
                         <img src={swatchBarath} alt="" />
-                      </div>
+                      </div> */}
                       <div class="rgt-two">
-                        <img src={G20} alt="" />
+                        {/* <img src={G20} alt="" /> */}
                       </div>
-                      <div class="rgt-three"></div>
+                      <div class="rgt-three">
+                      <img src={G20} alt="" />
+                      </div>
                     </div>
                   </div>
                 </div>
