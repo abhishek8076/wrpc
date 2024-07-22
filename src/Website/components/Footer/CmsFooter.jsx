@@ -134,9 +134,9 @@ export const CmsFooter = () => {
             {/* <div class="widget_copyright"> */}
             <div class="row widget_copyright">
                 <div class="col-md-3">
-                  <div class="widget_logo">
+                  {/* <div class="widget_logo">
                     <a href="#"><img src={footerLogo} alt="" /></a>
-                  </div>
+                  </div> */}
                 </div>
                 <div class="col-md-6">
                   <div class="copyright_text">

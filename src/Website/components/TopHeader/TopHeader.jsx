@@ -300,7 +300,8 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                             alt="national emblem"
                           />
                           <em>
-                            <span>मंत्रालय / विभाग नाम</span>
+                            <span>
+                            पश्चिम क्षेत्रीय विद्युत् समिति </span>
                             <span> Western Regional Power Committee </span>
                           </em>
                         </a>
@@ -309,9 +310,9 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                   </div>
                   <div class="col-md-6 col-sm-6">
                     <div class="head-right">
-                      <div class="rgt-one">
+                      {/* <div class="rgt-one">
                         <img src={swatchBarath} alt="" />
-                      </div>
+                      </div> */}
                       <div class="rgt-two">
                         <img src={G20} alt="" />
                       </div>
