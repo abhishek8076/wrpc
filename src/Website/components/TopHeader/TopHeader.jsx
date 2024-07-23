@@ -298,12 +298,15 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                           id="logo"
                         >
                           <div className="col-md-3">
+                            <div className="custom-logo">
                           <img
-                            class="national_emblem w-100"
+                            class="national_emblem "
                             // src={Logo}
-                            src={footerLogo}
+                            
+                                    src={footerLogo}
                             alt="national emblem"
                           />
+                          </div>
                           </div>
                           <div className="col-md-9 d-flex align-items-center justify-content-end">
                           <em>
@@ -533,7 +536,7 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                         >
                           <div className="col-md-3">
                           <img
-                            class="national_emblem w-100"
+                            class="national_emblem w-50"
                             // src={Logo}
                             src={footerLogo}
                             alt="national emblem"

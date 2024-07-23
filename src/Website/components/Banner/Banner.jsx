@@ -135,12 +135,12 @@ export const Banner = () => {
     <div>
       {parseInt(selectedLanguage) === 1 ? (
         <>
-          <div className="city_main_banner">
+          <section className="city_main_banner">
             <div className="main-banner-slider">
               <h2>slider </h2>
 
               <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-8">
                   <Slider {...settings}>
                     {menudata.map((item, index) => (
                       <div key={index}>
@@ -179,7 +179,7 @@ export const Banner = () => {
                     ))}
                   </Slider>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <Box
                       className="main-box1 "
                       sx={{ width: "100%", typography: "body1" }}
@@ -378,7 +378,7 @@ export const Banner = () => {
                   </div>
               </div>
             </div>
-          </div>
+          </section>
           <section class="notice-section">
             <div class="container">
               <div class="row">

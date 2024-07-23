@@ -386,10 +386,11 @@ p.news-p {
 section.notice-section {
     background-color: #2d79bd;
     padding: 10px 0px;
-    margin-bottom: 60px;
+    /* margin-bottom: 60px; */
 }
 .city_main_banner {
     position: relative;
+    background-color: #163c56;
 }
 section.notice-section p{
     margin-bottom: 0px;

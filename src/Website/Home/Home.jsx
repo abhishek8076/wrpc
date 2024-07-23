@@ -69,7 +69,7 @@ export const Home = (prop) => {
                  <Banner/>   
                  {/* <Aboutus/> */}
                   {/* <Counter/> */}
-                  <Services/>
+                  {/* <Services/> */}
                   {/* <Slider/> */}
                   <CmsFooter/>
                     
