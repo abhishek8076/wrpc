@@ -59,7 +59,7 @@ export const Home = (prop) => {
     };
     
     return (
-        <div>
+        <div className='overflow-hidden'>
             <div>
                  <div>
                      <TopHeader selectedLanguage={selectedLanguage}

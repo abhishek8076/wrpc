@@ -272,6 +272,14 @@ section.news-section {
      animation: marquee 60s linear infinite; 
   }
 
+  .marquee-list1{
+    padding: 12px !important;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+  }
+
   /* Keyframe animation for marquee effect */
   @keyframes marquee {
     0% { top: 0; }
@@ -442,3 +450,9 @@ html {
     background-color: transparent;
     color: #fff;
 }
+/* .marquee-container1{
+    background-color: #8e268c;
+} */
+ .bg-light{
+    height: 465px;
+ }

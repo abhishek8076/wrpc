@@ -140,6 +140,10 @@
   .dropdown-menu .dropdown-item:hover {
     background-color: #f6f9ff;
   }
+
+  .footer_emblem{
+    height:75px;
+  }
   
   @media (min-width: 768px) {
     .dropdown-menu-arrow::before {
@@ -396,12 +400,13 @@
     .logo {
       width: 280px;
     }
+
+    .logo img {
+      height: 110px;
+      margin-right: 6px;
+    }
   }
   
-  .logo img {
-    max-height: 52px;
-    margin-right: 6px;
-  }
   
   .logo span {
     font-size: 26px;

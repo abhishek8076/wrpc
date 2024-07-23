@@ -126,9 +126,9 @@ export const CmsFooter = () => {
                       {/* <a href="#"><img src={footerLogo} alt="" /></a>
                   </div> */}
                       <img
-                        class="national_emblem"
-                        // src={Logo}
-                        src={footerLogo}
+                        class="footer_emblem"
+                        src={Logo}
+                        // src={footerLogo}
                         alt="national emblem"
                       />
                     </div>
@@ -281,7 +281,7 @@ export const CmsFooter = () => {
                 <div class="widget_copyright">
                   <div class="row">
                     <div class="col-md-3">
-                      <div class="widget_logo">
+                      <div class="d-flex justify-content-center">
                         <a href="#">
                           <img
                             // src={footerLogo}

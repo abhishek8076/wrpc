@@ -77,6 +77,7 @@ import Newpassword from "./Admin/Components/pages/changepassword/Newpassword.jsx
 
 //=====================================import apiclient===============================>
 import apiClient from './Api/ApiClient';
+import LatestNews from "./Website/components/Latest_News/LatestNews.jsx";
 
 function App() {
   const [sessionExpired, setSessionExpired] = useState(false);
@@ -166,6 +167,7 @@ function App() {
             <Route path="/custom/:id" element={<CustomDetail/>} />
             <Route path="/footer/:id" element={<FooterDetails />} />
             <Route path="*" element={<Errorfound />} />
+            <Route path="/latestnews" element={<LatestNews/>} />
 
             <Route path="/commerical" element={<Commerical />} />
             <Route path="/menu/commerical/:id" element={<CommericalData />} />
