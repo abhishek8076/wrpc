@@ -324,13 +324,13 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                         <img src={swatchBarath} alt="" />
                       </div> */}
                       <div class="rgt-two">
-                        {/* <img src={G20} alt="" /> */}
+                      <h6>Site Under Construction</h6>
                       </div>
                       <div class="rgt-three">
+                      <img src={G20} alt="" />
                       </div>
                       
-                      <h2 className="h6" style={{marginLeft:'50%'}}>Site Under Construction</h2>
-                      <img src={G20} alt="" />
+                    
                     </div>
                   </div>
                 </div>
@@ -535,12 +535,14 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                           id="logo"
                         >
                           <div className="col-md-3">
+                            <div className="custom-logo">
                           <img
                             class="national_emblem w-50"
                             // src={Logo}
                             src={footerLogo}
                             alt="national emblem"
                           />
+                          </div>
                           </div>
                           <div className="col-md-8 d-flex align-items-center justify-content-end">
                           <em>
@@ -560,12 +562,12 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                       </div> */}
                       <div class="rgt-two">
                         {/* <img src={G20} alt="" /> */}
+                        <h2 className="h6" style={{marginLeft:'50%'}}>Site Under Construction</h2>
                       </div>
-                      <div class="rgt-three head-right">
-                      
-                      </div>
-                      <h2 className="h6" style={{marginLeft:'50%'}}>Site Under Construction</h2>
+                      <div class="rgt-three">
                       <img src={G20} alt="" />
+                      </div>
+                      
                     </div>
                     
                   </div>

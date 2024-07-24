@@ -136,6 +136,7 @@ export const Banner = () => {
       {parseInt(selectedLanguage) === 1 ? (
         <>
           <section className="city_main_banner">
+           
             <div className="main-banner-slider">
               <h2>slider </h2>
 
@@ -378,10 +379,11 @@ export const Banner = () => {
                   </div>
               </div>
             </div>
+        
           </section>
           <section class="notice-section">
             <div class="container">
-              <div class="row">
+              <div class="row pt-2">
                 <div class="col-md-2">
                   <div class="notice-lft">
                     <p>Live Streaming</p>
@@ -418,17 +420,18 @@ export const Banner = () => {
         </>
       ) : (
         <>
-          <div className="city_main_banner">
+          <section className="city_main_banner">
+           
             <div className="main-banner-slider">
               <h2>slider </h2>
               <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-8">
               <Slider {...settings}>
                 {menudata.map((item, index) => (
                   <div key={index}>
                     <figure className="overlay">
                       <div className="video-container">
-                        <img src={item.imgpath} alt={`Banner ${index + 1}`} />
+                        <img src={BASE_URL + item.imgpath} alt={`Banner ${index + 1}`} />
                       </div>
                       <div className="banner_text">
                         <div className="small_text animated">
@@ -459,7 +462,7 @@ export const Banner = () => {
                 ))}
               </Slider>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                     <Box
                       className="main-box1"
                       sx={{ width: "100%", typography: "body1" }}
@@ -605,7 +608,7 @@ export const Banner = () => {
                                       </div>
                                     </div>
                                   </li>
-                                ) : null
+                                ):null
                               )}
                             </ul>
                           </div>
@@ -676,10 +679,11 @@ export const Banner = () => {
                   </div>
               </div>
               </div>
-            </div>
+       
+            </section>
           <section class="notice-section">
             <div class="container">
-              <div class="row">
+              <div class="row pt-2">
                 <div class="col-md-2">
                   <div class="notice-lft">
                     <p>सीधा आ रहा है</p>

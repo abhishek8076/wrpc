@@ -310,14 +310,20 @@ a {
 	opacity:0.25;
 }
 .banner_text{
-	position:absolute;
-	top:50%;
-	left:auto;
-	right:100px;
-	width:350px;
-	padding:42px 30px 50px;
-	margin-top:-200px;
-	height: 400px;
+	position: absolute;
+    top: 60%;
+    left: auto;
+    right: 100px;
+    width: 350px;
+    padding: 25px 25px 40px;
+    margin-top: -200px;
+    height: 330px;
+}
+.theam_btn{
+	padding: 10px 15px !important;
+}
+ul.report-sec {
+    width: 100%;
 }
 .small_text{
 	font-size:26px;
@@ -338,7 +344,7 @@ a {
 	color:#f93;
 	line-height: 70px;
 	text-transform:uppercase;
-	margin-bottom:20px;
+	margin-bottom:10px;
 	height: 70px;
 	overflow:hidden;
 }
@@ -1765,7 +1771,7 @@ a {
 	width:100%;
 }
 .widget_wrap{
-	padding:60px 0px 0px;
+	padding:35px 0px 0px;
 	/* background-image:url("../images/widget-bg.png"); */
 	background-repeat:no-repeat;
 	background-size:cover;
@@ -5904,7 +5910,7 @@ a {
 }
 .video-container {
 	width: 100%; /* Set the width of your container */
-	height: 530px; /* Set the height of your container */
+	height: 370px; /* Set the height of your container */
 	overflow: hidden; /* Hide any video content that overflows the container */
   }
   
@@ -6247,12 +6253,12 @@ h3.apg-album-title {
 }
  /* marquee report */
 
- .main-box1 .marquee-container1 {
-	width: 100%;
-	height: 430px;
-	overflow: hidden; /* Apply overflow property to .marquee-container1 */
-	position: relative;
-  }
+  .main-box1 .marquee-container1 {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+}
   
   .main-box1 .marquee1:hover {
 	animation-play-state: paused;
@@ -6267,7 +6273,7 @@ h3.apg-album-title {
 	}
   }
   .main-box1 {
-	padding: 20px 20px 30px 0px;
+	padding: 20px 20px 10px 0px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .MuiTabs-root {
@@ -6348,6 +6354,13 @@ nav.nav-menu .dropdown-menu a.dropdown-toggle:before {
 } */
 
 .custom-logo{
-	height: 100px;
+	height: 62px;
 	width: 62px;
+}
+
+.custom-logo img{
+	max-height: 62px;
+}
+.head-right img {
+    height: 70px;
 }
