@@ -31,7 +31,7 @@ import { CreateFooterService } from "./Admin/Components/CMSFooter/CreateFooter/C
 import { CreateFooterData } from "./Admin/Components/CMSFooter/CreateFooter/CreateFooterData";
 import { Profile } from "./Admin/Components/pages/Profile/Profile";
 import LoginForm from "./Admin/Components/pages/login/LoginForm.jsx";
-
+import {PerformanceList} from "./Website/components/websiteforms/Performanceindiceslist.jsx"
 import HomeNew from "./Admin/Components/pages/home/Homenew.jsx";
 import { Slider } from "./Admin/Components/Slider/Slider";
 import { CreateReports } from "./Admin/Components/Reports/CreateReports/CreateReports";
@@ -178,6 +178,7 @@ function App() {
               <>
                
                 <Route path="performance" element={<Performanceindices />} />
+                <Route path="performancelist" element={<PerformanceList />} />
               </>
              
             </Route>
@@ -191,6 +192,7 @@ function App() {
                 <Route path="form3" element={<Formthree />} />
                 <Route path="form4" element={<Formfour />} />
                 <Route path="performance" element={<Performanceindices />} />
+                
               </>
               <Route path="login" element={<LoginCandidate />} />
             </Route>
