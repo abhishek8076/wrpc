@@ -70,6 +70,10 @@ p {
 p a {
     color: #fff;
 }
+
+.inner-sec p a {
+    color: blue;
+}
 /* Link Typo */
 a {
     color: #666;

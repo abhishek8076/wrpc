@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { BASE_URL } from '../../../../Api/ApiFunctions';
 
 import DialogActions from '@mui/material/DialogActions';
 
@@ -91,10 +91,10 @@ export const EditSubmenu = () => {
   }, []);
 
   
- 
-  // const handleEditorChange = (content) => {
-  //   setHtml(content);
-  // };
+
+  const handleEditorChange = (content) => {
+    setHtml(content);
+  };
   const validateForm = () => {
     const newErrors = {};
 
@@ -136,9 +136,7 @@ export const EditSubmenu = () => {
 
     return Object.keys(newErrors).length === 0;
   };
-  const handleEditorChange = useCallback((newContent) => {
-    setContent(newContent);
-  }, []);
+
   const handleImageChange = (event) => {
     const imageFile = event.target.files[0];
     setFile(imageFile);
@@ -151,22 +149,16 @@ export const EditSubmenu = () => {
       const formDataToSend = new FormData();
       formDataToSend.append('file', imageFile);
       try {
-        const response = await apiClient.post("/api/TopMenu/uploadpdf", formDataToSend, {
+        const response = await apiClient.post('/api/TopMenu/uploadpdf', formDataToSend, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
-        
         const filePath = response.data.filepath;
         setFilePath(filePath);
-        console.log('Editor current:', editor.current);
         if (editor.current) {
-          const editorInstance = editor.current;
-          editorInstance.selection.insertHTML(`<a href="${filePath}">Download PDF</a>`);
-      
-         // editor.current.selection.insertHTML(`<a href="${filePath}">Download PDF</a>`);
-        } else {
-          console.error('Editor not initialized');
+          const range = editor.current.selection.range;
+          editor.current.selection.insertHTML(`<a href="${filePath}">Download PDF</a>`);
         }
       } catch (error) {
         console.error('Error uploading PDF:', error);
@@ -442,20 +434,17 @@ export const EditSubmenu = () => {
           )}
          <div className="mb-3">
               <label className="form-label text-dark">Choose File</label>
-              <div>
-      <JoditEditor
-        ref={editor}
-        value={content}
-        config={config}
-        tabIndex={1}
-        onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-        onChange={newContent => {}}
-      />
-      <input type="file" onChange={handleuploadpdf} />
-    </div>
+              <input
+                className="form-control"
+                type="file"
+                name="file"
+                onChange={handleuploadpdf}
+              />
+              {errors.file && <div className="text-danger">{errors.file}</div>}
+              
             </div>
-            <div>         
-          <a href={filePath} target="_blank">pdf file</a>
+            <div>    
+          <a href={BASE_URL + filePath}  target="_blank">pdf file</a>
         </div>
 
           {/* Submit Button */}
