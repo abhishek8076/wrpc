@@ -71,7 +71,6 @@ export const Editcustomdata = () => {
     setFormData({
       menu_id: '',
       submenu_id: 0,
-
       menuname: "",
       menuurl: "",
       contenttype: "",
