@@ -14,7 +14,7 @@ import ArchiveComponent from "./Website/components/Services/ArchiveComponent";
 import { LoginCandidate } from "./Website/components/Candidate/LoginCandidate";
 import { Commerical } from "./Website/components/Commerical/Commerical";
 import CommericalData from "./Website/components/Commerical/CommericalData";
-import {Customepage} from "./Admin/Components/custom/custom.jsx";
+import { Customepage } from "./Admin/Components/custom/custom.jsx";
 import CustomDetail from "./Website/components/Header/CustomDetail.jsx";
 import CustomTable from "./Admin/Components/custom/CustomTable.jsx"
 //===================================================== admin==============================================================================
@@ -35,7 +35,7 @@ import LoginForm from "./Admin/Components/pages/login/LoginForm.jsx";
 import HomeNew from "./Admin/Components/pages/home/Homenew.jsx";
 import { Slider } from "./Admin/Components/Slider/Slider";
 import { CreateReports } from "./Admin/Components/Reports/CreateReports/CreateReports";
-import { CreateTender} from "./Admin/Components/Tender/CreateTender/Createtender";
+import { CreateTender } from "./Admin/Components/Tender/CreateTender/Createtender";
 import { Createlink } from "./Admin/Components/Links/Createlinks/CreateLinks";
 import FooterTable from "./Admin/Components/CMSFooter/FooterTable/FooterTable";
 import { IndexEditFooter } from "./Admin/Components/CMSFooter/EditFooter/IndexEditFooter";
@@ -45,7 +45,7 @@ import { EditWhatsNew } from "./Admin/Components/WhatsNew/EditWhatsNew/EditWhats
 import MenuSubMenuTable from "./Admin/Components/CMS/MenuSubMenuTable/MenuSubMenuTable";
 import { Index } from "./Admin/Components/CMS/EditMenuSubmeu/IndexEdit";
 import LinkTable from "./Admin/Components/Links/Linktable/LinkTable";
-import {Editcustomdata} from "./Admin/Components/custom/Editcustomdata.jsx";
+import { Editcustomdata } from "./Admin/Components/custom/Editcustomdata.jsx";
 import { Editlink } from "./Admin/Components/Links/Editlinks/Editlinks";
 import ReportTable from "./Admin/Components/Reports/ReportTable/ReportTable";
 import { EditReport } from "./Admin/Components/Reports/EditReport/EditReport";
@@ -56,7 +56,7 @@ import { Aboutus } from "./Admin/Components/Aboutus/AboutUs";
 import AboutusTable from "./Admin/Components/Aboutus/AboutUsTable";
 import CommericalTable from "./Admin/Components/Commerical/CommericalTable";
 import { EditCommerical } from "./Admin/Components/Commerical/EditCommerical";
-import {CreateCommerical} from"./Admin/Components/Commerical/CreateCommerical.jsx"
+import { CreateCommerical } from "./Admin/Components/Commerical/CreateCommerical.jsx"
 import { CreateCandidate } from "./Admin/Components/candidate/Create/CreateCandidate";
 import AllCandidate from "./Admin/Components/candidate/Create/AllCandidate";
 import { EditCanidate } from "./Admin/Components/candidate/Create/EditCanidate";
@@ -67,7 +67,7 @@ import { ViewFormtwo } from "./Admin/Components/Form/ViewFormtwo.jsx";
 import { ViewFormthree } from "./Admin/Components/Form/ViewFormthree.jsx";
 import { ViewFormfour } from "./Admin/Components/Form/ViewFormfour.jsx";
 import { ViewFormfive } from "./Admin/Components/Form/ViewFormfive.jsx";
-import{Performanceindices} from "./Website/components/websiteforms/PerformanceIndices.jsx"
+import { Performanceindices } from "./Website/components/websiteforms/PerformanceIndices.jsx"
 import { AboutUsEdit } from "./Admin/Components/Aboutus/AboutUsEdit.jsx";
 import ForgetPassword from "./Admin/Components/pages/changepassword/ForgetPassword.jsx";
 import Newpassword from "./Admin/Components/pages/changepassword/Newpassword.jsx";
@@ -97,44 +97,44 @@ function App() {
 
     // Define the login page path
     const loginPagePath = "/";
-    if (currentPath === loginPagePath && currentPath==='/login') {
+    if (currentPath === loginPagePath && currentPath === '/login') {
       return;
     }
-   
+
 
     if (expirationTime && currentTime > parseInt(expirationTime, 15)) {
       if (storedUserString) {
         const email = storedUserString.r_email
-        
+
         try {
-        
-          const response = apiClient.get('/api/user/token?email='+email);
+
+          const response = apiClient.get('/api/user/token?email=' + email);
           //console.log("logout",response)
-          if (response.status === 200){
+          if (response.status === 200) {
             // Session has expired
-        setSessionExpired(true);
-        // Clean up localStorage
-        localStorage.clear();
-        // Redirect to the login page
-        window.location.replace("/");
-        // alert
-        alert("Your session has expired. Please log in again.");
+            setSessionExpired(true);
+            // Clean up localStorage
+            localStorage.clear();
+            // Redirect to the login page
+            window.location.replace("/");
+            // alert
+            alert("Your session has expired. Please log in again.");
           }
-        
+
         } catch (error) {
           console.log('Error:', error);
-        }  
+        }
       }
-     
-    
+
+
     }
-    
+
   };
 
 
 
   useEffect(() => {
- 
+
     // Check session timeout on component mount
     checkSessionTimeout();
 
@@ -163,7 +163,7 @@ function App() {
             {/* <Route exact path="/" element={<CmsDisplay/>} /> */}
             <Route exact path="/" element={<Home />} />
             <Route path="/menu/:id" element={<MenuDetail />} />
-            <Route path="/custom/:id" element={<CustomDetail/>} />
+            <Route path="/custom/:id" element={<CustomDetail />} />
             <Route path="/footer/:id" element={<FooterDetails />} />
             <Route path="*" element={<Errorfound />} />
 
@@ -175,7 +175,7 @@ function App() {
             {/* Candidate  */}
 
             <Route path="/candidate">
-              
+
               <>
                 <Route path="form1" element={<Formone />} />
                 <Route path="form2" element={<Formtwo />} />
@@ -190,131 +190,131 @@ function App() {
               <p>Your session has expired. Redirecting to the login page...</p>
             ) : (
               <>
-               {storedUserString ? (
-                <>
-                
-                <Route path="/banner" element={<Banner />} />
-                <Route path="/slider" element={<Slider />} />
-                <Route path="/sitemap" element={<SiteMap />} />
-                <Route path="/dashboard" element={<HomeNew />} />
-                <Route path="alltender" element={<TenderTable />} />
-                <Route path="/newpassword" element={<Newpassword/>} />
-                {/* user */}
-                <Route path="/user">
-                  <Route index element={<AllUser />} />
-                  <Route path="createuser" element={<CreateUser />} />
-                  <Route path="usertable" element={<AllUser />} />
-                  <Route path="edituser/:id" element={<EditUser />} />
-                </Route>
-                <Route path="/custom">
-            
-            <Route path='custom' element={<Customepage/>}/>
-            <Route path='allcustomdata' element={<CustomTable/>}/>
-            <Route path="editcustomdata/:id" element={<Editcustomdata />} />
-          </Route>
-                {/* Candidate */}
-                <Route path="/candidate">
-                  <Route path="createcandidate" element={<CreateCandidate />} />
-                  <Route path="candidatetable" element={<AllCandidate />} />
-                  <Route
-                    path="editcanidateuser/:id"
-                    element={<EditCanidate />}
-                  />
-                </Route>
-                {/* Header cms */}
-                <Route path="/cms">
-                  <Route index />
-                  <Route path="homepage" element={<HomePage />} />
-                  <Route path="menu" element={<CreateMenu />} />
-                  <Route path="submenu" element={<CreateSubMenu />} />
-                  <Route path="allmenu" element={<MenuSubMenuTable />} />
-                  <Route path="editdata/:id" element={<Index />} />
+                {storedUserString ? (
+                  <>
 
-                  {/* about us */}
-                  <Route path="aboutus" element={<Aboutus />} />
-                  <Route path="aboutustable" element={<AboutusTable />} />
-                  <Route path="Aboutusedit/:id" element={<AboutUsEdit/>} />
-                </Route>
-                {/* Services */}
-                <Route path="/services">
-                  {/* whats New */}
-                  <Route path="allwhatsnew" element={<WhatsNewTable />} />
-                  <Route path="addwhatsnew" element={<CreateWhatsNew />} />
-                  <Route path="editwhatsnew/:id" element={<EditWhatsNew />} />
+                    <Route path="/banner" element={<Banner />} />
+                    <Route path="/slider" element={<Slider />} />
+                    <Route path="/sitemap" element={<SiteMap />} />
+                    <Route path="/dashboard" element={<HomeNew />} />
+                    <Route path="alltender" element={<TenderTable />} />
+                    <Route path="/newpassword" element={<Newpassword />} />
+                    {/* user */}
+                    <Route path="/user">
+                      <Route index element={<AllUser />} />
+                      <Route path="createuser" element={<CreateUser />} />
+                      <Route path="usertable" element={<AllUser />} />
+                      <Route path="edituser/:id" element={<EditUser />} />
+                    </Route>
+                    <Route path="/custom">
 
-                  {/* Links */}
-                  <Route path="alllink" element={<LinkTable />} />
-                  <Route path="createlinks" element={<Createlink />} />
-                  <Route path="editlink/:id" element={<Editlink />} />
+                      <Route path='custom' element={<Customepage />} />
+                      <Route path='allcustomdata' element={<CustomTable />} />
+                      <Route path="editcustomdata/:id" element={<Editcustomdata />} />
+                    </Route>
+                    {/* Candidate */}
+                    <Route path="/candidate">
+                      <Route path="createcandidate" element={<CreateCandidate />} />
+                      <Route path="candidatetable" element={<AllCandidate />} />
+                      <Route
+                        path="editcanidateuser/:id"
+                        element={<EditCanidate />}
+                      />
+                    </Route>
+                    {/* Header cms */}
+                    <Route path="/cms">
+                      <Route index />
+                      <Route path="homepage" element={<HomePage />} />
+                      <Route path="menu" element={<CreateMenu />} />
+                      <Route path="submenu" element={<CreateSubMenu />} />
+                      <Route path="allmenu" element={<MenuSubMenuTable />} />
+                      <Route path="editdata/:id" element={<Index />} />
 
-                  {/* Report */}
-                  <Route path="allreport" element={<ReportTable />} />
-                  <Route path="createreport" element={<CreateReports />} />
-                  <Route path="editreport/:id" element={<EditReport />} />
+                      {/* about us */}
+                      <Route path="aboutus" element={<Aboutus />} />
+                      <Route path="aboutustable" element={<AboutusTable />} />
+                      <Route path="Aboutusedit/:id" element={<AboutUsEdit />} />
+                    </Route>
+                    {/* Services */}
+                    <Route path="/services">
+                      {/* whats New */}
+                      <Route path="allwhatsnew" element={<WhatsNewTable />} />
+                      <Route path="addwhatsnew" element={<CreateWhatsNew />} />
+                      <Route path="editwhatsnew/:id" element={<EditWhatsNew />} />
 
-                  {/* Tender */}
-                  <Route path="alltender" element={<TenderTable />} />
-                  <Route path="createtender" element={<CreateTender />} />
-                  <Route path="edittender/:id" element={<EditTender />} />
+                      {/* Links */}
+                      <Route path="alllink" element={<LinkTable />} />
+                      <Route path="createlinks" element={<Createlink />} />
+                      <Route path="editlink/:id" element={<Editlink />} />
 
-                  {/* Tender */}
-                  <Route path="commerical" element={<CreateCommerical />} />
-                  <Route path="commericaltable" element={<CommericalTable />} />
-                  <Route
-                    path="editcommercial/:id"
-                    element={<EditCommerical />}
-                  />
-                  <Route path="edittender/:id" element={<EditTender />} />
-                </Route>
-                <Route path="/form">
-                  <Route path="formdata" element={<FormTable />} />
-               
-                </Route>
+                      {/* Report */}
+                      <Route path="allreport" element={<ReportTable />} />
+                      <Route path="createreport" element={<CreateReports />} />
+                      <Route path="editreport/:id" element={<EditReport />} />
 
-                {/* Footer */}
-                <Route path="/footer">
-                  <Route index />
-                  <Route
-                    path="createfooterdisc"
-                    element={<CreateFooterDec />}
-                  />
-                  <Route
-                    path="createfooteraddress"
-                    element={<CreateFooterAddress />}
-                  />
-                  <Route
-                    path="createfooterservices"
-                    element={<CreateFooterService />}
-                  />
-                  <Route
-                    path="createfooterdata"
-                    element={<CreateFooterData />}
-                  />
-                  <Route path="footertable" element={<FooterTable />} />
-                  <Route path="editfooter/:id" element={<IndexEditFooter />} />
-                </Route>
+                      {/* Tender */}
+                      <Route path="alltender" element={<TenderTable />} />
+                      <Route path="createtender" element={<CreateTender />} />
+                      <Route path="edittender/:id" element={<EditTender />} />
 
-                <Route path="/feedback">
-              
-              <>
-                <Route path="formone/:id" element={<ViewFormOne/>} />
-                <Route path="formtwo/:id" element={<ViewFormtwo />} />
-                <Route path="formthree/:id" element={<ViewFormthree />} />
-                <Route path="formfour/:id" element={<ViewFormfour />} />
-                <Route path="formfive/:id" element={<ViewFormfive />} />
-              </>
-              <Route path="login" element={<LoginCandidate />} />
-            </Route>
-                </>
+                      {/* Tender */}
+                      <Route path="commerical" element={<CreateCommerical />} />
+                      <Route path="commericaltable" element={<CommericalTable />} />
+                      <Route
+                        path="editcommercial/:id"
+                        element={<EditCommerical />}
+                      />
+                      <Route path="edittender/:id" element={<EditTender />} />
+                    </Route>
+                    <Route path="/form">
+                      <Route path="formdata" element={<FormTable />} />
+
+                    </Route>
+
+                    {/* Footer */}
+                    <Route path="/footer">
+                      <Route index />
+                      <Route
+                        path="createfooterdisc"
+                        element={<CreateFooterDec />}
+                      />
+                      <Route
+                        path="createfooteraddress"
+                        element={<CreateFooterAddress />}
+                      />
+                      <Route
+                        path="createfooterservices"
+                        element={<CreateFooterService />}
+                      />
+                      <Route
+                        path="createfooterdata"
+                        element={<CreateFooterData />}
+                      />
+                      <Route path="footertable" element={<FooterTable />} />
+                      <Route path="editfooter/:id" element={<IndexEditFooter />} />
+                    </Route>
+
+                    <Route path="/feedback">
+
+                      <>
+                        <Route path="formone/:id" element={<ViewFormOne />} />
+                        <Route path="formtwo/:id" element={<ViewFormtwo />} />
+                        <Route path="formthree/:id" element={<ViewFormthree />} />
+                        <Route path="formfour/:id" element={<ViewFormfour />} />
+                        <Route path="formfive/:id" element={<ViewFormfive />} />
+                      </>
+                      <Route path="login" element={<LoginCandidate />} />
+                    </Route>
+                  </>
                 ) : (
-       
+
                   <Route path="*" element={<Errorfound />} />
-      )}
+                )}
               </>
             )}
             <Route path="/login" element={<LoginForm />} />
-            <Route path="/ForgetPassword" element={<ForgetPassword/>} />
-           
+            <Route path="/ForgetPassword" element={<ForgetPassword />} />
+
           </Routes>
         </Router>
       </div>

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getsubMenu } from "../../../Api/ApiFunctions";
+//import apiClient  from "../../../Api/ApiFunctions";
+import apiClient from "../../../Api/ApiClient"
+//import { getsubMenu } from "../../../Api/ApiFunctions";
 // import { useFontSize } from "../../../util/FontSizeContext";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
+import apis from '../../../Api/api.json';
  
 const CmsDisplay = () => {
   debugger;
   const { id } = useParams();
-  const [selectedLanguage, setSelectedLanguage] = useState(1);
+  const [selectedLanguage, setSelectedLanguage] = useState();
   // const { fontSize } = useFontSize();
   const [menudata, setMenuData] = useState([]);
   const storedUserData = localStorage.getItem("user1");
@@ -31,12 +34,26 @@ const CmsDisplay = () => {
    
   ];
  
- 
+  useEffect(() => {
+    const newSelectedLanguage = localStorage.getItem("selectedLanguage");
+    if (newSelectedLanguage) {
+      setSelectedLanguage(newSelectedLanguage);
+    }
+  }, []); // Empty dependency array to run only once when the component mounts
+
   useEffect(() => {
     async function fetchMenuData() {
+      debugger;
       try {
-        const data = await getsubMenu();
+        //const data = await getsubMenu();
+        const response = await apiClient.get(apis.getmenuSubmenu + selectedLanguage);
+      const data = response.data;
+      if (Array.isArray(data)) {
         setMenuData(data);
+      } else {
+        console.error("Unexpected data format:", data);
+        setMenuData([]); // or handle the case appropriately
+      }
       } catch (error) {
         console.error("Error fetching menu data:", error);
       }
@@ -44,9 +61,8 @@ const CmsDisplay = () => {
  
     fetchMenuData();
  
-    const newSelectedLanguage = localStorage.getItem("selectedLanguage");
-    setSelectedLanguage(newSelectedLanguage || 1);
-  }, []);
+
+  }, [selectedLanguage]);
  
  
   // const renderSubMenu = (submenuList) => {
@@ -154,19 +170,8 @@ const CmsDisplay = () => {
     <>
   <div className="main-nav">
 
-    {/* <nav id="navbar" className="navbar">
-      <div className="container-fluid nav-con">
-      <li>
-            <Link to={"/"}>
-              <i style={{ color: "white" }} className="fa fa-home"></i>
-            </Link>
-          </li>
-          {renderMenuItems(menudata)}
-          <i class="fa-solid fa-bars mobile-nav-toggle"></i>
-          </div>
-          <i class="bi bi-list mobile-nav-toggle"></i>
-        
-        </nav> */}
+    
+    
        
  
 
