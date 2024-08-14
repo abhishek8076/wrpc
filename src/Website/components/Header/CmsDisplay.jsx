@@ -5,6 +5,7 @@ import apiClient from "../../../Api/ApiClient"
 //import { getsubMenu } from "../../../Api/ApiFunctions";
 // import { useFontSize } from "../../../util/FontSizeContext";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
+import apis from '../../../Api/api.json';
  
 const CmsDisplay = () => {
   debugger;
@@ -31,6 +32,12 @@ const CmsDisplay = () => {
     { id: 13, name: "New Software Sharing of Transmission Charges" },
   ];
  
+  useEffect(() => {
+    const newSelectedLanguage = localStorage.getItem("selectedLanguage");
+    if (newSelectedLanguage) {
+      setSelectedLanguage(newSelectedLanguage);
+    }
+  }, []); // Empty dependency array to run only once when the component mounts
  
   useEffect(() => {
     async function fetchMenuData() {
@@ -49,12 +56,11 @@ const CmsDisplay = () => {
         console.error("Error fetching menu data:", error);
       }
     }
-
+ 
     fetchMenuData();
  
-    const newSelectedLanguage = localStorage.getItem("selectedLanguage");
-    setSelectedLanguage(newSelectedLanguage || 1);
-  }, []);
+
+  }, [selectedLanguage]);
  
  
   // const renderSubMenu = (submenuList) => {
