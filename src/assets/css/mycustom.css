@@ -272,6 +272,14 @@ section.news-section {
      animation: marquee 60s linear infinite; 
   }
 
+  .marquee-list1{
+    padding: 12px !important;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+  }
+
   /* Keyframe animation for marquee effect */
   @keyframes marquee {
     0% { top: 0; }
@@ -378,10 +386,11 @@ p.news-p {
 section.notice-section {
     background-color: #2d79bd;
     padding: 10px 0px;
-    margin-bottom: 60px;
+    /* margin-bottom: 60px; */
 }
 .city_main_banner {
     position: relative;
+    background-color: #163c56;
 }
 section.notice-section p{
     margin-bottom: 0px;
@@ -442,3 +451,9 @@ html {
     background-color: transparent;
     color: #fff;
 }
+/* .marquee-container1{
+    background-color: #8e268c;
+} */
+ .bg-light{
+    height: 300px;
+ }

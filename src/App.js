@@ -31,7 +31,7 @@ import { CreateFooterService } from "./Admin/Components/CMSFooter/CreateFooter/C
 import { CreateFooterData } from "./Admin/Components/CMSFooter/CreateFooter/CreateFooterData";
 import { Profile } from "./Admin/Components/pages/Profile/Profile";
 import LoginForm from "./Admin/Components/pages/login/LoginForm.jsx";
-
+import {PerformanceList} from "./Website/components/websiteforms/Performanceindiceslist.jsx"
 import HomeNew from "./Admin/Components/pages/home/Homenew.jsx";
 import { Slider } from "./Admin/Components/Slider/Slider";
 import { CreateReports } from "./Admin/Components/Reports/CreateReports/CreateReports";
@@ -77,6 +77,7 @@ import Newpassword from "./Admin/Components/pages/changepassword/Newpassword.jsx
 
 //=====================================import apiclient===============================>
 import apiClient from './Api/ApiClient';
+import LatestNews from "./Website/components/Latest_News/LatestNews.jsx";
 
 function App() {
   const [sessionExpired, setSessionExpired] = useState(false);
@@ -166,12 +167,21 @@ function App() {
             <Route path="/custom/:id" element={<CustomDetail />} />
             <Route path="/footer/:id" element={<FooterDetails />} />
             <Route path="*" element={<Errorfound />} />
+            <Route path="/latestnews" element={<LatestNews/>} />
 
             <Route path="/commerical" element={<Commerical />} />
             <Route path="/menu/commerical/:id" element={<CommericalData />} />
             <Route path="/archive" element={<ArchiveComponent />} />
             {/* <Route path="/sitemap" element ={<SiteMap/>} /> */}
-
+            <Route path="/menu">
+              
+              <>
+               
+                <Route path="performance" element={<Performanceindices />} />
+                <Route path="performancelist" element={<PerformanceList />} />
+              </>
+             
+            </Route>
             {/* Candidate  */}
 
             <Route path="/candidate">
@@ -182,6 +192,7 @@ function App() {
                 <Route path="form3" element={<Formthree />} />
                 <Route path="form4" element={<Formfour />} />
                 <Route path="performance" element={<Performanceindices />} />
+                
               </>
               <Route path="login" element={<LoginCandidate />} />
             </Route>

@@ -1,11 +1,10 @@
-import React, { useState, useEffect,useMemo,useCallback } from 'react';
+import React, { useState, useEffect,useMemo,useCallback, useRef  } from 'react';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import { Link, useParams } from 'react-router-dom';
-
-
+import { BASE_URL } from '../../../../Api/ApiFunctions';
 
 import DialogActions from '@mui/material/DialogActions';
 
@@ -46,7 +45,7 @@ export const EditSubmenu = () => {
   const [dropdownOptions, setDropdownOptions] = useState([]);
   const [formErrors, setFormErrors] = useState({});
   const [loading, setLoading] = useState(false);
-
+  const [filePath, setFilePath] = useState('');
   const [formData, setFormData] = useState({
     menu_id: '',
     submenu_id: "",
@@ -61,7 +60,7 @@ export const EditSubmenu = () => {
   });
 
   const [errors, setErrors] = useState({});
-
+  const editor = useRef(null);
   useEffect(() => {
     setFormData({
       menu_id: '',
@@ -91,10 +90,11 @@ export const EditSubmenu = () => {
     setContent(html);
   }, []);
 
+  
+
   const handleEditorChange = (content) => {
     setHtml(content);
   };
-
   const validateForm = () => {
     const newErrors = {};
 
@@ -141,7 +141,30 @@ export const EditSubmenu = () => {
     const imageFile = event.target.files[0];
     setFile(imageFile);
   };
+  const handleuploadpdf = async (event) => {
+    const imageFile = event.target.files[0];
+    if (imageFile && imageFile.type === 'application/pdf') {
+      setFile(imageFile);
 
+      const formDataToSend = new FormData();
+      formDataToSend.append('file', imageFile);
+      try {
+        const response = await apiClient.post('/api/TopMenu/uploadpdf', formDataToSend, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        const filePath = response.data.filepath;
+        setFilePath(filePath);
+        if (editor.current) {
+          const range = editor.current.selection.range;
+          editor.current.selection.insertHTML(`<a href="${filePath}">Download PDF</a>`);
+        }
+      } catch (error) {
+        console.error('Error uploading PDF:', error);
+      }
+    }
+  };
   const handleInputChange = (event) => {
     setSubMenu(event.target.value)
     setSelectedRole(event.target.value);
@@ -409,6 +432,20 @@ export const EditSubmenu = () => {
               {errors.editorContent && <div className="text-danger">{errors.editorContent}</div>}
             </div>
           )}
+         <div className="mb-3">
+              <label className="form-label text-dark">Choose File</label>
+              <input
+                className="form-control"
+                type="file"
+                name="file"
+                onChange={handleuploadpdf}
+              />
+              {errors.file && <div className="text-danger">{errors.file}</div>}
+              
+            </div>
+            <div>    
+          <a href={BASE_URL + filePath}  target="_blank">pdf file</a>
+        </div>
 
           {/* Submit Button */}
           <div className="btnsubmit">

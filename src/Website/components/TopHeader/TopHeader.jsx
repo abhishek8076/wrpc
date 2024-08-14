@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import Logo from "../../../assets/images/emblem-dark.png";
 import G20 from "../../../assets/images/swach-bharat.png";
 import swatchBarath from "../../../assets/images/G20-logo.png";
+import footerLogo from "../../../assets/images/top-logo.png"
+import './TopHeader.scss'
+
 export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
   const { increaseFontSize, decreaseFontSize, resetFontSize } = useFontSize();
   const [selectedLanguageA, setSelectedLanguageA] = useState(1);
@@ -284,38 +287,50 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
             <div class="top-header-sec">
               <div class="container">
                 <div class="row">
-                  <div class="col-md-6 col-sm-6">
-                    <div class="head-logo">
-                      <h2 class="logo">
+                  <div class="col-md-8 col-sm-6">
+                    <div class="head-logo h-100">
+                      <h2 class="logo w-100">
                         <a
                           href="/"
                           title="Home"
                           rel="home"
-                          class="header__logo"
+                          class="header__logo row w-100"
                           id="logo"
                         >
+                          <div className="col-md-3">
+                            <div className="custom-logo">
                           <img
-                            class="national_emblem"
-                            src={Logo}
+                            class="national_emblem "
+                            // src={Logo}
+                            
+                                    src={footerLogo}
                             alt="national emblem"
                           />
+                          </div>
+                          </div>
+                          <div className="col-md-9 d-flex align-items-center justify-content-end">
                           <em>
-                            <span>मंत्रालय / विभाग नाम</span>
-                            <span> Western Regional Power Committee </span>
+                            <span className="text-center">पश्चिम क्षेत्रीय विद्युत् समिति </span>
+                            <span> Western Regional Power Committee</span>
                           </em>
+                          </div>
                         </a>
                       </h2>
                     </div>
                   </div>
-                  <div class="col-md-6 col-sm-6">
+                  <div class="col-md-4 col-sm-6">
                     <div class="head-right">
-                      <div class="rgt-one">
+                      {/* <div class="rgt-one">
                         <img src={swatchBarath} alt="" />
-                      </div>
+                      </div> */}
                       <div class="rgt-two">
-                        <img src={G20} alt="" />
+                      <h6>Site Under Construction</h6>
                       </div>
-                      <div class="rgt-three"></div>
+                      <div class="rgt-three">
+                      <img src={G20} alt="" />
+                      </div>
+                      
+                    
                     </div>
                   </div>
                 </div>
@@ -483,7 +498,9 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                             ))}
                           </select>
                         </div>
-                        <div class="bar6 bar-c">
+                      </div>
+
+                      <div class="bar6 bar-c">
                           <div>
                             {storedUserString ? (
                               <button >
@@ -496,8 +513,9 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                             )}
                           </div>
                           {/* <button><Link to='/candidate/login'>Login</Link></button> */}
-                        </div>
                       </div>
+                      
+                      
                     </div>
                   </div>
                 </div>
@@ -506,40 +524,54 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
             <div class="top-header-sec">
               <div class="container">
                 <div class="row">
-                  <div class="col-md-6 col-sm-6">
-                    <div class="head-logo">
-                      <h2 class="logo">
+                  <div class="col-md-8 col-sm-6">
+                    <div class="head-logo h-100">
+                      <h2 class="logo w-100">
                         <a
                           href="/"
                           title="Home"
                           rel="home"
-                          class="header__logo"
+                          class="header__logo row w-100"
                           id="logo"
                         >
+                          <div className="col-md-3">
+                            <div className="custom-logo">
                           <img
-                            class="national_emblem"
-                            src={Logo}
+                            class="national_emblem w-50"
+                            // src={Logo}
+                            src={footerLogo}
                             alt="national emblem"
                           />
+                          </div>
+                          </div>
+                          <div className="col-md-8 d-flex align-items-center justify-content-end">
                           <em>
-                            <span>मंत्रालय / विभाग नाम</span>
-                            <span> Western Regional Power Committee 11</span>
+                          <span className="text-center">पश्चिम क्षेत्रीय विद्युत् समिति </span>
+                          <span> Western Regional Power Committee</span>
                           </em>
+                          </div>
+                          
                         </a>
                       </h2>
                     </div>
                   </div>
-                  <div class="col-md-6 col-sm-6">
-                    <div class="head-right">
-                      <div class="rgt-one">
+                  <div class="col-md-4 col-sm-6">
+                    <div class="head-right d-flex flex-end">
+                      {/* <div class="rgt-one">
                         <img src={swatchBarath} alt="" />
-                      </div>
+                      </div> */}
                       <div class="rgt-two">
-                        <img src={G20} alt="" />
+                        {/* <img src={G20} alt="" /> */}
+                        <h2 className="h6" style={{marginLeft:'50%'}}>Site Under Construction</h2>
                       </div>
-                      <div class="rgt-three"></div>
+                      <div class="rgt-three">
+                      <img src={G20} alt="" />
+                      </div>
+                      
                     </div>
+                    
                   </div>
+                  
                 </div>
               </div>
             </div>

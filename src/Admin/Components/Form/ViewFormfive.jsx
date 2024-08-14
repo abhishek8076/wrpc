@@ -150,7 +150,7 @@ export const ViewFormfive = () => {
   useEffect(() => {
     async function fetchData2() {
       try {
-debugger;
+
         //const response = await apiClient.get(`/api/Relay/${id}`);
         const response = await apiClient.get(`/api/PerformanceIndices/${id}`);
         setFormData(response.data);

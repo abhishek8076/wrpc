@@ -71,7 +71,6 @@ export const Editcustomdata = () => {
     setFormData({
       menu_id: '',
       submenu_id: 0,
-
       menuname: "",
       menuurl: "",
       contenttype: "",
@@ -184,9 +183,12 @@ export const Editcustomdata = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
-     
+      window.location.replace("custom/allcustomdata");
       toast.success('Data saved successfully!');
       setModalMessage('Data saved successfully!');
+      
+    
+     // window.location.href("custom/allcustomdata");
       setSnackbarOpen(true);
     } catch (error) {
       if (error.response && error.response.status === 401) {

@@ -59,7 +59,7 @@ export const Home = (prop) => {
     };
     
     return (
-        <div>
+        <div className='overflow-hidden'>
             <div>
                  <div>
                      <TopHeader selectedLanguage={selectedLanguage}
@@ -67,10 +67,10 @@ export const Home = (prop) => {
                     <CmsDisplay selectedLanguage={selectedLanguage} />
                     </div>
                  <Banner/>   
-                 <Aboutus/>
-                  <Counter/>
-                  <Services/>
-                  <Slider/>
+                 {/* <Aboutus/> */}
+                  {/* <Counter/> */}
+                  {/* <Services/> */}
+                  {/* <Slider/> */}
                   <CmsFooter/>
                     
                 </div>
