@@ -63,7 +63,8 @@ export const PerformanceList = () => {
                                     </a>
                                 ) : (
                                     'No file'
-                                )}</td>
+                                )}
+                            </td>
                         </tr>
                     ))}
                 </tbody>
