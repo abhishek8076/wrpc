@@ -474,12 +474,12 @@ export const Banner = () => {
                             aria-label="lab API tabs example"
                           >
                             <Tab
-                              label="रिपोर्टों"
+                              label="समाचार"
                               value="1"
                               className="custom-tab"
                             />
                             <Tab
-                              label="लिंक"
+                              label="नवीनतम अपलोड"
                               value="2"
                               className="custom-tab"
                             />
