@@ -193,12 +193,12 @@ export const Banner = () => {
                             aria-label="lab API tabs example"
                           >
                             <Tab
-                              label="Reports"
+                              label="News"
                               value="1"
                               className="custom-tab"
                             />
                             <Tab
-                              label="Links"
+                              label="Latest Uploads"
                               value="2"
                               className="custom-tab"
                             />
