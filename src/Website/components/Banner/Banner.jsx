@@ -686,7 +686,7 @@ export const Banner = () => {
               <div class="row pt-2">
                 <div class="col-md-2">
                   <div class="notice-lft">
-                    <p>सीधा आ रहा है</p>
+                    <p>अद्यतन समाचार</p>
                   </div>
                 </div>
                 <div class="col-md-10">

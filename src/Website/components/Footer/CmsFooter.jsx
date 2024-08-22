@@ -214,7 +214,7 @@ export const CmsFooter = () => {
 
                   <div class="col-md-3 col-sm-3">
                     <div class="widget_list">
-                      <h4 class="widget_title">त्वरित सम्पक</h4>
+                      <h4 class="widget_title">त्वरित संपर्क</h4>
                       <div class="widget_service">
                         <ul>
                           {menudata.map((item) => (
@@ -255,7 +255,7 @@ export const CmsFooter = () => {
 
                   <div class="col-md-3 col-sm-3">
                     <div class="widget_list">
-                      <h4 class="widget_title">अन्वेषण करना</h4>
+                      <h4 class="widget_title">खोज</h4>
                       <div class="widget_service">
                         <ul>
                           {menudata.map((item) => (
