@@ -78,6 +78,7 @@ import Newpassword from "./Admin/Components/pages/changepassword/Newpassword.jsx
 //=====================================import apiclient===============================>
 import apiClient from './Api/ApiClient';
 import LatestNews from "./Website/components/Latest_News/LatestNews.jsx";
+import PlanMonitoring from "./Website/components/websiteforms/PlanMonitoring.jsx";
 
 function App() {
   const [sessionExpired, setSessionExpired] = useState(false);
@@ -179,6 +180,7 @@ function App() {
                
                 <Route path="performance" element={<Performanceindices />} />
                 <Route path="performancelist" element={<PerformanceList />} />
+                <Route path="planmonitoring" element={<PlanMonitoring/>} />
               </>
              
             </Route>

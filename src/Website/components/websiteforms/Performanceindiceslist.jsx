@@ -11,8 +11,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import TextField from "@mui/material/TextField";
-import { CFormSelect } from "@coreui/react";
 import { MenuItem } from "@mui/material";
+import {CSmartTable} from '@coreui/react-pro'
 
 export const PerformanceList = () => {
   const [data, setData] = useState([]);
@@ -41,25 +41,71 @@ export const PerformanceList = () => {
   if (loading) return <Spinner animation="border" />;
   if (error) return <Alert variant="danger">{error}</Alert>;
 
-  const options=[
-    { label: "MSETCL", value: "1" },
-    { label: "MPPTCL", value: "2" },
-    { label: "GETCO", value: "3" },
-    { label: "CSPTCL", value: "4" },
-    { label: "GED (Goa)", value: "5" },
-    { label: "DD", value: "6" },
-    { label: "DNH", value: "7" },
-    { label: "POWER GRID WR1", value: "8" },
-    { label: "POWER GRID WR2", value: "9" },
-    { label: "NTPC", value: "10" },
-    { label: "KAPS 1&2", value: "11" },
-    { label: "KAPS 3&4", value: "12" },
-    { label: "TAPS 1&2", value: "13" },
-    { label: "TAPS 3&4", value: "14" },
-    { label: "AESL", value: "15" },
-    { label: "INDIGRID", value: "16" },
-    { label: "AEML", value: "17" },
-    { label: "ADANI IPPS", value: "18" }];
+  const utilities=[
+    { label: "MSETCL", value: "MSETCL" },
+    { label: "MPPTCL", value: "MPPTCL" },
+    { label: "GETCO", value: "GETCO" },
+    { label: "CSPTCL", value: "CSPTCL" },
+    { label: "GED (Goa)", value: "GED (Goa)" },
+    { label: "DD", value: "DD" },
+    { label: "DNH", value: "DNH" },
+    { label: "POWER GRID WR1", value: "POWER GRID WR1" },
+    { label: "POWER GRID WR2", value: "POWER GRID WR2" },
+    { label: "NTPC", value: "NTPC" },
+    { label: "KAPS 1&2", value: "KAPS 1&2" },
+    { label: "KAPS 3&4", value: "KAPS 3&4" },
+    { label: "TAPS 1&2", value: "TAPS 1&2" },
+    { label: "TAPS 3&4", value: "TAPS 3&4" },
+    { label: "AESL", value: "AESL" },
+    { label: "INDIGRID", value: "INDIGRID" },
+    { label: "AEML", value: "AEML" },
+    { label: "ADANI IPPS", value: "ADANI IPPS" }];
+
+    const columns=[
+      {
+        key:"ut",
+        label:"Utility"
+      },
+      {
+        key:"nc",
+        label:"Number of correct operations at internal power system faults (Nc)"
+      },
+      {
+        key:"nu",
+        label:"Number of unwanted operations (Nu)",
+      },
+      {
+        key:"nf",
+        label:"Number of failures to operate at internal power system faults(Nf)",
+      },
+      {
+        key:"ni",
+        label:"Number of incorrect operations (Ni=Nf+Nu)",
+      },
+      {
+        key:"d",
+        label:"The Dependability Index(D=Nc/(Nc+Nf)",
+      },
+      {
+        key:"s",
+        label:"The Security Index(S=Nc/(Nc+Nu)",
+      },
+      {
+        key:"r",
+        label:"The Reliability Index (R=Nc/(Nc+Ni))",
+      }
+    ];
+
+    const datas=[{
+      ut:"",
+      nc:"",
+      nu:"",
+      nf:"",
+      ni:"",
+      d:"",
+      s:"",
+      r:"",
+    }];
 
   return (
     <>
@@ -71,7 +117,7 @@ export const PerformanceList = () => {
         <main>
           <div className="container mt-4 vh-100">
             <h4>Performance Indices List</h4>
-            <div className="date-sec mb-5">
+            <div className="date-sec">
               <div className="col-md-4">
                 <div className="date-main">
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -96,12 +142,14 @@ export const PerformanceList = () => {
           select
           label="Utility"
           fullWidth>
-            {options.map((option)=>(
+            {utilities.map((option)=>(
                 <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
             ))}
             </TextField>
               </div>
             </div>
+
+            <CSmartTable columns={columns} items={datas} />
             {/* <Table striped bordered hover>
                 <thead>
                     <tr>
