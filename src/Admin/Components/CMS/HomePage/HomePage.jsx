@@ -97,7 +97,7 @@ export const HomePage = () => {
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">Dashboard</li>
-      <li class="breadcrumb-item  ">CMS</li>
+      <li class="breadcrumb-item">CMS</li>
       <li class="breadcrumb-item active ">Home Page</li>
      
     </ol>

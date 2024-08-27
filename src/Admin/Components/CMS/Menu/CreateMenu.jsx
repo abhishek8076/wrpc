@@ -232,7 +232,7 @@ export const CreateMenu = () => {
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">Dashboard</li>
-      <li class="breadcrumb-item  ">CMS</li>
+      <li class="breadcrumb-item">CMS</li>
       <li class="breadcrumb-item active ">Menu</li>
      
     </ol>

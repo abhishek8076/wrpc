@@ -13,30 +13,31 @@ const PlanMonitoring = () => {
       key: "stateTeam",
       label: "State Team",
       _props: { colSpan: 2, scope: "colgroup" },
-      _style: { width: "20%" },
+      _style: { width: "20%", textAlign:"center" },
       sorter: false,
     },
     {
       key: "stateAudited",
       label: "State to be audited",
       _props: { scope: "col" },
-      _style: { width: "17%" },
+      _style: { width: "17%", textAlign:"center" },
       sorter: true,
     },
     {
       key: "substation",
       label: "Name of Substation",
       _props: { scope: "col" },
+      _style:{textAlign:"center"},
       sorter: false,
     },
     {
       key: "monthOfAudit",
       label: "Month of Audit",
       _props: { scope: "col" },
-      _style: { width: "15%" },
+      _style: { width: "15%", textAlign:"center" },
       sorter: true,
     },
-    { key: "status", label: "Status", _props: { scope: "col" }, sorter: false },
+    { key: "status", label: "Status", _props: { scope: "col" }, sorter: false, _style:{textAlign:"center"} },
   ];
 
   const items = [
@@ -475,11 +476,12 @@ const PlanMonitoring = () => {
               columns={columns}
               items={data}
               itemsPerPage={60}
+              tableFilter
               tableProps={{
                 hover: true,
                 className: "text-center",
                 responsive:true,
-                
+
               }}
               scopedColumns={{
                 stateTeam: (item) => (
