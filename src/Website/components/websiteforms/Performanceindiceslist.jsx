@@ -12,12 +12,28 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import TextField from "@mui/material/TextField";
 import { MenuItem } from "@mui/material";
-import {CSmartTable} from '@coreui/react-pro'
+import { CSmartTable } from "@coreui/react-pro";
+import { DesktopDatePicker } from "@mui/x-date-pickers";
 
 export const PerformanceList = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedYear, setSelectedYear] = useState(null);
+  const [selectedMonth, setSelectedMonth] = useState(null);
+
+  const handleYearChange = (date) => {
+    if(date && date.isValid()){
+    setSelectedYear(date.year());  
+    setSelectedMonth(null); 
+    }
+    else{
+      setSelectedYear(null);
+    }
+  };
+
+  const minMonthDate = selectedYear==="2023"? dayjs("2023-10-01"):dayjs(`${selectedYear}-01-01`);  
+  const maxMonthDate = selectedYear? dayjs(`${selectedYear}-12-31`):dayjs();  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,12 +52,14 @@ export const PerformanceList = () => {
     };
 
     fetchData();
+
+   
   }, []);
 
   if (loading) return <Spinner animation="border" />;
   if (error) return <Alert variant="danger">{error}</Alert>;
 
-  const utilities=[
+  const utilities = [
     { label: "MSETCL", value: "MSETCL" },
     { label: "MPPTCL", value: "MPPTCL" },
     { label: "GETCO", value: "GETCO" },
@@ -59,53 +77,58 @@ export const PerformanceList = () => {
     { label: "AESL", value: "AESL" },
     { label: "INDIGRID", value: "INDIGRID" },
     { label: "AEML", value: "AEML" },
-    { label: "ADANI IPPS", value: "ADANI IPPS" }];
+    { label: "ADANI IPPS", value: "ADANI IPPS" },
+  ];
 
-    const columns=[
-      {
-        key:"ut",
-        label:"Utility"
-      },
-      {
-        key:"nc",
-        label:"Number of correct operations at internal power system faults (Nc)"
-      },
-      {
-        key:"nu",
-        label:"Number of unwanted operations (Nu)",
-      },
-      {
-        key:"nf",
-        label:"Number of failures to operate at internal power system faults(Nf)",
-      },
-      {
-        key:"ni",
-        label:"Number of incorrect operations (Ni=Nf+Nu)",
-      },
-      {
-        key:"d",
-        label:"The Dependability Index(D=Nc/(Nc+Nf)",
-      },
-      {
-        key:"s",
-        label:"The Security Index(S=Nc/(Nc+Nu)",
-      },
-      {
-        key:"r",
-        label:"The Reliability Index (R=Nc/(Nc+Ni))",
-      }
-    ];
+  const columns = [
+    {
+      key: "ut",
+      label: "Utility",
+    },
+    {
+      key: "nc",
+      label:
+        "Number of correct operations at internal power system faults (Nc)",
+    },
+    {
+      key: "nu",
+      label: "Number of unwanted operations (Nu)",
+    },
+    {
+      key: "nf",
+      label:
+        "Number of failures to operate at internal power system faults(Nf)",
+    },
+    {
+      key: "ni",
+      label: "Number of incorrect operations (Ni=Nf+Nu)",
+    },
+    {
+      key: "d",
+      label: "The Dependability Index(D=Nc/(Nc+Nf)",
+    },
+    {
+      key: "s",
+      label: "The Security Index(S=Nc/(Nc+Nu)",
+    },
+    {
+      key: "r",
+      label: "The Reliability Index (R=Nc/(Nc+Ni))",
+    },
+  ];
 
-    const datas=[{
-      ut:"",
-      nc:"",
-      nu:"",
-      nf:"",
-      ni:"",
-      d:"",
-      s:"",
-      r:"",
-    }];
+  const datas = [
+    {
+      ut: "",
+      nc: "",
+      nu: "",
+      nf: "",
+      ni: "",
+      d: "",
+      s: "",
+      r: "",
+    },
+  ];
 
   return (
     <>
@@ -118,18 +141,40 @@ export const PerformanceList = () => {
           <div className="container mt-4 vh-100">
             <h4>Performance Indices List</h4>
             <div className="date-sec">
-              <div className="col-md-4">
+              <div className="col-md-2">
                 <div className="date-main">
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer
-                      components={["DatePicker", "DatePicker", "DatePicker"]}
-                    >
+                    <DemoContainer components={["YearCalendar"]}>
                       <DatePicker
-                        label={"Month and Year"}
-                        views={["month", "year"]}
+                        label={"Year"}
+                        views={["year"]}
                         minDate={dayjs("2023-10-01")}
+                        maxDate={dayjs()}
                         renderInput={(params) => <TextField {...params} />}
-                        defaultValue={dayjs("2023-10-01")}
+                        value={selectedYear ? dayjs(`${selectedYear}`) : null}
+                        onChange={handleYearChange}
+                        openTo="year"
+                      />
+                    </DemoContainer>
+                  </LocalizationProvider>
+                </div>
+              </div>
+
+              <div className="col-md-2">
+                <div className="date-main">
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={["month"]}>
+                      <DesktopDatePicker
+                        views={["month"]}
+                        label={"Month"}
+                        minDate={selectedYear === 2023 ? dayjs("2023-10-01") :minMonthDate}
+                        maxDate={maxMonthDate}
+                        value={selectedMonth?dayjs(selectedMonth) : null}
+                        onChange={setSelectedMonth}
+                        closeOnSelect={true}
+                        openTo="month"
+                        disabled={!selectedYear}
+                        disableFuture={true}
                       />
                     </DemoContainer>
                   </LocalizationProvider>
@@ -137,15 +182,18 @@ export const PerformanceList = () => {
               </div>
 
               <div className="col-md-7">
-              <TextField
-              id="outlined-select-currency"
-          select
-          label="Utility"
-          fullWidth>
-            {utilities.map((option)=>(
-                <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
-            ))}
-            </TextField>
+                <TextField
+                  id="outlined-select-currency"
+                  select
+                  label="Utility"
+                  fullWidth
+                >
+                  {utilities.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
               </div>
             </div>
 
