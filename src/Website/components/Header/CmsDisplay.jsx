@@ -41,7 +41,7 @@ const CmsDisplay = () => {
  
   useEffect(() => {
     async function fetchMenuData() {
-      debugger;
+      
       try {
         //const data = await getsubMenu();
         const response = await apiClient.get(apis.getmenuSubmenu + selectedLanguage);
@@ -59,7 +59,9 @@ const CmsDisplay = () => {
  
     fetchMenuData();
  
-
+    fetchMenuData();
+    const newSelectedLanguage = localStorage.getItem("selectedLanguage");
+    setSelectedLanguage(newSelectedLanguage ? parseInt(newSelectedLanguage) : 1);
   }, [selectedLanguage]);
  
  

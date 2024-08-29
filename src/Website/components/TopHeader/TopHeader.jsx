@@ -33,7 +33,7 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
     const newSelectedLanguage = localStorage.getItem("selectedLanguage");
     setSelectedLanguageA(newSelectedLanguage || 1);
   }, []);
-
+ 
   const languages = {
     1: "English",
     2: "हिंदी",
@@ -252,6 +252,7 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                               </option>
                             ))}
                           </select>
+                          
                         </div>
                       </div>
                       <div class="bar6 bar-c">

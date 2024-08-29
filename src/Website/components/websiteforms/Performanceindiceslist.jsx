@@ -21,19 +21,20 @@ export const PerformanceList = () => {
   const [error, setError] = useState(null);
   const [selectedYear, setSelectedYear] = useState(null);
   const [selectedMonth, setSelectedMonth] = useState(null);
+  const [utilities, setUtilities] = useState([]);
 
   const handleYearChange = (date) => {
-    if(date && date.isValid()){
-    setSelectedYear(date.year());  
-    setSelectedMonth(null); 
+    if (date && date.isValid()) {
+      setSelectedYear(date.year());
+      setSelectedMonth(null);
     }
-    else{
+    else {
       setSelectedYear(null);
     }
   };
 
-  const minMonthDate = selectedYear==="2023"? dayjs("2023-10-01"):dayjs(`${selectedYear}-01-01`);  
-  const maxMonthDate = selectedYear? dayjs(`${selectedYear}-12-31`):dayjs();  
+  const minMonthDate = selectedYear === "2023" ? dayjs("2023-10-01") : dayjs(`${selectedYear}-01-01`);
+  const maxMonthDate = selectedYear ? dayjs(`${selectedYear}-12-31`) : dayjs();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,6 +45,11 @@ export const PerformanceList = () => {
           ...row,
         }));
         setData(dataWithIds);
+        const utilitiesData = response.data.map((row) => ({
+          value: row.id, // Assuming utilityId is the identifier
+          label: row.utilityname, // Assuming utilityName is the name of the utility
+        }));
+        setUtilities(utilitiesData);
       } catch (error) {
         setError("Error fetching data");
       } finally {
@@ -52,33 +58,20 @@ export const PerformanceList = () => {
     };
 
     fetchData();
-
-   
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   if (loading) return <Spinner animation="border" />;
   if (error) return <Alert variant="danger">{error}</Alert>;
 
-  const utilities = [
-    { label: "MSETCL", value: "MSETCL" },
-    { label: "MPPTCL", value: "MPPTCL" },
-    { label: "GETCO", value: "GETCO" },
-    { label: "CSPTCL", value: "CSPTCL" },
-    { label: "GED (Goa)", value: "GED (Goa)" },
-    { label: "DD", value: "DD" },
-    { label: "DNH", value: "DNH" },
-    { label: "POWER GRID WR1", value: "POWER GRID WR1" },
-    { label: "POWER GRID WR2", value: "POWER GRID WR2" },
-    { label: "NTPC", value: "NTPC" },
-    { label: "KAPS 1&2", value: "KAPS 1&2" },
-    { label: "KAPS 3&4", value: "KAPS 3&4" },
-    { label: "TAPS 1&2", value: "TAPS 1&2" },
-    { label: "TAPS 3&4", value: "TAPS 3&4" },
-    { label: "AESL", value: "AESL" },
-    { label: "INDIGRID", value: "INDIGRID" },
-    { label: "AEML", value: "AEML" },
-    { label: "ADANI IPPS", value: "ADANI IPPS" },
-  ];
+  
 
   const columns = [
     {
@@ -167,9 +160,9 @@ export const PerformanceList = () => {
                       <DesktopDatePicker
                         views={["month"]}
                         label={"Month"}
-                        minDate={selectedYear === 2023 ? dayjs("2023-10-01") :minMonthDate}
+                        minDate={selectedYear === 2023 ? dayjs("2023-10-01") : minMonthDate}
                         maxDate={maxMonthDate}
-                        value={selectedMonth?dayjs(selectedMonth) : null}
+                        value={selectedMonth ? dayjs(selectedMonth) : null}
                         onChange={setSelectedMonth}
                         closeOnSelect={true}
                         openTo="month"
@@ -183,7 +176,7 @@ export const PerformanceList = () => {
 
               <div className="col-md-7">
                 <TextField
-                  id="outlined-select-currency"
+                  id="outlined-select-utility"
                   select
                   label="Utility"
                   fullWidth
