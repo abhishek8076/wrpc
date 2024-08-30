@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Table, Spinner, Alert } from "react-bootstrap";
+import { Spinner, Alert } from "react-bootstrap";
 import apiClient from "../../../Api/ApiClient";
 import { TopHeader } from "../TopHeader/TopHeader";
 import CmsDisplay from "../Header/CmsDisplay";
 import { CmsFooter } from "../../components/Footer/CmsFooter";
-import { BASE_URL } from "../../../Api/ApiFunctions";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -22,29 +21,25 @@ export const PerformanceList = () => {
   const [selectedYear, setSelectedYear] = useState(null);
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [utilities, setUtilities] = useState([]);
+  const [selectedUtility, setSelectedUtility] = useState(null);
 
   const handleYearChange = (date) => {
     if (date && date.isValid()) {
       setSelectedYear(date.year());
       setSelectedMonth(null);
-    }
-    else {
+    } else {
       setSelectedYear(null);
     }
   };
 
-  const minMonthDate = selectedYear === "2023" ? dayjs("2023-10-01") : dayjs(`${selectedYear}-01-01`);
+  const minMonthDate =
+    selectedYear === "2023" ? dayjs("2023-10-01") : dayjs(`${selectedYear}-01-01`);
   const maxMonthDate = selectedYear ? dayjs(`${selectedYear}-12-31`) : dayjs();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await apiClient.get("/api/PerformanceIndices");
-        const dataWithIds = response.data.map((row, index) => ({
-          id: index + 1,
-          ...row,
-        }));
-        setData(dataWithIds);
         const utilitiesData = response.data.map((row) => ({
           value: row.id, // Assuming utilityId is the identifier
           label: row.utilityname, // Assuming utilityName is the name of the utility
@@ -60,18 +55,26 @@ export const PerformanceList = () => {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
+  const handleUtilityChange = async (event) => {
+    const selectedUtilityId = event.target.value;
+    setSelectedUtility(selectedUtilityId);
+    
+    try {
+      setLoading(true);
+      const response = await apiClient.get(`/api/PerformanceIndices/getperformance/${selectedUtilityId}`);
+      console.log(response.data); // Log the response data
+      const utilityData = response.data;
+      setData(utilityData); // Assuming the API returns the data you want to display
+    } catch (error) {
+      setError("Error fetching data for selected utility");
+    } finally {
+      setLoading(false);
+    }
+  };
+  
 
   if (loading) return <Spinner animation="border" />;
   if (error) return <Alert variant="danger">{error}</Alert>;
-
-  
 
   const columns = [
     {
@@ -80,8 +83,7 @@ export const PerformanceList = () => {
     },
     {
       key: "nc",
-      label:
-        "Number of correct operations at internal power system faults (Nc)",
+      label: "Number of correct operations at internal power system faults (Nc)",
     },
     {
       key: "nu",
@@ -89,8 +91,7 @@ export const PerformanceList = () => {
     },
     {
       key: "nf",
-      label:
-        "Number of failures to operate at internal power system faults(Nf)",
+      label: "Number of failures to operate at internal power system faults (Nf)",
     },
     {
       key: "ni",
@@ -98,11 +99,11 @@ export const PerformanceList = () => {
     },
     {
       key: "d",
-      label: "The Dependability Index(D=Nc/(Nc+Nf)",
+      label: "The Dependability Index (D=Nc/(Nc+Nf))",
     },
     {
       key: "s",
-      label: "The Security Index(S=Nc/(Nc+Nu)",
+      label: "The Security Index (S=Nc/(Nc+Nu))",
     },
     {
       key: "r",
@@ -110,25 +111,26 @@ export const PerformanceList = () => {
     },
   ];
 
-  const datas = [
-    {
-      ut: "",
-      nc: "",
-      nu: "",
-      nf: "",
-      ni: "",
-      d: "",
-      s: "",
-      r: "",
-    },
-  ];
+  const datas = data.map((item) => ({
+    ut: item.utilityname,
+    nc: item.correct_operation,
+    nu: item.unwanted_operation,
+    nf: item.failures_operate,
+    ni: item.unwanted_operation + item.failures_operate,
+    d: item.correct_operation/(item.correct_operation+item.failures_operate),
+    s: item.correct_operation/(item.correct_operation+item.unwanted_operation),
+    r: item.correct_operation/(item.correct_operation+item.unwanted_operation + item.failures_operate),
+    // ni: item.incorrect_operation,
+    // d: item.dependability_index,
+    // s: item.security_index,
+    // r: item.reliability_index,
+
+  }));
 
   return (
     <>
       <div>
-        <div>
-          <TopHeader />
-        </div>
+        <TopHeader />
         <CmsDisplay />
         <main>
           <div className="container mt-4 vh-100">
@@ -180,6 +182,8 @@ export const PerformanceList = () => {
                   select
                   label="Utility"
                   fullWidth
+                  value={selectedUtility}
+                  onChange={handleUtilityChange}
                 >
                   {utilities.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
@@ -190,36 +194,11 @@ export const PerformanceList = () => {
               </div>
             </div>
 
-            <CSmartTable columns={columns} items={datas} />
-            {/* <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>Utility Name</th>
-                        <th>Correct Operations</th>
-                        <th>Unwanted Operations</th>
-                        <th>Failures</th>
-                        <th>Incorrect Operations</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((item) => (
-                        <tr key={item.id}>
-                            <td>{item.utilityname}</td>
-                            <td>{item.correct_operation}</td>
-                            <td>{item.unwanted_operation}</td>
-                            <td>{item.failures_operate}</td>
-                            <td> {item.incorrect_operation ? (
-                                    <a href={BASE_URL+item.filepath} target="_blank" rel="noopener noreferrer">
-                                        {item.filepath}
-                                    </a>
-                                ) : (
-                                    'No file'
-                                )}
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </Table> */}
+            {selectedUtility ? (
+              <CSmartTable columns={columns} items={datas} />
+            ) : (
+              <p>Please select a utility to view the performance data.</p>
+            )}
           </div>
           <CmsFooter />
         </main>

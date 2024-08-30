@@ -3,6 +3,7 @@ import { useFontSize } from "../../../util/FontSizeContext";
 import { Link } from "react-router-dom";
 import Logo from "../../../assets/images/emblem-dark.png";
 import G20 from "../../../assets/images/swach-bharat.png";
+import { useNavigate } from 'react-router-dom';
 import swatchBarath from "../../../assets/images/G20-logo.png";
 import footerLogo from "../../../assets/images/top-logo.png"
 import './TopHeader.scss'
@@ -14,6 +15,7 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
   const [currentTime, setCurrentTime] = useState("");
   const storedUserString = localStorage.getItem("user");
   const storedUserString1 = localStorage.getItem("user1");
+  const navigate = useNavigate();
 
   const [isReading, setIsReading] = useState(false);
 
@@ -39,7 +41,15 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
     2: "हिंदी",
     // Add more languages as needed
   };
+  const handleSelectChange = (event) => {
+    const selectedValue = event.target.value;
 
+    if (selectedValue === '1') {
+      navigate('/login');
+    } else if (selectedValue === '2') {
+      navigate('/candidate/login');
+    }
+  };
   useEffect(() => {
     const updateDateTime = () => {
       const now = new Date();
@@ -269,9 +279,26 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
       <Link to="/">Logout</Link>
     </button>
   ) : (
-    <button>
-      <Link to="/login">Login</Link>
-    </button>
+    // <button>
+    //   <Link to="/login">Login</Link>
+    // </button>
+    <>
+    {parseInt(selectedLanguage) === 1 ? (
+      <select name="languagetype" className="dash_link_nt"  onChange={handleSelectChange}>
+      <option value="" >  ---Login --- </option>
+      <option value="1" >Admin Login</option>
+      <option value="2" >Candidate Login</option>
+    </select>
+     
+    ) : (
+      
+      <select name="languagetype" className="dash_link_nt"  onChange={handleSelectChange}>
+      <option value="" >  --- लॉग इन --- </option>
+      <option value="1" >व्यवस्थापक लॉगिन</option>
+      <option value="2" >अभ्यर्थी लॉगिन</option>
+    </select>
+    )}
+  </>
   )}
 </div>
 
@@ -508,9 +535,25 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                                 <Link to="/">Logout</Link>
                               </button>
                             ) : (
-                              <button>
-                                <Link to="/candidate/login">Login</Link>
-                              </button>
+                              // <button>
+                              //   <Link to="/candidate/login">Login</Link>
+                              // </button>
+                              <>
+                               {parseInt(selectedLanguage) === 1 ? (
+      <select name="languagetype" className="dash_link_nt"  onChange={handleSelectChange}>
+      <option value="" >  ---Login --- </option>
+      <option value="1" >Admin Login</option>
+      <option value="2" >Candidate Login</option>
+    </select>
+     
+    ) : (
+      
+      <select name="languagetype" className="dash_link_nt"  onChange={handleSelectChange}>
+      <option value="" >  --- लॉग इन --- </option>
+      <option value="1" >व्यवस्थापक लॉगिन</option>
+      <option value="2" >अभ्यर्थी लॉगिन</option>
+    </select>
+    )}</>
                             )}
                           </div>
                           {/* <button><Link to='/candidate/login'>Login</Link></button> */}
