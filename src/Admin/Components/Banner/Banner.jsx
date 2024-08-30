@@ -173,7 +173,7 @@ export const Banner = ({ id, onDelete }) => {
             <label htmlFor={`upload-input-${id}`}>
               <Button variant="outlined" component="span">
                 <AddPhotoAlternateIcon />
-                Choose Video
+                Choose File
               </Button>
             </label>
 
