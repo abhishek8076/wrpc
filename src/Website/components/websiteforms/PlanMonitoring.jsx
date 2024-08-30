@@ -34,7 +34,7 @@ const PlanMonitoring = () => {
       key: "monthOfAudit",
       label: "Month of Audit",
       _props: { scope: "col" },
-      _style: { width: "15%", textAlign:"center" },
+      _style: { width: "15%", textAlign:"center"},
       sorter: true,
     },
     { key: "status", label: "Status", _props: { scope: "col" }, sorter: false, _style:{textAlign:"center"} },
@@ -47,6 +47,7 @@ const PlanMonitoring = () => {
       substation: "400kV Chandrapur",
       monthOfAudit: "December",
       status: "Protection Audit Completed on 17.01.2024 - 18.01.2024.",
+      _props:{scope:"row", color:"success"},
     },
     {
       stateTeam: ["Gujarat", "GJ-A"],
@@ -54,6 +55,7 @@ const PlanMonitoring = () => {
       substation: "400kV Alkud",
       monthOfAudit: "December",
       status: "Protection Audit Completed on 18.12.2023 - 21.12.2023",
+
     },
     {
       stateTeam: ["Maharashtra", "MH-A"],
@@ -481,7 +483,6 @@ const PlanMonitoring = () => {
                 hover: true,
                 className: "text-center",
                 responsive:true,
-
               }}
               scopedColumns={{
                 stateTeam: (item) => (
