@@ -135,7 +135,7 @@ export const PerformanceList = () => {
         <main>
           <div className="container mt-4 vh-100">
             <h4>Performance Indices List</h4>
-            <div className="date-sec">
+            <div className="date-sec row">
               <div className="col-md-2">
                 <div className="date-main">
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -149,15 +149,14 @@ export const PerformanceList = () => {
                         value={selectedYear ? dayjs(`${selectedYear}`) : null}
                         onChange={handleYearChange}
                         openTo="year"
-                        className="main"
-                        formatDensity="spacious"
+                       enableAccessibleFieldDOMStructure
                       />
                     </DemoContainer>
                   </LocalizationProvider>
                 </div>
               </div>
 
-              <div className="col-md-2">
+              <div className="col-md-3">
                 <div className="date-main">
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer components={["month"]}>
@@ -172,13 +171,14 @@ export const PerformanceList = () => {
                         openTo="month"
                         disabled={!selectedYear}
                         disableFuture={true}
-                        className="main"  />
+                        enableAccessibleFieldDOMStructure
+                      />
                     </DemoContainer>
                   </LocalizationProvider>
                 </div>
               </div>
 
-              <div className="col-md-7">
+              <div className="col-md-6">
                 <TextField
                   id="outlined-select-utility"
                   select
@@ -186,6 +186,7 @@ export const PerformanceList = () => {
                   fullWidth
                   value={selectedUtility}
                   onChange={handleUtilityChange}
+                  size="normal"
                 >
                   {utilities.map((option) => (
                     <MenuItem key={option.value} value={option.value}>

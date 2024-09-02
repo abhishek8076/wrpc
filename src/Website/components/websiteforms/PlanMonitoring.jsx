@@ -47,7 +47,6 @@ const PlanMonitoring = () => {
       substation: "400kV Chandrapur",
       monthOfAudit: "December",
       status: "Protection Audit Completed on 17.01.2024 - 18.01.2024.",
-      _props:{scope:"row", color:"success"},
     },
     {
       stateTeam: ["Gujarat", "GJ-A"],
