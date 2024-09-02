@@ -545,7 +545,17 @@ html {
     background-color: #fff;
 }
 
-.css-1rtg91x-MuiDateCalendar-root {
+.date-main{
+    width:110%;
+}
+
+.main{
+    height: 40px;
+    margin: 0;
+}
+
+
+/* .css-1rtg91x-MuiDateCalendar-root {
     overflow: hidden;
     width: 320px;
     max-height: 200px;
@@ -601,4 +611,4 @@ html {
     border-radius: 4px;
     padding-right: 14px;
     padding: 10px;
-}
+} */

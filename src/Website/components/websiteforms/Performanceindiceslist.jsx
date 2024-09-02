@@ -139,7 +139,7 @@ export const PerformanceList = () => {
               <div className="col-md-2">
                 <div className="date-main">
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer components={["YearCalendar"]}>
+                    <DemoContainer components={["YearCalendar","YearCalendar","YearCalendar"]}>
                       <DatePicker
                         label={"Year"}
                         views={["year"]}
@@ -149,6 +149,8 @@ export const PerformanceList = () => {
                         value={selectedYear ? dayjs(`${selectedYear}`) : null}
                         onChange={handleYearChange}
                         openTo="year"
+                        className="main"
+                        formatDensity="spacious"
                       />
                     </DemoContainer>
                   </LocalizationProvider>
@@ -170,7 +172,7 @@ export const PerformanceList = () => {
                         openTo="month"
                         disabled={!selectedYear}
                         disableFuture={true}
-                      />
+                        className="main"  />
                     </DemoContainer>
                   </LocalizationProvider>
                 </div>
