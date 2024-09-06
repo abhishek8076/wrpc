@@ -186,11 +186,14 @@ const CmsDisplay = () => {
                   </Link>
                 </li>
               )}
-              <li>
-                <Link to="/candidate/performance" className="dropdown-item">
+               {user1.can_ft5 === 1 && (
+                <li>
+                  <Link to="/candidate/performance" className="dropdown-item">
                   Performance Indices
-                </Link>
-              </li>
+                  </Link>
+                </li>
+              )}
+              
             </ul>
           </li>
         )}

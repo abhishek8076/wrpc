@@ -44,16 +44,19 @@ export default function AllCandidate() {
             headerName: "Edit",
             sortable: false,
             renderCell: (params) => (
-                user.r_usertype === 1  || null ? ( // Check the user role here
-                    <Link to={'/candidate/editcanidateuser/' + params.row.cand_id}>
-                        <EditIcon style={{ cursor: 'pointer' }} />
-                    </Link>
-                ) : (
-                    <DesignServicesIcon
-                        style={{ cursor: 'no-drop',color:'red'  }}
-                        disabled
-                    />
-                )
+                <Link to={'/candidate/editcanidateuser/' + params.row.cand_id}>
+                //         <EditIcon style={{ cursor: 'pointer' }} />
+                //     </Link>
+                // user.r_usertype === 1  || null ? ( // Check the user role here
+                //     <Link to={'/candidate/editcanidateuser/' + params.row.cand_id}>
+                //         <EditIcon style={{ cursor: 'pointer' }} />
+                //     </Link>
+                // ) : (
+                //     <DesignServicesIcon
+                //         style={{ cursor: 'no-drop',color:'red'  }}
+                //         disabled
+                //     />
+                // )
             ),
         },
         {
@@ -61,17 +64,21 @@ export default function AllCandidate() {
             headerName: "Delete",
             sortable: false,
             renderCell: (params) => (
-                user.r_usertype === 1 || null ? (
-                    <DeleteIcon
+                <DeleteIcon
                         style={{ cursor: 'pointer' }}
                         onClick={() => handleDeleteClick(params.row)}
                     />
-                ) : (
-                    <DeleteIcon
-                        style={{ cursor: 'no-drop',color:'red' }}
-                        disabled
-                    />
-                )
+                // user.r_usertype === 1 || null ? (
+                //     <DeleteIcon
+                //         style={{ cursor: 'pointer' }}
+                //         onClick={() => handleDeleteClick(params.row)}
+                //     />
+                // ) : (
+                //     <DeleteIcon
+                //         style={{ cursor: 'no-drop',color:'red' }}
+                //         disabled
+                //     />
+                // )
             ),
         }
     ];
@@ -129,9 +136,7 @@ export default function AllCandidate() {
                     </nav>
                     </div>
                     <div className="pagetitle-rgt">
-                        <Link to='/dashboard'>
-                        <button type="button"  class="btn btn-info">Back</button>
-                        </Link>
+                        
                         <span className="header-box-rgt">
               <Link to="/candidate/createcandidate">
                 <p>
@@ -145,7 +150,19 @@ export default function AllCandidate() {
                     
                 </div>
 
-                
+                <div className="header-box">
+            <div className="header-box-lft">
+              <h1 className="maintitle">Table</h1>
+            </div>
+            <div className="header-box-rgt">
+            <Link to="/candidate/createcandidate">
+                <p>
+                  <AddIcon />
+                  New Candidate
+                </p>
+              </Link>
+            </div>
+          </div>
                 <Box sx={{ height: 400, width: '100%' }}style={{backgroundColor:"#fff"}}>
                     <DataGrid
                         

@@ -31,6 +31,7 @@ export const CreateCandidate = () => {
     formtype2: 0,
     formtype3: 0,
     formtype4: 0,
+    formtype5: 0,
     formtype1_1: 0,
     formtype1_2: 0,
     formtype1_3: 0,
@@ -158,7 +159,8 @@ export const CreateCandidate = () => {
             formtype1_4: 0,
             formtype2: 0,
             formtype3: 0,
-            formtype4: 0
+            formtype4: 0,
+            formtype5: 0
 
           });
 
@@ -380,8 +382,13 @@ export const CreateCandidate = () => {
                                     name="formtype4"
                                     checked={formData.formtype4}
                                     onChange={handleCheckboxChange}
+                                    id="flexCheckChecked" />
+ <label>Performance Indices</label>
+                                  <input type='checkbox'
+                                    name="formtype5"
+                                    checked={formData.formtype5}
+                                    onChange={handleCheckboxChange}
                                     id="flexCheckChecked" /></div>
-
                                 <Form.Control.Feedback type="invalid">
                                   {formErrors.address}
                                 </Form.Control.Feedback>

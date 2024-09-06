@@ -32,7 +32,8 @@ export const EditCanidate = () => {
     formtype1_1: 0,
     formtype1_2: 0,
     formtype1_3: 0,
-    formtype1_4: 0
+    formtype1_4: 0,
+    formtype5: 0
   });
 
   // New state variables for confirmation dialog and loading
@@ -149,6 +150,7 @@ export const EditCanidate = () => {
       formDataToSend.append('formtype1_2', formData.formtype1_2);
       formDataToSend.append('formtype1_3', formData.formtype1_3);
       formDataToSend.append('formtype1_4', formData.formtype1_4);
+      formDataToSend.append('formtype5', formData.formtype5);
       const response = await apiClient.post("/api/Candidate/put/" + id, formData);
 
       if (response.status === 200) {
@@ -323,7 +325,7 @@ export const EditCanidate = () => {
                                       onChange={handleCheckboxChange}
                                       id="flexCheckChecked" />
                                
-                                    {formData.formtype1 && (
+                                    {/* {formData.formtype1 && (
                                       <>
                                         <label>Form 1</label>
                                         <input
@@ -358,7 +360,7 @@ export const EditCanidate = () => {
                                           id="flexCheckChecked"
                                         />
                                       </>
-                                    )}
+                                    )} */}
                                     <label>TPPA PLAN & MONITORING</label>
                                     <input type='checkbox'
                                       name="formtype2"
@@ -377,7 +379,14 @@ export const EditCanidate = () => {
                                       name="formtype4"
                                       checked={formData.formtype4}
                                       onChange={handleCheckboxChange}
-                                      id="flexCheckChecked" /></div>
+                                      id="flexCheckChecked" />
+<label> Performance Indices</label>
+                                    <input type='checkbox'
+                                      name="formtype5"
+                                      checked={formData.formtype5}
+                                      onChange={handleCheckboxChange}
+                                      id="flexCheckChecked" />
+                                      </div>
 
                                   <Form.Control.Feedback type="invalid">
                                     {formErrors.address}
