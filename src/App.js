@@ -71,8 +71,8 @@ import { Performanceindices } from "./Website/components/websiteforms/Performanc
 import { AboutUsEdit } from "./Admin/Components/Aboutus/AboutUsEdit.jsx";
 import ForgetPassword from "./Admin/Components/pages/changepassword/ForgetPassword.jsx";
 import Newpassword from "./Admin/Components/pages/changepassword/Newpassword.jsx";
-
-
+import CandidateForgetpassword from './Admin/Components/pages/Candidatepassword/forgetcandpass.jsx'
+import ChangecandidatePassword from './Admin/Components/pages/Candidatepassword/Changecandidatepass.jsx'
 
 
 //=====================================import apiclient===============================>
@@ -172,7 +172,9 @@ function App() {
             <Route path="/footer/:id" element={<FooterDetails />} />
             <Route path="*" element={<Errorfound />} />
             <Route path="/latestnews" element={<LatestNews/>} />
-
+            
+            <Route path="/candchangepassword" element={<ChangecandidatePassword/>} />
+            <Route path="/candforgotpassword" element={<CandidateForgetpassword/>} />
             <Route path="/commerical" element={<Commerical />} />
             <Route path="/menu/commerical/:id" element={<CommericalData />} />
             <Route path="/archive" element={<ArchiveComponent />} />

@@ -91,8 +91,8 @@ export default function WhatsNewTable() {
     useEffect(() => {
         async function fetchData() {
             try {
-                //const response = await apiClient.get(api.whatsnew);
-                const response = await getwhatsnew();
+                const response = await apiClient.get(api.whatsnew);
+                //const response = await getwhatsnew();
                 const dataWithIds = response.data.map((row, index) => ({ id: index, ...row }));
                 setApiData(dataWithIds);
             } catch (error) {

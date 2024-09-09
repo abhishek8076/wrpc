@@ -279,6 +279,7 @@ export const LoginCandidate = () => {
             >
               Sign In
             </Button>
+            <a href="/candforgotpassword">Forgot Password?</a>
           </form>
         </Box>
       </Container>

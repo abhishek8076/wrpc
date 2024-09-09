@@ -93,8 +93,8 @@ export default function ReportTable() {
         async function fetchData() {
             
             try {
-                //const response = await apiClient.get(api.Report);
-                const response = await getReport();
+                const response = await apiClient.get(api.getreport);
+                //const response = await getReport();
                 const dataWithIds = response.data.map((row, index) => ({ id: index+1, ...row }));
                 setApiData(dataWithIds);
             } catch (error) {

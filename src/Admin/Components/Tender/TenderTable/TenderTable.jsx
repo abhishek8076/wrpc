@@ -92,8 +92,8 @@ export default function TenderTable() {
     useEffect(() => {
         async function fetchData() {
             try {
-                //const response = await apiClient.get(api.Tender);
-                const response = await getTender();
+                const response = await apiClient.get(api.Tender);
+                //const response = await getTender();
                 const dataWithIds = response.data.map((row, index) => ({ id: index, ...row }));
                 setApiData(dataWithIds);
             } catch (error) {

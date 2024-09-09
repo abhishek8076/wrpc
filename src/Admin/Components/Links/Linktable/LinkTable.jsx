@@ -91,8 +91,8 @@ export default function LinkTable() {
     useEffect(() => {
         async function fetchData() {
             try {
-                //const response = await apiClient.get(api.Links);
-                const response = await getLinks();
+                const response = await apiClient.get(api.Links);
+                //const response = await getLinks();
                 const dataWithIds = response.data.map((row, index) => ({ id: index, ...row }));
                 setApiData(dataWithIds);
             } catch (error) {

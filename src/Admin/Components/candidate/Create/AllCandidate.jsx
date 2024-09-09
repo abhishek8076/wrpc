@@ -45,8 +45,8 @@ export default function AllCandidate() {
             sortable: false,
             renderCell: (params) => (
                 <Link to={'/candidate/editcanidateuser/' + params.row.cand_id}>
-                //         <EditIcon style={{ cursor: 'pointer' }} />
-                //     </Link>
+                        <EditIcon style={{ cursor: 'pointer' }} />
+                    </Link>
                 // user.r_usertype === 1  || null ? ( // Check the user role here
                 //     <Link to={'/candidate/editcanidateuser/' + params.row.cand_id}>
                 //         <EditIcon style={{ cursor: 'pointer' }} />
@@ -129,8 +129,7 @@ export default function AllCandidate() {
                     <div className="pagetitle-lft">
                     <h1>All Candidate</h1>
                     <nav>
-                        <ol className="breadcrumb">
-                           
+                        <ol className="breadcrumb">                           
                             <li className="breadcrumb-item active">All Candidate </li>
                         </ol>
                     </nav>

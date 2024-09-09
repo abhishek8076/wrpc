@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import swatchBarath from "../../../assets/images/G20-logo.png";
 import footerLogo from "../../../assets/images/top-logo.png"
 import './TopHeader.scss'
+import './UserOptionsDropdown.css';
 
 export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
   const { increaseFontSize, decreaseFontSize, resetFontSize } = useFontSize();
@@ -16,9 +17,19 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
   const storedUserString = localStorage.getItem("user");
   const storedUserString1 = localStorage.getItem("user1");
   const navigate = useNavigate();
-
+  const [showDropdown, setShowDropdown] = useState(false);
+  
   const [isReading, setIsReading] = useState(false);
+  let cand_name = '';
 
+  if (storedUserString1) {
+    const user1 = JSON.parse(storedUserString1);
+    cand_name = user1?.cand_name || '';  // Safely access cand_name or set it to an empty string if not found
+  } else {
+    // Handle the case when storedUserString1 is null
+    console.log('No user data found in localStorage');
+  }
+  
   const startReading = () => {
     const content = document.querySelector("body").innerText;
     const utterance = new SpeechSynthesisUtterance(content);
@@ -29,6 +40,11 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
   const stopReading = () => {
     window.speechSynthesis.cancel();
     setIsReading(false);
+  };
+
+  const handleChangePassword = () => {
+    // Redirect to the change password page
+    navigate('/candchangepassword');
   };
 
   useEffect(() => {
@@ -274,10 +290,26 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
     <button onClick={handleLogout}>
       <Link to="/">Logout</Link>
     </button>
-  ) : storedUserString1 ? (
-    <button onClick={handleLogout}>
-      <Link to="/">Logout</Link>
-    </button>
+  ) :  storedUserString1 ? (
+    <div className="user-options user-name">
+      
+      <button
+        className="primary-button "
+        onClick={() => setShowDropdown(!showDropdown)}
+      >
+        Welcome, {cand_name}
+      </button>
+      {showDropdown && (
+      <div className="dropdown dropdown-item">
+        <div>
+        <button onClick={handleLogout} className="dropdown-button" > Candidate Logout</button>
+    
+        </div>
+       <div> <button onClick={handleChangePassword} className="dropdown-button">Change Password</button></div>
+       
+      </div>
+    )}
+    </div>
   ) : (
     // <button>
     //   <Link to="/login">Login</Link>
