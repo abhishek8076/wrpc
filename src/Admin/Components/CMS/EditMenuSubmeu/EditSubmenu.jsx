@@ -86,7 +86,7 @@ export const EditSubmenu = () => {
   );
   
   const onChange = useCallback((html) => {
-    // console.log("Editor content changed:", html);
+   
     setContent(html);
   }, []);
 
@@ -222,7 +222,6 @@ export const EditSubmenu = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      // console.log('Data saved:', response.data);
       toast.success('Data saved successfully!');
       setModalMessage('Data saved successfully!');
       setSnackbarOpen(true);
@@ -276,7 +275,7 @@ export const EditSubmenu = () => {
     fetchData2();
   }, [id]);
 
-  console.log(formData)
+  
 
   return (
     <div >

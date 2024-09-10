@@ -30,7 +30,7 @@ export const Index = () => {
     }
     fetchData2();
   }, [id]);
-  // console.log(data)
+ 
   return (
     <div >
       <Header />

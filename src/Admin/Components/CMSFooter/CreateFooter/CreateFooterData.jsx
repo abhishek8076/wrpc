@@ -45,7 +45,7 @@ export const CreateFooterData = () => {
   );
 
   const onChange = useCallback((content) => {
-    // console.log("Editor content changed:", content);
+    
     setContent(content);
   }, []);
 
@@ -182,7 +182,7 @@ export const CreateFooterData = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      // console.log('Data saved:', response.data);
+     
       toast.success('Data saved successfully!');
       setModalMessage('Data saved successfully!');
       setSnackbarOpen(true);
@@ -223,8 +223,6 @@ export const CreateFooterData = () => {
  }, []);
 
 
-
-  // console.log(formData)
 
   return (
     <div>

@@ -54,7 +54,6 @@ export const CreateCandidate = () => {
       [name]: value,
     }));
   };
-  console.log("checkbox",formData)
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
     
@@ -135,12 +134,9 @@ export const CreateCandidate = () => {
     setLoading(true);
 
     try {
-      debugger;
-      console.log(formData);
+     
       const response = await apiClient.post(api.candidate, formData);
       if (response.status === 200) {
-        console.log("Candidate" + response.data)
-        // Simulate a 3-second delay
         setTimeout(() => {
           // Set loading state back to false after the delay
           setLoading(false);

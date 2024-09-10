@@ -192,7 +192,7 @@ function App() {
               </>
              
             </Route>
-            {/* Candidate  */}
+           
 
             <Route path="/candidate">
 

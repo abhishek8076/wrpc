@@ -121,12 +121,10 @@ export const CreateFooterDec = () => {
         },
       });
 
-      // console.log('Data saved:', response.data);
       toast.success('Data saved successfully!');
       setModalMessage('Data saved successfully!');
       setSnackbarOpen(true);
 
-      // Clear the form fields
       setFormData({
         tittle_name: '',
         description: '',
@@ -137,7 +135,6 @@ export const CreateFooterDec = () => {
     }
   };
 
-  // console.log(formData)
 
   return (
     <div>

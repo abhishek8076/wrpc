@@ -136,7 +136,6 @@ export const EditFooterServices  = () => {
         },
       });
 
-      // console.log('Data saved:', response.data);
       toast.success('Data saved successfully!');
       setModalMessage('Data saved successfully!');
       setSnackbarOpen(true);
@@ -152,8 +151,6 @@ export const EditFooterServices  = () => {
       console.error('Error saving data:', error);
     }
   };
-
-// console.log(formData)
 
   return (
     <>

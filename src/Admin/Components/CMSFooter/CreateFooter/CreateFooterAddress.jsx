@@ -98,7 +98,6 @@ export const CreateFooterAddress = () => {
           },
         });
 
-        // console.log('Data saved:', response.data);
         setModalMessage('Data saved successfully!');
         setSnackbarOpen(true);
 
@@ -128,7 +127,7 @@ export const CreateFooterAddress = () => {
       [name]: value,
     });
   };
-// console.log(formData)
+
   return (
     <div>
       <Header />

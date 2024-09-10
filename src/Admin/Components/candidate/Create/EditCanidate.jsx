@@ -50,7 +50,6 @@ export const EditCanidate = () => {
       [name]: value,
     }));
   };
-  console.log("checkbox", formData)
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
 

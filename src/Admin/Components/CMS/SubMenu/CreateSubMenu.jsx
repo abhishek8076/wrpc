@@ -74,7 +74,7 @@ export const CreateSubMenu = () => {
   );
   
   const onChange = useCallback((newContent) => {
-    // console.log("Editor content changed:", newContent);
+   
     setContent(newContent);
   }, []);
 

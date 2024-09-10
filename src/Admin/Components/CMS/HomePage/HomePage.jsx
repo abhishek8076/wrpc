@@ -43,7 +43,6 @@ export const HomePage = () => {
   }, []);
 
   const onChange = useCallback((data) => {
-    // console.log('Editor content changed:', data);
     setContent(data);
   }, []);
 
@@ -62,7 +61,6 @@ export const HomePage = () => {
         },
       });
 
-      // console.log(response.data);
       setModalMessage('Content saved successfully.');
       setSnackbarOpen(true);
       setContent('');
@@ -82,7 +80,7 @@ export const HomePage = () => {
   const handleCloseConfirmation = () => {
     setConfirmDialogOpen(false);
   };
-  // console.log(data)
+
 
   return (
     <div>

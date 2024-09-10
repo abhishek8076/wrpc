@@ -18,7 +18,7 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
   const storedUserString1 = localStorage.getItem("user1");
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
-  
+
   const [isReading, setIsReading] = useState(false);
   let cand_name = '';
 
@@ -29,7 +29,7 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
     // Handle the case when storedUserString1 is null
     console.log('No user data found in localStorage');
   }
-  
+
   const startReading = () => {
     const content = document.querySelector("body").innerText;
     const utterance = new SpeechSynthesisUtterance(content);
@@ -51,7 +51,7 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
     const newSelectedLanguage = localStorage.getItem("selectedLanguage");
     setSelectedLanguageA(newSelectedLanguage || 1);
   }, []);
- 
+
   const languages = {
     1: "English",
     2: "हिंदी",
@@ -183,7 +183,7 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                         </p>
                       </div>
                       <div class="bar3 bar-c">
-                      
+
                         <div>
                           {isReading ? (
                             <button onClick={stopReading}>Stop Reading</button>
@@ -199,9 +199,8 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                           <li>
                             <a
                               href="#"
-                              className={`white-contrast dash_link_nt ${
-                                theme === "dark" ? "active" : ""
-                              }`}
+                              className={`white-contrast dash_link_nt ${theme === "dark" ? "active" : ""
+                                }`}
                               onClick={() => toggleTheme("dark")}
                               title="Black"
                               role="button"
@@ -215,9 +214,8 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                           <li>
                             <a
                               href="#"
-                              className={`black-contrast dash_link_nt ${
-                                theme === "color" ? "active" : ""
-                              }`}
+                              className={`black-contrast dash_link_nt ${theme === "color" ? "active" : ""
+                                }`}
                               onClick={() => toggleTheme("color")}
                               title="White"
                               role="button"
@@ -278,66 +276,66 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                               </option>
                             ))}
                           </select>
-                          
+
                         </div>
                       </div>
                       <div class="bar6 bar-c">
-                       
+
 
 
                         <div>
-  {storedUserString ? (
-    <button onClick={handleLogout}>
-      <Link to="/">Logout</Link>
-    </button>
-  ) :  storedUserString1 ? (
-    <div className="user-options user-name">
-      
-      <button
-        className="primary-button "
-        onClick={() => setShowDropdown(!showDropdown)}
-      >
-        Welcome, {cand_name}
-      </button>
-      {showDropdown && (
-      <div className="dropdown dropdown-item">
-        <div>
-        <button onClick={handleLogout} className="dropdown-button" > Candidate Logout</button>
-    
-        </div>
-       <div> <button onClick={handleChangePassword} className="dropdown-button">Change Password</button></div>
-       
-      </div>
-    )}
-    </div>
-  ) : (
-    // <button>
-    //   <Link to="/login">Login</Link>
-    // </button>
-    <>
-    {parseInt(selectedLanguage) === 1 ? (
-      <select name="languagetype" className="dash_link_nt"  onChange={handleSelectChange}>
-      <option value="" >  ---Login --- </option>
-      <option value="1" >Admin Login</option>
-      <option value="2" >Candidate Login</option>
-    </select>
-     
-    ) : (
-      
-      <select name="languagetype" className="dash_link_nt"  onChange={handleSelectChange}>
-      <option value="" >  --- लॉग इन --- </option>
-      <option value="1" >व्यवस्थापक लॉगिन</option>
-      <option value="2" >अभ्यर्थी लॉगिन</option>
-    </select>
-    )}
-  </>
-  )}
-</div>
+                          {storedUserString ? (
+                            <button onClick={handleLogout}>
+                              <Link to="/">Logout</Link>
+                            </button>
+                          ) : storedUserString1 ? (
+                            <div className="user-options user-name">
+
+                              <button
+                                className="primary-button "
+                                onClick={() => setShowDropdown(!showDropdown)}
+                              >
+                                Welcome, {cand_name}
+                              </button>
+                              {showDropdown && (
+                                <div className="dropdown dropdown-item">
+                                  <div>
+                                    <button onClick={handleLogout} className="dropdown-button" > Candidate Logout</button>
+
+                                  </div>
+                                  <div> <button onClick={handleChangePassword} className="dropdown-button">Change Password</button></div>
+
+                                </div>
+                              )}
+                            </div>
+                          ) : (
+                            // <button>
+                            //   <Link to="/login">Login</Link>
+                            // </button>
+                            <>
+                              {parseInt(selectedLanguage) === 1 ? (
+                                <select name="languagetype" className="dash_link_nt" onChange={handleSelectChange}>
+                                  <option value="" >  ---Login --- </option>
+                                  <option value="1" >Admin Login</option>
+                                  <option value="2" >Candidate Login</option>
+                                </select>
+
+                              ) : (
+
+                                <select name="languagetype" className="dash_link_nt" onChange={handleSelectChange}>
+                                  <option value="" >  --- लॉग इन --- </option>
+                                  <option value="1" >व्यवस्थापक लॉगिन</option>
+                                  <option value="2" >अभ्यर्थी लॉगिन</option>
+                                </select>
+                              )}
+                            </>
+                          )}
+                        </div>
 
 
-                        
+
                         {/* <button><Link to='/candidate/login'>Login</Link></button> */}
-                       
+
                       </div>
                     </div>
                   </div>
@@ -359,20 +357,20 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                         >
                           <div className="col-md-3">
                             <div className="custom-logo">
-                          <img
-                            class="national_emblem "
-                            // src={Logo}
-                            
-                                    src={footerLogo}
-                            alt="national emblem"
-                          />
-                          </div>
+                              <img
+                                class="national_emblem "
+                                // src={Logo}
+
+                                src={footerLogo}
+                                alt="national emblem"
+                              />
+                            </div>
                           </div>
                           <div className="col-md-9 d-flex align-items-center justify-content-end">
-                          <em>
-                            <span className="text-center">पश्चिम क्षेत्रीय विद्युत् समिति </span>
-                            <span> Western Regional Power Committee</span>
-                          </em>
+                            <em>
+                              <span className="text-center">पश्चिम क्षेत्रीय विद्युत् समिति </span>
+                              <span> Western Regional Power Committee</span>
+                            </em>
                           </div>
                         </a>
                       </h2>
@@ -384,13 +382,13 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                         <img src={swatchBarath} alt="" />
                       </div> */}
                       <div class="rgt-two">
-                      <h6>Site Under Construction</h6>
+                        <h6>Site Under Construction</h6>
                       </div>
                       <div class="rgt-three">
-                      <img src={G20} alt="" />
+                        <img src={G20} alt="" />
                       </div>
-                      
-                    
+
+
                     </div>
                   </div>
                 </div>
@@ -476,9 +474,8 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                           <li>
                             <a
                               href="#"
-                              className={`white-contrast dash_link_nt ${
-                                theme === "dark" ? "active" : ""
-                              }`}
+                              className={`white-contrast dash_link_nt ${theme === "dark" ? "active" : ""
+                                }`}
                               onClick={() => toggleTheme("dark")}
                               title="Black"
                               role="button"
@@ -492,9 +489,8 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                           <li>
                             <a
                               href="#"
-                              className={`black-contrast dash_link_nt ${
-                                theme === "light" ? "active" : ""
-                              }`}
+                              className={`black-contrast dash_link_nt ${theme === "light" ? "active" : ""
+                                }`}
                               onClick={() => toggleTheme("light")}
                               title="White"
                               role="button"
@@ -561,37 +557,37 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                       </div>
 
                       <div class="bar6 bar-c">
-                          <div>
-                            {storedUserString ? (
-                              <button >
-                                <Link to="/">Logout</Link>
-                              </button>
-                            ) : (
-                              // <button>
-                              //   <Link to="/candidate/login">Login</Link>
-                              // </button>
-                              <>
-                               {parseInt(selectedLanguage) === 1 ? (
-      <select name="languagetype" className="dash_link_nt"  onChange={handleSelectChange}>
-      <option value="" >  ---Login --- </option>
-      <option value="1" >Admin Login</option>
-      <option value="2" >Candidate Login</option>
-    </select>
-     
-    ) : (
-      
-      <select name="languagetype" className="dash_link_nt"  onChange={handleSelectChange}>
-      <option value="" >  --- लॉग इन --- </option>
-      <option value="1" >व्यवस्थापक लॉगिन</option>
-      <option value="2" >अभ्यर्थी लॉगिन</option>
-    </select>
-    )}</>
-                            )}
-                          </div>
-                          {/* <button><Link to='/candidate/login'>Login</Link></button> */}
+                        <div>
+                          {storedUserString ? (
+                            <button >
+                              <Link to="/">Logout</Link>
+                            </button>
+                          ) : (
+                            // <button>
+                            //   <Link to="/candidate/login">Login</Link>
+                            // </button>
+                            <>
+                              {parseInt(selectedLanguage) === 1 ? (
+                                <select name="languagetype" className="dash_link_nt" onChange={handleSelectChange}>
+                                  <option value="" >  ---Login --- </option>
+                                  <option value="1" >Admin Login</option>
+                                  <option value="2" >Candidate Login</option>
+                                </select>
+
+                              ) : (
+
+                                <select name="languagetype" className="dash_link_nt" onChange={handleSelectChange}>
+                                  <option value="" >  --- लॉग इन --- </option>
+                                  <option value="1" >व्यवस्थापक लॉगिन</option>
+                                  <option value="2" >अभ्यर्थी लॉगिन</option>
+                                </select>
+                              )}</>
+                          )}
+                        </div>
+                        {/* <button><Link to='/candidate/login'>Login</Link></button> */}
                       </div>
-                      
-                      
+
+
                     </div>
                   </div>
                 </div>
@@ -612,21 +608,21 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                         >
                           <div className="col-md-3">
                             <div className="custom-logo">
-                          <img
-                            class="national_emblem w-50"
-                            // src={Logo}
-                            src={footerLogo}
-                            alt="national emblem"
-                          />
-                          </div>
+                              <img
+                                class="national_emblem w-50"
+                                // src={Logo}
+                                src={footerLogo}
+                                alt="national emblem"
+                              />
+                            </div>
                           </div>
                           <div className="col-md-8 d-flex align-items-center justify-content-end">
-                          <em>
-                          <span className="text-center">पश्चिम क्षेत्रीय विद्युत् समिति </span>
-                          <span> Western Regional Power Committee</span>
-                          </em>
+                            <em>
+                              <span className="text-center">पश्चिम क्षेत्रीय विद्युत् समिति </span>
+                              <span> Western Regional Power Committee</span>
+                            </em>
                           </div>
-                          
+
                         </a>
                       </h2>
                     </div>
@@ -638,16 +634,16 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                       </div> */}
                       <div class="rgt-two">
                         {/* <img src={G20} alt="" /> */}
-                        <h2 className="h6" style={{marginLeft:'50%'}}>Site Under Construction</h2>
+                        <h2 className="h6" style={{ marginLeft: '50%' }}>Site Under Construction</h2>
                       </div>
                       <div class="rgt-three">
-                      <img src={G20} alt="" />
+                        <img src={G20} alt="" />
                       </div>
-                      
+
                     </div>
-                    
+
                   </div>
-                  
+
                 </div>
               </div>
             </div>

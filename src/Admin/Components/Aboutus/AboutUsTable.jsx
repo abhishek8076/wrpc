@@ -103,7 +103,7 @@ export default function AboutusTable() {
     useEffect(() => {
         async function fetchData() {
             try {
-              debugger;
+              ;
                 const response = await apiClient.get(apis.getAboutus);
                 const dataWithIds = response.data.map((row, index) => ({ id: index + 1, ...row }));
                 setApiData(dataWithIds);

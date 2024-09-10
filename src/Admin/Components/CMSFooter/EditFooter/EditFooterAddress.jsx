@@ -24,7 +24,6 @@ export const EditFooterAddress = () => {
   });
   const [errors, setErrors] = useState({});
 
-  // Validation functions
   const validateForm = () => {
     const newErrors = {};
 
@@ -38,7 +37,6 @@ export const EditFooterAddress = () => {
       newErrors.address = 'Address is required';
     }
     
-  
     if (!formData.mobile_no) {
       errors.mobile_no = "Mobile number is required";
     } else if (!/^[0-9]{10}$/.test(formData.mobile_no)) {

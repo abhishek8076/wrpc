@@ -20,7 +20,7 @@ const OtpVerification = () => {
 
   const handleSendOtp = async () => {
     try {
-      debugger;
+      ;
 
       if (!validateEmail(email)) {
         setMessage('Invalid email format and email mandatory');
@@ -58,14 +58,14 @@ const OtpVerification = () => {
           email: email,
           otp : otp
         }
-      debugger;
+      ;
       //const response = await axios.post('http://localhost:5141/api/ChangePassword/Verify_otp', { email, otp });
       const response = await apiClient.post(apis.varify_otp ,varifyotp);
       //setMessage(response.data);
       alert('Password have been send to mail.');
       //window.location.href = 'http://localhost:3000/login';
       window.location.href("/");
-      debugger;
+      ;
     } catch (error) {
       console.error('Error verifying OTP:', error);
       setMessage(error.response.data);

@@ -42,7 +42,7 @@ export const CreateMenu = () => {
   );
 
   const onChange = useCallback((newContent) => {
-    // console.log("Editor content changed:", newContent);
+
     setContent(newContent);
   }, []);
 
@@ -190,7 +190,7 @@ export const CreateMenu = () => {
         html: '',
         languagetype:'',
       });
-      // console.log('Data saved:', response.data);
+      
       toast.success('Data saved successfully!');
       setModalMessage('Data saved successfully!');
       setSnackbarOpen(true);
@@ -217,8 +217,7 @@ export const CreateMenu = () => {
     }
     fetchData1();
   }, []);
-  // console.log(formData, html)
-
+  
   return (
     <div>
                 

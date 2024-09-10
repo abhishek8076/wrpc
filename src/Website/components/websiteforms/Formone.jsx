@@ -281,7 +281,7 @@ export const Formone = () => {
   };
 
   const handleDeleteConfirm = async () => {
-    debugger;
+     ;
     // Close the confirmation dialog
     setConfirmDialogOpen(false);
     // Set loading state to true
@@ -329,12 +329,12 @@ export const Formone = () => {
       formDataToSend.append("Action_Taken_by_Utility_to_Allow_Completion",formData.UtilityActiontaken);
       formDataToSend.append("Date_on_Which_Attended", formData.Dateattended);
       formDataToSend.append("Remarks", formData.Remarks);
-      debugger;
+       ;
       const response = await apiclient.post(
         apis.Trippingcompliance,
         formDataToSend
       );
-      debugger;
+       ;
       if (response.status === 200) {
         console.log("user" + response.data);
         // Simulate a 3-second delay

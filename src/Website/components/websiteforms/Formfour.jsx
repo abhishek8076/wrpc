@@ -159,7 +159,7 @@ export const Formfour = () => {
             formDataToSend.append('Upload_File_input', selectedFile);
             formDataToSend.append('Remarks', formData.Remarks);
             formDataToSend.append('languagetype', 1);
-            debugger;
+             ;
             const response = await apiclient.post(apis.Relaysave, formDataToSend)
             if (response.status === 200) {
                 console.log("user" + response.data)

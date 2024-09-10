@@ -166,13 +166,13 @@ export const Formtwo = () => {
         setConfirmDialogOpen(false);
     };
     const handleDeleteConfirm = async () => {
-        debugger;
+         ;
         setConfirmDialogOpen(false);
 
         setLoading(true);
 
         try {
-debugger;
+ ;
             let candidateId=0;
             if (localStorage.getItem("candidateId")) {
                  candidateId = localStorage.getItem("candidateId");
@@ -196,7 +196,7 @@ debugger;
             formDataToSend.append('Issues_Observed', selectedFile2);
             formDataToSend.append('Remarks', formData.Remarks);
             formDataToSend.append('languagetype', 1);
-debugger;
+ ;
             const response = await apiclient.post(apis.Tppaplan, formDataToSend);
             // const response = await axios.post("https://localhost:7006/api/TPPA_Plan_Monitoring/Getppa_list", formDataToSend)
             if (response.status === 200) {

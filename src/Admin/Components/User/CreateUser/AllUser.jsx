@@ -28,7 +28,7 @@ export default function AllUser() {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [modalMessage, setModalMessage] = useState('');
     // const userRole = 'admin'
-    debugger;
+     ;
     const storedUserString = localStorage.getItem("user");
     const user = JSON.parse(storedUserString);
 
@@ -77,7 +77,7 @@ export default function AllUser() {
     ];
 
     const handleDeleteClick = (item) => {
-        debugger;
+         ;
         setSelectedItem(item);
         setConfirmDialogOpen(true);
     };

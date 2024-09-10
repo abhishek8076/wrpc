@@ -44,7 +44,7 @@ const ChangePasswordForm = () => {
     let email_result = '';
     if (user) {
       try {
-        debugger;
+         ;
         const userObject = JSON.parse(user);
         if(userObject.email_result != '')
         email_result = userObject.email_result || '';
@@ -57,7 +57,7 @@ const ChangePasswordForm = () => {
 
 
     try {
-      debugger;
+      
       //const response = await axios.post('http://localhost:5141/api/ChangePassword/Generate_newpassword'
         const response = await apiClient.post(apis.new_password , {
         email: email_result,

@@ -193,7 +193,7 @@ export const Formthree = () => {
             //         ...formData,
             //         usertype: parseInt(selectedRole, 10),
             //     };
-            debugger;
+             ;
 
             let candidateId=0;
             if (localStorage.getItem("candidateId")) {
@@ -225,7 +225,7 @@ export const Formthree = () => {
             formDataToSend.append('Date_Attended_CAT_B', formData.BDate_Attended);
 
 
-            debugger;
+             ;
             const response = await apiclient.post(apis.Tppapost, formDataToSend)
 
             if (response.status === 200) {

@@ -108,7 +108,7 @@ export const ViewFormfive = () => {
     setLoading(true);
 
     try {
-        debugger;
+         ;
       const formDataToSend = {
         ...formData,
         usertype: parseInt(selectedRole, 10),

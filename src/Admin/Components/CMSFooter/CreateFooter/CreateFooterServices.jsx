@@ -115,12 +115,10 @@ export const CreateFooterService = () => {
       });
 
       
-      // console.log('Data saved:', response.data);
       toast.success('Data saved successfully!');
       setModalMessage('Data saved successfully!');
       setSnackbarOpen(true);
 
-      // Clear the form fields
       setFormData({
         tittle_name: '',
         description: '',
@@ -130,8 +128,6 @@ export const CreateFooterService = () => {
       console.error('Error saving data:', error);
     }
   };
-
-  // console.log(formData)
 
   return (
     <div>
