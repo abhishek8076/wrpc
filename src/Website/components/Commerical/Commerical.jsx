@@ -36,7 +36,7 @@ export const Commerical = () => {
     setSelectedLanguage(newSelectedLanguage || 1);
   }, []);
 
-  // console.log("this is commerical data", commerical);
+  
   return (
     <div>
       <div>

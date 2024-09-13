@@ -142,7 +142,7 @@ export const ViewFormthree = () => {
 
             const response = await apiClient.post(api.newuser, formDataToSend);
             if (response.status === 200) {
-                // console.log("user" + response.data)
+                
                 // Simulate a 3-second delay
                 setTimeout(() => {
                     // Set loading state back to false after the delay
@@ -188,7 +188,6 @@ export const ViewFormthree = () => {
     };
 
 
-    // console.log(formData)
     useEffect(() => {
         async function fetchData2() {
           try {
@@ -205,7 +204,7 @@ export const ViewFormthree = () => {
         fetchData2();
       }, [id]);
 
-    //   console.log("TPPA Plan & Monitoring",formData)
+    
 
     return (
         <>

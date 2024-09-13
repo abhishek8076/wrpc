@@ -112,13 +112,12 @@ const [titleName ,setTitlename]= useState("");
 
   }, [number]);
 
-  // console.log("sadfdsafdsafdsafdsfdsfdsfs",commerical,getyears)
   
   const onTabClick = (e, index) => {
     setActiveTab(index);
     setSelectedYear(parseInt(yeardata[index].year)); // Set the selected year
   };
-  // console.log(selectedYear)
+ 
   const handleLanguageChange = (event) => {
     const newSelectedLanguage = event.target.value;
 

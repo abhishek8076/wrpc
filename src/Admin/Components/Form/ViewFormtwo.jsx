@@ -177,7 +177,6 @@ const validateForm = () => {
 
             const response = await apiClient.post(api.newuser, formDataToSend);
             if (response.status === 200) {
-                // console.log("user" + response.data)
                 // Simulate a 3-second delay
                 setTimeout(() => {
                     // Set loading state back to false after the delay
@@ -218,7 +217,6 @@ const validateForm = () => {
     };
 
  
-    // console.log(formData)
 
     return (
         <>

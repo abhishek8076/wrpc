@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
  
  <p>Name: {name}</p>
   };
-//   console.log(getContent, 'fgasfsags');
+
   
   // export default getContent;
   

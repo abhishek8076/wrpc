@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -22,7 +22,7 @@ export const LoginCandidate = () => {
   const [user, setUser] = useState({
     r_email: "",
     r_password: "",
-   
+
   });
 
   const [isValidEmail, setIsValidEmail] = useState(true);
@@ -39,7 +39,7 @@ export const LoginCandidate = () => {
     r_email: user.r_email,
     r_password: user.r_password,
     capcha: capcha,
-    
+
   };
 
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
@@ -87,9 +87,9 @@ export const LoginCandidate = () => {
   //         localStorage.setItem("token", token);
   //         // localStorage.setItem('expirationTime', newExpirationTime);
   //         setDialogText("You have successfully logged in ");
-         
+
   //         localStorage.setItem('expirationTime', newExpirationTime);
-        
+
   //         handleOpenDialog();
   //         // toast.success(' logged in');
 
@@ -106,7 +106,7 @@ export const LoginCandidate = () => {
   // };
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     // Validate email
     if (!emailRegex.test(user.r_email)) {
       setIsValidEmail(false);
@@ -114,7 +114,7 @@ export const LoginCandidate = () => {
     } else {
       setIsValidEmail(true);
     }
-  
+
     // Validate password
     if (!user.r_password) {
       setIsValidPassword(false);
@@ -122,32 +122,32 @@ export const LoginCandidate = () => {
     } else {
       setIsValidPassword(true);
     }
-  
+
     if (!capcha) {
       alert("Please Tick Checkbox in Capture");
       return;
     }
     // Validate CAPTCHA
-   
+
     // const response = await apiClient.post('/api/Candidate/LoginCandidate', jsonData);
-  
+
     try {
-     // const response = await axios.post('http://localhost:5141/api/Candidate/LoginCandidate', jsonData);
+      // const response = await axios.post('http://localhost:5141/api/Candidate/LoginCandidate', jsonData);
       const response = await apiClient.post('api/Candidate/LoginCandidate', jsonData);
-    
+
       if (response && response.data) {
         if (response.status === 200) {
           let dt = response.data;
           let user = dt.user;
-          var candidateId =  response.data.user.cands_id;
+          var candidateId = response.data.user.cands_id;
           localStorage.setItem("candidateId", candidateId);
           localStorage.setItem("user1", JSON.stringify(user));
           if (dt) {
-           // localStorage.setItem("user", JSON.stringify(dt));
-            
+            // localStorage.setItem("user", JSON.stringify(dt));
+
             setDialogText("You have successfully logged in ");
             handleOpenDialog();
-    
+
             setTimeout(() => {
               handleCloseDialog();
               navigate("/");
@@ -172,9 +172,9 @@ export const LoginCandidate = () => {
       console.error("An error occurred while attempting to login:", error);
     }
   };
-  
+
   function onChange(value) {
-    // console.log("Captcha value:", value);
+   
     setCapcha(value)
 
   }
@@ -231,9 +231,9 @@ export const LoginCandidate = () => {
           }}
         >
           <p className='loginHeading'>Western Regional Power Committee</p>
-          <img className="panelavatar" src={avtar}/>
+          <img className="panelavatar" src={avtar} />
           <p className='logintitle'>candidate</p>
-         
+
           <Typography component="h1" variant="h5">
           </Typography>
           <form onSubmit={handleSubmit}>
@@ -256,15 +256,15 @@ export const LoginCandidate = () => {
               label="Password"
               type="password"
               onChange={handleChange}
-              
+
               error={!isValidPassword}
               helperText={!isValidPassword ? "Please enter your password" : ""}
             />
 
             <ReCAPTCHA
-    sitekey="6LdGJv0UAAAAAIvZIBzc9LZ0kY1FovqsgO2Ewjb8"
-    onChange={onChange}
-  />
+              sitekey="6LdGJv0UAAAAAIvZIBzc9LZ0kY1FovqsgO2Ewjb8"
+              onChange={onChange}
+            />
             <Button
               type="submit"
               fullWidth
@@ -272,10 +272,10 @@ export const LoginCandidate = () => {
               sx={{ mt: 3, mb: 2 }}
               className={
                 stateLoginButton.isVerified === true
-               
+
               }
-         
-             
+
+
             >
               Sign In
             </Button>

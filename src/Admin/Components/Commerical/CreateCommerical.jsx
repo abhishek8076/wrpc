@@ -135,7 +135,6 @@ export const CreateCommerical = () => {
         },
       });
 
-      // console.log("Data saved:", response.data);
       setFormData({
         languagetype: "",
         title:'',
@@ -154,7 +153,6 @@ export const CreateCommerical = () => {
     }
   };
 
-  // console.log(formData);
 
   return (
     <div>

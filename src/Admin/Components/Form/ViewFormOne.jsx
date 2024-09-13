@@ -323,7 +323,7 @@ export const ViewFormOne= () => {
 
             const response = await apiClient.post(apis.Trippingcompliance, formDataToSend);
             if (response.status === 200) {
-                // console.log("user" + response.data)
+               
                 // Simulate a 3-second delay
                 setTimeout(() => {
                     // Set loading state back to false after the delay
@@ -389,7 +389,7 @@ export const ViewFormOne= () => {
         }
         fetchData2();
       }, []);
-    // console.log(formData)
+    
 
     return (
         <>

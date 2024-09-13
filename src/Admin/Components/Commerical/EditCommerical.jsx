@@ -128,7 +128,7 @@ export const EditCommerical = () => {
       apiClient.get(apis.commericalget + id)
         .then((response) => {
           setFormData(response.data)
-// console.log(response.data)
+
         })
         .catch((error) => {
           console.error('Error fetching data for editing:', error);
@@ -170,7 +170,7 @@ export const EditCommerical = () => {
         },
       });
 
-      // console.log("Data saved:", response.data);
+      
       setFormData({
         languagetype: "",
         name: "",
@@ -188,7 +188,6 @@ export const EditCommerical = () => {
     }
   };
 
-  // console.log(formData);
 
   return (
     <div>

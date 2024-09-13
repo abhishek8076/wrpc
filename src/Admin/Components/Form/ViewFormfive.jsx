@@ -116,7 +116,7 @@ export const ViewFormfive = () => {
 
       const response = await apiClient.post(api.editPerformance, id);
       if (response.status === 200) {
-        // console.log("user" + response.data);
+        
         // Simulate a 3-second delay
         setTimeout(() => {
           // Set loading state back to false after the delay
@@ -146,7 +146,7 @@ export const ViewFormfive = () => {
     }
   };
 
-  // console.log(formData);
+ 
   useEffect(() => {
     async function fetchData2() {
       try {

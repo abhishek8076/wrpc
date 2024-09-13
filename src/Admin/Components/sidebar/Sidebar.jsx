@@ -17,7 +17,7 @@ const Sidebar = () => {
   const handleLogout = async () => {
     try {
       const response = await apiClient.post('/api/Login/logout?email='+email);
-      console.log("logout",response)
+     
       if (response.status === 200){
         localStorage.clear();
         navigate('/login');

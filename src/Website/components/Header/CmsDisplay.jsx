@@ -6,9 +6,9 @@ import apiClient from "../../../Api/ApiClient"
 // import { useFontSize } from "../../../util/FontSizeContext";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import apis from '../../../Api/api.json';
- 
+
 const CmsDisplay = () => {
-   ;
+  ;
   const { id } = useParams();
   const [selectedLanguage, setSelectedLanguage] = useState();
   // const { fontSize } = useFontSize();
@@ -31,40 +31,40 @@ const CmsDisplay = () => {
     { id: 12, name: "REA through New Software" },
     { id: 13, name: "New Software Sharing of Transmission Charges" },
   ];
- 
+
   useEffect(() => {
     const newSelectedLanguage = localStorage.getItem("selectedLanguage");
     if (newSelectedLanguage) {
       setSelectedLanguage(newSelectedLanguage);
     }
   }, []); // Empty dependency array to run only once when the component mounts
- 
+
   useEffect(() => {
     async function fetchMenuData() {
-      
+
       try {
         //const data = await getsubMenu();
         const response = await apiClient.get(apis.getmenuSubmenu + selectedLanguage);
-      const data = response.data;
-      if (Array.isArray(data)) {
-        setMenuData(data);
-      } else {
-        console.error("Unexpected data format:", data);
-        setMenuData([]); // or handle the case appropriately
-      }
+        const data = response.data;
+        if (Array.isArray(data)) {
+          setMenuData(data);
+        } else {
+          console.error("Unexpected data format:", data);
+          setMenuData([]); // or handle the case appropriately
+        }
       } catch (error) {
         console.error("Error fetching menu data:", error);
       }
     }
- 
+
     fetchMenuData();
- 
+
     fetchMenuData();
     const newSelectedLanguage = localStorage.getItem("selectedLanguage");
     setSelectedLanguage(newSelectedLanguage ? parseInt(newSelectedLanguage) : 1);
   }, [selectedLanguage]);
- 
- 
+
+
   // const renderSubMenu = (submenuList) => {
   //   return (
   //     <ul>
@@ -186,14 +186,14 @@ const CmsDisplay = () => {
                   </Link>
                 </li>
               )}
-               {user1.can_ft5 === 1 && (
+              {user1.can_ft5 === 1 && (
                 <li>
                   <Link to="/candidate/performance" className="dropdown-item">
-                  Performance Indices
+                    Performance Indices
                   </Link>
                 </li>
               )}
-              
+
             </ul>
           </li>
         )}
@@ -203,9 +203,9 @@ const CmsDisplay = () => {
 
   return (
     <>
-  <div className="main-nav">
+      <div className="main-nav">
 
-    {/* <nav id="navbar" className="navbar">
+        {/* <nav id="navbar" className="navbar">
       <div className="container-fluid nav-con">
       <li>
             <Link to={"/"}>
@@ -218,8 +218,8 @@ const CmsDisplay = () => {
           <i class="bi bi-list mobile-nav-toggle"></i>
         
         </nav> */}
-       
- 
+
+
 
         <nav class="navbar navbar-expand-lg cus-nav navbar-light bg-blue">
           <div class="container-fluid con-nav">
@@ -236,9 +236,9 @@ const CmsDisplay = () => {
             </button>
             <div class="collapse navbar-collapse" id="navbar1">
               {renderMenuItems(menudata)}
-              <Link to={"/latestnews"} style={{color:'white'}}>Latest News</Link>
+              <Link to={"/latestnews"} style={{ color: 'white' }}>Latest News</Link>
             </div>
-            
+
           </div>
         </nav>
       </div>

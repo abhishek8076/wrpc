@@ -245,9 +245,7 @@ export default function Login() {
         handleOpenIncorrectCredentialsDialog();
       }
     } catch (error) {
-      console.log("Request failed:", error);
       if (error.response) {
-        console.log("Response data:", error.response.data);
         alert("You have entered invalid details");
       }
     }

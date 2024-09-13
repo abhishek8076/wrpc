@@ -31,7 +31,7 @@ const Mainpage = () => {
                 <div class="col-xxl-4 col-md-12">
                   <div class="card">
                     <div class="card-body">
-                      <p class="card-title">Good Morning,<spna>{user.r_name}</spna></p>
+                      <p class="card-title">Dear,<spna>{user.r_name}</spna></p>
 
                       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
@@ -43,7 +43,7 @@ const Mainpage = () => {
                           <div class="carousel-item">
                             <img src="../../assets/img/slides-1.jpg" class="d-block w-100 hero-img" alt="..." />
                             <div class="carousel-caption d-none d-md-block">
-                              <h5>Welcome to the Ornate family!</h5>
+                              <h5>Welcome to the our family!</h5>
                               <p>Welcome to our dashboard. Manage your account and your subscriptions.</p>
                             </div>
                           </div>
