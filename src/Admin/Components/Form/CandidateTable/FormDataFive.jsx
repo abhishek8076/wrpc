@@ -12,22 +12,22 @@ export default function FormDataFive() {
 
 
     const columns = [
-        { field: "id", headerName: "S.No", width: 50 },
-        { field: "utilityname", headerName: " Utility Name" },
-        { field: "correct_operation", headerName: "Correct Opration" },
-        { field: "unwanted_operation", headerName: "Unwanted Opration" },
-        { field: "failures_operate", headerName: "Failures Opration" },
+        { field: "id1", headerName: "S.No", width: 50 },
+        { field: "name", headerName: " Candidate Name",width: 150 },
+        { field: "email", headerName: "Candidate Email",width: 200 },
+        { field: "address", headerName: "Candidate Address",width: 200 },
+        { field: "mobile_no", headerName: "Candidate  Mobile No." ,width: 150},
         {
-            field: "edit",
-            headerName: "Edit",
+            field: "View form data",
+            headerName: "View Form Data",
             sortable: false,
+            width: 200,
             renderCell: (params) => (
                 <Link to={'/feedback/formfive/'+params.row.id}>
                 <InsertDriveFileIcon style={{ cursor: 'pointer' }} />
             </Link>
             ),
-        },
-       
+        }
     ];
 
 
@@ -35,8 +35,8 @@ export default function FormDataFive() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await apiClient.get('/api/PerformanceIndices');
-                const dataWithIds = response.data.map((row, index) => ({ id: index+1, ...row }));
+                const response = await apiClient.get('/api/FormReports/PerformanceIndices');
+                const dataWithIds = response.data.map((row, index) => ({ id1: index+1, ...row }));
                 setApiData(dataWithIds);
               
 

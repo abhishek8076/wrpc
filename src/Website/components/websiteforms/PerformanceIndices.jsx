@@ -173,7 +173,9 @@ export const Performanceindices = () => {
                                                 <h4>Performance Indices</h4>
                                                 <Row>
                                                     <Col md={4}>
-                                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                    <Form.Group>
+                                                    <Form.Label>Year<span>*</span></Form.Label>
+                                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
                                                             <DemoContainer components={["YearCalendar"]}>
                                                                 <DatePicker
                                                                     label={"Year"}
@@ -187,10 +189,13 @@ export const Performanceindices = () => {
                                                                 />
                                                             </DemoContainer>
                                                         </LocalizationProvider>
-                                                        <span style={{ color: "red" }}>{formErrors.year}</span>
+                                                        <span style={{ color: "red" }}>{formErrors.year}</span></Form.Group>
+                                                        
                                                     </Col>
                                                     <Col md={4}>
-                                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                    <Form.Group>
+                                                    <Form.Label>Month<span>*</span></Form.Label>
+                                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
                                                             <DemoContainer components={["month"]}>
                                                                 <DesktopDatePicker
                                                                     views={["month"]}
@@ -205,6 +210,8 @@ export const Performanceindices = () => {
                                                             </DemoContainer>
                                                         </LocalizationProvider>
                                                         <span style={{ color: "red" }}>{formErrors.month}</span>
+                                                        </Form.Group>
+                                                      
                                                     </Col>
                                                     <Col md={4}>
                                                         <Form.Group>

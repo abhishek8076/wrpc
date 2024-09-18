@@ -281,7 +281,7 @@ export const Formone = () => {
   };
 
   const handleDeleteConfirm = async () => {
-     ;
+    ;
     // Close the confirmation dialog
     setConfirmDialogOpen(false);
     // Set loading state to true
@@ -289,12 +289,12 @@ export const Formone = () => {
 
     try {
 
-      let candidateId=0;
+      let candidateId = 0;
       if (localStorage.getItem("candidateId")) {
-           candidateId = localStorage.getItem("candidateId");
+        candidateId = localStorage.getItem("candidateId");
       }
-      else{
-           candidateId = 0;
+      else {
+        candidateId = 0;
       }
 
       const formDataToSend = new FormData();
@@ -325,16 +325,16 @@ export const Formone = () => {
       formDataToSend.append("Analysis", selectedFile8);
       formDataToSend.append("Final_Report", selectedFile9);
       formDataToSend.append("Notified_Status", formData.NotifiedStatus);
-      formDataToSend.append("Utility_Responsible_for_Attending",formData.UtilityAttending);
-      formDataToSend.append("Action_Taken_by_Utility_to_Allow_Completion",formData.UtilityActiontaken);
+      formDataToSend.append("Utility_Responsible_for_Attending", formData.UtilityAttending);
+      formDataToSend.append("Action_Taken_by_Utility_to_Allow_Completion", formData.UtilityActiontaken);
       formDataToSend.append("Date_on_Which_Attended", formData.Dateattended);
       formDataToSend.append("Remarks", formData.Remarks);
-       ;
+      ;
       const response = await apiclient.post(
         apis.Trippingcompliance,
         formDataToSend
       );
-       ;
+      ;
       if (response.status === 200) {
         console.log("user" + response.data);
         // Simulate a 3-second delay
@@ -411,26 +411,26 @@ export const Formone = () => {
                         <div class="card-body registrationCard">
                           <div class="form-group row">
                             <label class="col-sm-2 col-form-label">
-                                Recommondation of PCM
-                                <span>
-                                  <b>*</b>
-                                </span>
-                                :
-                              </label>
-                              <div class="col-sm-2">
-                                <span style={{ color: "red" }}>
-                                  {formErrors.RecommondationofPCM}
-                                </span>
-                                <input
-                                  class="form-control"
-                                  name="RecommondationofPCM"
-                                  placeholder="Enter Recommondation of PCM"
-                                  maxlength="50"
-                                  value={formData.RecommondationofPCM}
-                                  onChange={handleChange}
-                                  isInvalid={!!formErrors.RecommondationofPCM}
-                                />
-                              </div>
+                              Recommondation of PCM
+                              <span>
+                                <b>*</b>
+                              </span>
+                              :
+                            </label>
+                            <div class="col-sm-2">
+                              <span style={{ color: "red" }}>
+                                {formErrors.RecommondationofPCM}
+                              </span>
+                              <input
+                                class="form-control"
+                                name="RecommondationofPCM"
+                                placeholder="Enter Recommondation of PCM"
+                                maxlength="50"
+                                value={formData.RecommondationofPCM}
+                                onChange={handleChange}
+                                isInvalid={!!formErrors.RecommondationofPCM}
+                              />
+                            </div>
 
                             <label class="col-sm-2 col-form-label">
                               PCM Number
@@ -498,8 +498,8 @@ export const Formone = () => {
                               />
                               <small class="invalid-feedback"></small>
                             </div>
-                          </div> 
-                         {/* form 1 */}
+                          </div>
+                          {/* form 1 */}
                           {true && (
                             <>
                               <div class="form-group row">
@@ -875,7 +875,7 @@ export const Formone = () => {
 
                           {/* form 3 */}
                           <div class="form-group row">
-                                                       
+
                             <label class="col-sm-2 col-form-label">
                               Notified Status
                               <span>

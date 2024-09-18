@@ -34,7 +34,7 @@ export const PerformanceList = () => {
 
   const minMonthDate =
     selectedYear === "2023" ? dayjs("2023-10-01") : dayjs(`${selectedYear}-01-01`);
-  const maxMonthDate = selectedYear ? dayjs(`${selectedYear}-12-31`) : dayjs();
+    const maxMonthDate = selectedYear ? dayjs(`${selectedYear}-12-31`) : dayjs();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -116,10 +116,10 @@ export const PerformanceList = () => {
     nc: item.correct_operation,
     nu: item.unwanted_operation,
     nf: item.failures_operate,
-    ni: item.unwanted_operation + item.failures_operate,
-    d: item.correct_operation/(item.correct_operation+item.failures_operate),
-    s: item.correct_operation/(item.correct_operation+item.unwanted_operation),
-    r: item.correct_operation/(item.correct_operation+item.unwanted_operation + item.failures_operate),
+    ni: item.incorrectoperations_ni,
+    d: item.dependabilityindex,
+    s: item.securityindex,
+    r: item.reliabilityindex,
     // ni: item.incorrect_operation,
     // d: item.dependability_index,
     // s: item.security_index,

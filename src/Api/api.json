@@ -23,6 +23,7 @@
     "customdata":"/Api/TopMenu/customdata",
     "customlist":"/api/TopMenu/Getcustom_list",
     "newuser":"/api/user",  
+    "Relaadmindata":"/api/Relay/relayadminremakr",
     "getforgototp":"/api/ManageCandidatepassword/",
     "getverifyotp":"/api/ManageCandidatepassword/verifyotp",
     "edituser":"/api/user/",

@@ -40,7 +40,8 @@ export const ViewFormfour = () => {
     Srnoofrelay: "",
     upload_file: "",
     languagetype: "",
-    Remarks: ""
+    Remarks: "",
+    admin_remark:"",
   });
 
   // New state variables for confirmation dialog and loading
@@ -133,7 +134,7 @@ export const ViewFormfour = () => {
         usertype: parseInt(selectedRole, 10),
       };
 
-      const response = await apiClient.post(api.newuser, formDataToSend);
+      const response = await apiClient.post(api.Relaadmindata, formDataToSend);
       if (response.status === 200) {
         // Simulate a 3-second delay
         setTimeout(() => {
@@ -220,7 +221,7 @@ export const ViewFormfour = () => {
                             Relay settings data
                           </h2>
                           <div className="mb-3">
-                            <Form onSubmit={handleSubmit}>
+                            <Form >
                               <form className="ui form">
                                 <tbody>
                                   <tr>
@@ -242,6 +243,17 @@ export const ViewFormfour = () => {
                                         type="text"
                                         placeholder="Substation"
                                         value={formData.substation} disabled
+                                      />
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td className="ui header">Utility</td>
+                                    <td>
+                                      <input
+                                        className="form-control"
+                                        type="text"
+                                        placeholder="Utility Level"
+                                        value={formData.utility} disabled
                                       />
                                     </td>
                                   </tr>
@@ -317,12 +329,12 @@ export const ViewFormfour = () => {
                                       />
                                     </td>
                                   </tr>
-                                  <tr>
+                                  {/* <tr>
                                     <td className="ui header">Uploaded File</td>
                                     <td>
                                         <Link className="form-control" to={`${BASE_URL+formData.upload_filepath}`} ><PictureAsPdfIcon/></Link>
                                     </td>
-                                  </tr>
+                                  </tr> */}
                                   <tr>
                                     <td className="ui header">Remarks</td>
                                     <td>
@@ -334,8 +346,19 @@ export const ViewFormfour = () => {
                                       />
                                     </td>
                                   </tr>
+                                  <tr>
+                                    <td className="ui header">Admin Remarks</td>
+                                    <td>
+                                      <input
+                                        className="form-control"
+                                        type="text"
+                                        placeholder="Remarks"
+                                        value={formData.admin_reamrk} 
+                                      />
+                                    </td>
+                                  </tr>
                                 </tbody>
-                              </form>
+                             
 
                               <div
                                 id="button"
@@ -346,11 +369,12 @@ export const ViewFormfour = () => {
                                   variant="primary"
                                   type="submit"
                                   style={{ width: 100 }}
+                                  onSubmit={handleSubmit}
                                 >
                                   Submit
                                 </Button>
                               </div>
-
+                              </form>
                               <Dialog
                                 className="backdrop"
                                 open={confirmDialogOpen}

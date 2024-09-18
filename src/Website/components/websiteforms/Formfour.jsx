@@ -37,7 +37,8 @@ export const Formfour = () => {
         MakeOfRelay: '',
         SrNoOfRelay: '',
         Uploadfile: '',
-        Remarks: ''
+        Remarks: '',
+        utility:''
     });
 
     // New state variables for confirmation dialog and loading
@@ -135,12 +136,12 @@ export const Formfour = () => {
         try {
 
 
-            let candidateId=0;
+            let candidateId = 0;
             if (localStorage.getItem("candidateId")) {
-                 candidateId = localStorage.getItem("candidateId");
+                candidateId = localStorage.getItem("candidateId");
             }
-            else{
-                 candidateId = 0;
+            else {
+                candidateId = 0;
             }
             // const formDataToSend = {
             //     ...formData,
@@ -158,8 +159,9 @@ export const Formfour = () => {
             formDataToSend.append('Sr_No_of_Relay', formData.SrNoOfRelay);
             formDataToSend.append('Upload_File_input', selectedFile);
             formDataToSend.append('Remarks', formData.Remarks);
+            formDataToSend.append('utility', formData.utility);
             formDataToSend.append('languagetype', 1);
-             ;
+            ;
             const response = await apiclient.post(apis.Relaysave, formDataToSend)
             if (response.status === 200) {
                 console.log("user" + response.data)
@@ -256,8 +258,9 @@ export const Formfour = () => {
                                                 <div class="card">
                                                     <div class="card-body registrationCard">
 
-                                                        <div class="form-group row"><label class="col-sm-2 col-form-label">Substation<span
-                                                        ><b>*</b></span>:</label>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">Substation<span
+                                                            ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
                                                                 <span style={{ color: "red" }}>{formErrors.Substation}</span>
                                                                 <input class="form-control"
@@ -267,6 +270,19 @@ export const Formfour = () => {
                                                                     value={formData.Substation}
                                                                     onChange={handleChange}
                                                                     isInvalid={!!formErrors.Substation}
+                                                                /><small class="invalid-feedback">
+                                                                </small></div>
+                                                            <label class="col-sm-2 col-form-label">Utility<span
+                                                            ><b>*</b></span>:</label>
+                                                            <div class="col-sm-2">
+                                                                <span style={{ color: "red" }}>{formErrors.utility}</span>
+                                                                <input class="form-control"
+                                                                    name="utility"
+                                                                    placeholder="Enter Utility"
+                                                                    maxlength="50"
+                                                                    value={formData.utility}
+                                                                    onChange={handleChange}
+                                                                    isInvalid={!!formErrors.utility}
                                                                 /><small class="invalid-feedback">
                                                                 </small></div>
                                                             <label
@@ -279,7 +295,13 @@ export const Formfour = () => {
                                                                     placeholder="Enter kV Level"
                                                                     onChange={handleChange}
                                                                     isInvalid={!!formErrors.kV_Level}
-                                                                    maxlength="50" value={formData.kV_Level} /><small class="invalid-feedback"></small></div><label
+                                                                    maxlength="50" value={formData.kV_Level} /><small class="invalid-feedback"></small></div>
+                                                                   
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            
+                                                        <label
                                                                         class="col-sm-2 col-form-label">Owner<span
                                                                         ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
@@ -288,8 +310,7 @@ export const Formfour = () => {
                                                                     onChange={handleChange}
                                                                     isInvalid={!!formErrors.Owner}
                                                                     maxlength="50" value={formData.Owner} /><small class="invalid-feedback"></small></div>
-                                                        </div>
-                                                        <div class="form-group row"><label class="col-sm-2 col-form-label">Name of Element<span
+                                                            <label class="col-sm-2 col-form-label">Name of Element<span
                                                         ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
                                                                 <span style={{ color: "red" }}>{formErrors.NameElement}</span>
@@ -304,7 +325,11 @@ export const Formfour = () => {
                                                                 <input class="form-control" name="Protection" placeholder="Enter Protection (M1/M2/Backup)"
                                                                     maxlength="50" value={formData.Protection}
                                                                     onChange={handleChange}
-                                                                    isInvalid={!!formErrors.Protection} /><small class="invalid-feedback"></small></div><label
+                                                                    isInvalid={!!formErrors.Protection} /><small class="invalid-feedback"></small></div>
+                                                                    
+                                                        </div>
+                                                        <div class="form-group row">
+                                                        <label
                                                                         class="col-sm-2 col-form-label">Make of Relay<span
                                                                         ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
@@ -313,8 +338,7 @@ export const Formfour = () => {
                                                                     maxlength="50" value={formData.MakeOfRelay}
                                                                     onChange={handleChange}
                                                                     isInvalid={!!formErrors.MakeOfRelay} /><small class="invalid-feedback"></small></div>
-                                                        </div>
-                                                        <div class="form-group row"><label class="col-sm-2 col-form-label">Sr No of Relay<span
+                                                            <label class="col-sm-2 col-form-label">Sr No of Relay<span
                                                         ><b>*</b></span>:</label>
                                                             <div class="col-sm-2">
                                                                 <span style={{ color: "red" }}>{formErrors.SrNoOfRelay}</span>

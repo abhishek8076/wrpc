@@ -214,6 +214,30 @@ export const ViewFormfive = () => {
                                     </td>
                                   </tr>
                                   <tr>
+                                    <td className="ui header" style={{ paddingLeft: "20px" }}>Year</td>
+                                    <td>
+                                      <input
+                                        className="form-control"
+                                        type="text"
+                                        placeholder="Year"
+                                        value={formData.year} disabled
+                                      />
+                                    </td>
+                                    <td style={{ paddingLeft: "50px" }}>
+
+                                    </td>
+                                    <td className="ui header" style={{ paddingLeft: "20px" }}>Month</td>
+                                    <td>
+                                      <input
+                                        className="form-control"
+                                        type="text"
+                                        placeholder="Month"
+                                        value={formData.month} disabled
+                                      />
+                                    </td>
+                                  </tr>
+                                  
+                                  <tr>
                                     <td className="ui header">Utility Name</td>
                                     <td>
                                       <input
@@ -223,6 +247,19 @@ export const ViewFormfive = () => {
                                         value={formData.utilityname} disabled
                                       />
                                     </td>
+
+                                    <td style={{ paddingLeft: "50px" }}>
+
+</td>
+<td className="ui header" style={{ paddingLeft: "20px" }}>Incorrect Operations</td>
+<td>
+  <input
+    className="form-control"
+    type="text"
+    placeholder="Incorrect Operations"
+    value={formData.incorrectoperations_ni} disabled
+  />
+</td>
                                   </tr>
                                   <tr>
                                     <td className="ui header">Correct Opration</td>
@@ -234,6 +271,18 @@ export const ViewFormfive = () => {
                                         value={formData.correct_operation} disabled
                                       />
                                     </td>
+                                    <td style={{ paddingLeft: "50px" }}>
+
+</td>
+<td className="ui header" style={{ paddingLeft: "20px" }}>Dependability Index</td>
+<td>
+  <input
+    className="form-control"
+    type="text"
+    placeholder="Dependability Index"
+    value={formData.dependabilityindex} disabled
+  />
+</td>
                                   </tr>
                                   <tr>
                                     <td className="ui header">Unwanted Opration</td>
@@ -245,6 +294,18 @@ export const ViewFormfive = () => {
                                         value={formData.unwanted_operation} disabled
                                       />
                                     </td>
+                                    <td style={{ paddingLeft: "50px" }}>
+
+</td>
+<td className="ui header" style={{ paddingLeft: "20px" }}>Security Index</td>
+<td>
+  <input
+    className="form-control"
+    type="text"
+    placeholder="Security Index"
+    value={formData.securityindex} disabled
+  />
+</td>
                                   </tr>
                                 
                                   <tr>
@@ -257,14 +318,26 @@ export const ViewFormfive = () => {
                                         value={formData.failures_operate} disabled
                                       />
                                     </td>
+                                    <td style={{ paddingLeft: "50px" }}>
+
+</td>
+<td className="ui header" style={{ paddingLeft: "20px" }}>Reliability index</td>
+<td>
+  <input
+    className="form-control"
+    type="text"
+    placeholder="Reliability index"
+    value={formData.reliabilityindex} disabled
+  />
+</td>
                                   </tr>
-                                  <tr>
+                                  {/* <tr>
                                     <td className="ui header">Incorrect Opration</td>
                                     <td>
                                         <Link className="form-control" to={`${BASE_URL+formData.incorrect_operation}`} ><DescriptionIcon/></Link>
                                         
                                     </td>
-                                  </tr>
+                                  </tr> */}
                                  
                                 </tbody>
                               </form>
