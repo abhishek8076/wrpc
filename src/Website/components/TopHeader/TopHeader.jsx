@@ -283,13 +283,13 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
 
 
 
-                        <div>
+                        <div class="language-box">
                           {storedUserString ? (
                             <button onClick={handleLogout}>
                               <Link to="/">Logout</Link>
                             </button>
                           ) : storedUserString1 ? (
-                            <div className="user-options user-name">
+                            <div className="language-box">
 
                               <button
                                 className="primary-button "
@@ -298,7 +298,7 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                                 Welcome, {cand_name}
                               </button>
                               {showDropdown && (
-                                <div className="dropdown dropdown-item">
+                                <div className="language-box">
                                   <div>
                                     <button onClick={handleLogout} className="dropdown-button" > Candidate Logout</button>
 
@@ -313,6 +313,9 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                             //   <Link to="/login">Login</Link>
                             // </button>
                             <>
+                            <div >
+
+                           
                               {parseInt(selectedLanguage) === 1 ? (
                                 <select name="languagetype" className="dash_link_nt" onChange={handleSelectChange}>
                                   <option value="" >  ---Login --- </option>
@@ -328,6 +331,7 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                                   <option value="2" >अभ्यर्थी लॉगिन</option>
                                 </select>
                               )}
+                               </div>
                             </>
                           )}
                         </div>
@@ -557,7 +561,7 @@ export const TopHeader = ({ selectedLanguage, handleLanguageChange }) => {
                       </div>
 
                       <div class="bar6 bar-c">
-                        <div>
+                        <div class="language-box">
                           {storedUserString ? (
                             <button >
                               <Link to="/">Logout</Link>

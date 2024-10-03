@@ -92,7 +92,6 @@ export const ViewFormfive = () => {
       return;
     }
 
-    // Open the confirmation dialog when the user clicks "Submit"
     setConfirmDialogOpen(true);
   };
 
