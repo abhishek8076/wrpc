@@ -73,8 +73,8 @@ import ForgetPassword from "./Admin/Components/pages/changepassword/ForgetPasswo
 import Newpassword from "./Admin/Components/pages/changepassword/Newpassword.jsx";
 import CandidateForgetpassword from './Admin/Components/pages/Candidatepassword/forgetcandpass.jsx'
 import ChangecandidatePassword from './Admin/Components/pages/Candidatepassword/Changecandidatepass.jsx'
-
-
+import Formoneallparts from './Website/components/websiteforms/ViewForm1allparts.jsx'
+import Form1part1list from './Website/components/Form1/Viewlistpart1.jsx'
 //=====================================import apiclient===============================>
 import apiClient from './Api/ApiClient';
 import LatestNews from "./Website/components/Latest_News/LatestNews.jsx";
@@ -82,6 +82,9 @@ import PlanMonitoring from "./Website/components/websiteforms/PlanMonitoring.jsx
 import PCMRecommendations from './Website/components/websiteforms/PCMRecommendations.jsx';
 import RelaySettingFiles from "./Website/components/websiteforms/RelaySettingFiles.jsx";
 import Discrepancies from "./Website/components/websiteforms/Discrepancies.jsx";
+import {Formonepart1} from './Website/components/Form1/part1.jsx';
+import {Formonepart2} from "./Website/components/Form1/part2.jsx";
+import {Formonepart3}  from './Website/components/Form1/part3.jsx';
 
 function App() {
   const [sessionExpired, setSessionExpired] = useState(false);
@@ -172,7 +175,11 @@ function App() {
             <Route path="/footer/:id" element={<FooterDetails />} />
             <Route path="*" element={<Errorfound />} />
             <Route path="/latestnews" element={<LatestNews/>} />
-            
+            <Route path="/form1part1" element={<Formonepart1/>} />
+            <Route path="/form1partsdata" element={<Formoneallparts/>} />
+            <Route path="/form1part2" element={<Formonepart2/>} />
+            <Route path="/form1part3" element={<Formonepart3/>} />
+            <Route path="/form1part1list" element={<Form1part1list/>} />
             <Route path="/candchangepassword" element={<ChangecandidatePassword/>} />
             <Route path="/candforgotpassword" element={<CandidateForgetpassword/>} />
             <Route path="/commerical" element={<Commerical />} />

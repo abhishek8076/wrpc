@@ -238,7 +238,10 @@ const CmsDisplay = () => {
               {renderMenuItems(menudata)}
               <Link to={"/latestnews"} style={{ color: 'white' }}>Latest News</Link>
             </div>
-
+            <div class="collapse navbar-collapse" id="navbar1">
+             
+              <Link to={"/form1partsdata"} style={{ color: 'white' }}>Formdata</Link>
+            </div>
           </div>
         </nav>
       </div>

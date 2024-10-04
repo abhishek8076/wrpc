@@ -4,7 +4,7 @@ import axios from 'axios';
 import apis from './api.json'
 
 
-//export const BASE_URL = 'https://alldatabase.c4k.in';
+//export const BASE_URL = 'http://103.25.130.120/';
 export const BASE_URL = 'http://localhost:5141'; 
 // export const BASE_URL = 'https://wrpcgov.com';
 
