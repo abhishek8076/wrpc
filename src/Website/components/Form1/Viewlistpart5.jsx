@@ -15,7 +15,7 @@ const Form1part5list = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5141/api/TrippingReport/Part1");
+        const response = await fetch(`${BASE_URL}/api/TrippingReport/Part1`);
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
