@@ -21,6 +21,8 @@
     "Trippingreportpart3":"/api/TrippingReport/Part3",
     "Trippingreportpart4":"/api/TrippingReport/Part4",
     "Trippingreportpart5":"/api/TrippingReport/Part5",
+    "TrippingUpdatepart1":"/api/TrippingReport/Part1/put/",
+    "editformone":"/api/TrippingReport/Part1/",
     "editPerformance":"/api/PerformanceIndices/put/",
     "aboutus":"/api/About",
     "commerical":"/api/Commercial/",

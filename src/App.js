@@ -89,7 +89,7 @@ import {Formonepart1} from './Website/components/Form1/part1.jsx';
 import {Formonepart2} from "./Website/components/Form1/part2.jsx";
 import {Formonepart3}  from './Website/components/Form1/part3.jsx';
 import {Formonepart5} from './Website/components/Form1/part5.jsx'
-
+import {Editformonepart1} from './Website/components/Form1/editpart1.jsx'
 function App() {
   const [sessionExpired, setSessionExpired] = useState(false);
   const storedUserString = localStorage.getItem("user");
@@ -180,6 +180,7 @@ function App() {
             <Route path="*" element={<Errorfound />} />
             <Route path="/latestnews" element={<LatestNews/>} />
             <Route path="/form1part1" element={<Formonepart1/>} />
+            <Route path="/editform1part1/:id" element={<Editformonepart1/>} />
             <Route path="/form1partsdata" element={<Formoneallparts/>} />
             <Route path="/form1part2/:id" element={<Formonepart2/>} />
             <Route path="/form1part3/:id" element={<Formonepart3/>} />
