@@ -14,7 +14,7 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material"; // Import Material-UI components
-import { Link ,useParams} from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Row } from "react-bootstrap/esm";
 import Sidebar from "../sidebar/Sidebar";
 import Header from "../header/Header";
@@ -22,7 +22,7 @@ import Footer from "../footer/Footer";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 export const ViewFormfour = () => {
-  const {id}= useParams()
+  const { id } = useParams()
   const [dropdownOptions, setDropdownOptions] = useState([]);
   const [selectedRole, setSelectedRole] = useState("");
   const [selectedFile, setSelectedFile] = useState({});
@@ -41,7 +41,7 @@ export const ViewFormfour = () => {
     upload_file: "",
     languagetype: "",
     Remarks: "",
-    admin_remark:"",
+    admin_remark: "",
   });
 
   // New state variables for confirmation dialog and loading
@@ -145,16 +145,16 @@ export const ViewFormfour = () => {
 
           setFormData({
             SNo: "",
-    Substation: "",
-    kVLevel: "",
-    Owner: "",
-    Nameofelement: "",
-    Protectiontypetext: "",
-    Makeofrelay: "",
-    Srnoofrelay: "",
-    upload_file: "",
-    languagetype: "",
-    Remarks: ""
+            Substation: "",
+            kVLevel: "",
+            Owner: "",
+            Nameofelement: "",
+            Protectiontypetext: "",
+            Makeofrelay: "",
+            Srnoofrelay: "",
+            upload_file: "",
+            languagetype: "",
+            Remarks: ""
           });
           setSelectedRole("");
         }, 1000);
@@ -353,27 +353,30 @@ export const ViewFormfour = () => {
                                         className="form-control"
                                         type="text"
                                         placeholder="Remarks"
-                                        value={formData.admin_reamrk} 
+                                        name="admin_remark"  // Bind the input to the correct state field
+                                        value={formData.admin_remark}  // Make sure you're referencing admin_remark, not admin_reamrk
+                                        onChange={handleChange}  // Update the state correctly when the input changes
                                       />
                                     </td>
                                   </tr>
-                                </tbody>
-                             
 
-                              <div
-                                id="button"
-                                className="d-flex "
-                                style={{ justifyContent: "space-between" }}
-                              >
-                                <Button
-                                  variant="primary"
-                                  type="submit"
-                                  style={{ width: 100 }}
-                                  onSubmit={handleSubmit}
+                                </tbody>
+
+
+                                <div
+                                  id="button"
+                                  className="d-flex "
+                                  style={{ justifyContent: "space-between" }}
                                 >
-                                  Submit
-                                </Button>
-                              </div>
+                                  <Button
+                                    variant="primary"
+                                    type="submit"
+                                    style={{ width: 100 }}
+                                    onSubmit={handleSubmit}
+                                  >
+                                    Submit
+                                  </Button>
+                                </div>
                               </form>
                               <Dialog
                                 className="backdrop"

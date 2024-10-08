@@ -40,7 +40,7 @@ const Form1part2list = () => {
         <div className="container mt-4 vh-100">
           <h2>Tripping Reporting and Compliance of PCM Monitoring List</h2>
           <div className="row mt-4">
-           
+
           </div>
 
           {/* Display loading or error */}
@@ -87,13 +87,27 @@ const Form1part2list = () => {
                           View EL(S) PDF
                         </a>
                       </TableCell>
+                      {/* <TableCell>
+                        <Link to={`/form1part2/${item.uniqueid}`} style={{ textDecoration: 'none' }}>
+                          <Button variant="contained" color="primary">
+                            Fill Part2
+                          </Button>
+                        </Link>
+                      </TableCell> */}
                       <TableCell>
-                      <Link to ={`/form1part2/${item.uniqueid}`} style={{ textDecoration: 'none' }}>
-          <Button variant="contained" color="primary">
-            Fill Part2
-          </Button>
-        </Link>
+                        {item.part1 === 1 ? (
+                          <Link to={`/form1part2/${item.uniqueid}`} style={{ textDecoration: 'none' }}>
+                            <Button variant="contained" color="primary">
+                              Fill Part2
+                            </Button>
+                          </Link>
+                        ) : (
+                          <Button variant="contained" color="primary" disabled>
+                            Fill Part2
+                          </Button>
+                        )}
                       </TableCell>
+
                     </TableRow>
                   ))}
                 </TableBody>
