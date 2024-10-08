@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button, Card, Col, Container, Form, Spinner } from "react-bootstrap";
-import {useParams } from "react-router-dom";
-// import 'bootstrap/dist/css/bootstrap.css';
 import { CmsFooter } from "../../components/Footer/CmsFooter";
 import { TopHeader } from "../TopHeader/TopHeader";
 import CmsDisplay from "../Header/CmsDisplay";
+import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import apis from "../../../Api/api.json";
@@ -20,21 +19,19 @@ import apiclient from "../../../Api/ApiClient";
 //import "./custom-form.scss";
 import axios from "axios";
 
-export const Formonepart3 = () => {
-  const { id } = useParams();
+export const Formonepart5 = () => {
+    const { id } = useParams();
   const recommondationRef = useRef();
   const [dropdownOptions, setDropdownOptions] = useState([]);
   const [selectedRole, setSelectedRole] = useState("");
   const [formErrors, setFormErrors] = useState({});
   const [successDialogOpen, setSuccessDialogOpen] = useState(false);
   const [getuser, setuser] = useState("");
- 
-  const [selectedFile8, setSelectedFile8] = useState(null);
-  const [selectedFile9, setSelectedFile9] = useState(null);
   const [formData, setFormData] = useState({
     SNo: "",
-    Analysis: "",
-    FinalReport: "",
+    UtilityActiontaken: "",
+    Dateattended: "",
+    Remarks: "",
   });
 
   // New state variables for confirmation dialog and loading
@@ -46,22 +43,7 @@ export const Formonepart3 = () => {
   };
   // const [selectedFile, setSelectedFile] = useState(null);
 
-  const handleFileChange8 = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedFile8(file);
-    } else {
-      alert("Please upload a PDF file.");
-    }
-  };
-  const handleFileChange9 = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedFile9(file);
-    } else {
-      alert("Please upload a PDF file.");
-    }
-  };
+  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -202,17 +184,13 @@ export const Formonepart3 = () => {
 
       const formDataToSend = new FormData();
 
-      formDataToSend.append(
-        "Recommendation_of_PCM",
-        formData.RecommondationofPCM
-      );
       formDataToSend.append("user_id", candidateId);
-      formDataToSend.append("uniqueid", id);
-      formDataToSend.append("Analysis", selectedFile8);
-      formDataToSend.append("Final_Report", selectedFile9);
-      ;
+      formDataToSend.append("uniqueid", id);  
+     formDataToSend.append("Action_Taken_by_Utility_to_Allow_Completion", formData.UtilityActiontaken);
+      formDataToSend.append("Date_on_Which_Attended", formData.Dateattended);
+      formDataToSend.append("Remarks", formData.Remarks);
       const response = await apiclient.post(
-        apis.Trippingreportpart3,
+        apis.Trippingreportpart5,
         formDataToSend
       );
       ;
@@ -227,8 +205,33 @@ export const Formonepart3 = () => {
 
           setFormData({
             SNo: "",
+            RecommondationofPCM: "",
+            kVLevel: "",
+            PCMNumber: "",
+            PCMDate: "",
+            ItemNo: "",
+            RecommondationofPCM: "",
+            TrippingDate: "",
+            TrippingTime: "",
+            OwnerS: "",
+            FIRS: "",
+            DRS: "",
+            ELS: "",
+            TRS: "",
+            CategoryS: "",
+            OwnerR: "",
+            FIRR: "",
+            DRR: "",
+            ELR: "",
+            TRR: "",
+            CategoryR: "",
             Analysis: "",
             FinalReport: "",
+            NotifiedStatus: "",
+            UtilityAttending: "",
+            UtilityActiontaken: "",
+            Dateattended: "",
+            Remarks: "",
           });
           setSelectedRole("");
         }, 1000);
@@ -243,7 +246,10 @@ export const Formonepart3 = () => {
       setLoading(false);
     }
   };
-return (
+
+  console.log(formData);
+
+  return (
     <>
       <div>
         <div>
@@ -262,60 +268,81 @@ return (
                     <div class="col-md-12 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body registrationCard">
-                          
-                          
-                          {/* form 3 */}
-
+                    
                           {true && (
-                            <>
-                              <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">
-                                  Analysis
-                                  <span>
-                                    <b>*</b>
-                                  </span>
-                                  :
-                                </label>
-                                <div class="col-sm-2">
-                                  <span style={{ color: "red" }}>
-                                    {formErrors.Analysis}
-                                  </span>
-                                  <input
-                                    class="form-control"
-                                    name="Analysis"
-                                    type="file"
-                                    maxlength="50"
-                                    onChange={handleFileChange8}
-                                    isInvalid={!!formErrors.Analysis}
-                                  />
-                                  <small class="invalid-feedback"></small>
-                                </div>
-                                <label class="col-sm-2 col-form-label">
-                                  Final Report
-                                  <span>
-                                    <b>*</b>
-                                  </span>
-                                  :
-                                </label>
-                                <div class="col-sm-2">
-                                  <span style={{ color: "red" }}>
-                                    {formErrors.FinalReport}
-                                  </span>
-                                  <input
-                                    class="form-control"
-                                    name="FinalReport"
-                                    type="file"
-                                    maxlength="50"
-                                    onChange={handleFileChange9}
-                                    isInvalid={!!formErrors.FinalReport}
-                                  />
-                                </div>
+                            <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">
+                                Utility Action taken
+                                <span>
+                                  <b>*</b>
+                                </span>
+                                :
+                              </label>
+                              <div class="col-sm-2">
+                                <span style={{ color: "red" }}>
+                                  {formErrors.UtilityActiontaken}
+                                </span>
+                                <input
+                                  class="form-control"
+                                  name="UtilityActiontaken"
+                                  placeholder="Enter Utility Action taken"
+                                  maxlength="50"
+                                  value={formData.UtilityActiontaken}
+                                  onChange={handleChange}
+                                  isInvalid={!!formErrors.UtilityActiontaken}
+                                />
                                 <small class="invalid-feedback"></small>
                               </div>
-                            </>
+                              <label class="col-sm-2 col-form-label">
+                                Date attended
+                                <span>
+                                  <b>*</b>
+                                </span>
+                                :
+                              </label>
+                              <div class="col-sm-2">
+                                <span style={{ color: "red" }}>
+                                  {formErrors.Dateattended}
+                                </span>
+                                <input
+                                  class="form-control"
+                                  name="Dateattended"
+                                  type="date"
+                                  min="1962-01-01"
+                                  max="2024-26-001"
+                                  maxlength="50"
+                                  value={formData.Dateattended}
+                                  onChange={handleChange}
+                                  isInvalid={!!formErrors.Dateattended}
+                                />
+                                <small class="invalid-feedback"></small>
+                              </div>
+                              <label class="col-sm-2 col-form-label">
+                                Remarks
+                                <span>
+                                  <b>*</b>
+                                </span>
+                                :
+                              </label>
+                              <div class="col-sm-2">
+                                <span style={{ color: "red" }}>
+                                  {formErrors.Remarks}
+                                </span>
+                                <input
+                                  class="form-control"
+                                  name="Remarks"
+                                  placeholder="Enter Remarks"
+                                  maxlength="50"
+                                  value={formData.Remarks}
+                                  onChange={handleChange}
+                                  isInvalid={!!formErrors.Remarks}
+                                />
+                                <small class="invalid-feedback"></small>
+                              </div>
+                            </div>
                           )}
 
-                         
+                          {/* form 4 */}
                         </div>
                       </div>
                     </div>

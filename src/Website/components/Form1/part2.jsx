@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button, Card, Col, Container, Form, Spinner } from "react-bootstrap";
-
-// import 'bootstrap/dist/css/bootstrap.css';
+import { useNavigate } from 'react-router-dom';
 import { CmsFooter } from "../../components/Footer/CmsFooter";
 import { TopHeader } from "../TopHeader/TopHeader";
 import CmsDisplay from "../Header/CmsDisplay";
@@ -14,58 +13,33 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material"; // Import Material-UI components
-import { Link } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 import { Row } from "react-bootstrap/esm";
 import apiclient from "../../../Api/ApiClient";
 //import "./custom-form.scss";
 import axios from "axios";
 
 export const Formonepart2 = () => {
+  const { id } = useParams();
   const recommondationRef = useRef();
   const [dropdownOptions, setDropdownOptions] = useState([]);
   const [selectedRole, setSelectedRole] = useState("");
   const [formErrors, setFormErrors] = useState({});
   const [successDialogOpen, setSuccessDialogOpen] = useState(false);
   const [getuser, setuser] = useState("");
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [selectedFile1, setSelectedFile1] = useState(null);
-  const [selectedFile2, setSelectedFile2] = useState(null);
-  const [selectedFile3, setSelectedFile3] = useState(null);
   const [selectedFile4, setSelectedFile4] = useState(null);
   const [selectedFile5, setSelectedFile5] = useState(null);
   const [selectedFile6, setSelectedFile6] = useState(null);
   const [selectedFile7, setSelectedFile7] = useState(null);
-  const [selectedFile8, setSelectedFile8] = useState(null);
-  const [selectedFile9, setSelectedFile9] = useState(null);
   const [formData, setFormData] = useState({
-    SNo: "",
-    RecommondationofPCM: "",
-    kVLevel: "",
-    PCMNumber: "",
-    PCMDate: "",
-    ItemNo: "",
-    RecommondationofPCM: "",
-    TrippingDate: "",
-    TrippingTime: "",
-    OwnerS: "",
-    FIRS: "",
-    DRS: "",
-    ELS: "",
-    TRS: "",
-    CategoryS: "",
+    SNo: "",    
     OwnerR: "",
     FIRR: "",
     DRR: "",
     ELR: "",
     TRR: "",
     CategoryR: "",
-    Analysis: "",
-    FinalReport: "",
-    NotifiedStatus: "",
-    UtilityAttending: "",
-    UtilityActiontaken: "",
-    Dateattended: "",
-    Remarks: "",
+    
   });
 
   // New state variables for confirmation dialog and loading
@@ -75,42 +49,7 @@ export const Formonepart2 = () => {
   const handleRoleChange = (event) => {
     setSelectedRole(event.target.value);
   };
-  // const [selectedFile, setSelectedFile] = useState(null);
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-
-    if (file) {
-      setSelectedFile(file);
-    } else {
-      alert("Please upload a PDF file.");
-    }
-  };
-  const handleFileChange1 = (event) => {
-    const file = event.target.files[0];
-
-    if (file) {
-      setSelectedFile1(file);
-    } else {
-      alert("Please upload a PDF file.");
-    }
-  };
-  const handleFileChange2 = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedFile2(file);
-    } else {
-      alert("Please upload a PDF file.");
-    }
-  };
-  const handleFileChange3 = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedFile3(file);
-    } else {
-      alert("Please upload a PDF file.");
-    }
-  };
+  
   const handleFileChange4 = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -119,6 +58,8 @@ export const Formonepart2 = () => {
       alert("Please upload a PDF file.");
     }
   };
+  const navigate = useNavigate();
+ 
   const handleFileChange5 = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -143,23 +84,8 @@ export const Formonepart2 = () => {
       alert("Please upload a PDF file.");
     }
   };
-  const handleFileChange8 = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedFile8(file);
-    } else {
-      alert("Please upload a PDF file.");
-    }
-  };
-  const handleFileChange9 = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedFile9(file);
-    } else {
-      alert("Please upload a PDF file.");
-    }
-  };
-
+  
+ 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
@@ -169,46 +95,6 @@ export const Formonepart2 = () => {
   };
   const validateForm = () => {
     const errors = {};
-
-    if (!formData.RecommondationofPCM) {
-      errors.RecommondationofPCM = "Do not left the field blank";
-    }
-    if (!formData.kVLevel) {
-      errors.kVLevel = "Required";
-    }
-    if (!formData.PCMNumber) {
-      errors.PCMNumber = "Do not left the field blank";
-    }
-    if (!formData.PCMDate) {
-      errors.PCMDate = "Required";
-    }
-    if (!formData.ItemNo) {
-      errors.ItemNo = "Required";
-    }
-    if (!formData.TrippingDate) {
-      errors.TrippingDate = "Required";
-    }
-    if (!formData.TrippingTime) {
-      errors.TrippingTime = "Required";
-    }
-    if (!formData.OwnerS) {
-      errors.OwnerS = "Required";
-    }
-    if (!formData.FIRS) {
-      errors.FIRS = "Required";
-    }
-    if (!formData.DRS) {
-      errors.DRS = "Required";
-    }
-    if (!formData.ELS) {
-      errors.ELS = "Required";
-    }
-    if (!formData.TRS) {
-      errors.TRS = "Required";
-    }
-    if (!formData.CategoryS) {
-      errors.CategoryS = "Required";
-    }
     if (!formData.OwnerR) {
       errors.OwnerR = "Required";
     }
@@ -227,30 +113,6 @@ export const Formonepart2 = () => {
     if (!formData.CategoryR) {
       errors.CategoryR = "Required";
     }
-    if (!formData.Analysis) {
-      errors.Analysis = "Required";
-    }
-    if (!formData.Remarks) {
-      errors.Remarks = "Required";
-    }
-    if (!formData.FinalReport) {
-      errors.FinalReport = "Required";
-    }
-    if (!formData.NotifiedStatus) {
-      errors.NotifiedStatus = "Required";
-    }
-    if (!formData.UtilityAttending) {
-      errors.UtilityAttending = "Required";
-    }
-    if (!formData.UtilityActiontaken) {
-      errors.UtilityActiontaken = "Required";
-    }
-    if (!formData.Dateattended) {
-      errors.Dateattended = "Required";
-    }
-
-    // Add similar checks for other fields
-
     setFormErrors(errors);
 
     // Focus on the first invalid field
@@ -299,41 +161,17 @@ export const Formonepart2 = () => {
 
       const formDataToSend = new FormData();
 
-      formDataToSend.append(
-        "Recommendation_of_PCM",
-        formData.RecommondationofPCM
-      );
+      
       formDataToSend.append("user_id", candidateId);
-      formDataToSend.append("kV_Level", formData.kVLevel);
-      formDataToSend.append("PCM_Number", formData.PCMNumber);
-      formDataToSend.append("PCM_Date", formData.PCMDate);
-      formDataToSend.append("Item_No_Heading", formData.ItemNo);
-      formDataToSend.append("Tripping_Date", formData.TrippingDate);
-      formDataToSend.append("Tripping_Time", formData.TrippingTime);
-      formDataToSend.append("Owner_SEND", formData.OwnerS);
-      formDataToSend.append("FIR_S", selectedFile);
-      formDataToSend.append("DR_S", selectedFile1);
-      formDataToSend.append("EL_S", selectedFile2);
-      formDataToSend.append("TR_S", selectedFile3);
-      formDataToSend.append("Category_S", formData.CategoryS);
+      formDataToSend.append("uniqueid", id); 
       formDataToSend.append("Owner_REND", formData.OwnerR);
       formDataToSend.append("FIR_R", selectedFile4);
       formDataToSend.append("DR_R", selectedFile5);
       formDataToSend.append("EL_R", selectedFile6);
       formDataToSend.append("TR_R", selectedFile7);
       formDataToSend.append("Category_R", formData.CategoryR);
-      formDataToSend.append("Analysis", selectedFile8);
-      formDataToSend.append("Final_Report", selectedFile9);
-      formDataToSend.append("Notified_Status", formData.NotifiedStatus);
-      formDataToSend.append("Utility_Responsible_for_Attending", formData.UtilityAttending);
-      formDataToSend.append("Action_Taken_by_Utility_to_Allow_Completion", formData.UtilityActiontaken);
-      formDataToSend.append("Date_on_Which_Attended", formData.Dateattended);
-      formDataToSend.append("Remarks", formData.Remarks);
       ;
-      const response = await apiclient.post(
-        apis.Trippingcompliance,
-        formDataToSend
-      );
+      const response = await apiclient.post( apis.Trippingreportpart2, formDataToSend);
       ;
       if (response.status === 200) {
         console.log("user" + response.data);
@@ -346,33 +184,12 @@ export const Formonepart2 = () => {
 
           setFormData({
             SNo: "",
-            RecommondationofPCM: "",
-            kVLevel: "",
-            PCMNumber: "",
-            PCMDate: "",
-            ItemNo: "",
-            RecommondationofPCM: "",
-            TrippingDate: "",
-            TrippingTime: "",
-            OwnerS: "",
-            FIRS: "",
-            DRS: "",
-            ELS: "",
-            TRS: "",
-            CategoryS: "",
             OwnerR: "",
             FIRR: "",
             DRR: "",
             ELR: "",
             TRR: "",
             CategoryR: "",
-            Analysis: "",
-            FinalReport: "",
-            NotifiedStatus: "",
-            UtilityAttending: "",
-            UtilityActiontaken: "",
-            Dateattended: "",
-            Remarks: "",
           });
           setSelectedRole("");
         }, 1000);

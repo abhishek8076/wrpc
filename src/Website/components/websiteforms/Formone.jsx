@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button, Card, Col, Container, Form, Spinner } from "react-bootstrap";
-
-// import 'bootstrap/dist/css/bootstrap.css';
 import { CmsFooter } from "../../components/Footer/CmsFooter";
 import { TopHeader } from "../TopHeader/TopHeader";
 import CmsDisplay from "../Header/CmsDisplay";

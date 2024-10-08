@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef  } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button, Card, Col, Container, Form, Spinner } from 'react-bootstrap';
 
 // import 'bootstrap/dist/css/bootstrap.css';
@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material'; // Import Material-UI components
-import { Link,useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Row } from 'react-bootstrap/esm';
 import Sidebar from '../sidebar/Sidebar';
 import Header from '../header/Header'
@@ -17,24 +17,14 @@ import './custom-form.scss';
 import { BASE_URL } from '../../../Api/ApiFunctions';
 
 
-export const ViewFormOne= () => {
-    const {id}= useParams()
+export const ViewFormOne = () => {
+    const { id } = useParams()
     const recommondationRef = useRef();
     const [dropdownOptions, setDropdownOptions] = useState([]);
     const [selectedRole, setSelectedRole] = useState('');
     const [formErrors, setFormErrors] = useState({});
     const [successDialogOpen, setSuccessDialogOpen] = useState(false);
     const [getuser, setuser] = useState('');
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [selectedFile1, setSelectedFile1] = useState(null);
-    const [selectedFile2, setSelectedFile2] = useState(null);
-    const [selectedFile3, setSelectedFile3] = useState(null);
-    const [selectedFile4, setSelectedFile4] = useState(null);
-    const [selectedFile5, setSelectedFile5] = useState(null);
-    const [selectedFile6, setSelectedFile6] = useState(null);
-    const [selectedFile7, setSelectedFile7] = useState(null);
-    const [selectedFile8, setSelectedFile8] = useState(null);
-    const [selectedFile9, setSelectedFile9] = useState(null);
     const [formData, setFormData] = useState({
         SNo: '',
         RecommondationofPCM: '',
@@ -42,124 +32,37 @@ export const ViewFormOne= () => {
         PCMNumber: '',
         PCMDate: '',
         ItemNo: '',
-        RecommondationofPCM: '',
-        TrippingDate: '',
-        TrippingTime: '',
-        OwnerS: '',
-        FIRS: '',
-        DRS: '',
-        ELS: '',
-        TRS: '',
-        CategoryS: '',
-        OwnerR: '',
-        FIRR: '',
-        DRR: '',
-        ELR: '',
-        TRR: '',
-        CategoryR: '',
-        Analysis: '',
-        FinalReport: '',
+        tripping_date: '',
+        tripping_time: '',
+        owner_send: '',
+        fir_spdfpath: '',
+        dr_spath: '',
+        el_spath: '',
+        tr_spath: '',
+        category_s: '',
+        owner_rend: '',
+        fir_rpath: '',
+        dr_rpath: '',
+        el_rpath: '',
+        tr_rpath: '',
+        category_r: '',
+        analysispath: '',
+        final_reportpath: '',
         NotifiedStatus: '',
         UtilityAttending: '',
-        UtilityActiontaken: '',
-        Dateattended: '',
-        Remarks: ''
+        action_taken_by_utility_to_allow_completion: '',
+        date_on_which_attended: '', 
+        remarks: ''
     });
 
-
-    // New state variables for confirmation dialog and loading
+    
     const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const handleRoleChange = (event) => {
         setSelectedRole(event.target.value);
     };
-    // const [selectedFile, setSelectedFile] = useState(null);
-
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-
-        if (file) {
-            setSelectedFile(file);
-
-        } else {
-
-            alert('Please upload a PDF file.');
-        }
-    };
-    const handleFileChange1 = (event) => {
-        const file = event.target.files[0];
-
-        if (file) {
-            setSelectedFile1(file);
-
-        } else {
-
-            alert('Please upload a PDF file.');
-        }
-    };
-    const handleFileChange2 = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setSelectedFile2(file);
-        } else {
-            alert('Please upload a PDF file.');
-        }
-    };
-    const handleFileChange3 = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setSelectedFile3(file);
-        } else {
-            alert('Please upload a PDF file.');
-        }
-    };
-    const handleFileChange4 = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setSelectedFile4(file);
-        } else {
-            alert('Please upload a PDF file.');
-        }
-    };
-    const handleFileChange5 = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setSelectedFile5(file);
-        } else {
-            alert('Please upload a PDF file.');
-        }
-    };
-    const handleFileChange6 = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setSelectedFile6(file);
-        } else {
-            alert('Please upload a PDF file.');
-        }
-    };
-    const handleFileChange7 = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setSelectedFile7(file);
-        } else {
-            alert('Please upload a PDF file.');
-        }
-    };
-    const handleFileChange8 = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setSelectedFile8(file);
-        } else {
-            alert('Please upload a PDF file.');
-        }
-    };
-    const handleFileChange9 = (event) => {
-        const file = event.target.files[0];
-        
-            setSelectedFile9(file);
-        
-    };
+   
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -234,9 +137,7 @@ export const ViewFormOne= () => {
         if (!formData.Remarks) {
             errors.Remarks = 'Required';
         }
-        if (!selectedFile9) {
-            errors.selectedFile9 = 'Required';
-        }
+        
         if (!formData.NotifiedStatus) {
             errors.NotifiedStatus = 'Required';
         }
@@ -249,7 +150,7 @@ export const ViewFormOne= () => {
         if (!formData.Dateattended) {
             errors.Dateattended = 'Required';
         }
-        
+
 
 
         // Add similar checks for other fields
@@ -271,9 +172,9 @@ export const ViewFormOne= () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (!validateForm()) {
-            return;
-        }
+        // if (!validateForm()) {
+        //     return;
+        // }
 
         // Open the confirmation dialog when the user clicks "Submit"
         setConfirmDialogOpen(true);
@@ -292,38 +193,15 @@ export const ViewFormOne= () => {
 
         try {
             const formDataToSend = new FormData();
-
+            formDataToSend.append("id", id);  
             formDataToSend.append('Recommendation_of_PCM', formData.RecommondationofPCM);
-            formDataToSend.append('kV_Level', formData.kVLevel);
-            formDataToSend.append('PCM_Number',  formData.PCMNumber);
-            formDataToSend.append('PCM_Date',  formData.PCMDate);
-            formDataToSend.append('Item_No_Heading',formData.ItemNo);
-            formDataToSend.append('Tripping_Date',formData.TrippingDate);
-            formDataToSend.append('Tripping_Time',formData.TrippingTime);
-            formDataToSend.append('Owner_SEND', formData.OwnerS);
-            formDataToSend.append('FIR_S',selectedFile);
-            formDataToSend.append('DR_S',selectedFile1);
-            formDataToSend.append('EL_S',selectedFile2);
-            formDataToSend.append('TR_S',selectedFile3);
-            formDataToSend.append('Category_S', formData.CategoryS);
-            formDataToSend.append('Owner_REND', formData.OwnerR);
-            formDataToSend.append('FIR_R',selectedFile4);
-            formDataToSend.append('DR_R',selectedFile5);
-            formDataToSend.append('EL_R',selectedFile6);
-            formDataToSend.append('TR_R',selectedFile7);
-            formDataToSend.append('Category_R', formData.CategoryR);
-            formDataToSend.append('Analysis', selectedFile8);
-            formDataToSend.append('Final_Report',selectedFile9);
-            formDataToSend.append('Notified_Status',formData.NotifiedStatus);
+            formDataToSend.append('PCM_Number', formData.PCMNumber);
+            formDataToSend.append('PCM_Date', formData.PCMDate);
+            formDataToSend.append('Item_No_Heading', formData.ItemNo);
             formDataToSend.append('Utility_Responsible_for_Attending', formData.UtilityAttending);
-            formDataToSend.append('Action_Taken_by_Utility_to_Allow_Completion',formData.UtilityActiontaken);
-            formDataToSend.append('Date_on_Which_Attended', formData.Dateattended);
-            formDataToSend.append('Remarks', formData.Remarks);
-
-
-            const response = await apiClient.post(apis.Trippingcompliance, formDataToSend);
+            const response = await apiClient.post(apis.Trippingreportpart4, formDataToSend);
             if (response.status === 200) {
-               
+
                 // Simulate a 3-second delay
                 setTimeout(() => {
                     // Set loading state back to false after the delay
@@ -380,16 +258,16 @@ export const ViewFormOne= () => {
 
     useEffect(() => {
         async function fetchData2() {
-          try {
-            const response = await apiClient.get('/api/FormReports/Get_tppa_monitoring');
-            setFormData(response.data);
-          } catch (error) {
-            console.error("Error fetching user data:", error);
-          }
+            try {
+                const response = await apiClient.get(`/api/Tripping_compliance_pcm_discussions/${id}`);
+                setFormData(response.data);
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
         }
         fetchData2();
-      }, []);
-    
+    }, []);
+
 
     return (
         <>
@@ -432,53 +310,366 @@ export const ViewFormOne= () => {
 
                                                         <form className="ui form" onSubmit={handleSubmit}>
                                                             <tbody>
-                                                                {/* <tr>
-                                                                    <td className="ui header">S.No</td>
-                                                                    <td>
-                                                                        <input className="form-control" type="text" placeholder="Serial no" />
-                                                                    </td>
-                                                                </tr> */}
+
+
                                                                 <tr>
-                                                                    <td className="ui header">Recommendations of PCM </td>
+                                                                    <td className="ui header">Tripping Date </td>
                                                                     <td>
                                                                         <Form.Control
-                                                                        
-                                                                         className={`form-control ${formErrors.RecommondationofPCM ? 'is-invalid' : ''}`}
-                                                                            type="text"
-                                                                            placeholder="Recommendations of PCM"
-                                                                            name='RecommondationofPCM'
-                                                                            value={formData.RecommondationofPCM}
-                                                                            onChange={handleChange}
-                                                                            isInvalid={!!formErrors.RecommondationofPCM}
-                                                                             
-                                                                        />
 
+                                                                            className={`form-control ${formErrors.tripping_date ? 'is-invalid' : ''}`}
+                                                                            type="date"
+                                                                            placeholder="Tripping Date"
+                                                                            name='tripping_date'disabled
+                                                                            value={formData.tripping_date}
+
+                                                                            isInvalid={!!formErrors.tripping_date}
+
+                                                                        />
                                                                     </td>
                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.RecommondationofPCM}</span>
+                                                                        <span style={{ color: "red" }}>{formErrors.tripping_date}</span>
                                                                     </td>
-                                                                    
+
                                                                 </tr>
                                                                 <tr>
-                                                                    <td className="ui header">KV Level </td>
+                                                                    <td className="ui header">Tripping Time </td>
+
                                                                     <td>
                                                                         <Form.Control
-                                                                        
-                                                                         className={`form-control ${formErrors.kVLevel ? 'is-invalid' : ''}`}
-                                                                            type="text"
-                                                                            placeholder="KV Level"
-                                                                            name='kVLevel'
-                                                                            value={formData.kVLevel}
-                                                                            onChange={handleChange}
-                                                                            isInvalid={!!formErrors.kVLevel}
-                                                                             
-                                                                        />
 
+                                                                            className={`form-control ${formErrors.tripping_time ? 'is-invalid' : ''}`}
+                                                                            type="text"
+                                                                            placeholder="Tripping Time"
+                                                                            name='tripping_time'
+                                                                            value={formData.tripping_time} disabled
+                                                                            onChange={handleChange}
+                                                                            isInvalid={!!formErrors.tripping_time}
+
+                                                                        />
                                                                     </td>
                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.kVLevel}</span>
+                                                                        <span style={{ color: "red" }}>{formErrors.tripping_time}</span>
                                                                     </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="ui header">Owner(Send) </td>
+                                                                    <td>
+                                                                        <Form.Control
+
+                                                                            className={`form-control ${formErrors.owner_send ? 'is-invalid' : ''}`}
+                                                                            type="text"
+                                                                            placeholder="Owner(Send)"
+                                                                            name='owner_send'
+                                                                            value={formData.owner_send}disabled
+                                                                            onChange={handleChange}
+                                                                            isInvalid={!!formErrors.owner_send}
+
+                                                                        />
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.owner_send}</span>
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="ui header">FIR(S) </td>
+                                                                    <td>
+                                                                        {formData.fir_spdfpath ? (
+                                                                            // Display the PDF file as a clickable link
+                                                                            <a href={BASE_URL+formData.fir_spdfpath} target="_blank" rel="noopener noreferrer">
+                                                                                View FIR (S) Document
+                                                                            </a>
+                                                                        ) : (
+                                                                            // Show a message or placeholder if there's no file
+                                                                            <span>No PDF available</span>
+                                                                        )}
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.FIRS}</span>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td className="ui header">DR(S) </td>
+                                                                    <td>
+                                                                        {formData.dr_spath ? (
+                                                                            // Display the PDF file as a clickable link
+                                                                            <a href={BASE_URL+formData.dr_spath} target="_blank" rel="noopener noreferrer">
+                                                                                View DR(S) Document
+                                                                            </a>
+                                                                        ) : (
+                                                                            // Show a message or placeholder if there's no file
+                                                                            <span>No PDF available</span>
+                                                                        )}
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.dr_rpath}</span>
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="ui header">EL(S) </td>
+
+                                                                    <td>
+                                                                        {formData.el_spath ? (
+                                                                            // Display the PDF file as a clickable link
+                                                                            <a href={BASE_URL+formData.el_spath} target="_blank" rel="noopener noreferrer">
+                                                                                View EL (S) Document
+                                                                            </a>
+                                                                        ) : (
+                                                                            // Show a message or placeholder if there's no file
+                                                                            <span>No PDF available</span>
+                                                                        )}
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.el_spath}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="ui header">TR(S) </td>
+
+                                                                    <td>
+                                                                        {formData.tr_spath ? (
+                                                                            // Display the PDF file as a clickable link
+                                                                            <a href={BASE_URL+formData.tr_spath} target="_blank" rel="noopener noreferrer">
+                                                                                View TR (S) Document
+                                                                            </a>
+                                                                        ) : (
+                                                                            // Show a message or placeholder if there's no file
+                                                                            <span>No PDF available</span>
+                                                                        )}
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.tr_spath}</span>
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="ui header">Category(Send) </td>
+                                                                    <td>
+                                                                        <Form.Control
+
+                                                                            className={`form-control ${formErrors.category_s ? 'is-invalid' : ''}`}
+                                                                            type="text"
+                                                                            placeholder="Category(Send)"
+                                                                            name='category_s'
+                                                                            value={formData.category_s}disabled
+                                                                            onChange={handleChange}
+                                                                            isInvalid={!!formErrors.category_s}
+
+                                                                        />
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.category_s}</span>
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="ui header">Owner(R) </td>
+                                                                    <td>
+                                                                        <Form.Control
+
+                                                                            className={`form-control ${formErrors.owner_rend ? 'is-invalid' : ''}`}
+                                                                            type="text"
+                                                                            placeholder="Owner(R)"
+                                                                            name='owner_rend'
+                                                                            value={formData.owner_rend}disabled
+                                                                            onChange={handleChange}
+                                                                            isInvalid={!!formErrors.owner_rend}
+
+                                                                        />
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.owner_rend}</span>
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="ui header">FIR(R) </td>
                                                                     
+                                                                    <td>
+                                                                        {formData.fir_rpath ? (
+                                                                            // Display the PDF file as a clickable link
+                                                                            <a href={BASE_URL+formData.fir_rpath} target="_blank" rel="noopener noreferrer">
+                                                                                View FIR(R) Document
+                                                                            </a>
+                                                                        ) : (
+                                                                            // Show a message or placeholder if there's no file
+                                                                            <span>No PDF available</span>
+                                                                        )}
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.fir_rpath}</span>
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="ui header">DR(R) </td>
+                                                                    <td>
+                                                                        {formData.dr_rpath ? (
+                                                                            // Display the PDF file as a clickable link
+                                                                            <a href={BASE_URL+formData.dr_rpath} target="_blank" rel="noopener noreferrer">
+                                                                                View DR (R) Document
+                                                                            </a>
+                                                                        ) : (
+                                                                            // Show a message or placeholder if there's no file
+                                                                            <span>No PDF available</span>
+                                                                        )}
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.dr_rpath}</span>
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="ui header">EL(R) </td>
+
+                                                                    <td>
+                                                                        {formData.el_rpath ? (
+                                                                            // Display the PDF file as a clickable link
+                                                                            <a href={BASE_URL+formData.el_rpath} target="_blank" rel="noopener noreferrer">
+                                                                                View EL(R) Document
+                                                                            </a>
+                                                                        ) : (
+                                                                            // Show a message or placeholder if there's no file
+                                                                            <span>No PDF available</span>
+                                                                        )}
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.el_rpath}</span>
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="ui header">TR(R) </td>
+                                                                    <td>
+                                                                        {formData.tr_rpath ? (
+                                                                            // Display the PDF file as a clickable link
+                                                                            <a href={BASE_URL+formData.tr_rpath} target="_blank" rel="noopener noreferrer">
+                                                                                View TR(R) Document
+                                                                            </a>
+                                                                        ) : (
+                                                                            // Show a message or placeholder if there's no file
+                                                                            <span>No PDF available</span>
+                                                                        )}
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.tr_rpath}</span>
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="ui header">Category(R) </td>
+                                                                    <td>
+                                                                        <Form.Control
+                                                                            //  ref={FinalReport}
+                                                                            className={`form-control`}
+                                                                            type="text"
+                                                                            placeholder="CategoryR"
+                                                                            name='category_r'
+                                                                            value={formData.category_r}disabled
+                                                                            onChange={handleChange}
+                                                                            isInvalid={!!formErrors.category_r}
+                                                                        />
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.category_r}</span>
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="ui header">Analysis </td>
+                                                                    <td>
+                                                                        {formData.analysispath ? (
+                                                                            // Display the PDF file as a clickable link
+                                                                            <a href={BASE_URL+formData.analysispath} target="_blank" rel="noopener noreferrer">
+                                                                                View Analysis Document
+                                                                            </a>
+                                                                        ) : (
+                                                                            // Show a message or placeholder if there's no file
+                                                                            <span>No PDF available</span>
+                                                                        )}
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.analysispath}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="ui header">Final Reports </td>
+                                                                    <td>
+                                                                        {formData.final_reportpath ? (
+                                                                            // Display the PDF file as a clickable link
+                                                                            <a href={BASE_URL+formData.final_reportpath} target="_blank" rel="noopener noreferrer">
+                                                                                View Final Reports  Document
+                                                                            </a>
+                                                                        ) : (
+                                                                            // Show a message or placeholder if there's no file
+                                                                            <span>No PDF available</span>
+                                                                        )}
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.final_reportpath}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                    <td className="ui header">Action taken by utility to  allow complition</td>
+                                                                    <td>
+                                                                        <Form.Control
+                                                                            //  ref={UtilityActiontaken}
+                                                                            className={`form-control ${formErrors.action_taken_by_utility_to_allow_completion ? 'is-invalid' : ''}`}
+                                                                            type="text"
+                                                                            placeholder="Utility Action taken"
+                                                                            name='action_taken_by_utility_to_allow_completion'
+                                                                            value={formData.action_taken_by_utility_to_allow_completion}disabled
+                                                                            onChange={handleChange}
+                                                                            isInvalid={!!formErrors.action_taken_by_utility_to_allow_completion}
+
+                                                                        />
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.action_taken_by_utility_to_allow_completion}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="ui header">Date on which attended</td>
+                                                                    <td>
+                                                                        <Form.Control
+                                                                            //  ref={Dateattended}
+                                                                            className={`form-control ${formErrors.date_on_which_attended ? 'is-invalid' : ''}`}
+                                                                            type="date"
+                                                                            placeholder="Date on which attended"
+                                                                            name='date_on_which_attended'
+                                                                            value={formData.date_on_which_attended}disabled
+                                                                            onChange={handleChange}
+                                                                            isInvalid={!!formErrors.date_on_which_attended}
+
+                                                                        />
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.date_on_which_attended}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="ui header">Remarks</td>
+                                                                    <td>
+                                                                        <Form.Control
+                                                                            //  ref={Remarks}
+                                                                            className={`form-control ${formErrors.remarks ? 'is-invalid' : ''}`}
+                                                                            type="text"
+                                                                            placeholder="Remarks"
+                                                                            name='remarks'
+                                                                            value={formData.remarks}disabled
+                                                                            onChange={handleChange}
+                                                                            isInvalid={!!formErrors.remarks}
+
+                                                                        />
+                                                                    </td>
+                                                                    <td>
+                                                                        <span style={{ color: "red" }}>{formErrors.remarks}</span>
+                                                                    </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td className="ui header">PCM Number</td>
@@ -543,348 +734,26 @@ export const ViewFormOne= () => {
                                                                     </td>
                                                                     
                                                                 </tr>  
-                        
-                                                                    
                                                                 <tr>
-                                                                    <td className="ui header">Tripping Date </td>
+                                                                    <td className="ui header">Recommendations of PCM </td>
                                                                     <td>
                                                                         <Form.Control
                                                                         
-                                                                         className={`form-control ${formErrors.TrippingDate ? 'is-invalid' : ''}`}
-                                                                            type="date"
-                                                                            placeholder="Tripping Date"
-                                                                            name='TrippingDate'
-                                                                            value={formData.TrippingDate}
-                                                                            onChange={handleChange}
-                                                                            isInvalid={!!formErrors.TrippingDate}
-                                                                             
-                                                                        />
-                                                                     </td>   
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.TrippingDate}</span>
-                                                                    </td>
-                                                                   
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">Tripping Time </td>
-                                                                   
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        
-                                                                         className={`form-control ${formErrors.TrippingTime ? 'is-invalid' : ''}`}
-                                                                            type="time"
-                                                                            placeholder="Tripping Time"
-                                                                            name='TrippingTime'
-                                                                            value={formData.TrippingTime}
-                                                                            onChange={handleChange}
-                                                                            isInvalid={!!formErrors.TrippingTime}
-                                                                             
-                                                                        />
-                                                                      </td>  
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.TrippingTime}</span>
-                                                                    </td>
-                                                                   
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">Owner(Send) </td>
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        
-                                                                         className={`form-control ${formErrors.OwnerS ? 'is-invalid' : ''}`}
+                                                                         className={`form-control ${formErrors.RecommondationofPCM ? 'is-invalid' : ''}`}
                                                                             type="text"
-                                                                            placeholder="Owner(Send)"
-                                                                            name='OwnerS'
-                                                                            value={formData.OwnerS}
+                                                                            placeholder="Recommendations of PCM"
+                                                                            name='RecommondationofPCM'
+                                                                            value={formData.RecommondationofPCM}
                                                                             onChange={handleChange}
-                                                                            isInvalid={!!formErrors.OwnerS}
+                                                                            isInvalid={!!formErrors.RecommondationofPCM}
                                                                              
                                                                         />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.OwnerS}</span>
+
                                                                     </td>
-                                                                
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">FIR(S) </td>
                                                                     <td>
-                                                                        <Form.Control
-                                                                        
-                                                                         className={`form-control ${formErrors.FIRS ? 'is-invalid' : ''}`}
-                                                                            type="file"
-                                                                            placeholder="FIR(S)"
-                                                                            name='FIRS'
-                                                                            
-                                                                            onChange={handleFileChange}
-                                                                            isInvalid={!!formErrors.FIRS}
-                                                                             
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.FIRS}</span>
-                                                                    </td>
-                                                                  
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">DR(S) </td>
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        
-                                                                         className={`form-control ${formErrors.DRS ? 'is-invalid' : ''}`}
-                                                                            type="file"
-                                                                            placeholder="DR(S)"
-                                                                            name='DRS'
-                                                                           
-                                                                            onChange={handleFileChange1}
-                                                                            isInvalid={!!formErrors.DRS}
-                                                                             
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.DRS}</span>
+                                                                    <span style={{ color: "red" }}>{formErrors.RecommondationofPCM}</span>
                                                                     </td>
                                                                     
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">EL(S) </td>
-                                                                    
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        //  ref={FinalReport}
-                                                                         className={`form-control`}
-                                                                            type="file"
-                                                                            placeholder="TR(S)"
-                                                                            name='TRS'
-                                                                           
-                                                                            onChange={handleFileChange3}
-                                                                       
-                                                                          
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.ELS}</span>
-                                                                    </td>
-                                                                 
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">TR(S) </td>
-                                                                 
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        //  ref={FinalReport}
-                                                                         className={`form-control`}
-                                                                            type="file"
-                                                                            placeholder="TR(S)"
-                                                                            name='TRS'
-                                                                           
-                                                                            onChange={handleFileChange3}
-                                                                       
-                                                                          
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.selectedFile3}</span>
-                                                                    </td>
-                                                                 
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">Category(Send) </td>
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        
-                                                                         className={`form-control ${formErrors.CategoryS ? 'is-invalid' : ''}`}
-                                                                            type="text"
-                                                                            placeholder="Category(Send)"
-                                                                            name='CategoryS'
-                                                                            value={formData.CategoryS}
-                                                                            onChange={handleChange}
-                                                                            isInvalid={!!formErrors.CategoryS}
-                                                                             
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.CategoryS}</span>
-                                                                    </td>
-                                                                
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">Owner(R) </td>
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        
-                                                                         className={`form-control ${formErrors.OwnerR ? 'is-invalid' : ''}`}
-                                                                            type="text"
-                                                                            placeholder="Owner(R)"
-                                                                            name='OwnerR'
-                                                                            value={formData.OwnerR}
-                                                                            onChange={handleChange}
-                                                                            isInvalid={!!formErrors.OwnerR}
-                                                                             
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.OwnerR}</span>
-                                                                    </td>
-                                                                
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">FIR(R) </td>
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        //  ref={FinalReport}
-                                                                         className={`form-control`}
-                                                                            type="file"
-                                                                            placeholder="FIR(R)"
-                                                                            name='FIRR'
-                                                                           
-                                                                            onChange={handleFileChange4}
-                                                                       
-                                                                          
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.selectedFile4}</span>
-                                                                    </td>
-                                                                 
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">DR(R) </td>
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        //  ref={FinalReport}
-                                                                         className={`form-control`}
-                                                                            type="file"
-                                                                            placeholder="DR(R)"
-                                                                            name='DRR'
-                                                                           
-                                                                            onChange={handleFileChange5}
-                                                                       
-                                                                          
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.selectedFile5}</span>
-                                                                    </td>
-                                                                 
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">EL(R) </td>
-                                                                 
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        //  ref={FinalReport}
-                                                                         className={`form-control`}
-                                                                            type="file"
-                                                                            placeholder="EL(R)"
-                                                                            name='ELR'
-                                                                           
-                                                                            onChange={handleFileChange5}
-                                                                       
-                                                                          
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.selectedFile5}</span>
-                                                                    </td>
-                                                                 
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">TR(R) </td>
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        //  ref={FinalReport}
-                                                                         className={`form-control`}
-                                                                            type="file"
-                                                                            placeholder="TR(R)"
-                                                                            name='TRR'
-                                                                           
-                                                                            onChange={handleFileChange6}
-                                                                       
-                                                                          
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.selectedFile6}</span>
-                                                                    </td>
-                                                                 
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">Category(R) </td>
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        //  ref={FinalReport}
-                                                                         className={`form-control`}
-                                                                            type="file"
-                                                                            placeholder="CategoryR"
-                                                                            name='CategoryR'
-                                                                           
-                                                                            onChange={handleFileChange7}
-                                                                       
-                                                                          
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.selectedFile7}</span>
-                                                                    </td>
-                                                                
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">Analysis </td>
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        //  ref={FinalReport}
-                                                                         className={`form-control`}
-                                                                            type="file"
-                                                                            placeholder="Analysis"
-                                                                            name='Analysis'
-                                                                           
-                                                                            onChange={handleFileChange8}
-                                                                       
-                                                                          
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.selectedFile8}</span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">Final Reports </td>
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        //  ref={FinalReport}
-                                                                         className={`form-control`}
-                                                                            type="file"
-                                                                            placeholder="FinalReport"
-                                                                            name='FinalReport'
-                                                                           
-                                                                            onChange={handleFileChange9}
-                                                                       
-                                                                          
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.selectedFile9}</span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">Notified Status </td>
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        //  ref={NotifiedStatus}
-                                                                         className={`form-control ${formErrors.NotifiedStatus ? 'is-invalid' : ''}`}
-                                                                            type="text"
-                                                                            placeholder="Notified Status"
-                                                                            name='NotifiedStatus'
-                                                                            value={formData.NotifiedStatus}
-                                                                            onChange={handleChange}
-                                                                            isInvalid={!!formErrors.NotifiedStatus}
-                                                                          
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.NotifiedStatus}</span>
-                                                                    </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td className="ui header">Utility responsible for Attending </td>
@@ -903,63 +772,6 @@ export const ViewFormOne= () => {
                                                                          </td>
                                                                      <td>
                                                                     <span style={{ color: "red" }}>{formErrors.UtilityAttending}</span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">Action taken by utility to  allow complition</td>
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        //  ref={UtilityActiontaken}
-                                                                         className={`form-control ${formErrors.UtilityActiontaken ? 'is-invalid' : ''}`}
-                                                                            type="text"
-                                                                            placeholder="Utility Action taken"
-                                                                            name='UtilityActiontaken'
-                                                                            value={formData.UtilityActiontaken}
-                                                                            onChange={handleChange}
-                                                                            isInvalid={!!formErrors.UtilityActiontaken}
-                                                                          
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.UtilityActiontaken}</span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">Date on which attended</td>
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        //  ref={Dateattended}
-                                                                         className={`form-control ${formErrors.Dateattended ? 'is-invalid' : ''}`}
-                                                                            type="date"
-                                                                            placeholder="Date on which attended"
-                                                                            name='Dateattended'
-                                                                            value={formData.Dateattended}
-                                                                            onChange={handleChange}
-                                                                            isInvalid={!!formErrors.Dateattended}
-                                                                          
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.Dateattended}</span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className="ui header">Remarks</td>
-                                                                    <td>
-                                                                        <Form.Control
-                                                                        //  ref={Remarks}
-                                                                         className={`form-control ${formErrors.Remarks ? 'is-invalid' : ''}`}
-                                                                            type="text"
-                                                                            placeholder="Remarks"
-                                                                            name='Remarks'
-                                                                            value={formData.Remarks}
-                                                                            onChange={handleChange}
-                                                                            isInvalid={!!formErrors.Remarks}
-                                                                          
-                                                                        />
-                                                                         </td>
-                                                                     <td>
-                                                                    <span style={{ color: "red" }}>{formErrors.Remarks}</span>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>

@@ -74,7 +74,10 @@ import Newpassword from "./Admin/Components/pages/changepassword/Newpassword.jsx
 import CandidateForgetpassword from './Admin/Components/pages/Candidatepassword/forgetcandpass.jsx'
 import ChangecandidatePassword from './Admin/Components/pages/Candidatepassword/Changecandidatepass.jsx'
 import Formoneallparts from './Website/components/websiteforms/ViewForm1allparts.jsx'
-import Form1part1list from './Website/components/Form1/Viewlistpart1.jsx'
+import Form1part1list from './Website/components/Form1/Viewlistpart1.jsx';
+import Form1part2list from "./Website/components/Form1/Viewlistpart2.jsx";
+import Form1part3list from "./Website/components/Form1/Viewlistpart3.jsx";
+import Form1part5list from "./Website/components/Form1/Viewlistpart5.jsx";
 //=====================================import apiclient===============================>
 import apiClient from './Api/ApiClient';
 import LatestNews from "./Website/components/Latest_News/LatestNews.jsx";
@@ -85,6 +88,7 @@ import Discrepancies from "./Website/components/websiteforms/Discrepancies.jsx";
 import {Formonepart1} from './Website/components/Form1/part1.jsx';
 import {Formonepart2} from "./Website/components/Form1/part2.jsx";
 import {Formonepart3}  from './Website/components/Form1/part3.jsx';
+import {Formonepart5} from './Website/components/Form1/part5.jsx'
 
 function App() {
   const [sessionExpired, setSessionExpired] = useState(false);
@@ -177,9 +181,13 @@ function App() {
             <Route path="/latestnews" element={<LatestNews/>} />
             <Route path="/form1part1" element={<Formonepart1/>} />
             <Route path="/form1partsdata" element={<Formoneallparts/>} />
-            <Route path="/form1part2" element={<Formonepart2/>} />
-            <Route path="/form1part3" element={<Formonepart3/>} />
+            <Route path="/form1part2/:id" element={<Formonepart2/>} />
+            <Route path="/form1part3/:id" element={<Formonepart3/>} />
+            <Route path="/form1part5/:id" element={<Formonepart5/>} />
             <Route path="/form1part1list" element={<Form1part1list/>} />
+            <Route path="/form1part2list" element={<Form1part2list/>} />
+            <Route path="/form1part3list" element={<Form1part3list/>} />
+            <Route path="/form1part5list" element={<Form1part5list/>} />
             <Route path="/candchangepassword" element={<ChangecandidatePassword/>} />
             <Route path="/candforgotpassword" element={<CandidateForgetpassword/>} />
             <Route path="/commerical" element={<Commerical />} />
