@@ -88,9 +88,6 @@ export const CreateSubMenu = () => {
     if (!formData.MenuName) {
       newErrors.MenuName = 'Name is required';
     }
-  
-
-
     if (!formData.ContentType) {
       newErrors.ContentType = 'Select a content type';
     }

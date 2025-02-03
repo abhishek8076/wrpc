@@ -23,6 +23,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import './WhatsNewTable.scss'
 
+
 export default function MenuSubMenuTable() {
     const [apiData, setApiData] = useState([]);
     const [isDeleting, setIsDeleting] = useState(false);

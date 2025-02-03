@@ -187,16 +187,14 @@ export const Editformonepart1 = () => {
       formDataToSend.append("Tripping_Date", formData.tripping_date);
       formDataToSend.append("Tripping_Time", formData.tripping_time);
       formDataToSend.append("Owner_SEND", formData.owner_send);
-      if (formData.fir_s ) {
-        setSelectedFile(formData.fir_s)
-        formDataToSend.append("FIR_S", formData.fir_s);
-      }
-      else{
+      if (!selectedFile) {
+        formDataToSend.append("FIR_S", formData.fir_spdfpath);
+      } else {
         formDataToSend.append("FIR_S", selectedFile);
       }
-      if (formData.dr_s ) {
-        setSelectedFile1(formData.dr_s)
-        formDataToSend.append("DR_S", selectedFile1);
+      if (!selectedFile1) {
+        //setSelectedFile1(formData.dr_s)
+        formDataToSend.append("DR_S", formData.fir_spdfpath);
       }
       else{
         formDataToSend.append("DR_S", selectedFile1);

@@ -198,7 +198,7 @@ export const EditSubmenu = () => {
 
   const handleConfirmSubmit = async () => {
     handleCloseConfirmation();
-
+setLoading(true);
     try {
       const formDataToSend = new FormData();
       formDataToSend.append('menuname', formData.menuname);
@@ -233,6 +233,9 @@ export const EditSubmenu = () => {
         toast.error('Something Went Wrong!');
         console.error('Error saving/updating data:', error);
       }
+    }
+    finally{
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -448,7 +451,7 @@ export const EditSubmenu = () => {
 
           {/* Submit Button */}
           <div className="btnsubmit">
-            <button className="btn btn-primary" onClick={handleOpenConfirmation}>
+            <button className="btn btn-primary" onClick={handleOpenConfirmation} disabled={loading}>
               Submit
             </button>
             <Dialog open={confirmDialogOpen} onClose={handleCloseConfirmation}>

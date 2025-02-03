@@ -4,7 +4,6 @@ import CmsDisplay from "../Header/CmsDisplay";
 import { Button, Table, TableBody, TableCell, TableHead, TableRow, Paper } from "@mui/material";
 import { BASE_URL } from "../../../Api/ApiFunctions";
 import { CmsFooter } from "../Footer/CmsFooter"; // Ensure path is correct
-import { Link } from 'react-router-dom';
 
 const Form1part1list = () => {
   const [trippingData, setTrippingData] = useState([]);
@@ -67,7 +66,6 @@ const Form1part1list = () => {
                     <TableCell>DR(S)</TableCell>
                     <TableCell>EL(S)</TableCell>
                     <TableCell>TR(S)</TableCell>
-                    <TableCell>Action</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -97,19 +95,6 @@ const Form1part1list = () => {
                         <a href={BASE_URL + item.tr_s} target="_blank" rel="noopener noreferrer">
                           View TR(S) PDF
                         </a>
-                      </TableCell>
-                      <TableCell>
-                        {/* <Button
-                          variant="contained"
-                          color="secondary"
-                          onClick={() => handleEdit(item.uniqueid)}
-                        >
-                          Edit
-                        </Button> */}
-                        
-                         <Link to={'/editform1part1/'+item.uniqueid}>
-                         <button>Edit</button>
-                </Link>
                       </TableCell>
                     </TableRow>
                   ))}
